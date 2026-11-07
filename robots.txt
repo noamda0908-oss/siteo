@@ -1,0 +1,34 @@
+# Siteo – בניית אתרים
+# כל מנועי החיפוש ומנועי ה-AI מורשים לסרוק את האתר
+
+User-agent: *
+Allow: /
+
+# מנועי חיפוש מבוססי AI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+
+Sitemap: https://siteo.co.il/sitemap.xml
+# AI-readable summary: https://siteo.co.il/llms.txt

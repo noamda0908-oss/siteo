@@ -1187,6 +1187,13 @@ html.a11y-still .pb *{animation:none!important;transition:none!important}
   #included .inc-head{margin-bottom:28px}
 }
 .pb{padding:0!important}
+
+/* included: compact checklist (option A) */
+.inc-check{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:40px;border-top:1px solid rgba(255,255,255,.12)}
+.inc-check li{display:flex;align-items:center;gap:14px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:18px;font-weight:600;color:#fff;line-height:1.3}
+.inc-px{flex:0 0 10px;height:10px;border-radius:3px;background:linear-gradient(135deg,#3D7BFF,#5CE1E6)}
+@media (max-width:980px){.inc-check{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px}}
+@media (max-width:760px){.inc-check li{padding:16px 0;font-size:16px;gap:12px}}
 </style>
 </head>
 <body>
@@ -1322,9 +1329,9 @@ html.a11y-still .pb *{animation:none!important;transition:none!important}
   <div class="wrap">
     <div class="inc-head">
       <h2 id="inc-title">מה מקבלים בכל אתר</h2>
-      <p>בלי תוספות מפתיעות: כל אחד מהדברים האלה כלול כבר במחיר.</p>
+      <p>בלי תוספות מפתיעות: הכול כלול כבר במחיר.</p>
     </div>
-    <ol class="inc-list"><li><span class="inc-n" aria-hidden="true">01</span><div><h3>מותאם לטלפון</h3><p>נבנה קודם לנייד, כי משם מגיעים רוב הלקוחות.</p></div></li><li><span class="inc-n" aria-hidden="true">02</span><div><h3>SEO <span class="nw">ו-GEO</span></h3><p>כדי שימצאו אתכם בגוגל, וגם כששואלים את ChatGPT.</p></div></li><li><span class="inc-n" aria-hidden="true">03</span><div><h3>וואטסאפ וטופס לידים</h3><p>כל פנייה מגיעה ישר לטלפון שלכם.</p></div></li><li><span class="inc-n" aria-hidden="true">04</span><div><h3>פיקסל ומדידה</h3><p>פיקסל של מטא <span class="nw">ו-Google</span> Analytics מחוברים ומוכנים לקמפיין.</p></div></li><li><span class="inc-n" aria-hidden="true">05</span><div><h3>טעינה מהירה</h3><p>קוד נקי ותמונות מכווצות, בלי לחכות.</p></div></li><li><span class="inc-n" aria-hidden="true">06</span><div><h3>נגישות לפי התקן</h3><p>תפריט נגישות והצהרת נגישות לפי ת"י 5568.</p></div></li><li><span class="inc-n" aria-hidden="true">07</span><div><h3>פרטיות ועוגיות</h3><p>באנר עוגיות ומדיניות פרטיות לפי תיקון 13.</p></div></li><li><span class="inc-n" aria-hidden="true">08</span><div><h3>ליווי גם אחרי</h3><p>שינויים ושאלות גם אחרי שהאתר באוויר.</p></div></li></ol>
+    <ul class="inc-check"><li><span class="inc-px" aria-hidden="true"></span><span>מותאם לטלפון</span></li><li><span class="inc-px" aria-hidden="true"></span><span>SEO <span class="nw">ו-GEO</span></span></li><li><span class="inc-px" aria-hidden="true"></span><span>וואטסאפ וטופס לידים</span></li><li><span class="inc-px" aria-hidden="true"></span><span>פיקסל ומדידה</span></li><li><span class="inc-px" aria-hidden="true"></span><span>טעינה מהירה</span></li><li><span class="inc-px" aria-hidden="true"></span><span>נגישות לפי התקן</span></li><li><span class="inc-px" aria-hidden="true"></span><span>פרטיות ועוגיות</span></li><li><span class="inc-px" aria-hidden="true"></span><span>ליווי גם אחרי</span></li></ul>
   </div>
 </section>
 
@@ -1890,7 +1897,7 @@ if (document.readyState === 'complete') whenIdle(); else addEventListener('load'
   addEventListener('scroll',()=>{if(!t){t=true;requestAnimationFrame(upd)}},{passive:true});
   addEventListener('resize',upd); upd();
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window)) return;
-  const sel='main section:not(.hero3d):not(.pb) h2, main section:not(.hero3d):not(.pb) .x-sub, main .x-row, main .inc-list li, main .faq details';
+  const sel='main section:not(.hero3d):not(.pb) h2, main section:not(.hero3d):not(.pb) .x-sub, main .x-row, main .inc-check li, main .faq details';
   const els=[...document.querySelectorAll(sel)];
   const vh=innerHeight;
   els.forEach(e=>{

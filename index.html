@@ -1194,6 +1194,14 @@ html.a11y-still .pb *{animation:none!important;transition:none!important}
 .inc-px{flex:0 0 10px;height:10px;border-radius:3px;background:linear-gradient(135deg,#3D7BFF,#5CE1E6)}
 @media (max-width:980px){.inc-check{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px}}
 @media (max-width:760px){.inc-check li{padding:16px 0;font-size:16px;gap:12px}}
+
+/* ===== seamless joins between sections ===== */
+main > section{border-top:0!important}
+.x-promise::before,.x-contact::before{-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 30%,#000 70%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 30%,#000 70%,transparent 100%)}
+.x-contact,.x-promise{background:transparent!important}
+.x-contact,.x-promise{overflow:visible!important}
+.x-contact > .wrap,.x-promise > .wrap{position:relative;z-index:1}
+.x-footer{border-top:1px solid rgba(255,255,255,.08)}
 </style>
 </head>
 <body>

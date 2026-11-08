@@ -1213,6 +1213,15 @@ main > section{border-top:0!important}
   .fb-3 strong{font-size:22px!important;max-width:85%!important}
   .fb-2 b{font-size:44px!important}
 }
+
+/* second project: phone with real screenshot */
+.x-work-alt{margin-top:72px}
+@media (min-width:900px){.x-work-alt .x-work-visual{order:-1}}
+.br-visual::before{background:radial-gradient(closest-side,rgba(232,150,180,.35),transparent 70%)!important}
+.br-phone{position:relative;z-index:1;display:block;width:min(300px,72vw);aspect-ratio:1/2;border-radius:42px;padding:10px;background:#0B1124;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 90px -30px rgba(232,150,180,.45),0 30px 60px -30px rgba(0,0,0,.8);transform:rotate(-3deg);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.br-visual:hover .br-phone{transform:rotate(0) translateY(-6px)}
+.br-phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:32px}
+@media (max-width:760px){.x-work-alt{margin-top:48px}.br-phone{width:min(260px,70vw)}}
 </style>
 </head>
 <body>
@@ -1385,6 +1394,18 @@ main > section{border-top:0!important}
         </span>
       </span>
       <span class="dn-card r" aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="wrap x-work-grid x-work-alt">
+    <div class="x-work-text">
+      <h3 class="x-work-name" dir="ltr">Danielle Brow Studio</h3>
+      <p class="x-work-kind">אתר לסטודיו לעיצוב גבות באשקלון</p>
+      <p>אתר תדמית עם קביעת תורים אונליין: הלקוחה בוחרת טיפול, יום ושעה פנויה, השעות התפוסות מסומנות, והאישור נשלח בוואטסאפ.</p>
+      <p class="x-stack" aria-label="מה יש באתר"><span>קביעת תורים</span><span>לפני ואחרי</span><span>וואטסאפ</span><span>Netlify</span></p>
+      <a class="x-link" href="https://noam-sites.netlify.app" target="_blank" rel="noopener">לאתר של הסטודיו</a>
+    </div>
+    <a class="x-work-visual br-visual" href="https://noam-sites.netlify.app" target="_blank" rel="noopener" aria-label="Danielle Brow Studio – פתיחת האתר">
+      <span class="br-phone"><img src="work-brow.webp" alt="דף הבית של אתר Danielle Brow Studio בטלפון" width="390" height="780" loading="lazy" decoding="async"></span>
     </a>
   </div>
   <div class="wrap">

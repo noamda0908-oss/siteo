@@ -1202,6 +1202,17 @@ main > section{border-top:0!important}
 .x-contact,.x-promise{overflow:visible!important}
 .x-contact > .wrap,.x-promise > .wrap{position:relative;z-index:1}
 .x-footer{border-top:1px solid rgba(255,255,255,.08)}
+
+/* hero fallback on phones: flat, centered, fits the screen until 3D takes over */
+@media (max-width:900px){
+  .hero-fallback{perspective:none;overflow:visible}
+  .fb{inset:14% 10%!important}
+  .fb-1{transform:translate(-7%,9%) rotate(-5deg)!important}
+  .fb-2{transform:translate(-2%,3%) rotate(-2deg)!important}
+  .fb-3{transform:translate(5%,-5%) rotate(2deg)!important;padding:20px!important}
+  .fb-3 strong{font-size:22px!important;max-width:85%!important}
+  .fb-2 b{font-size:44px!important}
+}
 </style>
 </head>
 <body>
@@ -1883,7 +1894,7 @@ async function start() {
 
 const saveData = navigator.connection && navigator.connection.saveData;
 function boot() { if (saveData) return; start().catch(() => { /* static fallback stays visible */ }); }
-function whenIdle() { ('requestIdleCallback' in window) ? requestIdleCallback(boot, { timeout: 1500 }) : setTimeout(boot, 300); }
+function whenIdle() { ('requestIdleCallback' in window) ? requestIdleCallback(boot, { timeout: 500 }) : setTimeout(boot, 150); }
 if (document.readyState === 'complete') whenIdle(); else addEventListener('load', whenIdle, { once: true });
 </script>
 <script>

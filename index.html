@@ -1930,5 +1930,14 @@ if (document.readyState === 'complete') whenIdle(); else addEventListener('load'
   addEventListener('resize',upd); addEventListener('a11y-change',upd); upd();
 })();
 </script>
+<script>
+/* conversion events: fire only if a pixel/analytics is loaded (after cookie consent) */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href*="wa.me"]'); if(!a) return;
+  const lead=a.id==='sendWa';
+  try{ if(window.fbq) fbq('track', lead?'Lead':'Contact', {content_name: lead?'טופס דמו':'וואטסאפ'}); }catch(_){}
+  try{ if(window.gtag) gtag('event', lead?'generate_lead':'contact', {method:'whatsapp'}); }catch(_){}
+},{capture:true});
+</script>
 </body>
 </html>

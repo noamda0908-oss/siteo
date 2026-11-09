@@ -483,3 +483,12 @@ ul,ol{padding:0;list-style:none}
 .spring.is-static .spring__stage{height:auto;min-height:100svh;padding:calc(var(--nav-h) + 40px) 0 80px}
 .spring.is-static .spring__copy{position:relative;left:auto;bottom:auto;margin:0 var(--gutter);display:grid;gap:40px;min-height:0}
 .spring.is-static .spring__step{position:relative;opacity:1;transform:none}
+
+.field--loc{align-self:end}
+.loc-btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 16px;border-radius:999px;border:1.5px solid rgba(22,28,37,.25);background:#fff;font-weight:500;font-size:.95rem;cursor:pointer;transition:border-color .2s,background-color .2s}
+.loc-btn svg{width:18px;height:18px;fill:none;stroke:var(--sodium);stroke-width:2}
+.loc-btn:hover{border-color:var(--ink)}
+.loc-btn.is-set{background:var(--limestone);border-color:var(--ink)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form{position:relative}
+.form__send[disabled]{opacity:.6;cursor:wait}

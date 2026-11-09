@@ -1222,9 +1222,91 @@ main > section{border-top:0!important}
 .br-visual:hover .br-phone{transform:rotate(0) translateY(-6px)}
 .br-phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:32px}
 @media (max-width:760px){.x-work-alt{margin-top:48px}.br-phone{width:min(260px,70vw)}}
+
+/* ===== v7: motion layer (GSAP + Lenis, js/motion.js) ===== */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:clip}
+
+/* intro: first visit in a session */
+.intro{display:none}
+html.intro-on .intro{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:var(--night);clip-path:inset(0 0 0 0)}
+html.intro-on .intro::before{content:"";position:absolute;inset:0;background:radial-gradient(42% 50% at 50% 54%,rgba(61,123,255,.24),transparent 70%),radial-gradient(30% 40% at 42% 40%,rgba(92,225,230,.12),transparent 70%)}
+.intro-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:26px}
+.intro-mask{overflow:hidden;padding:6px 4px}
+.intro-logo{display:block;width:clamp(150px,20vw,220px);height:auto;transform:translateY(118%)}
+.intro-dot{opacity:0}
+.intro-bar{width:clamp(110px,14vw,170px);height:2px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.intro-bar i{display:block;height:100%;transform-origin:right;transform:scaleX(0);background:linear-gradient(270deg,#3D7BFF,#5CE1E6)}
+html.intro-on .enter{animation:none!important}
+
+/* heading lines rising out of a mask (SplitText) */
+.sl-mask,.sl{padding-bottom:.14em;margin-bottom:-.14em}
+
+/* hero build HUD */
+.hb-hud{display:none}
+.hb-hud.hb-ready{display:block;position:absolute;z-index:2;left:max(24px,calc((100vw - 1180px)/2 + 24px));bottom:clamp(96px,14vh,140px);width:272px;padding:14px 16px 12px;border-radius:16px;background:rgba(10,16,36,.55);border:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--on-night);font:500 13px/1.3 var(--f-body);box-shadow:0 24px 50px -24px rgba(0,0,0,.7)}
+.hb-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.hb-label{display:inline-flex;align-items:center;gap:9px;font-weight:600;color:#fff}
+.hb-dot{flex:none;width:8px;height:8px;border-radius:50%;background:#5CE1E6;box-shadow:0 0 0 4px rgba(92,225,230,.16);transition:background .35s,box-shadow .35s}
+.is-moving .hb-dot{background:#FFB547;box-shadow:0 0 0 4px rgba(255,181,71,.16)}
+.is-live .hb-dot{background:#34D399;box-shadow:0 0 0 4px rgba(52,211,153,.2)}
+.hb-pct{font:600 22px/1 var(--f-display);font-variant-numeric:tabular-nums;direction:ltr;color:#fff}
+.hb-pct b{font-weight:700}
+.hb-pct small{font-size:13px;color:var(--on-night-muted);margin-inline-start:2px}
+.hb-rail{position:relative;height:3px;margin:12px 0 10px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+.hb-fill{position:absolute;inset:0;transform-origin:right;transform:scaleX(0);background:linear-gradient(270deg,#3D7BFF,#5CE1E6)}
+.hb-steps{display:flex;justify-content:space-between;list-style:none;margin:0;padding:0;font-size:12px;color:rgba(169,180,214,.55)}
+.hb-steps li{transition:color .3s}
+.hb-steps li.done{color:var(--on-night-muted)}
+.hb-steps li.on{color:#fff}
+@media (max-width:760px){
+  .hb-hud.hb-ready{left:50%;bottom:auto;top:var(--hud-top,250px);transform:translateX(-50%);width:min(250px,70vw);padding:9px 12px 10px;border-radius:14px}
+  .hb-pct{font-size:17px}
+  .hb-rail{margin:8px 0 0}
+  .hb-steps{display:none}
+}
+
+/* work: Dayno cards fan out, phone screenshot loads in (driven by --fan / --wy / --clip / --zoom) */
+html.m-on .x-work-visual{--tuck:150px}
+html.m-on .x-work-visual .dn-main{z-index:2;translate:0 calc((1 - var(--fan,1)) * 46px);scale:calc(.9 + .1 * var(--fan,1))}
+html.m-on .x-work-visual .dn-card.l{translate:calc((1 - var(--fan,1)) * -1 * var(--tuck)) 0;rotate:calc((1 - var(--fan,1)) * 10deg)}
+html.m-on .x-work-visual .dn-card.r{translate:calc((1 - var(--fan,1)) * var(--tuck)) 0;rotate:calc((1 - var(--fan,1)) * -10deg)}
+html.m-on .br-phone{translate:0 calc(var(--wy,0) * 1px)}
+html.m-on .br-phone img{clip-path:inset(0 0 calc(var(--clip,0) * 1%) 0 round 32px);scale:calc(1 + var(--zoom,0))}
+@media (max-width:760px){html.m-on .x-work-visual{--tuck:88px}}
+
+/* promise: words light up on scroll */
+html.m-words .x-promise h2{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff}
+html.m-words .x-promise h2 .pw-c{color:#9DE7F2}
+html.m-words .x-promise p{color:#DCE3F7}
+
+/* magnetic buttons */
+html.m-on .mag{translate:var(--mx,0px) var(--my,0px)}
 </style>
 </head>
 <body>
+<script>
+/* motion: decide before first paint whether to show the intro (skipped for reduced motion, the a11y "stop animations" option, data saver, deep links and repeat visits) */
+(function(){
+  var d=document.documentElement,still=false,seen=false;
+  try{still=!!(JSON.parse(localStorage.getItem('siteo-a11y')||'{}')||{}).still}catch(e){}
+  try{seen=!!sessionStorage.getItem('siteo-intro')}catch(e){}
+  var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,sd=navigator.connection&&navigator.connection.saveData;
+  if(rm||still||sd||seen||location.hash)return;
+  d.classList.add('intro-on');
+  setTimeout(function(){if(!window.__introStarted){d.classList.remove('intro-on');window.__siteoRevealed=true;}},3500);
+})();
+</script>
+<div class="intro" aria-hidden="true">
+  <div class="intro-in">
+    <div class="intro-mask">
+      <svg class="intro-logo" xmlns="http://www.w3.org/2000/svg" focusable="false" viewBox="0 0 346.89 120.00"><defs><linearGradient id="wgi" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3D7BFF"/><stop offset="1" stop-color="#5CE1E6"/></linearGradient></defs><path d="M36.45 119.71Q19.59 119.71 10.08 112.8Q0.58 105.88 0 93.35H20.46Q21.03 97.09 24.99 100.05Q28.96 103 36.88 103Q42.93 103 46.89 100.91Q50.85 98.82 50.85 94.93Q50.85 91.48 47.83 89.39Q44.8 87.3 37.02 86.43L30.83 85.86Q16.57 84.42 9.44 77.94Q2.3 71.45 2.3 61.37Q2.3 53.01 6.48 47.39Q10.66 41.78 18.08 38.9Q25.5 36.01 35.01 36.01Q50.28 36.01 59.64 42.71Q69 49.41 69.44 62.09H48.98Q48.4 58.2 44.95 55.53Q41.49 52.87 34.72 52.87Q29.39 52.87 26.22 54.89Q23.05 56.9 23.05 60.36Q23.05 63.67 25.79 65.4Q28.52 67.13 34.72 67.85L40.91 68.43Q55.46 70.01 63.53 76.49Q71.6 82.98 71.6 93.93Q71.6 101.85 67.27 107.68Q62.95 113.52 55.03 116.61Q47.11 119.71 36.45 119.71Z M84.85 117.26V38.32H107.9V117.26ZM74.33 55.32V38.32H107.9V55.32Z M159.62 118.27Q147.66 118.27 140.31 115.32Q132.97 112.36 129.58 105.38Q126.19 98.39 126.19 86.43V17H147.66V87.3Q147.66 92.92 150.61 95.87Q153.57 98.82 159.04 98.82H170.71V118.27ZM114.24 55.17V38.32H170.71V55.17Z M216.66 120Q206.58 120 198.87 116.54Q191.16 113.09 186.05 107.25Q180.94 101.42 178.27 94.14Q175.61 86.87 175.61 79.23V76.35Q175.61 68.43 178.27 61.15Q180.94 53.88 185.98 48.12Q191.02 42.35 198.58 38.97Q206.15 35.58 215.8 35.58Q228.48 35.58 237.19 41.27Q245.91 46.96 250.52 56.11Q255.13 65.26 255.13 76.06V83.84H185.26V70.73H241.15L233.66 76.78Q233.66 69.72 231.64 64.68Q229.63 59.64 225.67 56.97Q221.7 54.31 215.8 54.31Q209.75 54.31 205.57 57.05Q201.39 59.78 199.23 65.04Q197.07 70.3 197.07 77.94Q197.07 84.99 199.09 90.25Q201.1 95.51 205.43 98.39Q209.75 101.27 216.66 101.27Q223 101.27 227.03 98.82Q231.07 96.37 232.51 92.77H253.69Q251.96 100.7 246.91 106.89Q241.87 113.09 234.24 116.54Q226.6 120 216.66 120Z M303.39 120Q293.01 120 284.95 116.76Q276.88 113.52 271.33 107.9Q265.79 102.28 262.91 95.01Q260.02 87.73 260.02 79.66V76.35Q260.02 68.14 262.98 60.72Q265.93 53.3 271.62 47.68Q277.31 42.06 285.38 38.82Q293.45 35.58 303.39 35.58Q313.61 35.58 321.61 38.82Q329.6 42.06 335.22 47.68Q340.84 53.3 343.87 60.72Q346.89 68.14 346.89 76.35V79.66Q346.89 87.73 344.01 95.01Q341.13 102.28 335.58 107.9Q330.04 113.52 321.97 116.76Q313.9 120 303.39 120ZM303.39 100.55Q310.16 100.55 314.62 97.67Q319.09 94.79 321.46 89.6Q323.84 84.42 323.84 78.08Q323.84 71.31 321.39 66.19Q318.94 61.08 314.41 58.06Q309.87 55.03 303.39 55.03Q297.05 55.03 292.44 58.06Q287.83 61.08 285.45 66.19Q283.07 71.31 283.07 78.08Q283.07 84.42 285.38 89.6Q287.68 94.79 292.29 97.67Q296.9 100.55 303.39 100.55Z" fill="#F4F7FF"/><rect class="intro-dot" x="77.00" y="0.00" width="28.24" height="28.24" rx="7.91" fill="url(#wgi)"/></svg>
+    </div>
+    <div class="intro-bar"><i></i></div>
+  </div>
+</div>
 <div class="scroll-progress" aria-hidden="true"><i></i></div>
 <a class="skip" href="#main">דלגו לתוכן</a>
 
@@ -1250,6 +1332,11 @@ main > section{border-top:0!important}
 <!-- HERO (3D) -->
 <section class="hero3d" id="hero" aria-labelledby="hero-title">
   <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="hb-hud" aria-hidden="true">
+    <div class="hb-row"><span class="hb-label"><i class="hb-dot"></i><span class="hb-label-t">גללו כדי לבנות</span></span><span class="hb-pct"><b>0</b><small>%</small></span></div>
+    <div class="hb-rail"><i class="hb-fill"></i></div>
+    <ol class="hb-steps"><li class="on">מבנה</li><li>עיצוב</li><li>באוויר</li></ol>
+  </div>
   <div class="hero-fallback" aria-hidden="true">
     <div class="fb fb-1"></div>
     <div class="fb fb-2"><b><span class="tt" data-t="Aa"></span></b><span></span></div>
@@ -1557,7 +1644,7 @@ main > section{border-top:0!important}
 <button class="a11y-btn" id="a11yBtn" type="button" aria-label="תפריט נגישות" aria-expanded="false" aria-controls="a11yPanel">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M5 8.5l7 1.5 7-1.5M12 10v5m0 0-3 6m3-6 3 6"/></svg>
 </button>
-<div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="false" aria-labelledby="a11yTitle" hidden>
+<div class="a11y-panel" id="a11yPanel" data-lenis-prevent role="dialog" aria-modal="false" aria-labelledby="a11yTitle" hidden>
   <div class="a11y-top">
     <h2 id="a11yTitle">תפריט נגישות</h2>
     <button class="a11y-x" type="button" id="a11yClose" aria-label="סגירת תפריט הנגישות">✕</button>
@@ -1586,7 +1673,7 @@ main > section{border-top:0!important}
 </div>
 
 <!-- ACCESSIBILITY STATEMENT -->
-<dialog class="legal" id="a11yStatement" aria-labelledby="a11yStTitle">
+<dialog class="legal" id="a11yStatement" data-lenis-prevent aria-labelledby="a11yStTitle">
   <div class="legal-head"><h2 id="a11yStTitle">הצהרת נגישות</h2><button type="button" class="a11y-x" data-close aria-label="סגירה">✕</button></div>
   <div class="legal-body">
     <p>ב-Siteo רואים חשיבות רבה במתן שירות שוויוני לכל הגולשים, ופועלים להנגשת האתר לאנשים עם מוגבלות. הצהרה זו נכתבה ברוח חוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח–1998, תקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג–2013, והתקן הישראלי ת"י 5568 המבוסס על הנחיות WCAG 2.1.</p>
@@ -1610,7 +1697,7 @@ main > section{border-top:0!important}
 </dialog>
 
 <!-- PRIVACY POLICY -->
-<dialog class="legal" id="privacy" aria-labelledby="privTitle">
+<dialog class="legal" id="privacy" data-lenis-prevent aria-labelledby="privTitle">
   <div class="legal-head"><h2 id="privTitle">מדיניות פרטיות ועוגיות</h2><button type="button" class="a11y-x" data-close aria-label="סגירה">✕</button></div>
   <div class="legal-body">
     <p>Siteo (בניית אתרים, בהפעלת נועם דיין) מכבד את פרטיות הגולשים. מדיניות זו מסבירה איזה מידע נאסף באתר, למה, ומה הזכויות שלכם, בהתאם לחוק הגנת הפרטיות, התשמ"א–1981, כולל תיקון 13.</p>
@@ -1887,15 +1974,28 @@ async function start() {
   hero.addEventListener('pointerleave', () => { target.x = 0; target.y = 0; });
 
   const clock = new THREE.Clock();
+  // intro: wait for the logo intro (js/motion.js) to lift before the layers fly apart
+  const html = document.documentElement;
+  let introT0 = (html.classList.contains('intro-on') && !window.__siteoRevealed) ? null : 0;
+  addEventListener('siteo:reveal', () => { if (introT0 === null) introT0 = clock.getElapsedTime(); });
+  // scroll build progress 0..1 from js/motion.js: the layers merge into the finished site
+  let spT = window.__siteoBuild || 0, sp = spT;
+  addEventListener('siteo:build', e => { spT = e.detail || 0; if (!running) { sp = spT; render(1); } });
+  const lerp = (a, b, k) => a + (b - a) * k;
+  const finalZ = [-0.18, 0, 0.18];
+  // where the button, cursor, sphere and ring settle once the site is built (the button lands on the page, the cursor hovers it)
+  const extraTo = [[-1.0, -1.18, 0.5], [-0.42, -0.98, 0.82], [1.9, 1.5, 0.4], [-2.3, 1.25, -0.3]];
   function render(introOverride) {
     const t = clock.getElapsedTime();
-    const k = introOverride ?? Math.min(1, t / 1.8), e = 1 - Math.pow(1 - k, 3);
+    const k = introOverride ?? (introT0 === null ? 0 : Math.min(1, (t - introT0) / 1.8)), e = 1 - Math.pow(1 - k, 3);
     cur.x += (target.x - cur.x) * 0.06; cur.y += (target.y - cur.y) * 0.06;
-    const sway = reduce ? 0 : Math.sin(t * 0.3) * 0.07;
-    stack.rotation.set(-0.3 + cur.y * 0.35, 0.62 + cur.x * 0.6 + sway, 0.06);
-    stack.scale.setScalar(baseScale * (0.86 + 0.14 * e));
-    layers.forEach((L, i) => { L.position.z = L.userData.z * e; L.position.y = reduce ? 0 : Math.sin(t * 0.8 + i * 1.3) * 0.05; L.userData.mat.opacity = Math.min(1, e * 1.4); });
-    extras.forEach((m, i) => { const b = m.userData.base; m.position.set(b.x, b.y + (reduce ? 0 : Math.sin(t * 1.1 + i * 2) * 0.08), b.z * e); m.scale.setScalar(Math.max(0.001, e)); });
+    sp += (spT - sp) * 0.14; if (Math.abs(spT - sp) < 0.0005) sp = spT;
+    const b = sp * sp * (3 - 2 * sp), free = 1 - b * 0.7;
+    const sway = reduce ? 0 : Math.sin(t * 0.3) * 0.07 * (1 - b);
+    stack.rotation.set(lerp(-0.3, -0.06, b) + cur.y * 0.35 * free, lerp(0.62, 0.1, b) + cur.x * 0.6 * free + sway, lerp(0.06, 0, b));
+    stack.scale.setScalar(baseScale * (0.86 + 0.14 * e) * (1 + 0.1 * b));
+    layers.forEach((L, i) => { L.position.z = lerp(L.userData.z, finalZ[i], b) * e; L.position.y = reduce ? 0 : Math.sin(t * 0.8 + i * 1.3) * 0.05 * (1 - b); L.userData.mat.opacity = Math.min(1, e * 1.4) * (i === 0 ? 1 - b * 0.85 : 1); });
+    extras.forEach((m, i) => { const bs = m.userData.base, to = extraTo[i]; m.position.set(lerp(bs.x, to[0], b), lerp(bs.y, to[1], b) + (reduce ? 0 : Math.sin(t * 1.1 + i * 2) * 0.08 * (1 - 0.6 * b)), lerp(bs.z, to[2], b) * e); m.scale.setScalar(Math.max(0.001, e)); });
     if (!reduce) { ring.rotation.x = t * 0.6; ring.rotation.y = t * 0.4; points.rotation.y = t * 0.012; points.rotation.x = Math.sin(t * 0.05) * 0.05; }
     cursor.position.x += (reduce ? 0 : Math.sin(t * 1.6) * 0.05);
     renderer.render(scene, camera);
@@ -1971,5 +2071,10 @@ document.addEventListener('click',e=>{
   try{ if(window.gtag) gtag('event', lead?'generate_lead':'contact', {method:'whatsapp'}); }catch(_){}
 },{capture:true});
 </script>
+<script src="js/gsap.min.js" defer></script>
+<script src="js/ScrollTrigger.min.js" defer></script>
+<script src="js/SplitText.min.js" defer></script>
+<script src="js/lenis.min.js" defer></script>
+<script src="js/motion.js?v=1" defer></script>
 </body>
 </html>

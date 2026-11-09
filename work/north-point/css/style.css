@@ -156,7 +156,7 @@ ul,ol{padding:0;list-style:none}
 .open__photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);transform-origin:50% 60%}
 .open__mask{position:absolute;inset:0;width:100%;height:100%;transform-origin:0 0}
 .open__fill{fill:var(--limestone)}
-.open__word{font-family:var(--f-display);font-weight:900;letter-spacing:-.01em}
+.open__word{font-family:var(--f-display);font-weight:900}
 .open__sub{
   position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(40px,9vh,90px);
   color:var(--ink);font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:500;max-width:34ch;

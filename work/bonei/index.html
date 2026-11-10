@@ -898,44 +898,32 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 <script id="fs" type="x-shader/x-fragment">
 precision highp float;
 uniform vec2 uRes;
-uniform sampler2D uTexA,uDepA,uTexB,uDepB;
-uniform vec4 uA1,uA2,uA3,uB1,uB2,uB3;
-uniform float uMix,uPortal,uBlur,uUseB,uBright;
-uniform vec4 uWin;
-vec2 toUV(vec2 P,vec4 p1,vec4 p2,vec4 p3){return (P-p2.zw)/p3.x/vec2(p1.x,1.)+.5;}
-vec2 fromUV(vec2 uv,vec4 p1,vec4 p2,vec4 p3){return (uv-.5)*vec2(p1.x,1.)*p3.x+p2.zw;}
-vec2 solveA(vec2 S){
-  vec2 F=fromUV(uA2.xy,uA1,uA2,uA3);vec2 pull=-F*uA3.y;float w=.45;vec2 P=S;
-  for(int i=0;i<7;i++){float s=exp(uA1.y*(uA1.z*w+uA1.w));P=F+(S-pull-uA3.zw*(w-.35)-F)/s;float wn=texture2D(uDepA,clamp(toUV(P,uA1,uA2,uA3),0.,1.)).r;w=mix(w,wn,.6);}
-  return toUV(P,uA1,uA2,uA3);
-}
-vec2 solveB(vec2 S){
-  vec2 F=fromUV(uB2.xy,uB1,uB2,uB3);vec2 pull=-F*uB3.y;float w=.45;vec2 P=S;
-  for(int i=0;i<7;i++){float s=exp(uB1.y*(uB1.z*w+uB1.w));P=F+(S-pull-uB3.zw*(w-.35)-F)/s;float wn=texture2D(uDepB,clamp(toUV(P,uB1,uB2,uB3),0.,1.)).r;w=mix(w,wn,.6);}
-  return toUV(P,uB1,uB2,uB3);
-}
-vec3 sampA(vec2 uv,vec2 F){vec3 c=vec3(0.);for(int k=0;k<6;k++){float f=float(k)/5.;c+=texture2D(uTexA,clamp(F+(uv-F)*(1.-f*uBlur*.05),0.,1.)).rgb;}return c/6.;}
-vec3 sampB(vec2 uv,vec2 F){vec3 c=vec3(0.);for(int k=0;k<6;k++){float f=float(k)/5.;c+=texture2D(uTexB,clamp(F+(uv-F)*(1.-f*uBlur*.05),0.,1.)).rgb;}return c/6.;}
+uniform sampler2D uTexA,uTexB;
+uniform vec4 uA1,uA2,uB1,uB2;
+uniform float uMix,uBlur,uUseB,uPortal,uDimA,uBright;
+uniform vec4 uRect;
+vec2 focusS(vec4 p1,vec4 p2){return (p2.xy-.5)*vec2(p1.x,1.)*p1.z+p2.zw;}
+vec2 mapUV(vec2 S,vec4 p1,vec4 p2){vec2 F=focusS(p1,p2);vec2 P=F+(S+F*p1.w-F)/p1.y;return (P-p2.zw)/p1.z/vec2(p1.x,1.)+.5;}
+vec3 sampA(vec2 uv,vec2 c){vec3 r=vec3(0.);for(int k=0;k<5;k++){float f=float(k)/4.;r+=texture2D(uTexA,clamp(c+(uv-c)*(1.-f*uBlur*.03),0.,1.)).rgb;}return r/5.;}
+vec3 sampB(vec2 uv,vec2 c){vec3 r=vec3(0.);for(int k=0;k<5;k++){float f=float(k)/4.;r+=texture2D(uTexB,clamp(c+(uv-c)*(1.-f*uBlur*.03),0.,1.)).rgb;}return r/5.;}
 void main(){
   vec2 q=gl_FragCoord.xy/uRes;q.y=1.-q.y;
   float asp=uRes.x/uRes.y;
   vec2 S=(q-.5)*vec2(asp,1.);
-  vec2 uvA=solveA(S);
-  vec3 col=sampA(uvA,uA2.xy);
+  vec3 col=sampA(mapUV(S,uA1,uA2),uA2.xy)*uDimA;
   if(uUseB>.5){
     float m=uMix;vec3 glow=vec3(0.);
-    if(uPortal>0.){
-      vec2 c0=(uWin.xy+uWin.zw)*.5;vec2 hs=(uWin.zw-uWin.xy)*.5*uPortal;
-      vec2 n=abs(uvA-c0)/hs;float e=max(n.x,n.y);
-      m=1.-smoothstep(.93,1.,e);
-      glow=vec3(1.,.78,.5)*exp(-max(0.,e-1.)*7.)*(1.-m)*.55*smoothstep(1.,3.,uPortal);
+    if(uPortal>.5){
+      float e=1.5/uRes.y;
+      float d=min(min(S.x-uRect.x,uRect.z-S.x),min(S.y-uRect.y,uRect.w-S.y));
+      m=smoothstep(-e,e,d);
+      glow=vec3(1.,.82,.58)*exp(min(d,0.)*90.)*(1.-m)*.5;
     }
-    vec2 uvB=solveB(S);
-    vec3 cb=sampB(uvB,uB2.xy);
+    vec3 cb=sampB(mapUV(S,uB1,uB2),uB2.xy);
     col=mix(col,cb,m)+glow;
   }
   float v=smoothstep(1.3,.3,length((q-.5)*vec2(asp*.75,1.)));
-  col*=mix(1.,v,.5)*uBright;
+  col*=mix(1.,v,.45)*uBright;
   gl_FragColor=vec4(col,1.);
 }
 </script>
@@ -964,16 +952,17 @@ burger.addEventListener('click',()=>{const o=document.body.classList.toggle('men
 
 /* ================= FILM ================= */
 const film=$('.film'),stage=$('#stage'),cv=$('#gl'),hero=$('#hero'),stmt=$('#stmt'),chapters=$$('.chapter'),rail=$('#rail'),railS=$$('#rail span'),exitfade=$('#exitfade'),shadeB=$('#shadeB');
-const TL={total:9.9,heroOut:[.06,.6],ext:[.04,3.0],pull:[.25,2.6],stmtIn:[.7,1.15],stmtOut:[1.5,2.15],portal:[2.2,3.0],ch0:2.95,chLen:1.3,exit:[9.3,9.9]};
+const TL={total:9.9,heroOut:[.06,.6],ext:[.04,3.0],pull:[.2,2.3],stmtIn:[.7,1.15],stmtOut:[1.5,2.1],portal:[2.05,3.0],ch0:2.95,chLen:1.3,exit:[9.3,9.9]};
 const WIN=[.3865,.6125,.4110,.6445];
 const SC=[
- {src:'hero-exterior',focus:[.399,.628],frame:[.47,.5],a:3.0,b:1.1,ov:1.04},
- {src:'int-1',focus:[.42,.48],frame:[.44,.5],a:1.25,b:.2,ov:1.08},
- {src:'int-2',focus:[.5,.45],frame:[.5,.5],a:1.25,b:.2,ov:1.08},
- {src:'int-3',focus:[.53,.46],frame:[.53,.5],a:1.25,b:.2,ov:1.08},
- {src:'int-4',focus:[.56,.5],frame:[.56,.5],a:1.25,b:.2,ov:1.08},
- {src:'int-5',focus:[.6,.5],frame:[.58,.5],a:1.25,b:.2,ov:1.08}
+ {src:'hero-exterior',focus:[.399,.628],frame:[.47,.5],ov:1.02},
+ {src:'int-1',focus:[.44,.5],frame:[.44,.5],ov:1.01},
+ {src:'int-2',focus:[.5,.48],frame:[.5,.5],ov:1.01},
+ {src:'int-3',focus:[.53,.47],frame:[.53,.5],ov:1.01},
+ {src:'int-4',focus:[.56,.5],frame:[.56,.5],ov:1.01},
+ {src:'int-5',focus:[.58,.5],frame:[.58,.5],ov:1.01}
 ];
+const EXT_MAX=3.2;
 let gl=null,prg=null,U={},ok=false;
 let VW=innerWidth,VH=innerHeight,filmTop=0,cur=0,tgt=0,filmOn=true,qScale=1;
 function setStatic(){root.classList.add('static');chapters.forEach(c=>c.dataset.state='on');film.style.height='';}
@@ -986,8 +975,8 @@ function initGL(){
   gl.useProgram(prg);
   const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
   const loc=gl.getAttribLocation(prg,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  ['uRes','uTexA','uDepA','uTexB','uDepB','uA1','uA2','uA3','uB1','uB2','uB3','uMix','uPortal','uBlur','uUseB','uBright','uWin'].forEach(n=>U[n]=gl.getUniformLocation(prg,n));
-  gl.uniform1i(U.uTexA,0);gl.uniform1i(U.uDepA,1);gl.uniform1i(U.uTexB,2);gl.uniform1i(U.uDepB,3);
+  ['uRes','uTexA','uTexB','uA1','uA2','uB1','uB2','uMix','uPortal','uBlur','uUseB','uBright','uDimA','uRect'].forEach(n=>U[n]=gl.getUniformLocation(prg,n));
+  gl.uniform1i(U.uTexA,0);gl.uniform1i(U.uTexB,1);
   gl.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL,gl.NONE);
   return true;
 }
@@ -1002,7 +991,7 @@ function mkTex(img,lum){
 const loadImg=src=>new Promise((res,rej)=>{const i=new Image();i.decoding='async';i.onload=()=>res(i);i.onerror=rej;i.src=src;});
 function loadScene(k){
   const s=SC[k];if(s.loading)return s.loading;
-  s.loading=Promise.all([loadImg(`assets/${s.src}.jpg`),loadImg(`assets/d-${s.src}.png`)]).then(([c,d])=>{s.asp=c.naturalWidth/c.naturalHeight;s.tex=mkTex(c,false);s.dep=mkTex(d,true);});
+  s.loading=loadImg(`assets/${s.src}.jpg`).then(c=>{s.asp=c.naturalWidth/c.naturalHeight;s.tex=mkTex(c,false);});
   return s.loading;
 }
 function size(){
@@ -1011,46 +1000,46 @@ function size(){
   filmTop=film.getBoundingClientRect().top+scrollY;
   if(gl){const dpr=Math.min(devicePixelRatio||1,VW<760?1.5:1.25)*qScale;cv.width=Math.round(VW*dpr);cv.height=Math.round(VH*dpr);gl.viewport(0,0,cv.width,cv.height);}
 }
-function params(k,z,pull,lat){
+function params(k,sc,pull){
   const s=SC[k],asp=VW/VH,ia=s.asp||1;
   const cover=Math.max(1,asp/ia)*s.ov;
   const iw=ia*cover,ih=cover;
   let px=-(s.frame[0]-.5)*iw,py=-(s.frame[1]-.5)*ih;
   const mx=Math.max(0,(iw-asp)/2),my=Math.max(0,(ih-1)/2);
   px=clamp(px,-mx,mx);py=clamp(py,-my,my);
-  return [[ia,z,s.a,s.b],[s.focus[0],s.focus[1],px,py],[cover,pull,lat[0],lat[1]]];
+  return [[ia,sc,cover,pull],[s.focus[0],s.focus[1],px,py]];
 }
-function bindLayer(k,unit){const s=SC[k];gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,s.tex);gl.activeTexture(gl.TEXTURE0+unit+1);gl.bindTexture(gl.TEXTURE_2D,s.dep);}
-function setP(pref,p){gl.uniform4fv(U[pref+'1'],p[0]);gl.uniform4fv(U[pref+'2'],p[1]);gl.uniform4fv(U[pref+'3'],p[2]);}
+function toS(p,uv){const [p1,p2]=p;const F=[(p2[0]-.5)*p1[0]*p1[2]+p2[2],(p2[1]-.5)*p1[2]+p2[3]];const P=[(uv[0]-.5)*p1[0]*p1[2]+p2[2],(uv[1]-.5)*p1[2]+p2[3]];return [F[0]+(P[0]-F[0])*p1[1]-F[0]*p1[3],F[1]+(P[1]-F[1])*p1[1]-F[1]*p1[3]];}
+function bindLayer(k,unit){gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,SC[k].tex);}
+function setP(pref,p){gl.uniform4fv(U[pref+'1'],p[0]);gl.uniform4fv(U[pref+'2'],p[1]);}
 const counted=new WeakSet();
 function countUp(ch){$$('[data-count]',ch).forEach(el=>{if(counted.has(el))return;counted.add(el);const n=+el.dataset.count,sfx=el.dataset.suffix||'';const st=performance.now();const step=now=>{const k=eo(clamp((now-st)/1600));el.textContent=fmt(n*k)+sfx;if(k<1)requestAnimationFrame(step);};requestAnimationFrame(step);});}
-let smx=0,smy=0,mx=0,my=0;
-addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;},{passive:true});
-function sceneZ(j,t){
+function roomScale(j,t){ /* slow, steady push into each room */
   const st=TL.ch0+(j-1)*TL.chLen;
-  const s0=j===1?TL.portal[0]:st-.3,e0=st+TL.chLen+.25;
-  return .34*clamp((t-s0)/(e0-s0));
+  const s0=j===1?TL.portal[0]:st-.3,e0=st+TL.chLen+.3;
+  return 1+.13*clamp((t-s0)/(e0-s0));
 }
 function draw(t,now,vel){
-  const tt=now/1000;
-  const lat=[Math.sin(tt*.35)*.012+smx*.022,Math.cos(tt*.27)*.008+smy*.014];
-  let A,B=-1,mix=0,portal=0,pA,pB,blur=clamp(vel*7,0,1)*.7,bright=1;
+  let A,B=-1,mix=0,portal=0,pA,pB,blur=clamp(vel*5,0,1)*.5,dimA=1,rect=[0,0,0,0];
   if(t<TL.portal[1]){
-    const k=seg(t,...TL.ext),zE=.55*k+.45*k*k*k;
-    A=0;pA=params(0,zE,eio(seg(t,...TL.pull)),lat);
+    const k=sio(seg(t,...TL.ext));
+    A=0;pA=params(0,Math.pow(EXT_MAX,k),eio(seg(t,...TL.pull)));
     if(t>=TL.portal[0]){
-      const pk=seg(t,...TL.portal);
-      B=1;portal=1+20*Math.pow(pk,2.3);
-      pB=params(1,sceneZ(1,t),0,[lat[0]*.5,lat[1]*.5]);
-      blur+=Math.sin(Math.PI*pk)*.7;bright=1+Math.sin(Math.PI*pk)*.18;
+      const pk=seg(t,...TL.portal),ek=eio(pk);
+      B=1;portal=1;pB=params(1,roomScale(1,t),0);
+      const w=[.3865,.6125,.4110,.6445];
+      const a0=toS(pA,[w[0],w[1]]),a1=toS(pA,[w[2],w[3]]);
+      const asp=VW/VH,full=[-asp/2-.02,-.52,asp/2+.02,.52];
+      rect=[lerp(a0[0],full[0],ek),lerp(a0[1],full[1],ek),lerp(a1[0],full[2],ek),lerp(a1[1],full[3],ek)];
+      dimA=1-.35*Math.min(1,pk*2);
     }
   }else{
     const ci=clamp(Math.floor((t-TL.ch0)/TL.chLen),0,4);
     const j=ci+1,nst=TL.ch0+(ci+1)*TL.chLen;
-    A=j;pA=params(j,sceneZ(j,t),0,lat);
+    A=j;pA=params(j,roomScale(j,t),0);
     if(ci<4&&t>nst-.3){
       const f=sio(seg(t,nst-.3,nst+.25));
-      if(f>0){B=j+1;mix=f;pB=params(j+1,sceneZ(j+1,t),0,lat);blur+=Math.sin(Math.PI*f)*.8;}
+      if(f>0){B=j+1;mix=f;pB=params(j+1,roomScale(j+1,t),0);}
     }
   }
   if(!SC[A].tex){loadScene(A);return false;}
@@ -1058,9 +1047,9 @@ function draw(t,now,vel){
   gl.uniform2f(U.uRes,cv.width,cv.height);
   bindLayer(A,0);setP('uA',pA);
   gl.uniform1f(U.uUseB,B>=0?1:0);
-  if(B>=0){bindLayer(B,2);setP('uB',pB);}
-  gl.uniform1f(U.uMix,mix);gl.uniform1f(U.uPortal,B>=0?portal:0);gl.uniform4fv(U.uWin,WIN);
-  gl.uniform1f(U.uBlur,clamp(blur,0,1.4));gl.uniform1f(U.uBright,bright);
+  if(B>=0){bindLayer(B,1);setP('uB',pB);}
+  gl.uniform1f(U.uMix,mix);gl.uniform1f(U.uPortal,B>=0?portal:0);gl.uniform4fv(U.uRect,rect);
+  gl.uniform1f(U.uBlur,blur);gl.uniform1f(U.uDimA,dimA);gl.uniform1f(U.uBright,1);
   gl.drawArrays(gl.TRIANGLES,0,3);
   return true;
 }
@@ -1083,6 +1072,7 @@ function onScroll(){
   const max=document.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${max>0?scrollY/max:0})`;
 }
 let last=performance.now(),running=false,ft=[];
+let smx=0,smy=0,mx=0,my=0;
 function loop(now){
   const dt=Math.min(64,now-last);last=now;
   const k=1-Math.pow(1-.09,dt/16.67);

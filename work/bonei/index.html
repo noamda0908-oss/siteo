@@ -962,7 +962,7 @@ const SC=[
  {src:'int-4',focus:[.56,.5],frame:[.56,.5],ov:1.01},
  {src:'int-5',focus:[.58,.5],frame:[.58,.5],ov:1.01}
 ];
-const EXT_MAX=3.2;
+const EXT_MAX=2.4;
 let gl=null,prg=null,U={},ok=false;
 let VW=innerWidth,VH=innerHeight,filmTop=0,cur=0,tgt=0,filmOn=true,qScale=1;
 function setStatic(){root.classList.add('static');chapters.forEach(c=>c.dataset.state='on');film.style.height='';}
@@ -1025,13 +1025,10 @@ function draw(t,now,vel){
     const k=sio(seg(t,...TL.ext));
     A=0;pA=params(0,Math.pow(EXT_MAX,k),eio(seg(t,...TL.pull)));
     if(t>=TL.portal[0]){
-      const pk=seg(t,...TL.portal),ek=eio(pk);
-      B=1;portal=1;pB=params(1,roomScale(1,t),0);
-      const w=[.3865,.6125,.4110,.6445];
-      const a0=toS(pA,[w[0],w[1]]),a1=toS(pA,[w[2],w[3]]);
-      const asp=VW/VH,full=[-asp/2-.02,-.52,asp/2+.02,.52];
-      rect=[lerp(a0[0],full[0],ek),lerp(a0[1],full[1],ek),lerp(a1[0],full[2],ek),lerp(a1[1],full[3],ek)];
-      dimA=1-.35*Math.min(1,pk*2);
+      /* cinematic dip: the building fades to dark, the apartment rises out of it */
+      const pk=seg(t,...TL.portal);
+      dimA=1-sio(clamp(pk/.55));
+      B=1;mix=sio(clamp((pk-.45)/.55));pB=params(1,roomScale(1,t),0);
     }
   }else{
     const ci=clamp(Math.floor((t-TL.ch0)/TL.chLen),0,4);

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>בוני בניין</title>
 <meta name="description" content="בוני בניין – חברת בנייה ויזמות משפחתית מאז 1972. מעל 500 פרויקטים ו-500,000 מ״ר ברחבי הארץ, עם התמחות בהתחדשות עירונית בשרון.">
-<meta name="theme-color" content="#0d0f12">
+<meta name="theme-color" content="#0c0e11">
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:title" content="בוני בניין – חושבים אנשים">
@@ -15,300 +15,283 @@
 <link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&family=Noto+Sans+Hebrew:wdth,wght@62.5..100,500..900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/hero-exterior.jpg">
 <style>
-/* Layout idea: one continuous camera move — from sunset clouds, down to the building, through a lit window into the apartment — then a calm editorial catalogue on ink. */
+/* Layout idea: a real camera move — straight into the building, through a lit window, room to room — then a light, architectural catalogue with dark interludes. */
 :root{
-  --ink:#0d0f12;
-  --ink-2:#15181d;
-  --ink-3:#1d2128;
-  --paper:#ede7dc;
-  --mute:#a29c92;
-  --silver:#c7cbd1;
-  --amber:#e3a868;
-  --line:rgba(237,231,220,.13);
-  --display:"Frank Ruhl Libre","David Libre",Georgia,serif;
+  --ink:#0c0e11;
+  --ink-2:#14171c;
+  --stone:#ede9e2;
+  --paper:#f2ede5;
+  --amber:#e0a464;
+  --bronze:#9a6431;
+  --display:"Noto Sans Hebrew","Heebo",Arial,sans-serif;
   --body:"Heebo","Assistant","Segoe UI",Arial,sans-serif;
-  --fs-0:.8125rem; --fs-1:1rem; --fs-2:1.1875rem; --fs-3:clamp(1.5rem,2.4vw,2rem);
-  --fs-4:clamp(2.1rem,4.6vw,3.7rem); --fs-5:clamp(2.6rem,7.5vw,6.2rem);
-  --gut:clamp(18px,5vw,72px);
+  --gut:clamp(18px,5vw,76px);
   --ease:cubic-bezier(.2,.75,.1,1);
-  color-scheme:dark;
+  color-scheme:light;
 }
+.dark{--bg:var(--ink);--fg:var(--paper);--mute:#9d978d;--line:rgba(242,237,229,.13);--acc:var(--amber);--card:#181b21;background:var(--bg);color:var(--fg)}
+.light{--bg:var(--stone);--fg:#121418;--mute:#6a655d;--line:rgba(18,20,24,.13);--acc:var(--bronze);--card:#e2ddd4;background:var(--bg);color:var(--fg)}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
-body{margin:0;background:var(--ink);color:var(--paper);font:400 var(--fs-1)/1.65 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--ink);color:var(--paper);font:300 1.0625rem/1.7 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
 button{font:inherit;color:inherit}
-h1,h2,h3{text-wrap:balance;margin:0;font-weight:400}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:800}
 p{margin:0}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
-.skip{position:fixed;inset-inline-start:12px;top:-60px;z-index:200;background:var(--paper);color:var(--ink);padding:10px 16px;border-radius:4px;text-decoration:none;font-weight:600}
+.skip{position:fixed;inset-inline-start:12px;top:-60px;z-index:300;background:var(--paper);color:var(--ink);padding:10px 16px;border-radius:4px;text-decoration:none;font-weight:600}
 .skip:focus{top:12px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.wrap{width:min(1320px,100% - 2*var(--gut));margin-inline:auto}
-.eyebrow{font:500 var(--fs-0)/1.2 var(--body);letter-spacing:.14em;color:var(--amber);display:flex;align-items:center;gap:12px}
-.eyebrow::before{content:"";width:28px;height:1px;background:currentColor;opacity:.7}
-.h2{font:300 var(--fs-4)/1.08 var(--display);letter-spacing:-.01em}
-.lede{color:var(--mute);max-width:62ch;font-size:var(--fs-2);line-height:1.7}
-.btn{display:inline-flex;align-items:center;gap:12px;padding:14px 24px;border:1px solid rgba(237,231,220,.35);border-radius:999px;text-decoration:none;font-weight:500;font-size:.95rem;background:transparent;cursor:pointer;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s}
-.btn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.wrap{width:min(1360px,100% - 2*var(--gut));margin-inline:auto}
+.eyebrow{font:500 .8rem/1.2 var(--body);letter-spacing:.16em;color:var(--acc);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:30px;height:1px;background:currentColor}
+.h2{font-family:var(--display);font-stretch:68%;font-weight:800;font-size:clamp(2.6rem,6vw,5.4rem);line-height:.92;letter-spacing:-.005em}
+.lede{color:var(--mute);max-width:58ch;font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.7}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:15px 26px;border:1px solid currentColor;border-radius:999px;text-decoration:none;font:500 .98rem/1 var(--body);background:transparent;cursor:pointer;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s,transform .35s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
 .btn .arr{display:inline-block;transition:transform .35s var(--ease)}
 .btn:hover .arr{transform:translateX(-5px)}
-.btn-solid{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.btn-solid:hover{background:var(--amber);border-color:var(--amber)}
+.btn-amber{background:var(--amber);border-color:var(--amber);color:#1a1209}
+.btn-amber:hover{background:#f0b97c;border-color:#f0b97c}
+.btn-ghost{border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--fg)}
 
 /* ---------- header ---------- */
-.hdr{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px var(--gut);transition:background .5s,backdrop-filter .5s,padding .4s,border-color .5s;border-bottom:1px solid transparent}
-.hdr.solid{background:rgba(13,15,18,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-block:12px;border-color:var(--line)}
-.hdr .logo img{height:50px;width:auto;transition:height .4s}
+.hdr{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px var(--gut);color:#fff;transition:background .5s,padding .4s,border-color .5s;border-bottom:1px solid transparent}
+.hdr.solid{background:rgba(12,14,17,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-block:12px;border-color:rgba(242,237,229,.1)}
+.hdr .logo img{height:52px;width:auto;transition:height .4s}
 .hdr.solid .logo img{height:40px}
 .nav{display:flex;gap:clamp(14px,2.2vw,34px);align-items:center}
-.nav a{text-decoration:none;font-size:.95rem;opacity:.86;position:relative;padding-block:6px}
+.nav a{text-decoration:none;font:400 .95rem/1 var(--body);opacity:.88;position:relative;padding-block:8px}
 .nav a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
 .nav a:hover{opacity:1}.nav a:hover::after{transform:scaleX(1)}
 .hdr-cta{display:flex;align-items:center;gap:14px}
-.hdr-cta .tel{font-size:.95rem;text-decoration:none;opacity:.9;font-variant-numeric:tabular-nums;direction:ltr}
-.hdr-cta .btn{padding:10px 18px}
-.burger{display:none;width:46px;height:46px;border:1px solid rgba(237,231,220,.3);border-radius:50%;background:transparent;cursor:pointer;position:relative}
-.burger span{position:absolute;inset-inline:13px;height:1.5px;background:var(--paper);transition:transform .4s var(--ease),top .4s var(--ease)}
+.hdr-cta .tel{font:400 .95rem/1 var(--body);text-decoration:none;opacity:.9;direction:ltr}
+.hdr-cta .btn{padding:11px 20px;border-color:rgba(255,255,255,.5)}
+.hdr-cta .btn:hover{background:#fff;color:var(--ink)}
+.burger{display:none;width:46px;height:46px;border:1px solid rgba(255,255,255,.4);border-radius:50%;background:transparent;cursor:pointer;position:relative}
+.burger span{position:absolute;inset-inline:13px;height:1.5px;background:#fff;transition:transform .4s var(--ease),top .4s var(--ease)}
 .burger span:nth-child(1){top:18px}.burger span:nth-child(2){top:26px}
 body.menu-open .burger span:nth-child(1){top:22px;transform:rotate(45deg)}
 body.menu-open .burger span:nth-child(2){top:22px;transform:rotate(-45deg)}
-.mmenu{position:fixed;inset:0;z-index:90;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:100px var(--gut) 40px;gap:6px;clip-path:circle(0% at 8% 4%);transition:clip-path .8s var(--ease);visibility:hidden}
+.mmenu{position:fixed;inset:0;z-index:90;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:100px var(--gut) 40px;gap:2px;clip-path:circle(0% at 8% 4%);transition:clip-path .8s var(--ease);visibility:hidden}
 body.menu-open .mmenu{clip-path:circle(150% at 8% 4%);visibility:visible}
-.mmenu a{font:300 clamp(2rem,8vw,3rem)/1.35 var(--display);text-decoration:none}
-.mmenu .mm-meta{margin-top:28px;color:var(--mute);font-size:.95rem;display:grid;gap:6px}
+.mmenu a{font-family:var(--display);font-stretch:68%;font-weight:800;font-size:clamp(2.4rem,11vw,3.6rem);line-height:1.12;text-decoration:none}
+.mmenu .mm-meta{margin-top:28px;color:#9d978d;font-size:.95rem;display:grid;gap:6px}
+.mmenu .mm-meta a{font:400 1rem/1.6 var(--body)}
 @media (max-width:1080px){.nav,.hdr-cta .tel{display:none}.burger{display:block}}
-@media (max-width:560px){.hdr .logo img{height:40px}.hdr-cta .btn{display:none}}
+@media (max-width:560px){.hdr .logo img{height:42px}.hdr-cta .btn{display:none}}
 
 /* ---------- film ---------- */
-.film{position:relative;height:1400vh;background:var(--ink)}
-.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;isolation:isolate;background:#1a1e2a}
-.layer{position:absolute;inset:0}
-.ext{overflow:hidden;background:#3a4256}
-.ext img{position:absolute;max-width:none;transform-origin:0 0;will-change:transform}
-.dim{pointer-events:none;background:#0a0c14;opacity:0}
-.glow{pointer-events:none;opacity:0;mix-blend-mode:screen;background:radial-gradient(circle at var(--gx,50%) var(--gy,60%),rgba(255,214,160,.95) 0,rgba(255,176,98,.45) 14%,rgba(255,150,80,0) 42%)}
-#sky,.sky-fb{position:absolute;inset:0;width:100%;height:100%;display:block}
-#sky{background:linear-gradient(#171c36 0%,#5b4a6e 42%,#f0a878 62%,#c9a3a6 72%,#6e6380 100%)}
-.sky-fb{display:none;background:
-  radial-gradient(60% 30% at 50% 78%,rgba(255,236,214,.95),rgba(255,220,190,0) 70%),
-  radial-gradient(40% 18% at 20% 70%,rgba(255,240,226,.9),transparent 70%),
-  radial-gradient(45% 20% at 82% 72%,rgba(255,232,214,.85),transparent 70%),
-  radial-gradient(30% 22% at 50% 52%,rgba(255,206,140,.9),transparent 70%),
-  linear-gradient(#1f2742 0%,#6b5774 38%,#f0b48a 58%,#ffe2c2 66%,#e9c9c0 100%)}
-.nogl #sky{display:none}.nogl .sky-fb{display:block}
-.int{visibility:hidden;clip-path:inset(50% 50% 50% 50%)}
-.int img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:transform,opacity}
-.int img.i0{opacity:1}
-.int-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,9,12,.82) 0%,rgba(8,9,12,.35) 34%,rgba(8,9,12,0) 60%),linear-gradient(to left,rgba(8,9,12,.45),rgba(8,9,12,0) 55%)}
-.hero-copy{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 var(--gut);gap:18px;will-change:transform,opacity}
-.hero-copy .mark{width:clamp(54px,6vw,76px);height:auto;opacity:.95;filter:drop-shadow(0 4px 18px rgba(80,40,20,.35))}
-.hero-copy h1{font:300 clamp(3.4rem,13vw,10.5rem)/.95 var(--display);letter-spacing:-.015em;color:#fff;text-shadow:0 4px 30px rgba(20,18,40,.45),0 0 2px rgba(20,18,40,.2)}
-.hero-copy::before{content:"";position:absolute;inset:18% 4% 30%;background:radial-gradient(50% 50% at 50% 50%,rgba(16,16,36,.32),rgba(16,16,36,0));z-index:-1;pointer-events:none}
-.hero-copy .tag{font:500 clamp(.85rem,1.4vw,1rem)/1 var(--body);letter-spacing:.42em;color:#fff;opacity:.92;padding-inline-start:.42em}
-.hero-copy .sub{max-width:34ch;color:#fff;font-size:clamp(1rem,1.6vw,1.2rem);text-shadow:0 2px 18px rgba(60,30,30,.45)}
-.cue{position:absolute;bottom:clamp(22px,5vh,44px);inset-inline:0;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.24em;color:rgba(255,255,255,.85)}
-.cue i{display:block;width:1px;height:46px;background:linear-gradient(rgba(255,255,255,0),#fff);animation:cue 2.2s var(--ease) infinite;transform-origin:top}
-@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.bigname{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;opacity:0;will-change:transform,opacity,filter}
-.bigname b{font:400 min(21vw,34vh)/.9 var(--display);color:rgba(255,255,255,.93);letter-spacing:-.02em;white-space:nowrap;text-shadow:0 10px 60px rgba(20,24,40,.45)}
-.bigname small{margin-top:2vh;font:500 clamp(.8rem,1.3vw,1rem)/1 var(--body);letter-spacing:.38em;color:#fff;opacity:.9}
+.film{position:relative;height:1100vh;background:var(--ink)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;isolation:isolate;background:#202634}
+.poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:47% 50%}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;transition:opacity .6s}
+.shade-b{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(8,9,12,.78) 0%,rgba(8,9,12,.3) 32%,rgba(8,9,12,0) 58%)}
+.shade-t{position:absolute;inset:0 0 auto 0;height:180px;pointer-events:none;background:linear-gradient(rgba(8,9,12,.5),rgba(8,9,12,0))}
+.hero{position:absolute;inset:auto 0 0 0;padding:0 var(--gut) clamp(28px,6vh,64px);display:flex;align-items:flex-end;justify-content:space-between;gap:30px;color:#fff;will-change:transform,opacity}
+.hero-main{display:grid;gap:clamp(10px,1.6vh,18px)}
+.hero-k{font:500 .82rem/1 var(--body);letter-spacing:.22em;opacity:.9;display:flex;gap:14px;align-items:center}
+.hero-k::before{content:"";width:34px;height:1px;background:var(--amber)}
+.hero h1{font-family:var(--display);font-stretch:66%;font-weight:800;font-size:clamp(5.2rem,17vw,15.5rem);line-height:.8;letter-spacing:-.01em;margin-bottom:.06em}
+.hero-sub{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 22px}
+.hero-sub b{font-family:var(--display);font-stretch:68%;font-weight:700;font-size:clamp(1.5rem,2.6vw,2.2rem);color:var(--amber);letter-spacing:.01em}
+.hero-sub span{font-size:clamp(.98rem,1.25vw,1.12rem);opacity:.9;max-width:36ch}
+.hero-aside{display:grid;gap:14px;justify-items:end;text-align:left;font-size:.8rem;opacity:.85}
+.cue{display:flex;align-items:center;gap:12px;letter-spacing:.2em}
+.cue i{position:relative;display:block;width:1px;height:54px;background:rgba(255,255,255,.25);overflow:hidden}
+.cue i::after{content:"";position:absolute;inset:0;background:#fff;animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+.caption{font-size:.74rem;opacity:.7;letter-spacing:.04em}
+.stmt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;opacity:0;color:#fff;will-change:transform,opacity,filter}
+.stmt b{font-family:var(--display);font-stretch:62.5%;font-weight:900;font-size:min(30vw,44vh);line-height:.82;letter-spacing:-.02em;text-shadow:0 20px 80px rgba(10,12,20,.45)}
+.stmt small{font:500 clamp(.8rem,1.3vw,1rem)/1 var(--body);letter-spacing:.34em;margin-top:2.4vh}
 .chapters{position:absolute;inset:0;pointer-events:none}
-.chapter{position:absolute;inset-inline-start:clamp(20px,6.5vw,110px);bottom:clamp(30px,10vh,120px);width:min(600px,100% - 40px);pointer-events:auto}
-.ch-k{display:flex;align-items:center;gap:14px;font:500 var(--fs-0)/1 var(--body);letter-spacing:.2em;color:var(--amber);margin-bottom:18px}
-.ch-k em{font-style:normal;font-variant-numeric:tabular-nums;color:#fff;opacity:.7;letter-spacing:.08em}
-.ch-k{opacity:0;transform:translateY(12px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.chapter{position:absolute;inset-inline-start:var(--gut);bottom:clamp(30px,9vh,110px);width:min(660px,100% - 2*var(--gut));color:#fff}
+.ch-k{display:flex;align-items:center;gap:14px;font:500 .8rem/1 var(--body);letter-spacing:.2em;color:var(--amber);margin-bottom:16px;opacity:0;transform:translateY(12px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.ch-k em{font-style:normal;color:#fff;opacity:.75;letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.ch-t{font-family:var(--display);font-stretch:66%;font-weight:800;font-size:clamp(3rem,7.2vw,6.4rem);line-height:.9;letter-spacing:-.005em}
+.ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.ln>span{display:block;transform:translateY(110%);transition:transform 1s var(--ease),opacity .8s;transition-delay:calc(var(--d,0)*90ms)}
+.ch-p{margin-top:20px;color:rgba(255,255,255,.88);font-size:clamp(1rem,1.25vw,1.12rem);max-width:50ch;opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease) .22s,transform .9s var(--ease) .22s}
+.ch-x{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px;opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease) .34s,transform .9s var(--ease) .34s}
+.chip{border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:8px 15px;font:400 .9rem/1.2 var(--body);color:#fff;background:rgba(255,255,255,.07);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.nums{display:flex;gap:clamp(20px,4vw,52px);flex-wrap:wrap}
+.num b{display:block;font-family:var(--display);font-stretch:66%;font-weight:800;font-size:clamp(2.6rem,5.4vw,4.6rem);line-height:1;font-variant-numeric:tabular-nums}
+.num span{font-size:.9rem;opacity:.8}
 .chapter[data-state="on"] .ch-k{opacity:1;transform:none}
-.chapter[data-state="post"] .ch-k{opacity:0;transform:translateY(-10px);transition-duration:.45s}
-.rm .ch-k{opacity:1;transform:none}
-.ch-t{font:300 clamp(2.2rem,5.4vw,4.6rem)/1.04 var(--display);color:#fff;letter-spacing:-.01em}
-.ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
-.ln>span{display:block;transform:translateY(108%);transition:transform 1s var(--ease),opacity .8s;transition-delay:calc(var(--d,0)*90ms)}
-.ch-p{margin-top:20px;color:rgba(255,255,255,.86);font-size:clamp(1rem,1.25vw,1.12rem);max-width:52ch;opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease) .25s,transform .9s var(--ease) .25s}
-.ch-x{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease) .38s,transform .9s var(--ease) .38s}
-.chip{border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:8px 14px;font-size:.88rem;color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.nums{display:flex;gap:clamp(18px,4vw,48px);flex-wrap:wrap}
-.num b{display:block;font:300 clamp(2rem,4.6vw,3.6rem)/1 var(--display);color:#fff;font-variant-numeric:tabular-nums}
-.num span{font-size:.9rem;color:rgba(255,255,255,.75)}
 .chapter[data-state="on"] .ln>span{transform:none}
 .chapter[data-state="on"] .ch-p,.chapter[data-state="on"] .ch-x{opacity:1;transform:none}
-.chapter[data-state="post"] .ln>span{transform:translateY(-108%);opacity:0;transition-duration:.6s;transition-delay:0s}
-.chapter[data-state="post"] .ch-p,.chapter[data-state="post"] .ch-x{opacity:0;transform:translateY(-16px);transition-duration:.5s;transition-delay:0s}
-.rail{position:absolute;inset-inline-end:clamp(14px,3vw,44px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:16px;opacity:0;transition:opacity .6s}
+.chapter[data-state="post"] .ch-k{opacity:0;transform:translateY(-10px);transition-duration:.4s}
+.chapter[data-state="post"] .ln>span{transform:translateY(-110%);opacity:0;transition-duration:.55s;transition-delay:0s}
+.chapter[data-state="post"] .ch-p,.chapter[data-state="post"] .ch-x{opacity:0;transform:translateY(-14px);transition-duration:.45s;transition-delay:0s}
+.ch-img{display:none}
+.rail{position:absolute;inset-inline-end:var(--gut);bottom:clamp(30px,9vh,110px);display:grid;gap:12px;opacity:0;transition:opacity .6s;color:#fff}
 .rail.on{opacity:1}
-.rail span{display:flex;align-items:center;gap:10px;font:500 .72rem/1 var(--body);color:rgba(255,255,255,.5);font-variant-numeric:tabular-nums;transition:color .5s}
-.rail span::after{content:"";width:18px;height:1px;background:currentColor;transition:width .5s var(--ease)}
-.rail span.act{color:#fff}.rail span.act::after{width:42px}
-.vig{pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.42) 100%)}
-.grain{pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-size:180px 180px}
-.blackout{background:var(--ink);opacity:0;pointer-events:none}
-.prog{position:fixed;top:0;inset-inline:0;height:2px;z-index:101;transform-origin:right;transform:scaleX(0);background:linear-gradient(to left,var(--amber),#fff)}
-@media (max-width:700px){
-  .chapter{bottom:clamp(34px,8vh,70px)}
+.rail span{display:flex;align-items:center;justify-content:flex-end;gap:12px;font:400 .78rem/1 var(--body);opacity:.45;transition:opacity .5s}
+.rail span::before{content:"";width:16px;height:1px;background:currentColor;transition:width .5s var(--ease)}
+.rail span.act{opacity:1}.rail span.act::before{width:44px;background:var(--amber)}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-size:180px 180px}
+.exitfade{position:absolute;inset:0;background:var(--stone);opacity:0;pointer-events:none}
+.prog{position:fixed;top:0;inset-inline:0;height:2px;z-index:101;transform-origin:right;transform:scaleX(0);background:var(--amber)}
+@media (max-width:760px){
+  .hero{flex-direction:column;align-items:flex-start}
+  .hero-aside{justify-items:start;text-align:right}
+  .hero-aside .caption{display:none}
   .rail{display:none}
-  .int-shade{background:linear-gradient(to top,rgba(8,9,12,.9) 0%,rgba(8,9,12,.55) 42%,rgba(8,9,12,0) 72%)}
+  .shade-b{background:linear-gradient(to top,rgba(8,9,12,.88) 0%,rgba(8,9,12,.5) 40%,rgba(8,9,12,0) 70%)}
 }
-/* reduced motion: a still hero, chapters as a normal section */
-.rm .film{height:auto}
-.rm .stage{position:relative;height:auto;min-height:0;background:var(--ink);overflow:visible}
-.rm #sky,.rm .sky-fb,.rm .glow,.rm .bigname,.rm .rail,.rm .cue,.rm .blackout,.rm .int{display:none}
-.rm .ext{position:relative;height:88vh}
-.rm .ext img{position:absolute;inset:0;width:100%!important;height:100%!important;object-fit:cover;transform:none!important;left:0!important;top:0!important}
-.rm .hero-copy{background:linear-gradient(rgba(10,12,16,.25),rgba(10,12,16,.55));height:88vh;inset:0 0 auto 0}
-.rm .chapters{position:relative;display:grid;gap:56px;padding:80px var(--gut)}
-.rm .chapter{position:relative;inset:auto;width:auto;max-width:720px}
-.rm .ln>span,.rm .ch-p,.rm .ch-x{transform:none;opacity:1;transition:none}
+.static .film{height:auto}
+.static .stage{position:relative;height:auto;overflow:visible;background:var(--ink)}
+.static #gl,.static .stmt,.static .rail,.static .exitfade,.static .cue{display:none}
+.static .poster{position:relative;height:92vh}
+.static .shade-b{height:92vh}
+.static .chapters{position:relative;display:grid;gap:clamp(60px,9vw,120px);padding:clamp(70px,10vw,140px) var(--gut)}
+.static .chapter{position:relative;inset:auto;width:auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:center}
+.static .ch-img{display:block;aspect-ratio:16/10;object-fit:cover;width:100%}
+.static .ch-k,.static .ln>span,.static .ch-p,.static .ch-x{opacity:1;transform:none;transition:none}
+@media (max-width:760px){.static .chapter{grid-template-columns:1fr}}
 
 /* ---------- sections ---------- */
-.sec{position:relative;padding:clamp(80px,12vw,170px) 0}
-.sec-head{display:grid;gap:22px;margin-bottom:clamp(44px,6vw,84px);max-width:860px}
-.pre{opacity:0;transform:translateY(44px)}
+.sec{position:relative;padding:clamp(90px,12vw,180px) 0}
+.sec-head{display:grid;gap:24px;margin-bottom:clamp(44px,6vw,90px)}
+.sec-head.split{grid-template-columns:1.1fr .9fr;align-items:end;gap:clamp(24px,5vw,80px)}
+@media (max-width:900px){.sec-head.split{grid-template-columns:1fr}}
+.pre{opacity:0;transform:translateY(46px)}
 .rv{transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
 .rv.in{opacity:1;transform:none}
 
-/* marketing / featured */
-.feats{display:grid;gap:clamp(90px,12vw,170px)}
-.feat{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
-.feat:nth-child(even){grid-template-columns:1fr 1.25fr}
-.feat:nth-child(even) .feat-media{order:2}
-.feat-media{position:relative;margin:0}
-.fm-main{overflow:hidden;border-radius:2px;aspect-ratio:4/3.6;clip-path:inset(0 0 0 0);transition:clip-path 1.6s var(--ease)}
-.feat.pre-clip .fm-main{clip-path:inset(12% 12% 12% 12%)}
-.fm-main img{width:100%;height:118%;object-fit:cover;will-change:transform}
-.fm-inset{position:absolute;width:42%;aspect-ratio:4/3;inset-inline-end:-6%;bottom:-10%;overflow:hidden;border:6px solid var(--ink);box-shadow:0 30px 60px rgba(0,0,0,.45)}
-.feat:nth-child(even) .fm-inset{inset-inline-end:auto;inset-inline-start:-6%}
-.fm-inset img{width:100%;height:100%;object-fit:cover}
-.feat-body{display:grid;gap:18px;align-content:start}
-.feat-idx{font:400 var(--fs-0)/1 var(--body);letter-spacing:.2em;color:var(--mute)}
-.feat-body h3{font:300 clamp(2.6rem,5.6vw,4.8rem)/1 var(--display)}
-.feat-loc{color:var(--amber);font-size:1.05rem}
-.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-block:1px solid var(--line);margin:10px 0}
-.specs div{background:var(--ink);padding:16px 0;display:grid;gap:4px}
-.specs dt{font-size:.8rem;color:var(--mute)}
-.specs dd{margin:0;font:300 1.9rem/1 var(--display);font-variant-numeric:tabular-nums}
-.specs .wide{grid-column:1/-1}
-.specs .wide dd{font:400 1rem/1.4 var(--body)}
-@media (max-width:860px){
-  .feat,.feat:nth-child(even){grid-template-columns:1fr}
-  .feat:nth-child(even) .feat-media{order:0}
-  .fm-inset{width:46%;inset-inline-end:-2%;bottom:-12%}
-  .feat:nth-child(even) .fm-inset{inset-inline-start:-2%}
-  .feat-body{padding-top:30px}
+.fstack{display:grid;gap:5vh}
+.fcard{position:sticky;top:calc(96px + var(--i)*16px);height:min(80vh,780px);min-height:520px;overflow:hidden;background:var(--ink);color:#fff;transform-origin:50% 0;will-change:transform}
+.fc-media{position:absolute;inset:0}
+.fc-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.8s var(--ease)}
+.fcard:hover .fc-media img{transform:scale(1.08)}
+.fc-shade{position:absolute;inset:0;background:linear-gradient(to left,rgba(8,9,12,.86) 0%,rgba(8,9,12,.62) 34%,rgba(8,9,12,0) 66%)}
+.fc-body{position:absolute;inset:0 0 0 auto;width:min(560px,100%);padding:clamp(28px,4vw,60px);display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
+.fc-k{font:500 .8rem/1 var(--body);letter-spacing:.18em;color:var(--amber)}
+.fcard h3{font-family:var(--display);font-stretch:64%;font-weight:900;font-size:clamp(4rem,9vw,8.4rem);line-height:.84}
+.fc-addr{font-size:1.1rem;opacity:.9}
+.fc-specs{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(18px,3vw,40px);margin:8px 0 6px;padding:18px 0;border-block:1px solid rgba(255,255,255,.2)}
+.fc-specs dt{font-size:.78rem;opacity:.7}
+.fc-specs dd{margin:4px 0 0;font-family:var(--display);font-stretch:66%;font-weight:800;font-size:2.4rem;line-height:1}
+.fc-arch{font-size:.92rem;opacity:.8}
+.fc-cta{margin-top:6px}
+@media (max-width:760px){
+  .fcard{height:auto;min-height:0;top:calc(80px + var(--i)*12px)}
+  .fc-media{position:relative;aspect-ratio:4/3.3}
+  .fc-shade{display:none}
+  .fc-body{position:relative;width:auto;padding:26px 22px 30px}
+  .fcard h3{font-size:clamp(3.4rem,15vw,4.6rem)}
+  .fc-specs dd{font-size:2rem}
 }
 
-/* catalogue */
-.cat-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:34px}
+.cat-bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:34px}
 .filters{display:flex;flex-wrap:wrap;gap:8px}
-.filters button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:9px 18px;cursor:pointer;font-size:.92rem;transition:background .3s,color .3s,border-color .3s}
-.filters button sup{font-size:.7rem;opacity:.6;margin-inline-start:4px;font-variant-numeric:tabular-nums}
-.filters button[aria-pressed="true"]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.cat-count{color:var(--mute);font-size:.9rem;font-variant-numeric:tabular-nums}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:clamp(18px,2.4vw,32px)}
-.card{display:grid;gap:14px;align-content:start}
+.filters button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:10px 18px;cursor:pointer;font:400 .95rem/1 var(--body);transition:background .3s,color .3s,border-color .3s}
+.filters button:hover{border-color:var(--fg)}
+.filters button sup{font-size:.7rem;opacity:.6;margin-inline-start:5px}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2vw,28px)}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+.card{display:grid;gap:12px;align-content:start}
 .card[hidden]{display:none}
-.card-img{position:relative;aspect-ratio:4/4.6;overflow:hidden;background:var(--ink-3)}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .8s}
+.card-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--card)}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
 .card:hover .card-img img{transform:scale(1.06)}
-.card-img .ph{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(160deg,#20252d,#12151a)}
-.card-img .ph img{width:64px;height:auto;opacity:.45;object-fit:contain;transform:none!important}
-.pill{position:absolute;top:14px;inset-inline-start:14px;font-size:.78rem;padding:6px 12px;border-radius:999px;background:rgba(13,15,18,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;gap:7px}
-.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c,#aaa)}
-.pill.s-mkt{--c:var(--amber)}.pill.s-plan{--c:#9fb6d6}.pill.s-done{--c:#8fc9a0}
-.card h3{font:400 1.55rem/1.15 var(--display)}
-.card .city{color:var(--mute);font-size:.92rem}
-.card .meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.88rem;color:var(--paper);opacity:.85;border-top:1px solid var(--line);padding-top:12px}
-.card .meta span{font-variant-numeric:tabular-nums}
-.card .arch{font-size:.85rem;color:var(--mute)}
+.card-img .ph{position:absolute;inset:0;display:grid;place-items:center;background:#1b1e24}
+.card-img .ph img{width:62px;height:auto;opacity:.55;object-fit:contain;transform:none!important}
+.pill{position:absolute;top:12px;inset-inline-start:12px;font:500 .76rem/1 var(--body);padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.9);color:#121418;display:flex;align-items:center;gap:7px}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c,#999)}
+.pill.s-mkt{--c:#c9802f}.pill.s-plan{--c:#4f7bb5}.pill.s-done{--c:#3f9a62}
+.card h3{font-family:var(--display);font-stretch:68%;font-weight:800;font-size:clamp(1.6rem,2.2vw,2rem);line-height:1}
+.card .city{color:var(--mute);font-size:.92rem;margin-top:4px}
+.card .meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.86rem;opacity:.85;border-top:1px solid var(--line);padding-top:10px}
+.more-row{display:flex;justify-content:center;margin-top:clamp(36px,5vw,60px)}
+.more-row[hidden]{display:none}
 
-/* public buildings — horizontal */
-.hz{position:relative}
-.hz-pin{position:relative}
-.hz-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(30px,4vw,56px)}
-.hz-track{display:flex;gap:clamp(16px,2vw,28px);padding-inline:var(--gut);will-change:transform}
-.pb{flex:0 0 clamp(270px,30vw,440px);display:grid;gap:14px;align-content:start}
-.pb-img{aspect-ratio:4/3.1;overflow:hidden;position:relative;background:var(--ink-3)}
-.pb-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
-.pb:hover .pb-img img{transform:scale(1.05)}
-.pb h3{font:400 1.45rem/1.2 var(--display)}
-.pb p{font-size:.88rem;color:var(--mute)}
-.award{position:absolute;bottom:12px;inset-inline-start:12px;background:var(--amber);color:#1b130a;font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px}
-.hz.pinned .hz-pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.hz:not(.pinned) .hz-track{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:8px}
-.hz:not(.pinned) .hz-track::-webkit-scrollbar{display:none}
-.hz:not(.pinned) .pb{scroll-snap-align:start}
-.hz-hint{color:var(--mute);font-size:.9rem}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,26px)}
+@media (max-width:900px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.pgrid{grid-template-columns:1fr}}
+.pb{position:relative;overflow:hidden;aspect-ratio:4/3.2;background:var(--card)}
+.pb[hidden]{display:none}
+.pb img{width:100%;height:100%;object-fit:cover;transition:transform 1.5s var(--ease)}
+.pb:hover img{transform:scale(1.06)}
+.pb::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,9,12,.85),rgba(8,9,12,0) 55%)}
+.pb-t{position:absolute;inset:auto 0 0 0;padding:20px 22px;z-index:1;color:#fff}
+.pb h3{font-family:var(--display);font-stretch:68%;font-weight:800;font-size:clamp(1.5rem,2.2vw,1.9rem);line-height:1.02}
+.pb p{font-size:.84rem;opacity:.8;margin-top:6px;line-height:1.5}
+.award{position:absolute;top:14px;inset-inline-start:14px;z-index:1;background:var(--amber);color:#1b130a;font:600 .76rem/1 var(--body);padding:8px 12px;border-radius:999px}
 
-/* why + departments */
-.why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,120px);align-items:start}
-.why-copy{display:grid;gap:22px}
-.why-copy p{color:var(--mute);font-size:1.06rem;max-width:58ch}
-.why-copy .big{font:300 var(--fs-3)/1.35 var(--display);color:var(--paper)}
-.why-img{position:sticky;top:110px;aspect-ratio:4/5;overflow:hidden}
-.why-img img{width:100%;height:112%;object-fit:cover}
-.oss{margin-top:clamp(70px,9vw,130px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,100px)}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,120px);align-items:center}
+.why-img{aspect-ratio:4/5;overflow:hidden}
+.why-img img{width:100%;height:114%;object-fit:cover}
+.why-copy{display:grid;gap:24px}
+.why-copy .big{font-family:var(--display);font-stretch:70%;font-weight:700;font-size:clamp(1.7rem,2.8vw,2.5rem);line-height:1.15}
+.why-copy p{color:var(--mute);max-width:56ch}
+.why-copy p.big{color:var(--fg)}
+.oss{margin-top:clamp(80px,10vw,150px);display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,100px)}
 .oss-intro{display:grid;gap:18px;align-content:start}
 .oss-intro p{color:var(--mute)}
 .depts{border-top:1px solid var(--line)}
 .dept{border-bottom:1px solid var(--line)}
 .dept button{width:100%;display:flex;align-items:center;gap:18px;padding:22px 0;background:none;border:0;cursor:pointer;text-align:start}
-.dept button em{font-style:normal;font-size:.8rem;color:var(--mute);font-variant-numeric:tabular-nums;width:26px}
-.dept button b{font:400 clamp(1.25rem,2vw,1.6rem)/1.2 var(--display);flex:1}
+.dept button em{font-style:normal;font-size:.8rem;color:var(--mute);width:26px}
+.dept button b{font-family:var(--display);font-stretch:70%;font-weight:700;font-size:clamp(1.4rem,2.2vw,1.9rem);line-height:1.1;flex:1}
 .dept button i{width:14px;height:14px;position:relative;flex:none}
-.dept button i::before,.dept button i::after{content:"";position:absolute;inset:6px 0 auto 0;height:1.5px;background:var(--paper);transition:transform .4s var(--ease)}
+.dept button i::before,.dept button i::after{content:"";position:absolute;inset:6px 0 auto 0;height:1.5px;background:currentColor;transition:transform .4s var(--ease)}
 .dept button i::after{transform:rotate(90deg)}
 .dept.open button i::after{transform:rotate(0)}
-.dept .dbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.dbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
 .dept.open .dbody{grid-template-rows:1fr}
-.dept .dbody>div{overflow:hidden}
-.dept .dbody p{padding:0 44px 24px 0;color:var(--mute);max-width:62ch}
-@media (max-width:900px){.why,.oss{grid-template-columns:1fr}.why-img{position:relative;top:0;aspect-ratio:16/11}.dept .dbody p{padding-inline-start:44px;padding-inline-end:0}}
+.dbody>div{overflow:hidden}
+.dbody p{padding:0 44px 24px 0;color:var(--mute);max-width:62ch}
+@media (max-width:900px){.why,.oss{grid-template-columns:1fr}.why-img{aspect-ratio:16/12}}
 
-/* team */
 .team{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(14px,2vw,26px)}
 .tm{display:grid;gap:12px;align-content:start}
-.tm-img{aspect-ratio:3/3.9;overflow:hidden;background:#d6d6d4}
-.tm-img img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:grayscale(1) contrast(1.04);transition:filter .8s,transform 1.2s var(--ease)}
+.tm-img{aspect-ratio:3/3.9;overflow:hidden;background:#cfcfcd}
+.tm-img img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;filter:grayscale(1);transition:filter .8s,transform 1.2s var(--ease)}
 .tm:hover .tm-img img{filter:none;transform:scale(1.04)}
-.tm h3{font:400 1.45rem/1.15 var(--display)}
-.tm .role{color:var(--amber);font-size:.9rem}
+.tm h3{font-family:var(--display);font-stretch:68%;font-weight:800;font-size:1.75rem;line-height:1}
+.tm .role{color:var(--acc);font-size:.9rem;margin-top:4px}
 .tm details{font-size:.9rem;color:var(--mute)}
-.tm summary{cursor:pointer;list-style:none;display:inline-flex;gap:8px;align-items:center;color:var(--paper);font-size:.88rem;border-bottom:1px solid var(--line);padding-bottom:3px}
+.tm summary{cursor:pointer;list-style:none;display:inline-flex;color:var(--fg);font-size:.88rem;border-bottom:1px solid var(--line);padding-bottom:3px}
 .tm summary::-webkit-details-marker{display:none}
 .tm details[open] summary{margin-bottom:10px}
 @media (max-width:1100px){.team{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:640px){.team{grid-template-columns:repeat(2,1fr)}}
 
-/* media */
 .news{display:grid;border-top:1px solid var(--line)}
-.nw{display:grid;grid-template-columns:120px 1fr 150px;gap:clamp(16px,3vw,40px);align-items:center;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;position:relative}
+.nw{display:grid;grid-template-columns:110px 1fr 160px;gap:clamp(16px,3vw,40px);align-items:center;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
 .nw time{color:var(--mute);font-size:.88rem;font-variant-numeric:tabular-nums}
-.nw h3{font:400 clamp(1.15rem,1.8vw,1.5rem)/1.3 var(--display);transition:color .3s}
-.nw .nw-img{aspect-ratio:3/2;overflow:hidden}
+.nw h3{font-family:var(--display);font-stretch:72%;font-weight:700;font-size:clamp(1.3rem,2vw,1.75rem);line-height:1.15;transition:color .3s}
+.nw .nw-img{aspect-ratio:3/2;overflow:hidden;background:#1b1e24}
 .nw .nw-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
-.nw:hover h3{color:var(--amber)}
+.nw:hover h3{color:var(--acc)}
 .nw:hover .nw-img img{transform:scale(1.07)}
 .nw .src{display:block;font:400 .78rem/1 var(--body);color:var(--mute);margin-top:8px}
 @media (max-width:640px){.nw{grid-template-columns:1fr 96px}.nw time{grid-column:1/-1;order:-1}}
 
-/* contact */
-.contact{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,7vw,120px)}
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,7vw,120px)}
 .c-info{display:grid;gap:26px;align-content:start}
-.c-rows{display:grid;gap:0;border-top:1px solid var(--line)}
+.c-rows{display:grid;border-top:1px solid var(--line);margin:0}
 .c-rows div{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
 .c-rows dt{color:var(--mute)}
-.c-rows dd{margin:0;text-align:start}
+.c-rows dd{margin:0}
 .c-rows a{text-decoration:none}
-.c-rows a:hover{color:var(--amber)}
-form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.c-rows a:hover{color:var(--acc)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .fld{display:grid;gap:8px}
 .fld.full{grid-column:1/-1}
 .fld label{font-size:.85rem;color:var(--mute)}
-.fld input,.fld select,.fld textarea{font:inherit;color:var(--paper);background:transparent;border:0;border-bottom:1px solid rgba(237,231,220,.28);padding:10px 0;border-radius:0;transition:border-color .3s}
-.fld select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--paper) 50%),linear-gradient(-45deg,transparent 50%,var(--paper) 50%);background-position:10px 55%,16px 55%;background-size:6px 6px;background-repeat:no-repeat}
+.fld input,.fld select,.fld textarea{font:inherit;color:var(--fg);background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 0;border-radius:0;transition:border-color .3s}
+.fld select{appearance:none;-webkit-appearance:none}
 .fld select option{background:var(--ink-2)}
 .fld textarea{resize:vertical;min-height:90px}
 .fld input:focus,.fld select:focus,.fld textarea:focus{outline:0;border-color:var(--amber)}
@@ -318,17 +301,17 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
 .f-note{font-size:.88rem;color:var(--amber);min-height:1.4em}
 @media (max-width:860px){.contact,form{grid-template-columns:1fr}}
 
-/* footer */
-.ftr{border-top:1px solid var(--line);padding:clamp(60px,8vw,100px) 0 36px}
+.ftr{padding:clamp(60px,8vw,100px) 0 36px;border-top:1px solid var(--line)}
 .ftr-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:clamp(28px,4vw,60px)}
-.ftr h4{margin:0 0 16px;font:500 var(--fs-0)/1 var(--body);letter-spacing:.16em;color:var(--mute)}
+.ftr h4{margin:0 0 16px;font:500 .78rem/1 var(--body);letter-spacing:.16em;color:var(--mute)}
 .ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.ftr a{text-decoration:none;opacity:.88}.ftr a:hover{opacity:1;color:var(--amber)}
-.ftr .logo img{height:74px;width:auto}
+.ftr a{text-decoration:none;opacity:.88}.ftr a:hover{opacity:1;color:var(--acc)}
+.ftr .logo img{height:76px;width:auto}
 .ftr-bot{margin-top:60px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--mute);font-size:.82rem;border-top:1px solid var(--line);padding-top:24px}
 @media (max-width:860px){.ftr-grid{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -365,138 +348,140 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
 <main id="main">
 <section class="film" id="top" aria-label="בוני בניין – הסיפור שלנו">
   <div class="stage" id="stage">
-    <div class="layer ext"><img id="extImg" src="assets/hero-exterior.jpg" alt="הדמיית פרויקט הגליל 52 ברעננה בשעת בין ערביים" width="2200" height="2200" fetchpriority="high"></div>
-    <div class="layer dim" id="dim"></div>
-    <div class="layer glow" id="glow"></div>
-    <canvas id="sky" aria-hidden="true"></canvas>
-    <div class="sky-fb" id="skyFb" aria-hidden="true"></div>
-    <div class="layer int" id="int">
-      <img class="i0" src="assets/int-1.jpg" alt="מרפסת פנטהאוז, פרויקט המעלות 7 רעננה">
-      <img class="i1" src="assets/int-2.jpg" alt="מרפסת דירה, פרויקט גרדניה רעננה" loading="lazy">
-      <img class="i2" src="assets/int-3.jpg" alt="סלון דירה, פרויקט הר סיני 8 רעננה" loading="lazy">
-      <img class="i3" src="assets/int-4.jpg" alt="סלון ומטבח, פרויקט מבצע קדש רעננה" loading="lazy">
-      <img class="i4" src="assets/int-5.jpg" alt="מרפסת דירה, פרויקט בילינסון 6 כפר סבא" loading="lazy">
-      <div class="int-shade"></div>
+    <img class="poster" src="assets/hero-exterior.jpg" alt="הדמיית פרויקט הגליל 52 ברעננה בשעת ערב" width="2200" height="2200" fetchpriority="high">
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="shade-t"></div>
+    <div class="shade-b" id="shadeB"></div>
+    <div class="hero" id="hero">
+      <div class="hero-main">
+        <p class="hero-k">רעננה · מאז 1972</p>
+        <h1>בוני בניין</h1>
+        <div class="hero-sub"><b>חושבים אנשים</b><span>מורשת משפחתית של מצוינות בבנייה וביזמות</span></div>
+      </div>
+      <div class="hero-aside">
+        <span class="cue" id="cue">גללו פנימה<i></i></span>
+        <span class="caption">הדמיה: הגליל 52, רעננה</span>
+      </div>
     </div>
-    <div class="hero-copy" id="heroCopy">
-      <img class="mark" src="assets/mark.png" alt="" width="160" height="150">
-      <h1>בוני בניין</h1>
-      <p class="tag">חושבים אנשים</p>
-      <p class="sub">מורשת משפחתית של מצוינות בבנייה וביזמות, מאז 1972</p>
-    </div>
-    <div class="cue" id="cue" aria-hidden="true">גללו פנימה<i></i></div>
-    <div class="bigname" id="bigname" aria-hidden="true"><b>בוני בניין</b><small>רעננה · מאז 1972</small></div>
+    <div class="stmt" id="stmt" aria-hidden="true"><b>1972</b><small>שלושה דורות של בנייה</small></div>
     <div class="chapters" id="about">
       <article class="chapter" data-state="pre">
-        <p class="ch-k"><em>01</em>מאז 1972</p>
-        <h2 class="ch-t"><span class="ln"><span>מורשת משפחתית</span></span><span class="ln"><span style="--d:1">של מצוינות</span></span></h2>
-        <p class="ch-p">הסיפור מתחיל בשנת 1972, כשאליעזר מידניק ושותפו מרדכי ייסדו את החברה מתוך שאיפה להחדיר גישה חדשנית אל נוף הבנייה הישראלי. עם הזמן הצטרף חיים, בנו, וביחד החלו ליזום ולבנות פרויקטים פורצי דרך באיכותם ובנראותם.</p>
-      </article>
-      <article class="chapter" data-state="pre">
-        <p class="ch-k"><em>02</em>שלושה דורות</p>
-        <h2 class="ch-t"><span class="ln"><span>שלושה דורות</span></span><span class="ln"><span style="--d:1">של עשייה נדל״נית</span></span></h2>
-        <p class="ch-p">דור המייסדים הוביל את שנותיה הראשונות של החברה, הדור השני פיתח ובנה פרויקטים משמעותיים ברחבי הארץ, והיום הדור השלישי, אלון ונועם מידן, מנכ״לים משותפים, ממשיך את המורשת עם חטיבת יזמות ופרויקטים למגורים, מסחר ומבני ציבור.</p>
-      </article>
-      <article class="chapter" data-state="pre">
-        <p class="ch-k"><em>03</em>בית איתן לנדל״ן</p>
-        <h2 class="ch-t"><span class="ln"><span>מאות פרויקטים</span></span><span class="ln"><span style="--d:1">ברחבי הארץ</span></span></h2>
-        <div class="ch-x nums">
-          <div class="num"><b data-count="500" data-suffix="+">500+</b><span>פרויקטים שהסתיימו</span></div>
-          <div class="num"><b data-count="500000">500,000</b><span>מ״ר שבוצעו</span></div>
-          <div class="num"><b data-count="50" data-suffix="+">50+</b><span>שנות פעילות</span></div>
+        <img class="ch-img" src="assets/int-1.jpg" alt="מרפסת פנטהאוז, פרויקט המעלות 7 רעננה" loading="lazy">
+        <div>
+          <p class="ch-k"><em>01</em>מאז 1972</p>
+          <h2 class="ch-t"><span class="ln"><span>מורשת משפחתית</span></span><span class="ln"><span style="--d:1">של מצוינות</span></span></h2>
+          <p class="ch-p">הסיפור מתחיל בשנת 1972, כשאליעזר מידניק ושותפו מרדכי ייסדו את החברה מתוך שאיפה להחדיר גישה חדשנית אל נוף הבנייה הישראלי. עם הזמן הצטרף חיים, בנו, וביחד החלו ליזום ולבנות פרויקטים פורצי דרך באיכותם ובנראותם.</p>
         </div>
-        <p class="ch-p">חברת בנייה משפחתית ותיקה, המהווה בית איתן עבור מגוון רחב של פרויקטי נדל״ן בישראל. לאורך עשרות שנים החברה נמנית בין 100 חברות הביצוע האיכותיות בארץ.</p>
       </article>
       <article class="chapter" data-state="pre">
-        <p class="ch-k"><em>04</em>התחדשות עירונית</p>
-        <h2 class="ch-t"><span class="ln"><span>מתמחים בהתחדשות</span></span><span class="ln"><span style="--d:1">עירונית בשרון</span></span></h2>
-        <p class="ch-p">רעננה, כפר סבא, רמת השרון והרצליה. לכל פרויקט אופי ייחודי ועיצוב אדריכלי משלו, בהשתלבות עם אופי השכונה, בשיתוף פעולה מלא עם הרשויות המקומיות ובעדכון שוטף של בעלי הדירות.</p>
-        <div class="ch-x"><span class="chip"><b data-count="25">25</b> פרויקטים פעילים בהתחדשות עירונית</span></div>
+        <img class="ch-img" src="assets/int-2.jpg" alt="מרפסת דירה, פרויקט גרדניה רעננה" loading="lazy">
+        <div>
+          <p class="ch-k"><em>02</em>שלושה דורות</p>
+          <h2 class="ch-t"><span class="ln"><span>שלושה דורות</span></span><span class="ln"><span style="--d:1">של עשייה נדל״נית</span></span></h2>
+          <p class="ch-p">דור המייסדים הוביל את שנותיה הראשונות של החברה, הדור השני פיתח ובנה פרויקטים משמעותיים ברחבי הארץ, והיום הדור השלישי, אלון ונועם מידן, מנכ״לים משותפים, ממשיך את המורשת עם חטיבת יזמות ופרויקטים למגורים, מסחר ומבני ציבור.</p>
+        </div>
       </article>
       <article class="chapter" data-state="pre">
-        <p class="ch-k"><em>05</em>מוניטין</p>
-        <h2 class="ch-t"><span class="ln"><span>מוניטין ואיכות</span></span><span class="ln"><span style="--d:1">ללא פשרות</span></span></h2>
-        <p class="ch-p">דירוגים מובילים במדד ההתחדשות העירונית, BDI-CODE ו-Dun's 100, ופרס המצוינות בבנייה מטעם ארגון בוני הארץ על קריית החינוך הממוגנת הראשונה והגדולה בישראל, ״שער הנגב״.</p>
-        <div class="ch-x"><span class="chip">סיווג קבלני ג׳5 בלתי מוגבל</span><span class="chip">תו תקן ISO 9001</span><span class="chip">3 כוכבי בטיחות</span></div>
+        <img class="ch-img" src="assets/int-3.jpg" alt="סלון דירה, פרויקט הר סיני 8 רעננה" loading="lazy">
+        <div>
+          <p class="ch-k"><em>03</em>בית איתן לנדל״ן</p>
+          <h2 class="ch-t"><span class="ln"><span>מאות פרויקטים</span></span><span class="ln"><span style="--d:1">ברחבי הארץ</span></span></h2>
+          <div class="ch-x nums">
+            <div class="num"><b data-count="500" data-suffix="+">500+</b><span>פרויקטים שהסתיימו</span></div>
+            <div class="num"><b data-count="500000">500,000</b><span>מ״ר שבוצעו</span></div>
+            <div class="num"><b data-count="50" data-suffix="+">50+</b><span>שנות פעילות</span></div>
+          </div>
+          <p class="ch-p">חברת בנייה משפחתית ותיקה, המהווה בית איתן עבור מגוון רחב של פרויקטי נדל״ן בישראל. לאורך עשרות שנים החברה נמנית בין 100 חברות הביצוע האיכותיות בארץ.</p>
+        </div>
+      </article>
+      <article class="chapter" data-state="pre">
+        <img class="ch-img" src="assets/int-4.jpg" alt="סלון ומטבח, פרויקט מבצע קדש רעננה" loading="lazy">
+        <div>
+          <p class="ch-k"><em>04</em>התחדשות עירונית</p>
+          <h2 class="ch-t"><span class="ln"><span>מתמחים בהתחדשות</span></span><span class="ln"><span style="--d:1">עירונית בשרון</span></span></h2>
+          <p class="ch-p">רעננה, כפר סבא, רמת השרון והרצליה. לכל פרויקט אופי ייחודי ועיצוב אדריכלי משלו, בהשתלבות עם אופי השכונה, בשיתוף פעולה מלא עם הרשויות המקומיות ובעדכון שוטף של בעלי הדירות.</p>
+          <div class="ch-x"><span class="chip"><b data-count="25">25</b> פרויקטים פעילים בהתחדשות עירונית</span></div>
+        </div>
+      </article>
+      <article class="chapter" data-state="pre">
+        <img class="ch-img" src="assets/int-5.jpg" alt="מרפסת דירה, פרויקט בילינסון 6 כפר סבא" loading="lazy">
+        <div>
+          <p class="ch-k"><em>05</em>מוניטין</p>
+          <h2 class="ch-t"><span class="ln"><span>מוניטין ואיכות</span></span><span class="ln"><span style="--d:1">ללא פשרות</span></span></h2>
+          <p class="ch-p">דירוגים מובילים במדד ההתחדשות העירונית, BDI-CODE ו-Dun's 100, ופרס המצוינות בבנייה מטעם ארגון בוני הארץ על קריית החינוך הממוגנת הראשונה והגדולה בישראל, ״שער הנגב״.</p>
+          <div class="ch-x"><span class="chip">סיווג קבלני ג׳5 בלתי מוגבל</span><span class="chip">תו תקן ISO 9001</span><span class="chip">3 כוכבי בטיחות</span></div>
+        </div>
       </article>
     </div>
-    <div class="rail" id="rail" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span></div>
-    <div class="layer vig"></div>
-    <div class="layer grain" id="grain"></div>
-    <div class="layer blackout" id="blackout"></div>
+    <div class="rail" id="rail" aria-hidden="true"><span>מאז 1972</span><span>שלושה דורות</span><span>מאות פרויקטים</span><span>התחדשות עירונית</span><span>מוניטין</span></div>
+    <div class="grain" id="grain"></div>
+    <div class="exitfade" id="exitfade"></div>
   </div>
 </section>
 
-<section class="sec" id="marketing">
+<section class="sec light" id="marketing">
   <div class="wrap">
-    <header class="sec-head" data-reveal>
-      <p class="eyebrow">פרויקטים בשיווק</p>
-      <h2 class="h2">בית בלב השרון השוקק</h2>
+    <header class="sec-head split" data-reveal>
+      <div style="display:grid;gap:22px"><p class="eyebrow">פרויקטים בשיווק</p><h2 class="h2">בית בלב<br>השרון השוקק</h2></div>
       <p class="lede">כל פרויקט הוא תוצר של תכנון קפדני, חומרים איכותיים, טכנולוגיות בנייה מתקדמות ובנייה ירוקה, עם הקפדה על לוחות זמנים, מפרטים ותקציבים כפי שהוצגו ללקוחות.</p>
     </header>
-    <div class="feats">
-      <article class="feat" data-reveal>
-        <figure class="feat-media">
-          <div class="fm-main"><img data-par="0.08" src="assets/gardenia.jpg" alt="הדמיית פרויקט גרדניה, ההגנה 89-93 רעננה" loading="lazy"></div>
-          <div class="fm-inset"><img src="assets/int-2.jpg" alt="מרפסת דירה בפרויקט גרדניה" loading="lazy"></div>
-        </figure>
-        <div class="feat-body">
-          <p class="feat-idx">01 / 03 · בשיווק</p>
+    <div class="fstack" id="fstack">
+      <article class="fcard" style="--i:0">
+        <div class="fc-media"><img src="assets/gardenia.jpg" alt="הדמיית פרויקט גרדניה, ההגנה 89-93 רעננה" loading="lazy"></div>
+        <div class="fc-shade"></div>
+        <div class="fc-body">
+          <p class="fc-k">01 / 03 · בשיווק</p>
           <h3>גרדניה</h3>
-          <p class="feat-loc">ההגנה 89-93, רעננה</p>
-          <p class="lede" style="font-size:1rem">פרויקט מגורים יוקרתי במרכז השקט של רעננה.</p>
-          <dl class="specs">
+          <p class="fc-addr">ההגנה 89-93, רעננה</p>
+          <p class="fc-addr" style="opacity:.75">פרויקט מגורים יוקרתי במרכז השקט של רעננה.</p>
+          <dl class="fc-specs">
             <div><dt>יחידות דיור</dt><dd>90</dd></div>
             <div><dt>בניינים</dt><dd>2</dd></div>
             <div><dt>קומות</dt><dd>8+9</dd></div>
-            <div class="wide"><dt>אדריכלים</dt><dd>מעוז פרייס אדריכלים</dd></div>
           </dl>
-          <div><a class="btn" href="#contact" data-project="גרדניה">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
+          <p class="fc-arch">אדריכלים: מעוז פרייס אדריכלים</p>
+          <div class="fc-cta"><a class="btn btn-amber" href="#contact" data-project="גרדניה">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
         </div>
       </article>
-      <article class="feat" data-reveal>
-        <figure class="feat-media">
-          <div class="fm-main"><img data-par="0.08" src="assets/harsinai.jpg" alt="הדמיית פרויקט הר סיני 8 רעננה" loading="lazy"></div>
-          <div class="fm-inset"><img src="assets/int-3.jpg" alt="סלון דירה בפרויקט הר סיני 8" loading="lazy"></div>
-        </figure>
-        <div class="feat-body">
-          <p class="feat-idx">02 / 03 · בשיווק</p>
+      <article class="fcard" style="--i:1">
+        <div class="fc-media"><img src="assets/harsinai.jpg" alt="הדמיית פרויקט הר סיני 8 רעננה" loading="lazy"></div>
+        <div class="fc-shade"></div>
+        <div class="fc-body">
+          <p class="fc-k">02 / 03 · בשיווק</p>
           <h3>הר סיני 8</h3>
-          <p class="feat-loc">הר סיני 8, רעננה</p>
+          <p class="fc-addr">הר סיני 8, רעננה</p>
           
-          <dl class="specs">
+          <dl class="fc-specs">
             <div><dt>יחידות דיור</dt><dd>39</dd></div>
             <div><dt>בניינים</dt><dd>1</dd></div>
             <div><dt>קומות</dt><dd>8</dd></div>
-            <div class="wide"><dt>אדריכלים</dt><dd>יגאל שמיע</dd></div>
           </dl>
-          <div><a class="btn" href="#contact" data-project="הר סיני 8">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
+          <p class="fc-arch">אדריכלים: יגאל שמיע</p>
+          <div class="fc-cta"><a class="btn btn-amber" href="#contact" data-project="הר סיני 8">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
         </div>
       </article>
-      <article class="feat" data-reveal>
-        <figure class="feat-media">
-          <div class="fm-main"><img data-par="0.08" src="assets/maalot7.jpg" alt="הדמיית פרויקט המעלות 7 רעננה" loading="lazy"></div>
-          <div class="fm-inset"><img src="assets/int-1.jpg" alt="מרפסת פנטהאוז בפרויקט המעלות 7" loading="lazy"></div>
-        </figure>
-        <div class="feat-body">
-          <p class="feat-idx">03 / 03 · בשיווק</p>
+      <article class="fcard" style="--i:2">
+        <div class="fc-media"><img src="assets/maalot7.jpg" alt="הדמיית פרויקט המעלות 7 רעננה" loading="lazy"></div>
+        <div class="fc-shade"></div>
+        <div class="fc-body">
+          <p class="fc-k">03 / 03 · בשיווק</p>
           <h3>המעלות 7</h3>
-          <p class="feat-loc">המעלות 7, רעננה</p>
+          <p class="fc-addr">המעלות 7, רעננה</p>
           
-          <dl class="specs">
+          <dl class="fc-specs">
             <div><dt>יחידות דיור</dt><dd>23</dd></div>
             <div><dt>בניינים</dt><dd>1</dd></div>
             <div><dt>קומות</dt><dd>7</dd></div>
-            <div class="wide"><dt>אדריכלים</dt><dd>דרור רימוק אדריכלים</dd></div>
           </dl>
-          <div><a class="btn" href="#contact" data-project="המעלות 7">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
+          <p class="fc-arch">אדריכלים: דרור רימוק אדריכלים</p>
+          <div class="fc-cta"><a class="btn btn-amber" href="#contact" data-project="המעלות 7">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<section class="sec" id="projects" style="background:var(--ink-2)">
+<section class="sec light" id="projects" style="padding-top:clamp(40px,6vw,90px)">
   <div class="wrap">
     <header class="sec-head" data-reveal>
       <p class="eyebrow">פרויקטי מגורים</p>
@@ -509,285 +494,240 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
         <button type="button" data-f="plan" aria-pressed="false">בתכנון<sup>9</sup></button>
         <button type="button" data-f="done" aria-pressed="false">מאוכלסים<sup>6</sup></button>
       </div>
-      <p class="cat-count" id="catCount" aria-live="polite"></p>
     </div>
     <div class="grid" id="grid">
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-3257.jpg" alt="מכבי 47 – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>מכבי 47</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>28 יח״ד</span><span>1 בניין</span><span>7 קומות</span></div>
-        
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-836.jpg" alt="גרדניה – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>גרדניה</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>90 יח״ד</span><span>2 בניינים</span><span>8+9 קומות</span></div>
-        <p class="arch">אדריכלים: מעוז פרייס אדריכלים</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-921.jpg" alt="המעלות 6 – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>המעלות 6</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>23 יח״ד</span><span>1 בניין</span><span>7 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-854.jpg" alt="מכבי 51 – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>מכבי 51</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>30 יח״ד</span><span>1 בניין</span><span>7 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-870.jpg" alt="הר סיני 8 – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>הר סיני 8</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>39 יח״ד</span><span>1 בניין</span><span>8 קומות</span></div>
-        <p class="arch">אדריכלים: יגאל שמיע</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-887.jpg" alt="המעלות 7 – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>המעלות 7</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>23 יח״ד</span><span>1 בניין</span><span>7 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-941.jpg" alt="המעלות 4 – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>המעלות 4</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>15 יח״ד</span><span>1 בניין</span><span>7 קומות</span></div>
-        <p class="arch">אדריכלים: קו אחד אדריכלים</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-916.jpg" alt="אליעזר יפה 17 – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>אליעזר יפה 17</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>37 יח״ד</span><span>1 בניין</span><span>8 קומות</span></div>
-        <p class="arch">אדריכלים: redmark אדריכלים</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-912.jpg" alt="בילינסון 7 – כפר סבא" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>בילינסון 7</h3><p class="city">כפר סבא</p></div>
         <div class="meta"><span>54 יח״ד</span><span>1 בניין</span><span>9 קומות</span></div>
-        <p class="arch">אדריכלים: קו אחד אדריכלים</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-903.jpg" alt="מבצע קדש 1-3-5 – רעננה" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>מבצע קדש 1-3-5</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>45 יח״ד</span><span>2 בניינים</span><span>9 קומות</span></div>
-        <p class="arch">אדריכלים: redmark אדריכלים</p>
       </article>
       <article class="card" data-s="mkt">
         <div class="card-img"><img src="assets/p-894.jpg" alt="בילינסון 6 – כפר סבא" loading="lazy"><span class="pill s-mkt">בשיווק</span></div>
         <div><h3>בילינסון 6</h3><p class="city">כפר סבא</p></div>
         <div class="meta"><span>54 יח״ד</span><span>1 בניין</span><span>9 קומות</span></div>
-        <p class="arch">אדריכלים: קו אחד אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><img src="assets/p-3096.jpg" alt="הגליל 52 – רעננה" loading="lazy"><span class="pill s-plan">בתכנון</span></div>
         <div><h3>הגליל 52</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>30 יח״ד</span><span>1 בניין</span><span>9.5 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><img src="assets/p-940.jpg" alt="החשמונאים 23 – רעננה" loading="lazy"><span class="pill s-plan">בתכנון</span></div>
         <div><h3>החשמונאים 23</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>60 יח״ד</span><span>1 בניין</span><span>8 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><img src="assets/p-956.jpg" alt="שברץ 21 – רעננה" loading="lazy"><span class="pill s-plan">בתכנון</span></div>
         <div><h3>שברץ 21</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>40 יח״ד</span><span>1 בניין</span><span>8 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><img src="assets/p-951.jpg" alt="בר אילן 25 – רעננה" loading="lazy"><span class="pill s-plan">בתכנון</span></div>
         <div><h3>בר אילן 25</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>29 יח״ד</span><span>1 בניין</span><span>8 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><img src="assets/p-946.jpg" alt="אליעזר יפה 13 – רעננה" loading="lazy"><span class="pill s-plan">בתכנון</span></div>
         <div><h3>אליעזר יפה 13</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>37 יח״ד</span><span>1 בניין</span><span>8 קומות</span></div>
-        <p class="arch">אדריכלים: redmark אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><img src="assets/p-933.jpg" alt="בורוכוב 39 – רעננה" loading="lazy"><span class="pill s-plan">בתכנון</span></div>
         <div><h3>בורוכוב 39</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>52 יח״ד</span><span>1 בניין</span><span>8 קומות</span></div>
-        <p class="arch">אדריכלים: redmark אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><img src="assets/p-928.jpg" alt="בורוכוב 37 – רעננה" loading="lazy"><span class="pill s-plan">בתכנון</span></div>
         <div><h3>בורוכוב 37</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>52 יח״ד</span><span>1 בניין</span><span>8 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><img src="assets/p-963.jpg" alt="דב הז 28 – כפר סבא" loading="lazy"><span class="pill s-plan">בתכנון</span></div>
         <div><h3>דב הז 28</h3><p class="city">כפר סבא</p></div>
         <div class="meta"><span>1 בניין</span><span>9 קומות</span></div>
-        <p class="arch">אדריכלים: קו אחד אדריכלים</p>
       </article>
       <article class="card" data-s="plan">
         <div class="card-img"><div class="ph"><img src="assets/mark.png" alt=""></div><span class="pill s-plan">בתכנון</span></div>
         <div><h3>יגאל אלון 43</h3><p class="city">הרצליה</p></div>
         <div class="meta"><span>28 יח״ד</span></div>
-        <p class="arch">אדריכלים: קו אחד אדריכלים</p>
       </article>
       <article class="card" data-s="done">
         <div class="card-img"><img src="assets/p-1711.jpg" alt="מכבי 5 – רעננה" loading="lazy"><span class="pill s-done">אוכלס</span></div>
         <div><h3>מכבי 5</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>16 יח״ד</span><span>6 בניינים</span></div>
-        <p class="arch">אדריכלים: תמא אדריכלות</p>
       </article>
       <article class="card" data-s="done">
         <div class="card-img"><img src="assets/p-1691.jpg" alt="בורוכוב 35 – רעננה" loading="lazy"><span class="pill s-done">אוכלס</span></div>
         <div><h3>בורוכוב 35</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>39 יח״ד</span><span>7 קומות</span></div>
-        <p class="arch">אדריכלים: דרור רימוק אדריכלים</p>
       </article>
       <article class="card" data-s="done">
         <div class="card-img"><img src="assets/p-979.jpg" alt="בר אילן 42 – רעננה" loading="lazy"><span class="pill s-done">אוכלס</span></div>
         <div><h3>בר אילן 42</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>7 יח״ד</span></div>
-        <p class="arch">אדריכלים: עופר סגל</p>
       </article>
       <article class="card" data-s="done">
         <div class="card-img"><img src="assets/p-978.jpg" alt="C46 &amp; C48 – C-collection – חדרה" loading="lazy"><span class="pill s-done">אוכלס</span></div>
         <div><h3>C46 &amp; C48 – C-collection</h3><p class="city">חדרה</p></div>
         <div class="meta"><span>40 יח״ד</span><span>2 בניינים</span><span>9 קומות</span></div>
-        <p class="arch">אדריכלים: זוהר אלטמן</p>
       </article>
       <article class="card" data-s="done">
         <div class="card-img"><img src="assets/p-967.jpg" alt="מכבי 22 – רעננה" loading="lazy"><span class="pill s-done">אוכלס</span></div>
         <div><h3>מכבי 22</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>22 יח״ד</span></div>
-        <p class="arch">אדריכלים: אסף סגל אדריכלים</p>
       </article>
       <article class="card" data-s="done">
         <div class="card-img"><div class="ph"><img src="assets/mark.png" alt=""></div><span class="pill s-done">אוכלס</span></div>
         <div><h3>החורש 18</h3><p class="city">רעננה</p></div>
         <div class="meta"><span>13 יח״ד</span></div>
-        <p class="arch">אדריכלים: דן מאירי</p>
       </article>
     </div>
+    <div class="more-row" id="catMoreRow"><button class="btn btn-ghost" type="button" id="catMore">הצג את כל הפרויקטים</button></div>
   </div>
 </section>
 
-<section class="sec hz" id="public">
-  <div class="hz-pin">
-    <div class="wrap hz-head" data-reveal>
-      <div class="sec-head" style="margin:0">
-        <p class="eyebrow">מבני ציבור ומסחר</p>
-        <h2 class="h2">בתי ספר, תרבות, ספורט ומסחר</h2>
-      </div>
-      <p class="hz-hint">17 מבנים שנמסרו ברחבי הארץ</p>
-    </div>
-    <div class="hz-track" id="hzTrack">
+<section class="sec dark" id="public">
+  <div class="wrap">
+    <header class="sec-head split" data-reveal>
+      <div style="display:grid;gap:22px"><p class="eyebrow">מבני ציבור ומסחר</p><h2 class="h2">בתי ספר, תרבות,<br>ספורט ומסחר</h2></div>
+      <p class="lede">17 מבנים שהחברה ביצעה ומסרה ברחבי הארץ, ובהם קריית החינוך הממוגנת הראשונה והגדולה בישראל.</p>
+    </header>
+    <div class="pgrid" id="pgrid">
       <article class="pb">
-        <div class="pb-img"><img src="assets/shaar-hanegev.jpg" alt="קרית החינוך &#x27;שער הנגב&#x27;" loading="lazy"><span class="award">פרס המצוינות בבנייה</span></div>
-        <h3>קרית החינוך &#x27;שער הנגב&#x27;</h3>
-        <p>אדריכלים: יובל גני, מיקי מנספלד<br>מזמין: מ.מ. שער הנגב</p>
+        <img src="assets/shaar-hanegev.jpg" alt="קרית החינוך &#x27;שער הנגב&#x27;" loading="lazy"><span class="award">פרס המצוינות בבנייה</span>
+        <div class="pb-t"><h3>קרית החינוך &#x27;שער הנגב&#x27;</h3><p>אדריכלים: יובל גני, מיקי מנספלד · מזמין: מ.מ. שער הנגב</p></div>
       </article>
       <article class="pb">
-        <div class="pb-img"><img src="assets/p-1144.jpg" alt="מרכז שיקומי עמותת על&quot;ה - בני ברק" loading="lazy"></div>
-        <h3>מרכז שיקומי עמותת על&quot;ה - בני ברק</h3>
-        <p>אדריכלים: ברעלי לויצקי כסיף<br>מזמין: עמותת על&quot;ה</p>
+        <img src="assets/p-1144.jpg" alt="מרכז שיקומי עמותת על&quot;ה - בני ברק" loading="lazy">
+        <div class="pb-t"><h3>מרכז שיקומי עמותת על&quot;ה - בני ברק</h3><p>אדריכלים: ברעלי לויצקי כסיף · מזמין: עמותת על&quot;ה</p></div>
       </article>
       <article class="pb">
-        <div class="pb-img"><img src="assets/p-1311.jpg" alt="פסטלוצ&#x27;י – תל אביב" loading="lazy"></div>
-        <h3>פסטלוצ&#x27;י – תל אביב</h3>
-        <p>אדריכלים: ליואי דבוריינסקי אדריכלים<br>מזמין: אחוזות החוף</p>
+        <img src="assets/p-1311.jpg" alt="פסטלוצ&#x27;י – תל אביב" loading="lazy">
+        <div class="pb-t"><h3>פסטלוצ&#x27;י – תל אביב</h3><p>אדריכלים: ליואי דבוריינסקי אדריכלים · מזמין: אחוזות החוף</p></div>
       </article>
       <article class="pb">
-        <div class="pb-img"><img src="assets/p-1284.jpg" alt="ישיבה תיכונית – אשדוד" loading="lazy"></div>
-        <h3>ישיבה תיכונית – אשדוד</h3>
-        <p>אדריכלים: היידי ארד<br>מזמין: עיריית אשדוד</p>
+        <img src="assets/p-1284.jpg" alt="ישיבה תיכונית – אשדוד" loading="lazy">
+        <div class="pb-t"><h3>ישיבה תיכונית – אשדוד</h3><p>אדריכלים: היידי ארד · מזמין: עיריית אשדוד</p></div>
       </article>
       <article class="pb">
-        <div class="pb-img"><img src="assets/p-1262.jpg" alt="בית הספר &#x27;האומנים&#x27; – רמלה" loading="lazy"></div>
-        <h3>בית הספר &#x27;האומנים&#x27; – רמלה</h3>
-        <p>אדריכלים: גדעון פובזנר<br>מזמין: עיריית רמלה</p>
+        <img src="assets/p-1262.jpg" alt="בית הספר &#x27;האומנים&#x27; – רמלה" loading="lazy">
+        <div class="pb-t"><h3>בית הספר &#x27;האומנים&#x27; – רמלה</h3><p>אדריכלים: גדעון פובזנר · מזמין: עיריית רמלה</p></div>
       </article>
       <article class="pb">
-        <div class="pb-img"><img src="assets/p-1254.jpg" alt="בית הספר &#x27;פעמונים&#x27; – רעננה" loading="lazy"></div>
-        <h3>בית הספר &#x27;פעמונים&#x27; – רעננה</h3>
-        <p>אדריכלים: דוד נופר אדריכלים<br>מזמין: עיריית רעננה</p>
+        <img src="assets/p-1254.jpg" alt="בית הספר &#x27;פעמונים&#x27; – רעננה" loading="lazy">
+        <div class="pb-t"><h3>בית הספר &#x27;פעמונים&#x27; – רעננה</h3><p>אדריכלים: דוד נופר אדריכלים · מזמין: עיריית רעננה</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1242.jpg" alt="תיכון &#x27;אביב&#x27; – רעננה" loading="lazy"></div>
-        <h3>תיכון &#x27;אביב&#x27; – רעננה</h3>
-        <p>אדריכלים: גידי פוזנר אדריכלים<br>מזמין: עיריית רעננה</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1242.jpg" alt="תיכון &#x27;אביב&#x27; – רעננה" loading="lazy">
+        <div class="pb-t"><h3>תיכון &#x27;אביב&#x27; – רעננה</h3><p>אדריכלים: גידי פוזנר אדריכלים · מזמין: עיריית רעננה</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1234.jpg" alt="בית ספר אבטליון – באר יהושע" loading="lazy"></div>
-        <h3>בית ספר אבטליון – באר יהושע</h3>
-        <p>אדריכלים: בר לוי אדריכלים<br>מזמין: עיריית בני ברק</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1234.jpg" alt="בית ספר אבטליון – באר יהושע" loading="lazy">
+        <div class="pb-t"><h3>בית ספר אבטליון – באר יהושע</h3><p>אדריכלים: בר לוי אדריכלים · מזמין: עיריית בני ברק</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1204.jpg" alt="מתחם ספריה ומתנ&quot;ס עירוניים – רחובות" loading="lazy"></div>
-        <h3>מתחם ספריה ומתנ&quot;ס עירוניים – רחובות</h3>
-        <p>אדריכלים: קימל אשכולות אדריכלים<br>מזמין: עיריית רחובות</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1204.jpg" alt="מתחם ספריה ומתנ&quot;ס עירוניים – רחובות" loading="lazy">
+        <div class="pb-t"><h3>מתחם ספריה ומתנ&quot;ס עירוניים – רחובות</h3><p>אדריכלים: קימל אשכולות אדריכלים · מזמין: עיריית רחובות</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1196.jpg" alt="אולם ספורט &#x27;חסן ערפה&#x27; – תל אביב יפו" loading="lazy"></div>
-        <h3>אולם ספורט &#x27;חסן ערפה&#x27; – תל אביב יפו</h3>
-        <p>אדריכלים: חן אדריכלים<br>מזמין: עיריית תל אביב יפו</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1196.jpg" alt="אולם ספורט &#x27;חסן ערפה&#x27; – תל אביב יפו" loading="lazy">
+        <div class="pb-t"><h3>אולם ספורט &#x27;חסן ערפה&#x27; – תל אביב יפו</h3><p>אדריכלים: חן אדריכלים · מזמין: עיריית תל אביב יפו</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1188.jpg" alt="היכל התרבות – מודיעין" loading="lazy"></div>
-        <h3>היכל התרבות – מודיעין</h3>
-        <p>אדריכלים: סגל יפה<br>מזמין: עיריית מודיעין</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1188.jpg" alt="היכל התרבות – מודיעין" loading="lazy">
+        <div class="pb-t"><h3>היכל התרבות – מודיעין</h3><p>אדריכלים: סגל יפה · מזמין: עיריית מודיעין</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1178.jpg" alt="בית ספר ואודיטוריום &#x27;קוגל&#x27; – חולון" loading="lazy"></div>
-        <h3>בית ספר ואודיטוריום &#x27;קוגל&#x27; – חולון</h3>
-        <p>אדריכלים: דוד נופר אדריכלים<br>מזמין: עיריית חולון</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1178.jpg" alt="בית ספר ואודיטוריום &#x27;קוגל&#x27; – חולון" loading="lazy">
+        <div class="pb-t"><h3>בית ספר ואודיטוריום &#x27;קוגל&#x27; – חולון</h3><p>אדריכלים: דוד נופר אדריכלים · מזמין: עיריית חולון</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1171.jpg" alt="מרכז מסחרי &#x27;מונד סנטר&#x27; – תל מונד" loading="lazy"></div>
-        <h3>מרכז מסחרי &#x27;מונד סנטר&#x27; – תל מונד</h3>
-        <p>אדריכלים: רון רובינשטיין אדריכלים<br>מזמין: א. והבנים</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1171.jpg" alt="מרכז מסחרי &#x27;מונד סנטר&#x27; – תל מונד" loading="lazy">
+        <div class="pb-t"><h3>מרכז מסחרי &#x27;מונד סנטר&#x27; – תל מונד</h3><p>אדריכלים: רון רובינשטיין אדריכלים · מזמין: א. והבנים</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1162.jpg" alt="מבנה משרדים – מועצה אזורית מטה בנימין" loading="lazy"></div>
-        <h3>מבנה משרדים – מועצה אזורית מטה בנימין</h3>
-        <p>אדריכלים: זילברשטיין אהרון<br>מזמין: מ.מ. עלי נגב</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1162.jpg" alt="מבנה משרדים – מועצה אזורית מטה בנימין" loading="lazy">
+        <div class="pb-t"><h3>מבנה משרדים – מועצה אזורית מטה בנימין</h3><p>אדריכלים: זילברשטיין אהרון · מזמין: מ.מ. עלי נגב</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1158.jpg" alt="בניין &#x27;הרוקמים&#x27; – חולון" loading="lazy"></div>
-        <h3>בניין &#x27;הרוקמים&#x27; – חולון</h3>
-        <p>אדריכלים: דן צור, ליאור וולף<br>מזמין: רון לוין אחזקות וקמינר אחזקות</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1158.jpg" alt="בניין &#x27;הרוקמים&#x27; – חולון" loading="lazy">
+        <div class="pb-t"><h3>בניין &#x27;הרוקמים&#x27; – חולון</h3><p>אדריכלים: דן צור, ליאור וולף · מזמין: רון לוין אחזקות וקמינר אחזקות</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1152.jpg" alt="בית קלימוטק" loading="lazy"></div>
-        <h3>בית קלימוטק</h3>
-        <p>אדריכלים: פורת להב אדריכלות<br>מזמין: חברת מגוון</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1152.jpg" alt="בית קלימוטק" loading="lazy">
+        <div class="pb-t"><h3>בית קלימוטק</h3><p>אדריכלים: פורת להב אדריכלות · מזמין: חברת מגוון</p></div>
       </article>
-      <article class="pb">
-        <div class="pb-img"><img src="assets/p-1146.jpg" alt="מוסך מרכזי &#x27;וולוו-הונדה-יגואר&#x27;" loading="lazy"></div>
-        <h3>מוסך מרכזי &#x27;וולוו-הונדה-יגואר&#x27;</h3>
-        <p>אדריכלים: דב חפץ<br>מזמין: קבוצת מאיר</p>
+      <article class="pb" hidden>
+        <img src="assets/p-1146.jpg" alt="מוסך מרכזי &#x27;וולוו-הונדה-יגואר&#x27;" loading="lazy">
+        <div class="pb-t"><h3>מוסך מרכזי &#x27;וולוו-הונדה-יגואר&#x27;</h3><p>אדריכלים: דב חפץ · מזמין: קבוצת מאיר</p></div>
       </article>
     </div>
+    <div class="more-row" id="pubMoreRow"><button class="btn btn-ghost" type="button" id="pubMore">הצג את כל 17 המבנים <span class="arr">↓</span></button></div>
   </div>
 </section>
 
-<section class="sec" id="why" style="background:var(--ink-2)">
+<section class="sec light" id="why">
   <div class="wrap">
     <div class="why">
+      <div class="why-img" data-reveal><img data-par="0.12" src="assets/gardenia-garden.jpg" alt="מבט מהגינה, פרויקט גרדניה רעננה" loading="lazy"></div>
       <div class="why-copy" data-reveal>
         <p class="eyebrow">למה בוני בניין?</p>
-        <h2 class="h2">עם יותר מ-50 שנות ניסיון ומאות פרויקטים מוצלחים</h2>
+        <h2 class="h2">50 שנות ניסיון.<br>מאות פרויקטים.</h2>
         <p class="big">עבור צוות החברה, בית הוא הרבה יותר מארבעה קירות.</p>
         <p>בוני בניין הוא שם נרדף לאיכות ללא פשרות ולמסורת משפחתית של בנייה. החברה פועלת מתוך חזון ליצור מרחבי מגורים מעוררי השראה, שמטפחים קהילות ומעניקים ללקוחות בית אמיתי.</p>
-        <p>החברה מחויבת להציע לדיירים הוותיקים ולרוכשי הדירות החדשות הזדמנות לשדרוג איכות החיים, בסביבת מגורים חדשנית, מעוצבת ומטופחת. צוות החברה מלווה כל לקוח לאורך כל הדרך, משלב התכנון ועד מסירת המפתח, ביחס אישי ומקצועי.</p>
+        <p>צוות החברה מלווה כל לקוח לאורך כל הדרך, משלב התכנון ועד מסירת המפתח, ביחס אישי ומקצועי.</p>
       </div>
-      <div class="why-img" data-reveal><img data-par="0.12" src="assets/gardenia-garden.jpg" alt="מבט מהגינה, פרויקט גרדניה רעננה" loading="lazy"></div>
     </div>
     <div class="oss">
       <div class="oss-intro" data-reveal>
         <p class="eyebrow">הצוות שלנו</p>
-        <h2 class="h2" style="font-size:var(--fs-3)">הלב הפועם של בוני בניין</h2>
-        <p>כל השלבים, מחתימת החוזים ותכנון הפרויקט, דרך הבנייה ועד תקופת הבדק, מתבצעים בתוך החברה. מחלקות החברה פועלות יחד ומעניקות שירות One Stop Shop, כדי לייצר לדיירים ולרוכשי הדירות שקט נפשי וביטחון לאורך כל הדרך.</p>
+        <h2 class="h2" style="font-size:clamp(2.4rem,4.6vw,4rem)">הלב הפועם של בוני בניין</h2>
+        <p>כל השלבים, מחתימת החוזים ותכנון הפרויקט, דרך הבנייה ועד תקופת הבדק, מתבצעים בתוך החברה. המחלקות פועלות יחד ומעניקות שירות One Stop Shop, כדי לייצר לדיירים ולרוכשים שקט נפשי וביטחון לאורך כל הדרך.</p>
       </div>
       <div class="depts" id="depts">
         <div class="dept"><button type="button" aria-expanded="false" aria-controls="dp1"><em>01</em><b>מחלקת הנדסה וביצוע</b><i></i></button><div class="dbody" id="dp1"><div><p>הזרוע המבצעת של החברה, האחראית לתכנון, פיקוח וביצוע עבודות הבנייה ברמה הגבוהה ביותר, משלב קבלת ההיתר ועד מסירת המפתח. צוות מיומן של מהנדסים, מנהלי פרויקטים, מנהלי עבודה ואחראי בטיחות מוביל כל פרויקט, תוך הקפדה על יעילות ובטיחות.</p></div></div></div>
@@ -803,11 +743,10 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
   </div>
 </section>
 
-<section class="sec" id="team">
+<section class="sec dark" id="team">
   <div class="wrap">
-    <header class="sec-head" data-reveal>
-      <p class="eyebrow">הנהלת הקבוצה</p>
-      <h2 class="h2">משפחה אחת גדולה זאת מחויבות</h2>
+    <header class="sec-head split" data-reveal>
+      <div style="display:grid;gap:22px"><p class="eyebrow">הנהלת הקבוצה</p><h2 class="h2">משפחה אחת גדולה<br>זאת מחויבות</h2></div>
       <p class="lede">כיום אמונים על ניהול החברה אלון ונועם מידן, מנכ״לים משותפים, דור שלישי לעשייה הנדל״נית בישראל.</p>
     </header>
     <div class="team">
@@ -840,7 +779,7 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
   </div>
 </section>
 
-<section class="sec" id="media" style="background:var(--ink-2)">
+<section class="sec light" id="media">
   <div class="wrap">
     <header class="sec-head" data-reveal>
       <p class="eyebrow">מדיה</p>
@@ -896,11 +835,11 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
   </div>
 </section>
 
-<section class="sec" id="contact">
+<section class="sec dark" id="contact">
   <div class="wrap contact">
     <div class="c-info" data-reveal>
       <p class="eyebrow">יצירת קשר</p>
-      <h2 class="h2">נשמח להכיר</h2>
+      <h2 class="h2">נשמח<br>להכיר</h2>
       <p class="lede">אנא מלאו את הפרטים שלכם ונחזור אליכם בהקדם.</p>
       <dl class="c-rows">
         <div><dt>טלפון משרד</dt><dd><a href="tel:+97297428111" dir="ltr">09-7428111</a></dd></div>
@@ -911,8 +850,8 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
       </dl>
     </div>
     <form id="cform" novalidate data-reveal>
-      <div class="fld"><label for="f-name">שם מלא</label><input id="f-name" name="name" autocomplete="name" required></div>
-      <div class="fld"><label for="f-phone">טלפון</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required dir="rtl"></div>
+      <div class="fld"><label for="f-name">שם מלא</label><input id="f-name" name="fullname" autocomplete="name" required></div>
+      <div class="fld"><label for="f-phone">טלפון</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
       <div class="fld"><label for="f-email">אימייל</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
       <div class="fld"><label for="f-proj">פרויקט מבוקש</label>
         <select id="f-proj" name="project">
@@ -931,13 +870,13 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
         </select></div>
       <div class="fld full"><label for="f-msg">כתבו לנו</label><textarea id="f-msg" name="message" rows="3"></textarea></div>
       <label class="consent" for="f-consent"><input id="f-consent" type="checkbox" name="consent">אני מאשר/ת לקבל מידע שיווקי ביחס לפרויקטים בדוא״ל, במסרון או בשיחת טלפון, גם אם מספר הטלפון רשום במאגר ״אל תתקשרו אלי״ של הרשות להגנת הצרכן.</label>
-      <div class="f-actions"><button class="btn btn-solid" type="submit">שליחה <span class="arr">←</span></button><p class="f-note" id="fNote" role="status"></p></div>
+      <div class="f-actions"><button class="btn btn-amber" type="submit">שליחה <span class="arr">←</span></button><p class="f-note" id="fNote" role="status"></p></div>
     </form>
   </div>
 </section>
 </main>
 
-<footer class="ftr">
+<footer class="ftr dark">
   <div class="wrap">
     <div class="ftr-grid">
       <div><a class="logo" href="#top"><img src="assets/logo.png" alt="בוני בניין" width="600" height="423" loading="lazy"></a></div>
@@ -951,73 +890,45 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
 
 <script id="fs" type="x-shader/x-fragment">
 precision highp float;
-uniform vec2 uRes; uniform float uTime; uniform float uP; uniform vec2 uM;
-float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
-float noise(vec2 p){vec2 i=floor(p),f=fract(p);vec2 u=f*f*(3.-2.*f);
-  return mix(mix(hash(i),hash(i+vec2(1.,0.)),u.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),u.x),u.y);}
-const mat2 R=mat2(.8,.6,-.6,.8);
-float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p=R*p*2.03+vec2(1.7,9.2);a*=.5;}return v;}
-float fbm3(vec2 p){float v=0.,a=.5;for(int i=0;i<3;i++){v+=a*noise(p);p=R*p*2.03+vec2(1.7,9.2);a*=.5;}return v/.875;}
-vec3 skyCol(vec3 rd,float sd){
-  float h=rd.y;
-  vec3 top=vec3(.08,.10,.23),mid=vec3(.40,.32,.50),low=vec3(1.,.64,.42);
-  vec3 c=mix(low,mid,smoothstep(-.01,.16,h));c=mix(c,top,smoothstep(.12,.55,h));
-  vec3 below=mix(vec3(.62,.46,.48),vec3(.20,.21,.32),smoothstep(0.,-.35,h));
-  c=mix(c,below,smoothstep(0.,-.025,h));
-  c+=vec3(1.,.55,.28)*pow(sd,9.)*.38+vec3(1.,.80,.55)*pow(sd,110.)*.8+vec3(1.,.95,.86)*pow(sd,1400.)*1.5;
-  return c;
+uniform vec2 uRes;
+uniform sampler2D uTexA,uDepA,uTexB,uDepB;
+uniform vec4 uA1,uA2,uA3,uB1,uB2,uB3;
+uniform float uMix,uPortal,uBlur,uUseB,uBright;
+uniform vec4 uWin;
+vec2 toUV(vec2 P,vec4 p1,vec4 p2,vec4 p3){return (P-p2.zw)/p3.x/vec2(p1.x,1.)+.5;}
+vec2 fromUV(vec2 uv,vec4 p1,vec4 p2,vec4 p3){return (uv-.5)*vec2(p1.x,1.)*p3.x+p2.zw;}
+vec2 solveA(vec2 S){
+  vec2 F=fromUV(uA2.xy,uA1,uA2,uA3);vec2 pull=-F*uA3.y;float w=.45;vec2 P=S;
+  for(int i=0;i<7;i++){float s=exp(uA1.y*(uA1.z*w+uA1.w));P=F+(S-pull-uA3.zw*(w-.35)-F)/s;float wn=texture2D(uDepA,clamp(toUV(P,uA1,uA2,uA3),0.,1.)).r;w=mix(w,wn,.6);}
+  return toUV(P,uA1,uA2,uA3);
 }
-vec4 layer(float hL,float idx,vec3 ro,vec3 rd,float sd,vec3 haze){
-  float t=(hL-ro.y)/rd.y;
-  if(t<=0.||t>60.)return vec4(0.);
-  vec2 q=ro.xz+rd.xz*t;
-  vec2 w=vec2(uTime*.012+idx*7.3,idx*3.1);
-  vec2 qq=q*.42+w+vec2(noise(q*.13+w),noise(q*.13-w))*1.4;
-  float d=fbm(qq);
-  float cov=.46+idx*.025;
-  float a=smoothstep(cov,cov+.2,d);
-  float fade=exp(-t*.05);
-  float d2=fbm3(qq+vec2(-.12,.32));
-  float sh=clamp((d-d2)*3.2+.55,0.,1.25);
-  vec3 lit;
-  if(rd.y<0.){
-    vec3 hi=vec3(1.,.88,.74),lo=vec3(.46,.40,.56);
-    lit=mix(lo,hi,sh)*(1.-idx*.16);
-    lit+=vec3(1.,.5,.25)*pow(sd,3.)*.3*(1.-a*.5);
-  }else{
-    lit=mix(vec3(.30,.29,.40),vec3(.70,.60,.66),sh*.8);
-    lit+=vec3(.9,.5,.3)*pow(sd,4.)*.18;
-  }
-  vec3 c=mix(haze,lit,fade);
-  return vec4(c,a*mix(.75,1.,fade));
+vec2 solveB(vec2 S){
+  vec2 F=fromUV(uB2.xy,uB1,uB2,uB3);vec2 pull=-F*uB3.y;float w=.45;vec2 P=S;
+  for(int i=0;i<7;i++){float s=exp(uB1.y*(uB1.z*w+uB1.w));P=F+(S-pull-uB3.zw*(w-.35)-F)/s;float wn=texture2D(uDepB,clamp(toUV(P,uB1,uB2,uB3),0.,1.)).r;w=mix(w,wn,.6);}
+  return toUV(P,uB1,uB2,uB3);
 }
+vec3 sampA(vec2 uv,vec2 F){vec3 c=vec3(0.);for(int k=0;k<6;k++){float f=float(k)/5.;c+=texture2D(uTexA,clamp(F+(uv-F)*(1.-f*uBlur*.05),0.,1.)).rgb;}return c/6.;}
+vec3 sampB(vec2 uv,vec2 F){vec3 c=vec3(0.);for(int k=0;k<6;k++){float f=float(k)/5.;c+=texture2D(uTexB,clamp(F+(uv-F)*(1.-f*uBlur*.05),0.,1.)).rgb;}return c/6.;}
 void main(){
-  vec2 uv=(gl_FragCoord.xy-.5*uRes)/uRes.y;
-  float p=uP;
-  float e=p*p*(3.-2.*p);
-  float camY=mix(.95,-1.05,e);
-  float pitch=mix(.17,-.30,smoothstep(0.,.32,p));
-  pitch=mix(pitch,.10,smoothstep(.5,.85,p));
-  vec3 ro=vec3(uM.x*.06,camY,uTime*.035+e*2.6);
-  vec3 rd=normalize(vec3(uv.x+uM.x*.02,uv.y+pitch+uM.y*.015,1.25));
-  vec3 sun=normalize(vec3(.46,.03,1.));
-  float sd=max(dot(rd,sun),0.);
-  vec3 col=skyCol(rd,sd);
-  vec3 haze=col;
-  vec3 C=vec3(0.);float T=1.;
-  if(rd.y<0.){
-    for(int i=0;i<4;i++){float hL=-.28*float(i);if(hL<ro.y){vec4 L=layer(hL,float(i),ro,rd,sd,haze);C+=T*L.a*L.rgb;T*=1.-L.a;}}
-  }else{
-    for(int i=0;i<4;i++){float hL=-.84+.28*float(i);if(hL>ro.y){vec4 L=layer(hL,3.-float(i),ro,rd,sd,haze);C+=T*L.a*L.rgb;T*=1.-L.a;}}
+  vec2 q=gl_FragCoord.xy/uRes;q.y=1.-q.y;
+  float asp=uRes.x/uRes.y;
+  vec2 S=(q-.5)*vec2(asp,1.);
+  vec2 uvA=solveA(S);
+  vec3 col=sampA(uvA,uA2.xy);
+  if(uUseB>.5){
+    float m=uMix;vec3 glow=vec3(0.);
+    if(uPortal>0.){
+      vec2 c0=(uWin.xy+uWin.zw)*.5;vec2 hs=(uWin.zw-uWin.xy)*.5*uPortal;
+      vec2 n=abs(uvA-c0)/hs;float e=max(n.x,n.y);
+      m=1.-smoothstep(.93,1.,e);
+      glow=vec3(1.,.78,.5)*exp(-max(0.,e-1.)*7.)*(1.-m)*.55*smoothstep(1.,3.,uPortal);
+    }
+    vec2 uvB=solveB(S);
+    vec3 cb=sampB(uvB,uB2.xy);
+    col=mix(col,cb,m)+glow;
   }
-  col=C+T*col;
-  float fog=0.;
-  for(int i=0;i<4;i++){float hL=-.28*float(i);fog+=exp(-abs(ro.y-hL)*13.);}
-  float streak=fbm(vec2(uv.x*2.2,uv.y*1.4-uTime*.05-e*9.)+vec2(0.,ro.y*4.));
-  fog=clamp(fog*(.55+.8*streak),0.,1.)*smoothstep(.04,.18,p);
-  vec3 fogCol=mix(vec3(1.,.91,.84),vec3(.66,.65,.76),smoothstep(0.,-.8,ro.y));
-  col=mix(col,fogCol,fog*.94);
-  col=mix(col,col*vec3(.78,.82,.95),smoothstep(-.6,-1.,ro.y)*.5);
+  float v=smoothstep(1.3,.3,length((q-.5)*vec2(asp*.75,1.)));
+  col*=mix(1.,v,.5)*uBright;
   gl_FragColor=vec4(col,1.);
 }
 </script>
@@ -1026,237 +937,215 @@ void main(){
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const root=document.documentElement;
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(RM)root.classList.add('rm');
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 const seg=(t,a,b)=>clamp((t-a)/(b-a));
 const lerp=(a,b,k)=>a+(b-a)*k;
 const eio=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
 const eo=k=>1-Math.pow(1-k,3);
+const sio=k=>-(Math.cos(Math.PI*k)-1)/2;
 const fmt=n=>Math.round(n).toLocaleString('en-US');
 
-/* grain texture */
 try{const g=document.createElement('canvas');g.width=g.height=180;const x=g.getContext('2d');const id=x.createImageData(180,180);for(let i=0;i<id.data.length;i+=4){const v=Math.random()*255;id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=255;}x.putImageData(id,0,0);$('#grain').style.backgroundImage=`url(${g.toDataURL()})`;}catch(e){}
 
-/* header + menu */
-const hdr=$('#hdr'),prog=$('.prog');
-const burger=$('.burger');
-burger.addEventListener('click',()=>{const o=document.body.classList.toggle('menu-open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'סגירת תפריט':'פתיחת תפריט');});
-$$('.mmenu a').forEach(a=>a.addEventListener('click',()=>{document.body.classList.remove('menu-open');burger.setAttribute('aria-expanded','false');}));
+let lenis=null;
+function startLenis(){if(RM||!window.Lenis||lenis)return;try{lenis=new Lenis({lerp:.1,smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf);};requestAnimationFrame(raf);}catch(e){lenis=null}}
+addEventListener('load',startLenis);
+const goTo=y=>{if(lenis)lenis.scrollTo(y,{duration:1.4});else scrollTo({top:y,behavior:RM?'auto':'smooth'});};
 
-/* ---------- FILM ---------- */
-const film=$('.film'),stage=$('#stage'),extImg=$('#extImg'),glow=$('#glow'),sky=$('#sky'),skyFb=$('#skyFb'),intL=$('#int'),
-      intImgs=$$('#int img'),heroCopy=$('#heroCopy'),cue=$('#cue'),bigname=$('#bigname'),chapters=$$('.chapter'),rail=$('#rail'),
-      railS=$$('#rail span'),blackout=$('#blackout'),dim=$('#dim');
-const TL={total:12.8,heroOut:[.25,1.15],desc:[.35,2.95],skyFade:[2.35,3.05],reveal:[1.7,3.8],name:[3.0,3.6],nameOut:[3.95,4.75],
-  zoom:[3.85,5.35],portal:[4.55,5.35],intIn:[4.35,5.9],ch0:5.5,chLen:1.35,exit:[12.1,12.8]};
-const WIN={x0:.3865,x1:.4110,y0:.6125,y1:.6445};
-let U=innerHeight,VW=innerWidth,base={L:0,T:0,w:0,h:0},cur=0,tgt=0,filmTop=0,filmOn=true,lastW=0;
-function layout(){
-  VW=innerWidth;U=stage.clientHeight||innerHeight;
-  if(!RM)film.style.height=((TL.total+1)*U)+'px';
-  const s=Math.max(VW/2200,U/2200),w=2200*s,h=2200*s;
-  base={L:(VW-w)*.45,T:(U-h)*.56,w,h};
-  Object.assign(extImg.style,{width:w+'px',height:h+'px',left:base.L+'px',top:base.T+'px'});
-  filmTop=film.getBoundingClientRect().top+scrollY;
-  sizeSky();
-}
-/* WebGL sky */
-let gl=null,prg=null,uni={},skyQ=1;
+const hdr=$('#hdr'),prog=$('.prog'),burger=$('.burger');
+burger.addEventListener('click',()=>{const o=document.body.classList.toggle('menu-open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'סגירת תפריט':'פתיחת תפריט');});
+
+/* ================= FILM ================= */
+const film=$('.film'),stage=$('#stage'),cv=$('#gl'),hero=$('#hero'),stmt=$('#stmt'),chapters=$$('.chapter'),rail=$('#rail'),railS=$$('#rail span'),exitfade=$('#exitfade'),shadeB=$('#shadeB');
+const TL={total:9.9,heroOut:[.06,.6],ext:[.04,3.0],pull:[.25,2.6],stmtIn:[.7,1.15],stmtOut:[1.5,2.15],portal:[2.2,3.0],ch0:2.95,chLen:1.3,exit:[9.3,9.9]};
+const WIN=[.3865,.6125,.4110,.6445];
+const SC=[
+ {src:'hero-exterior',focus:[.399,.628],frame:[.47,.5],a:3.0,b:1.1,ov:1.04},
+ {src:'int-1',focus:[.42,.48],frame:[.44,.5],a:1.25,b:.2,ov:1.08},
+ {src:'int-2',focus:[.5,.45],frame:[.5,.5],a:1.25,b:.2,ov:1.08},
+ {src:'int-3',focus:[.53,.46],frame:[.53,.5],a:1.25,b:.2,ov:1.08},
+ {src:'int-4',focus:[.56,.5],frame:[.56,.5],a:1.25,b:.2,ov:1.08},
+ {src:'int-5',focus:[.6,.5],frame:[.58,.5],a:1.25,b:.2,ov:1.08}
+];
+let gl=null,prg=null,U={},ok=false;
+let VW=innerWidth,VH=innerHeight,filmTop=0,cur=0,tgt=0,filmOn=true,qScale=1;
+function setStatic(){root.classList.add('static');chapters.forEach(c=>c.dataset.state='on');film.style.height='';}
+if(RM)setStatic();
 function initGL(){
-  try{gl=sky.getContext('webgl',{alpha:true,premultipliedAlpha:false,antialias:false,depth:false,stencil:false,powerPreference:'high-performance'});}catch(e){gl=null}
-  if(!gl){root.classList.add('nogl');return;}
-  const vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){throw new Error(gl.getShaderInfoLog(s));}return s;};
-  try{
-    prg=gl.createProgram();gl.attachShader(prg,sh(gl.VERTEX_SHADER,vs));gl.attachShader(prg,sh(gl.FRAGMENT_SHADER,$('#fs').textContent));gl.linkProgram(prg);
-    if(!gl.getProgramParameter(prg,gl.LINK_STATUS))throw new Error('link');
-  }catch(e){gl=null;root.classList.add('nogl');return;}
+  try{gl=cv.getContext('webgl',{alpha:true,premultipliedAlpha:false,antialias:false,depth:false,stencil:false,powerPreference:'high-performance'});}catch(e){gl=null}
+  if(!gl)return false;
+  const sh=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;};
+  try{prg=gl.createProgram();gl.attachShader(prg,sh(gl.VERTEX_SHADER,'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}'));gl.attachShader(prg,sh(gl.FRAGMENT_SHADER,$('#fs').textContent));gl.linkProgram(prg);if(!gl.getProgramParameter(prg,gl.LINK_STATUS))throw new Error('link');}catch(e){console.warn(e);return false;}
   gl.useProgram(prg);
   const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
   const loc=gl.getAttribLocation(prg,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  ['uRes','uTime','uP','uM'].forEach(n=>uni[n]=gl.getUniformLocation(prg,n));
+  ['uRes','uTexA','uDepA','uTexB','uDepB','uA1','uA2','uA3','uB1','uB2','uB3','uMix','uPortal','uBlur','uUseB','uBright','uWin'].forEach(n=>U[n]=gl.getUniformLocation(prg,n));
+  gl.uniform1i(U.uTexA,0);gl.uniform1i(U.uDepA,1);gl.uniform1i(U.uTexB,2);gl.uniform1i(U.uDepB,3);
+  gl.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL,gl.NONE);
+  return true;
 }
-function sizeSky(){
-  if(!gl)return;
-  const q=(VW<760?.5:.62)*skyQ;
-  sky.width=Math.max(2,Math.round(VW*q));sky.height=Math.max(2,Math.round(U*q));
-  gl.viewport(0,0,sky.width,sky.height);
+function mkTex(img,lum){
+  const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);
+  const f=lum?gl.LUMINANCE:gl.RGB;
+  gl.texImage2D(gl.TEXTURE_2D,0,f,f,gl.UNSIGNED_BYTE,img);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+  return t;
 }
-let mx=0,my=0,smx=0,smy=0;
-addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;},{passive:true});
-let ft=[],t0=performance.now();
-function drawSky(p,now){
-  if(!gl)return;
-  gl.uniform2f(uni.uRes,sky.width,sky.height);gl.uniform1f(uni.uTime,(now-t0)/1000);gl.uniform1f(uni.uP,p);gl.uniform2f(uni.uM,smx,-smy);
-  gl.drawArrays(gl.TRIANGLES,0,3);
+const loadImg=src=>new Promise((res,rej)=>{const i=new Image();i.decoding='async';i.onload=()=>res(i);i.onerror=rej;i.src=src;});
+function loadScene(k){
+  const s=SC[k];if(s.loading)return s.loading;
+  s.loading=Promise.all([loadImg(`assets/${s.src}.jpg`),loadImg(`assets/d-${s.src}.png`)]).then(([c,d])=>{s.asp=c.naturalWidth/c.naturalHeight;s.tex=mkTex(c,false);s.dep=mkTex(d,true);});
+  return s.loading;
 }
+function size(){
+  VW=innerWidth;VH=stage.clientHeight||innerHeight;
+  if(!root.classList.contains('static'))film.style.height=((TL.total+1)*VH)+'px';
+  filmTop=film.getBoundingClientRect().top+scrollY;
+  if(gl){const dpr=Math.min(devicePixelRatio||1,VW<760?1.5:1.25)*qScale;cv.width=Math.round(VW*dpr);cv.height=Math.round(VH*dpr);gl.viewport(0,0,cv.width,cv.height);}
+}
+function params(k,z,pull,lat){
+  const s=SC[k],asp=VW/VH,ia=s.asp||1;
+  const cover=Math.max(1,asp/ia)*s.ov;
+  const iw=ia*cover,ih=cover;
+  let px=-(s.frame[0]-.5)*iw,py=-(s.frame[1]-.5)*ih;
+  const mx=Math.max(0,(iw-asp)/2),my=Math.max(0,(ih-1)/2);
+  px=clamp(px,-mx,mx);py=clamp(py,-my,my);
+  return [[ia,z,s.a,s.b],[s.focus[0],s.focus[1],px,py],[cover,pull,lat[0],lat[1]]];
+}
+function bindLayer(k,unit){const s=SC[k];gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,s.tex);gl.activeTexture(gl.TEXTURE0+unit+1);gl.bindTexture(gl.TEXTURE_2D,s.dep);}
+function setP(pref,p){gl.uniform4fv(U[pref+'1'],p[0]);gl.uniform4fv(U[pref+'2'],p[1]);gl.uniform4fv(U[pref+'3'],p[2]);}
 const counted=new WeakSet();
-function countUp(ch){
-  $$('[data-count]',ch).forEach(el=>{if(counted.has(el))return;counted.add(el);const n=+el.dataset.count,sfx=el.dataset.suffix||'';const st=performance.now();
-    const step=now=>{const k=eo(clamp((now-st)/1600));el.textContent=fmt(n*k)+sfx;if(k<1)requestAnimationFrame(step);};requestAnimationFrame(step);});
+function countUp(ch){$$('[data-count]',ch).forEach(el=>{if(counted.has(el))return;counted.add(el);const n=+el.dataset.count,sfx=el.dataset.suffix||'';const st=performance.now();const step=now=>{const k=eo(clamp((now-st)/1600));el.textContent=fmt(n*k)+sfx;if(k<1)requestAnimationFrame(step);};requestAnimationFrame(step);});}
+let smx=0,smy=0,mx=0,my=0;
+addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;},{passive:true});
+function sceneZ(j,t){
+  const st=TL.ch0+(j-1)*TL.chLen;
+  const s0=j===1?TL.portal[0]:st-.3,e0=st+TL.chLen+.25;
+  return .34*clamp((t-s0)/(e0-s0));
 }
-function render(t,now){
-  /* hero copy */
-  const ho=seg(t,...TL.heroOut);
-  heroCopy.style.opacity=1-ho;heroCopy.style.transform=`translate3d(0,${-70*ho}px,0) scale(${1-.06*ho})`;
-  heroCopy.style.visibility=ho>=1?'hidden':'visible';
-  cue.style.opacity=1-seg(t,.05,.5);
-  /* sky */
-  const sf=seg(t,...TL.skyFade);
-  const skyEl=gl?sky:skyFb;
-  skyEl.style.opacity=1-sf;skyEl.style.visibility=sf>=1?'hidden':'visible';
-  const dp=seg(t,...TL.desc);
-  if(sf<1){ if(gl)drawSky(dp,now); else {skyFb.style.transform=`scale(${1+dp*2.4})`;skyFb.style.filter=`blur(${dp*10}px) brightness(${1+dp*.5})`;} }
-  /* exterior camera */
-  const r=eio(seg(t,...TL.reveal));
-  const z=seg(t,...TL.zoom);
-  const sr=lerp(1.45,1,r), sz=Math.pow(15,Math.pow(z,1.7));
-  const S=sr*sz;
-  const Pw={x:base.L+(WIN.x0+WIN.x1)/2*base.w,y:base.T+(WIN.y0+WIN.y1)/2*base.h};
-  const zc=eio(z);
-  const shX=(VW/2-Pw.x)*zc, shY=.24*base.h*(1-r)+(U*.5-Pw.y)*zc;
-  const a=(S-1)*(base.L-Pw.x)+shX, b=(S-1)*(base.T-Pw.y)+shY;
-  const extVis=t<TL.portal[1]+.05;
-  extImg.parentNode.style.visibility=extVis?'visible':'hidden';
-  if(extVis)extImg.style.transform=`translate3d(${a}px,${b}px,0) scale(${S})`;
-  const map=(nx,ny)=>({x:Pw.x+((base.L+nx*base.w)-Pw.x)*S+shX,y:Pw.y+((base.T+ny*base.h)-Pw.y)*S+shY});
-  const p0=map(WIN.x0,WIN.y0),p1=map(WIN.x1,WIN.y1);
-  /* glow on the window */
-  const gOn=seg(t,4.0,4.85)*(1-seg(t,5.05,5.45));
-  glow.style.opacity=gOn;glow.style.setProperty('--gx',((p0.x+p1.x)/2)+'px');glow.style.setProperty('--gy',((p0.y+p1.y)/2)+'px');
-  /* big name */
-  const ni=eo(seg(t,...TL.name)),no=seg(t,...TL.nameOut);
-  bigname.style.opacity=ni*(1-no);
-  dim.style.opacity=(.42*ni*(1-seg(t,4.0,4.6))).toFixed(3);
-  bigname.style.visibility=(ni>0&&no<1)?'visible':'hidden';
-  bigname.style.transform=`scale(${lerp(.9,1,ni)*(1+3.2*no*no)})`;
-  bigname.style.filter=`blur(${lerp(14,0,ni)+no*8}px)`;
-  /* interior portal */
-  const intVis=t>=TL.zoom[0]+.05;
-  intL.style.visibility=intVis?'visible':'hidden';
-  if(intVis){
-    const k=eio(seg(t,...TL.portal));
-    const top=lerp(p0.y,0,k),left=lerp(p0.x,0,k),right=lerp(VW-p1.x,0,k),bot=lerp(U-p1.y,0,k);
-    const cl=v=>Math.max(0,v).toFixed(1);
-    intL.style.clipPath=k>=1?'none':`inset(${cl(top)}px ${cl(right)}px ${cl(bot)}px ${cl(left)}px round ${lerp(3,0,k)}px)`;
-    intL.style.opacity=seg(t,TL.zoom[0],TL.zoom[0]+.45);
-    const ii=eo(seg(t,...TL.intIn));
-    intImgs.forEach((im,i)=>{
-      const st=TL.ch0+i*TL.chLen;
-      const op=i===0?1:seg(t,st-.2,st+.28);
-      const prevDone=i<intImgs.length-1?seg(t,TL.ch0+(i+1)*TL.chLen-.2,TL.ch0+(i+1)*TL.chLen+.28):0;
-      const vis=op>0&&prevDone<1;
-      im.style.visibility=vis?'visible':'hidden';
-      if(!vis)return;
-      im.style.opacity=op;
-      const push=clamp((t-(st-.3))/(TL.chLen+.6));
-      const sc=(i===0?lerp(1.55,1.06,ii):1.06)+push*.09;
-      im.style.transform=`translate3d(${smx*-10}px,${smy*-6}px,0) scale(${sc})`;
-      im.style.filter=i===0?`brightness(${lerp(1.5,1,ii)})`:'';
-    });
+function draw(t,now,vel){
+  const tt=now/1000;
+  const lat=[Math.sin(tt*.35)*.012+smx*.022,Math.cos(tt*.27)*.008+smy*.014];
+  let A,B=-1,mix=0,portal=0,pA,pB,blur=clamp(vel*7,0,1)*.7,bright=1;
+  if(t<TL.portal[1]){
+    const k=seg(t,...TL.ext),zE=.55*k+.45*k*k*k;
+    A=0;pA=params(0,zE,eio(seg(t,...TL.pull)),lat);
+    if(t>=TL.portal[0]){
+      const pk=seg(t,...TL.portal);
+      B=1;portal=1+20*Math.pow(pk,2.3);
+      pB=params(1,sceneZ(1,t),0,[lat[0]*.5,lat[1]*.5]);
+      blur+=Math.sin(Math.PI*pk)*.7;bright=1+Math.sin(Math.PI*pk)*.18;
+    }
+  }else{
+    const ci=clamp(Math.floor((t-TL.ch0)/TL.chLen),0,4);
+    const j=ci+1,nst=TL.ch0+(ci+1)*TL.chLen;
+    A=j;pA=params(j,sceneZ(j,t),0,lat);
+    if(ci<4&&t>nst-.3){
+      const f=sio(seg(t,nst-.3,nst+.25));
+      if(f>0){B=j+1;mix=f;pB=params(j+1,sceneZ(j+1,t),0,lat);blur+=Math.sin(Math.PI*f)*.8;}
+    }
   }
-  /* chapters */
-  const ex=seg(t,...TL.exit);
-  chapters.forEach((ch,i)=>{
-    const st=TL.ch0+i*TL.chLen, en=st+TL.chLen;
-    let s='pre';
-    if(t>=st+.04)s='on';
-    if(i<chapters.length-1? t>=en-.1 : t>=TL.exit[0]+.05)s='post';
-    if(ch.dataset.state!==s){ch.dataset.state=s;if(s==='on')countUp(ch);}
-  });
+  if(!SC[A].tex){loadScene(A);return false;}
+  if(B>=0&&!SC[B].tex){loadScene(B);B=-1;}
+  gl.uniform2f(U.uRes,cv.width,cv.height);
+  bindLayer(A,0);setP('uA',pA);
+  gl.uniform1f(U.uUseB,B>=0?1:0);
+  if(B>=0){bindLayer(B,2);setP('uB',pB);}
+  gl.uniform1f(U.uMix,mix);gl.uniform1f(U.uPortal,B>=0?portal:0);gl.uniform4fv(U.uWin,WIN);
+  gl.uniform1f(U.uBlur,clamp(blur,0,1.4));gl.uniform1f(U.uBright,bright);
+  gl.drawArrays(gl.TRIANGLES,0,3);
+  return true;
+}
+function overlays(t){
+  const ho=seg(t,...TL.heroOut);
+  hero.style.opacity=1-ho;hero.style.transform=`translate3d(0,${-60*ho}px,0)`;hero.style.visibility=ho>=1?'hidden':'visible';
+  shadeB.style.opacity=t<TL.ch0-.4?lerp(1,.55,seg(t,.1,.8)):1;
+  const si=eo(seg(t,...TL.stmtIn)),so=seg(t,...TL.stmtOut);
+  stmt.style.opacity=si*(1-so);stmt.style.visibility=si>0&&so<1?'visible':'hidden';
+  stmt.style.transform=`scale(${lerp(.92,1,si)*(1+2.6*so*so)})`;stmt.style.filter=`blur(${lerp(12,0,si)+so*10}px)`;
+  chapters.forEach((ch,i)=>{const st=TL.ch0+i*TL.chLen,en=st+TL.chLen;let s='pre';if(t>=st+.1)s='on';if(i<4?t>=en-.12:t>=TL.exit[0]+.05)s='post';if(ch.dataset.state!==s){ch.dataset.state=s;if(s==='on')countUp(ch);}});
   const ci=Math.floor((t-TL.ch0)/TL.chLen);
-  rail.classList.toggle('on',t>TL.ch0-.1&&t<TL.exit[0]);
-  railS.forEach((s,i)=>s.classList.toggle('act',i===clamp(ci,0,4)));
-  blackout.style.opacity=ex;
+  rail.classList.toggle('on',t>TL.ch0&&t<TL.exit[0]);railS.forEach((s,i)=>s.classList.toggle('act',i===clamp(ci,0,4)));
+  exitfade.style.opacity=seg(t,...TL.exit);
 }
 function onScroll(){
-  tgt=clamp((scrollY-filmTop)/U,0,TL.total);
-  const fe=filmTop+(TL.total+.6)*U;
-  hdr.classList.toggle('solid',RM?scrollY>40:scrollY>fe);
-  const max=document.documentElement.scrollHeight-innerHeight;
-  prog.style.transform=`scaleX(${max>0?scrollY/max:0})`;
+  tgt=clamp((scrollY-filmTop)/VH,0,TL.total);
+  const st=root.classList.contains('static');
+  hdr.classList.toggle('solid',st?scrollY>40:scrollY>filmTop+(TL.total+.5)*VH);
+  const max=document.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${max>0?scrollY/max:0})`;
 }
-let lastNow=performance.now(),running=false;
+let last=performance.now(),running=false,ft=[];
 function loop(now){
-  const dt=Math.min(64,now-lastNow);lastNow=now;
-  const k=1-Math.pow(1-.085,dt/16.67);
-  cur+=(tgt-cur)*k; if(Math.abs(tgt-cur)<.0004)cur=tgt;
+  const dt=Math.min(64,now-last);last=now;
+  const k=1-Math.pow(1-.09,dt/16.67);
+  const prev=cur;cur+=(tgt-cur)*k;if(Math.abs(tgt-cur)<.0003)cur=tgt;
+  const vel=Math.abs(cur-prev)*(16.67/Math.max(dt,1));
   smx+=(mx-smx)*.05;smy+=(my-smy)*.05;
-  render(cur,now);
-  if(gl&&cur<TL.skyFade[1]){ft.push(dt);if(ft.length>40){const avg=ft.reduce((a,b)=>a+b)/ft.length;ft=[];if(avg>26&&skyQ>.55){skyQ*=.8;sizeSky();}}}
+  overlays(cur);
+  if(ok&&cur<TL.total){const drew=draw(cur,now,vel);if(drew&&cv.style.opacity!=='1')cv.style.opacity='1';}
+  ft.push(dt);if(ft.length>45){const avg=ft.reduce((a,b)=>a+b)/ft.length;ft=[];if(avg>24&&qScale>.6){qScale*=.82;size();}}
   if(filmOn)requestAnimationFrame(loop);else running=false;
 }
 if(!RM){
-  initGL();layout();onScroll();cur=tgt;render(cur,performance.now());
-  new IntersectionObserver(es=>{filmOn=es[0].isIntersecting;if(filmOn&&!running){running=true;lastNow=performance.now();requestAnimationFrame(loop);}},{rootMargin:'200px'}).observe(film);
-  addEventListener('resize',()=>{const w=innerWidth;const hChange=Math.abs(stage.clientHeight-U)>U*.18;if(w!==lastW||hChange){lastW=w;layout();onScroll();}});
-  lastW=innerWidth;
-}else{
-  chapters.forEach(c=>c.dataset.state='on');
+  cv.style.opacity='0';
+  ok=initGL();
+  if(!ok){setStatic();}
+  else{
+    size();onScroll();cur=tgt;
+    loadScene(0).then(()=>loadScene(1)).then(()=>{[2,3,4,5].forEach((k,i)=>setTimeout(()=>loadScene(k),300*i));}).catch(()=>{});
+    new IntersectionObserver(es=>{filmOn=es[0].isIntersecting;if(filmOn&&!running){running=true;last=performance.now();requestAnimationFrame(loop);}},{rootMargin:'100px'}).observe(film);
+    let lw=innerWidth;addEventListener('resize',()=>{if(innerWidth!==lw||Math.abs((stage.clientHeight||innerHeight)-VH)>VH*.18){lw=innerWidth;size();onScroll();}});
+    addEventListener('load',()=>{size();onScroll();});
+  }
 }
-addEventListener('scroll',onScroll,{passive:true});
-if(RM)onScroll();
+addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-/* ---------- reveals ---------- */
-const rvEls=$$('[data-reveal]');
+/* in-page links */
+$$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const id=a.getAttribute('href');if(id.length<2)return;
+  e.preventDefault();document.body.classList.remove('menu-open');burger.setAttribute('aria-expanded','false');
+  if(id==='#about'&&!root.classList.contains('static')){goTo(filmTop+(TL.ch0+.2)*VH);return;}
+  const el=document.querySelector(id);if(!el)return;
+  goTo(id==='#top'?0:el.getBoundingClientRect().top+scrollY-70);
+}));
+
+/* ================= SECTIONS ================= */
 if(!RM&&'IntersectionObserver' in window){
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.classList.remove('pre-clip');io.unobserve(e.target);}}),{rootMargin:'0px 0px -12% 0px'});
-  rvEls.forEach(el=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('pre','rv');if(el.classList.contains('feat'))el.classList.add('pre-clip');io.observe(el);}});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{rootMargin:'0px 0px -10% 0px'});
+  $$('[data-reveal]').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre','rv');io.observe(el);}});
   const st=document.createElement('style');st.textContent='.pre.in{opacity:1;transform:none}';document.head.appendChild(st);
 }
-/* parallax images */
-const pars=$$('[data-par]');
-let parTick=false;
-function par(){parTick=false;const vh=innerHeight;pars.forEach(im=>{const r=im.parentNode.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;const k=(r.top+r.height/2-vh/2)/vh;im.style.transform=`translate3d(0,${(-k*parseFloat(im.dataset.par)*100).toFixed(2)}%,0)`;});}
-if(!RM){addEventListener('scroll',()=>{if(!parTick){parTick=true;requestAnimationFrame(par);}},{passive:true});par();}
+const pars=$$('[data-par]'),fcards=$$('.fcard');
+let tick=false;
+function frame(){
+  tick=false;const vh=innerHeight;
+  pars.forEach(im=>{const r=im.parentNode.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;const k=(r.top+r.height/2-vh/2)/vh;im.style.transform=`translate3d(0,${(-k*parseFloat(im.dataset.par)*100).toFixed(2)}%,0)`;});
+  if(innerWidth>760)fcards.forEach((c,i)=>{const nx=fcards[i+1];if(!nx){c.style.transform='';c.style.filter='';return;}const r=nx.getBoundingClientRect(),top=parseFloat(getComputedStyle(nx).top)||0;const k=clamp(1-(r.top-top)/(vh*.8));c.style.transform=`scale(${(1-.05*k).toFixed(4)})`;c.style.filter=`brightness(${(1-.35*k).toFixed(3)})`;});
+}
+if(!RM){addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(frame);}},{passive:true});frame();}
 
-/* ---------- catalogue filters ---------- */
-const fbtns=$$('.filters button'),cards=$$('#grid .card'),cc=$('#catCount');
+const fbtns=$$('.filters button'),cards=$$('#grid .card'),catMore=$('#catMore'),catMoreRow=$('#catMoreRow');
+let curF='all',catOpen=false;const LIM=8;
 function applyFilter(f){
-  fbtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===f));
-  let n=0;cards.forEach(c=>{const on=f==='all'||c.dataset.s===f;c.hidden=!on;if(on)n++;});
-  cc.textContent=`${n} פרויקטים`;
+  curF=f;fbtns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===f));
+  const match=cards.filter(c=>f==='all'||c.dataset.s===f);
+  cards.forEach(c=>c.hidden=true);
+  match.forEach((c,i)=>c.hidden=!catOpen&&i>=LIM);
+  catMoreRow.hidden=catOpen||match.length<=LIM;
+  catMore.innerHTML=`הצג את כל ${match.length} הפרויקטים <span class="arr">↓</span>`;
 }
 fbtns.forEach(b=>b.addEventListener('click',()=>applyFilter(b.dataset.f)));
+catMore.addEventListener('click',()=>{catOpen=true;applyFilter(curF);});
 $$('[data-filter-link]').forEach(a=>a.addEventListener('click',()=>applyFilter(a.dataset.filterLink)));
 applyFilter('all');
-
-/* ---------- departments accordion ---------- */
+$('#pubMore').addEventListener('click',()=>{$$('#pgrid .pb[hidden]').forEach(p=>p.hidden=false);$('#pubMoreRow').hidden=true;});
 $$('.dept button').forEach(b=>b.addEventListener('click',()=>{const d=b.closest('.dept');const o=d.classList.toggle('open');b.setAttribute('aria-expanded',o);}));
-
-/* ---------- horizontal public buildings ---------- */
-const hz=$('#public'),track=$('#hzTrack');
-const wide=matchMedia('(min-width: 900px)');
-let hzMax=0;
-function hzLayout(){
-  if(RM||!wide.matches){hz.classList.remove('pinned');hz.style.height='';track.style.transform='';return;}
-  hz.classList.add('pinned');
-  hzMax=Math.max(0,track.scrollWidth-innerWidth);
-  hz.style.height=(innerHeight+hzMax)+'px';
-  hzScroll();
-}
-function hzScroll(){
-  if(!hz.classList.contains('pinned'))return;
-  const r=hz.getBoundingClientRect();const k=clamp(-r.top/Math.max(1,hzMax));
-  track.style.transform=`translate3d(${(k*hzMax).toFixed(1)}px,0,0)`;
-}
-addEventListener('scroll',()=>requestAnimationFrame(hzScroll),{passive:true});
-addEventListener('resize',hzLayout);addEventListener('load',()=>{hzLayout();if(!RM){layout();onScroll();}});
-wide.addEventListener?.('change',hzLayout);
-hzLayout();
-
-/* ---------- #about jumps to the first chapter ---------- */
-$$('a[href="#about"]').forEach(a=>a.addEventListener('click',e=>{if(RM)return;e.preventDefault();document.body.classList.remove('menu-open');scrollTo({top:filmTop+(TL.ch0+.15)*U,behavior:'smooth'});}));
-/* ---------- project CTA → form ---------- */
-$$('[data-project]').forEach(a=>a.addEventListener('click',()=>{const s=$('#f-proj');s.value=a.dataset.project;}));
-
-/* ---------- form ---------- */
+$$('[data-project]').forEach(a=>a.addEventListener('click',()=>{$('#f-proj').value=a.dataset.project;}));
 $('#cform').addEventListener('submit',e=>{
-  e.preventDefault();
-  const note=$('#fNote'),nEl=$('#f-name'),pEl=$('#f-phone');
-  const name=nEl.value.trim(),phone=pEl.value.replace(/[^\d+]/g,'');
-  if(!name){note.textContent='נא למלא שם מלא.';nEl.focus();return;}
-  if(phone.length<9){note.textContent='נא למלא מספר טלפון תקין.';pEl.focus();return;}
+  e.preventDefault();const note=$('#fNote'),nEl=$('#f-name'),pEl=$('#f-phone');
+  if(!nEl.value.trim()){note.textContent='נא למלא שם מלא.';nEl.focus();return;}
+  if(pEl.value.replace(/[^\d]/g,'').length<9){note.textContent='נא למלא מספר טלפון תקין.';pEl.focus();return;}
   note.textContent='זוהי גרסת תצוגה: הטופס יחובר למערכת הפניות של החברה בעלייה לאוויר. לפנייה מיידית: 09-7428111.';
 });
 })();

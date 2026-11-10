@@ -166,28 +166,51 @@ body.menu-open .mmenu{clip-path:circle(150% at 8% 4%);visibility:visible}
 .rv{transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
 .rv.in{opacity:1;transform:none}
 
-.fstack{display:grid;gap:5vh}
-.fcard{position:sticky;top:calc(96px + var(--i)*16px);height:min(80vh,780px);min-height:520px;overflow:hidden;background:var(--ink);color:#fff;transform-origin:50% 0;will-change:transform}
-.fc-media{position:absolute;inset:0}
-.fc-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.8s var(--ease)}
-.fcard:hover .fc-media img{transform:scale(1.08)}
-.fc-shade{position:absolute;inset:0;background:linear-gradient(to left,rgba(8,9,12,.86) 0%,rgba(8,9,12,.62) 34%,rgba(8,9,12,0) 66%)}
-.fc-body{position:absolute;inset:0 0 0 auto;width:min(560px,100%);padding:clamp(28px,4vw,60px);display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
-.fc-k{font:500 .8rem/1 var(--body);letter-spacing:.18em;color:var(--amber)}
-.fcard h3{font-family:var(--display);font-stretch:64%;font-weight:900;font-size:clamp(4rem,9vw,8.4rem);line-height:.84}
-.fc-addr{font-size:1.1rem;opacity:.9}
-.fc-specs{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(18px,3vw,40px);margin:8px 0 6px;padding:18px 0;border-block:1px solid rgba(255,255,255,.2)}
-.fc-specs dt{font-size:.78rem;opacity:.7}
-.fc-specs dd{margin:4px 0 0;font-family:var(--display);font-stretch:66%;font-weight:800;font-size:2.4rem;line-height:1}
-.fc-arch{font-size:.92rem;opacity:.8}
-.fc-cta{margin-top:6px}
-@media (max-width:760px){
-  .fcard{height:auto;min-height:0;top:calc(80px + var(--i)*12px)}
-  .fc-media{position:relative;aspect-ratio:4/3.3}
-  .fc-shade{display:none}
-  .fc-body{position:relative;width:auto;padding:26px 22px 30px}
-  .fcard h3{font-size:clamp(3.4rem,15vw,4.6rem)}
-  .fc-specs dd{font-size:2rem}
+.mk{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.5fr);gap:clamp(28px,5vw,80px);align-items:stretch}
+.mk-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--line)}
+.mk-list li{border-bottom:1px solid var(--line)}
+.mk-list button{width:100%;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"i n" "i a" "i s";column-gap:22px;row-gap:4px;padding:clamp(20px,2.6vw,34px) 0;background:none;border:0;cursor:pointer;text-align:start;opacity:.42;transition:opacity .5s var(--ease);position:relative}
+.mk-list button::after{content:"";position:absolute;inset-inline-start:0;bottom:-1px;height:2px;width:0;background:var(--acc);transition:width .7s var(--ease)}
+.mk-list button[aria-selected="true"]{opacity:1}
+.mk-list button[aria-selected="true"]::after{width:100%}
+.mk-list button:hover{opacity:1}
+.mk-list em{grid-area:i;font:500 .8rem/1 var(--body);font-style:normal;color:var(--acc);padding-top:.9em;letter-spacing:.08em}
+.mk-n{grid-area:n;font-family:var(--display);font-stretch:64%;font-weight:900;font-size:clamp(2.8rem,5vw,4.6rem);line-height:.9}
+.mk-a{grid-area:a;font-size:1rem;color:var(--mute)}
+.mk-s{grid-area:s;font-size:.9rem}
+.mk-stage{position:relative;aspect-ratio:4/3.4;overflow:hidden;background:var(--ink)}
+.mk-slide{position:absolute;inset:0;margin:0;color:#fff;clip-path:inset(0 0 0 100%);transition:clip-path 1.1s var(--ease);z-index:1}
+.mk-slide.on{clip-path:inset(0 0 0 0);z-index:2}
+.mk-slide.out{clip-path:inset(0 0 0 0);z-index:1}
+.mk-img{position:absolute;inset:0;overflow:hidden}
+.mk-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 1.8s var(--ease)}
+.mk-slide.on .mk-img img{transform:scale(1)}
+.mk-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(8,9,12,.85) 0%,rgba(8,9,12,.25) 42%,rgba(8,9,12,0) 65%)}
+.mk-cap{position:absolute;inset:auto 0 0 0;padding:clamp(22px,3vw,40px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 28px;opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease) .35s,transform .8s var(--ease) .35s}
+.mk-slide.on .mk-cap{opacity:1;transform:none}
+.mk-cap-main{display:none}
+.mk-k{font:500 .78rem/1 var(--body);letter-spacing:.18em;color:var(--amber)}
+.mk-title{font-family:var(--display);font-stretch:64%;font-weight:900;font-size:clamp(3rem,13vw,4.4rem);line-height:.9;margin-top:10px}
+.mk-addr{opacity:.85;margin-top:6px}
+.mk-specs{display:flex;gap:clamp(18px,3vw,36px);margin:0}
+.mk-specs dt{font-size:.76rem;opacity:.72}
+.mk-specs dd{margin:4px 0 0;font-family:var(--display);font-stretch:66%;font-weight:800;font-size:clamp(2rem,3vw,2.6rem);line-height:1}
+.mk-arch{font-size:.9rem;opacity:.82;flex-basis:100%;order:3}
+.mk-cap .btn{order:2}
+.mk-dots{display:none}
+@media (max-width:860px){
+  .mk{grid-template-columns:1fr}
+  .mk-list{display:none}
+  .mk-stage{aspect-ratio:auto;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;background:none;scrollbar-width:none;margin-inline:calc(-1*var(--gut));padding-inline:var(--gut)}
+  .mk-stage::-webkit-scrollbar{display:none}
+  .mk-slide,.mk-slide.on,.mk-slide.out{position:relative;flex:0 0 86%;clip-path:none;scroll-snap-align:center;height:min(118vw,560px);background:var(--ink)}
+  .mk-img img,.mk-slide.on .mk-img img{transform:none}
+  .mk-cap,.mk-slide.on .mk-cap{opacity:1;transform:none;flex-direction:column;align-items:flex-start;gap:14px}
+  .mk-cap-main{display:block}
+  .mk-arch{order:0}
+  .mk-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
+  .mk-dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .3s,width .3s}
+  .mk-dots i.on{background:var(--fg);width:22px;border-radius:4px}
 }
 
 .cat-bar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:34px}
@@ -425,59 +448,43 @@ form{display:grid;grid-template-columns:1fr 1fr;gap:20px}
       <div style="display:grid;gap:22px"><p class="eyebrow">פרויקטים בשיווק</p><h2 class="h2">בית בלב<br>השרון השוקק</h2></div>
       <p class="lede">כל פרויקט הוא תוצר של תכנון קפדני, חומרים איכותיים, טכנולוגיות בנייה מתקדמות ובנייה ירוקה, עם הקפדה על לוחות זמנים, מפרטים ותקציבים כפי שהוצגו ללקוחות.</p>
     </header>
-    <div class="fstack" id="fstack">
-      <article class="fcard" style="--i:0">
-        <div class="fc-media"><img src="assets/gardenia.jpg" alt="הדמיית פרויקט גרדניה, ההגנה 89-93 רעננה" loading="lazy"></div>
-        <div class="fc-shade"></div>
-        <div class="fc-body">
-          <p class="fc-k">01 / 03 · בשיווק</p>
-          <h3>גרדניה</h3>
-          <p class="fc-addr">ההגנה 89-93, רעננה</p>
-          <p class="fc-addr" style="opacity:.75">פרויקט מגורים יוקרתי במרכז השקט של רעננה.</p>
-          <dl class="fc-specs">
-            <div><dt>יחידות דיור</dt><dd>90</dd></div>
-            <div><dt>בניינים</dt><dd>2</dd></div>
-            <div><dt>קומות</dt><dd>8+9</dd></div>
-          </dl>
-          <p class="fc-arch">אדריכלים: מעוז פרייס אדריכלים</p>
-          <div class="fc-cta"><a class="btn btn-amber" href="#contact" data-project="גרדניה">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
-        </div>
-      </article>
-      <article class="fcard" style="--i:1">
-        <div class="fc-media"><img src="assets/harsinai.jpg" alt="הדמיית פרויקט הר סיני 8 רעננה" loading="lazy"></div>
-        <div class="fc-shade"></div>
-        <div class="fc-body">
-          <p class="fc-k">02 / 03 · בשיווק</p>
-          <h3>הר סיני 8</h3>
-          <p class="fc-addr">הר סיני 8, רעננה</p>
-          
-          <dl class="fc-specs">
-            <div><dt>יחידות דיור</dt><dd>39</dd></div>
-            <div><dt>בניינים</dt><dd>1</dd></div>
-            <div><dt>קומות</dt><dd>8</dd></div>
-          </dl>
-          <p class="fc-arch">אדריכלים: יגאל שמיע</p>
-          <div class="fc-cta"><a class="btn btn-amber" href="#contact" data-project="הר סיני 8">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
-        </div>
-      </article>
-      <article class="fcard" style="--i:2">
-        <div class="fc-media"><img src="assets/maalot7.jpg" alt="הדמיית פרויקט המעלות 7 רעננה" loading="lazy"></div>
-        <div class="fc-shade"></div>
-        <div class="fc-body">
-          <p class="fc-k">03 / 03 · בשיווק</p>
-          <h3>המעלות 7</h3>
-          <p class="fc-addr">המעלות 7, רעננה</p>
-          
-          <dl class="fc-specs">
-            <div><dt>יחידות דיור</dt><dd>23</dd></div>
-            <div><dt>בניינים</dt><dd>1</dd></div>
-            <div><dt>קומות</dt><dd>7</dd></div>
-          </dl>
-          <p class="fc-arch">אדריכלים: דרור רימוק אדריכלים</p>
-          <div class="fc-cta"><a class="btn btn-amber" href="#contact" data-project="המעלות 7">לפרטים ותיאום פגישה <span class="arr">←</span></a></div>
-        </div>
-      </article>
+    <div class="mk" id="mk">
+      <ol class="mk-list" role="tablist" aria-label="פרויקטים בשיווק">
+        <li><button type="button" role="tab" id="mkt0" aria-controls="mks0" aria-selected="true" data-k="0"><em>01</em><span class="mk-n">גרדניה</span><span class="mk-a">ההגנה 89-93, רעננה</span><span class="mk-s">90 יח״ד · 2 בניינים · 8+9 קומות</span></button></li>
+        <li><button type="button" role="tab" id="mkt1" aria-controls="mks1" aria-selected="false" data-k="1"><em>02</em><span class="mk-n">הר סיני 8</span><span class="mk-a">הר סיני 8, רעננה</span><span class="mk-s">39 יח״ד · 1 בניין · 8 קומות</span></button></li>
+        <li><button type="button" role="tab" id="mkt2" aria-controls="mks2" aria-selected="false" data-k="2"><em>03</em><span class="mk-n">המעלות 7</span><span class="mk-a">המעלות 7, רעננה</span><span class="mk-s">23 יח״ד · 1 בניין · 7 קומות</span></button></li>
+      </ol>
+      <div class="mk-stage" id="mkStage">
+        <figure class="mk-slide on" id="mks0" role="tabpanel" aria-labelledby="mkt0" data-k="0">
+          <div class="mk-img"><img src="assets/gardenia.jpg" alt="הדמיית פרויקט גרדניה, ההגנה 89-93 רעננה" decoding="async"></div>
+          <figcaption class="mk-cap">
+            <div class="mk-cap-main"><p class="mk-k">01 / 03 · בשיווק</p><h3 class="mk-title">גרדניה</h3><p class="mk-addr">ההגנה 89-93, רעננה</p></div>
+            <dl class="mk-specs"><div><dt>יחידות דיור</dt><dd>90</dd></div><div><dt>בניינים</dt><dd>2</dd></div><div><dt>קומות</dt><dd>8+9</dd></div></dl>
+            <p class="mk-arch">אדריכלים: מעוז פרייס אדריכלים</p>
+            <a class="btn btn-amber" href="#contact" data-project="גרדניה">לפרטים ותיאום פגישה <span class="arr">←</span></a>
+          </figcaption>
+        </figure>
+        <figure class="mk-slide" id="mks1" role="tabpanel" aria-labelledby="mkt1" data-k="1">
+          <div class="mk-img"><img src="assets/harsinai.jpg" alt="הדמיית פרויקט הר סיני 8 רעננה" decoding="async"></div>
+          <figcaption class="mk-cap">
+            <div class="mk-cap-main"><p class="mk-k">02 / 03 · בשיווק</p><h3 class="mk-title">הר סיני 8</h3><p class="mk-addr">הר סיני 8, רעננה</p></div>
+            <dl class="mk-specs"><div><dt>יחידות דיור</dt><dd>39</dd></div><div><dt>בניינים</dt><dd>1</dd></div><div><dt>קומות</dt><dd>8</dd></div></dl>
+            <p class="mk-arch">אדריכלים: יגאל שמיע</p>
+            <a class="btn btn-amber" href="#contact" data-project="הר סיני 8">לפרטים ותיאום פגישה <span class="arr">←</span></a>
+          </figcaption>
+        </figure>
+        <figure class="mk-slide" id="mks2" role="tabpanel" aria-labelledby="mkt2" data-k="2">
+          <div class="mk-img"><img src="assets/maalot7.jpg" alt="הדמיית פרויקט המעלות 7 רעננה" decoding="async"></div>
+          <figcaption class="mk-cap">
+            <div class="mk-cap-main"><p class="mk-k">03 / 03 · בשיווק</p><h3 class="mk-title">המעלות 7</h3><p class="mk-addr">המעלות 7, רעננה</p></div>
+            <dl class="mk-specs"><div><dt>יחידות דיור</dt><dd>23</dd></div><div><dt>בניינים</dt><dd>1</dd></div><div><dt>קומות</dt><dd>7</dd></div></dl>
+            <p class="mk-arch">אדריכלים: דרור רימוק אדריכלים</p>
+            <a class="btn btn-amber" href="#contact" data-project="המעלות 7">לפרטים ותיאום פגישה <span class="arr">←</span></a>
+          </figcaption>
+        </figure>
+      </div>
     </div>
+    <div class="mk-dots" id="mkDots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
   </div>
 </section>
 
@@ -1116,15 +1123,26 @@ if(!RM&&'IntersectionObserver' in window){
   $$('[data-reveal]').forEach(el=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre','rv');io.observe(el);}});
   const st=document.createElement('style');st.textContent='.pre.in{opacity:1;transform:none}';document.head.appendChild(st);
 }
-const pars=$$('[data-par]'),fcards=$$('.fcard');
+const pars=$$('[data-par]');
 let tick=false;
 function frame(){
   tick=false;const vh=innerHeight;
   pars.forEach(im=>{const r=im.parentNode.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;const k=(r.top+r.height/2-vh/2)/vh;im.style.transform=`translate3d(0,${(-k*parseFloat(im.dataset.par)*100).toFixed(2)}%,0)`;});
-  if(innerWidth>760)fcards.forEach((c,i)=>{const nx=fcards[i+1];if(!nx){c.style.transform='';c.style.filter='';return;}const r=nx.getBoundingClientRect(),top=parseFloat(getComputedStyle(nx).top)||0;const k=clamp(1-(r.top-top)/(vh*.8));c.style.transform=`scale(${(1-.05*k).toFixed(4)})`;c.style.filter=`brightness(${(1-.35*k).toFixed(3)})`;});
 }
 if(!RM){addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(frame);}},{passive:true});frame();}
 
+/* marketing: list + big image */
+const mkBtns=$$('.mk-list button'),mkSlides=$$('.mk-slide'),mkStage=$('#mkStage'),mkDots=$$('#mkDots i');
+let mkCur=0;
+function mkShow(k){
+  if(k===mkCur)return;
+  mkSlides.forEach((s,i)=>{s.classList.remove('out');if(i===mkCur)s.classList.add('out');s.classList.toggle('on',i===k);});
+  mkBtns.forEach((b,i)=>b.setAttribute('aria-selected',i===k));
+  const prevEl=mkSlides[mkCur];setTimeout(()=>prevEl.classList.remove('out'),1150);
+  mkCur=k;
+}
+mkBtns.forEach(b=>{b.addEventListener('click',()=>mkShow(+b.dataset.k));b.addEventListener('mouseenter',()=>{if(matchMedia('(hover:hover)').matches)mkShow(+b.dataset.k);});});
+mkStage.addEventListener('scroll',()=>{if(innerWidth>860)return;const w=mkStage.scrollWidth/mkSlides.length;const i=clamp(Math.round(Math.abs(mkStage.scrollLeft)/w),0,mkSlides.length-1);mkDots.forEach((d,j)=>d.classList.toggle('on',j===i));},{passive:true});
 const fbtns=$$('.filters button'),cards=$$('#grid .card'),catMore=$('#catMore'),catMoreRow=$('#catMoreRow');
 let curF='all',catOpen=false;const LIM=8;
 function applyFilter(f){

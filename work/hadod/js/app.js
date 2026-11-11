@@ -1,6 +1,7 @@
 /* ================= הגדרות ================= */
 const WA_NUMBER = '';   // מספר וואטסאפ להזמנות: 9725XXXXXXXX – ריק = עדיין לא מחובר
 const GROUPS = {"אשקלון": "https://chat.whatsapp.com/Imh2ZDRe7W62kp15ZZScmi", "ראשון לציון": "https://chat.whatsapp.com/Cj6EUaNfvrMJV39FDsxvnP", "פרדס חנה": "https://chat.whatsapp.com/J1wP1OqBdlvLcwPg7Rk8YW", "עכו": "https://chat.whatsapp.com/Lg6ATxYxOeH2Zuyh4pNlcf", "שלומי": "https://chat.whatsapp.com/LmqPUMiXWHVHEY7aMUnWy9"};
+const PACK_NUMBER = '972559277843';   // הזמנות חבילות וודקה (055-927-7843)
 const MAIN_GROUP = "https://chat.whatsapp.com/E9wtf3yIp5pKaKHJBiUeNp";
 /* ========================================== */
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
@@ -55,6 +56,19 @@ mForm.addEventListener('submit', e => {
   $('#mDoneT').textContent = `${name.split(' ')[0]}, נרשמת!`;
   const g = $('#mGroup'); if (GROUPS[city]) { g.href = GROUPS[city]; g.lastElementChild.textContent = `להצטרף לקבוצה של ${city}`; g.hidden = false; } else g.hidden = true;
   show(mDone);
+});
+
+/* vodka packages */
+let brand = '';
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-brand]');
+  if (b) { brand = b.dataset.brand; $$('[data-brand]').forEach(x => x.classList.toggle('on', x === b)); $('#vdGo').lastElementChild.textContent = `להזמין חבילת ${brand}`; return; }
+  if (e.target.closest('#vdGo')) {
+    if (!brand) return say('בוחרים קודם וודקה');
+    let msg = `היי, הגעתי מהאתר של הדוד. אשמח להזמין חבילת וודקה ${brand} (1 ליטר)`;
+    if (member) msg += `\nאני רשום באתר (${member.name}, ${member.city}, ${member.phone}) ומגיעה לי 10% הנחה.`;
+    window.open(`https://wa.me/${PACK_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  }
 });
 
 /* product page: pick a city, get that city's group */

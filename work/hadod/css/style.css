@@ -60,6 +60,22 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .hero-p{font-size:clamp(16px,1.5vw,20px);color:#e6e6e6;max-width:24em;margin:14px 0 26px}
 .hero-go{display:block;width:min(100%,420px);padding:13px 20px 15px;background:var(--orange);color:#000;font-family:var(--disp);font-weight:700;font-size:clamp(40px,5vw,54px);line-height:1;border-radius:6px;box-shadow:6px 6px 0 #fff;transition:transform .15s,box-shadow .15s}
 .hero-go:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 #fff}
+.cats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:28px;font-weight:500;font-size:16px}
+.cats a{padding-bottom:3px;border-bottom:1.5px solid var(--orange)}
+.cats a:hover{color:var(--orange)}
+body:not(.entered) .cats{opacity:0}
+.entered .cats{animation:rise .9s 1s cubic-bezier(.2,.7,.2,1) both}
+.vd{display:grid;gap:clamp(28px,5vw,72px)}
+@media(min-width:900px){.vd{grid-template-columns:1.1fr 1fr;align-items:start}}
+.vd-in{margin-top:22px;border-top:1px solid var(--ash)}
+.vd-in li{padding:11px 0;border-bottom:1px solid var(--ash);font-size:17px}
+.vd-area{margin-top:16px;color:var(--smoke);font-size:15px}
+.vd-pick{padding:22px;border:1.5px solid var(--orange);border-radius:18px;background:rgba(0,0,0,.6)}
+.vd-pick .pp-sub{margin-top:0}
+.vd-go{width:100%;margin-top:18px}
+.vd-go span{white-space:normal}
+@media(max-width:430px){.vd-go{font-size:27px;padding:0 12px}}
+.warn+.warn{margin-top:-20px}
 .hero-wa{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-size:16px;font-weight:500;border-bottom:1.5px solid var(--orange);padding-bottom:3px}
 .hero-wa svg{width:20px;height:20px;color:var(--orange)}
 body:not(.entered) .hero-logo,body:not(.entered) .hero-h,body:not(.entered) .hero-p,body:not(.entered) .hero-go,body:not(.entered) .hero-wa{opacity:0}

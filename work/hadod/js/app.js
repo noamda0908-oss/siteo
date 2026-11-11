@@ -86,7 +86,7 @@ document.addEventListener('click', e => { const c = e.target.closest('[data-city
     void main(){vec2 p=vec2(v.x*a,v.y+s)*2.2;float q=t*.05;
       vec2 w=vec2(fbm(p+vec2(0.,q)),fbm(p+vec2(5.2,1.3)+q*.7));
       float f=smoothstep(.42,.98,fbm(p+2.6*w+vec2(0.,q*2.)));
-      gl_FragColor=vec4(vec3(f*k*.2),1.);}`));
+      gl_FragColor=vec4(vec3(f*k*.4),1.);}`));
   gl.linkProgram(pr); if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { cv.remove(); return; }
   gl.useProgram(pr);
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());

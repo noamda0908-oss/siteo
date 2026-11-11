@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#000000">
 <link rel="preload" href="fonts/karantina-hebrew-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/rubik-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body class="is-loading">
 
@@ -99,15 +99,15 @@
   </section>
 
   <section class="how" id="how">
-    <div class="wrap">
+    <div class="wrap how-grid">
       <h2 class="big">הודעה אחת,<br>והשליח יוצא.</h2>
-      <div class="route">
-        <div class="route-line"><i id="routeFill"></i><b id="routeDot"></b></div>
-        <ol class="steps">
-          <li class="step"><span class="num">1</span><div><h3>בוחרים וייפ</h3><p>לוחצים על המותג, והודעת הוואטסאפ כבר כתובה בשבילך.</p></div></li>
-          <li class="step"><span class="num">2</span><div><h3>מקבלים מחיר</h3><p>חוזרים אליך עם מחיר, טעמים שיש עכשיו וזמן הגעה.</p></div></li>
-          <li class="step"><span class="num">3</span><div><h3>פותחים את הדלת</h3><p>השליח מגיע עד אליך. המסירה למבוגרים מגיל 18, עם תעודה.</p></div></li>
-        </ol>
+      <div class="chat" aria-label="כך נראית הזמנה">
+        <div class="msg me"><p>היי, הגעתי מהאתר של הדוד. אשמח לקבל מחיר על נינג'ה</p></div>
+        <div class="msg them"><svg><use href="#logo"/></svg><p>היי! שולח לך עכשיו מחיר וטעמים שיש במלאי</p><i></i></div>
+        <div class="msg me"><p>סגור, אני לוקח</p></div>
+        <div class="msg them"><svg><use href="#logo"/></svg><p>מעולה. לאן להגיע?</p><i></i></div>
+        <div class="msg me"><p class="loc"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>המיקום שלי</p></div>
+        <div class="msg them"><svg><use href="#logo"/></svg><p>השליח יצא אליך. תכין תעודה, המסירה מגיל 18</p><i></i></div>
       </div>
     </div>
   </section>
@@ -141,6 +141,6 @@
 </footer>
 
 <div class="toast" id="toast" role="status"></div>
-<script src="js/app.js?v=3" defer></script>
+<script src="js/app.js?v=4" defer></script>
 </body>
 </html>

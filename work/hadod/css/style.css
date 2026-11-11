@@ -106,17 +106,24 @@ svg{display:block}
 
 /* how */
 .how{padding:clamp(90px,14vw,180px) 0}
-.route{position:relative;margin-top:clamp(48px,7vw,96px);padding-inline-start:44px}
-.route-line{position:absolute;inset-inline-start:11px;top:0;bottom:0;width:2px;background:var(--ash)}
-.route-line i{position:absolute;inset:0;background:var(--orange);transform-origin:top;transform:scaleY(0)}
-.route-line b{position:absolute;top:0;left:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 6px rgba(255,106,19,.22),0 0 30px 6px rgba(255,106,19,.55)}
-.steps{display:grid;gap:clamp(48px,8vw,110px)}
-.step{display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,48px);align-items:start;opacity:.22;transition:opacity .5s}
-.step.on{opacity:1}
-.num{font-family:var(--disp);font-size:clamp(110px,16vw,230px);line-height:.72;color:transparent;-webkit-text-stroke:1.5px var(--orange);transition:color .5s}
-.step.on .num{color:var(--orange)}
-.step h3{font-family:var(--disp);font-size:clamp(46px,6vw,88px);line-height:.9}
-.step p{color:#cfcfcf;max-width:24em;margin-top:8px}
+.how-grid{display:grid;gap:clamp(40px,6vw,90px)}
+@media(min-width:900px){.how-grid{grid-template-columns:1fr 1fr;align-items:start}.how-grid .big{position:sticky;top:120px}}
+.chat{display:flex;flex-direction:column;gap:14px;max-width:520px;width:100%;justify-self:end}
+.msg{position:relative;display:flex;align-items:flex-end;gap:10px;max-width:86%;opacity:0}
+.msg.in{opacity:1}
+.msg p{padding:14px 18px;border-radius:22px;font-size:clamp(16px,1.3vw,19px);line-height:1.45}
+.msg.me{align-self:flex-start}
+.msg.me p{background:var(--orange);color:#000;font-weight:500;border-end-start-radius:6px}
+.msg.them{align-self:flex-end;flex-direction:row-reverse}
+.msg.them p{background:#191919;border-end-end-radius:6px}
+.msg.them>svg{width:34px;height:34px;flex:none}
+.msg .loc{display:flex;align-items:center;gap:8px}
+.msg .loc svg{width:20px;height:20px}
+.msg i{display:none}
+.msg.typing{opacity:1}
+.msg.typing p{display:none}
+.msg.typing i{display:block;width:62px;height:42px;border-radius:22px;border-end-end-radius:6px;background:#191919 radial-gradient(circle,#888 3px,transparent 3.5px) center/14px 14px repeat-x;animation:typing 1s infinite}
+@keyframes typing{50%{background-position-y:42%}}
 
 /* cities */
 .cities{padding:clamp(60px,10vw,140px) 0 clamp(90px,12vw,160px)}
@@ -152,5 +159,5 @@ a.city:hover .city-s{color:#000}
 
 @media(prefers-reduced-motion:reduce){
   .hero-scroll i,.nav-live i{animation:none}
-  .step{opacity:1}.step .num{color:var(--orange)}
+  .msg{opacity:1}
 }

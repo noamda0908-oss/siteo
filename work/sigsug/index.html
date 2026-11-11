@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b0a08">
+<title>מכללת שגשוג | המכללה ללימודי שוק ההון, מסחר והשקעות — דמו</title>
+<meta name="description" content="הדמיית עיצוב חדש לאתר מכללת שגשוג — ההכשרה המקיפה מ-0 ידע לרמה מקצועית במסחר והשקעות.">
+<link rel="preload" href="fonts/frank-ruhl-libre-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/heebo-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<!-- preloader -->
+<div class="loader" id="loader" aria-hidden="true">
+  <img src="img/logo.webp" alt="" width="211" height="165">
+  <div class="loader__bar"><i id="loaderBar"></i></div>
+  <div class="loader__num"><span id="loaderNum">0</span>%</div>
+</div>
+
+<canvas id="coin" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i id="progress"></i></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#top" aria-label="מכללת שגשוג"><img src="img/logo.webp" alt="מכללת שגשוג" width="84" height="66"></a>
+  <nav class="nav__links" id="navLinks" aria-label="ניווט ראשי">
+    <a href="#team">המרצים</a>
+    <a href="#toptrade">TOP TRADE</a>
+    <a href="#how">איך זה עובד</a>
+    <a href="#results">תוצאות</a>
+    <a href="#unique">מה מייחד אותנו</a>
+    <a href="#faq">שאלות נפוצות</a>
+  </nav>
+  <a class="btn btn--sm" href="#CON" data-magnet><span>צור קשר</span><b>↼</b></a>
+  <button class="nav__burger" id="burger" aria-label="תפריט" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <canvas class="hero__chart" id="chart" aria-hidden="true"></canvas>
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow" data-reveal><i></i>מסחר · השקעות · צמיחה</p>
+      <h1 class="hero__title" data-split>להיות סוחר ומשקיע <em>רווחי</em> בשוק ההון</h1>
+      <p class="hero__sub" data-reveal>ההכשרה המקיפה של מכללת שגשוג מ-0 ידע לרמה מקצועית במסחר והשקעות, תוך ליווי צמוד על ידי מורה פרטי <strong>והתחייבות להצלחה או החזר כספי מלא</strong></p>
+      <div class="hero__cta" data-reveal>
+        <a class="btn" href="#CON" data-magnet><span>צור קשר</span><b>↼</b></a>
+        <a class="link" href="#how">איך זה עובד?</a>
+      </div>
+    </div>
+    <div class="hero__coin">
+      <i class="coin-slot" data-ry="0" data-rx="-0.04" data-rz="0.02" data-o="1" data-spin="1"></i>
+      <div class="hero__ring" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true"><span>גללו</span><i></i></div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span>מסחר</span><b>✦</b><span>השקעות</span><b>✦</b><span>צמיחה</span><b>✦</b><span>מניות</span><b>✦</b><span>קריפטו</span><b>✦</b><span>חוזים עתידיים</span><b>✦</b><span>מט״ח</span><b>✦</b>
+    <span>מסחר</span><b>✦</b><span>השקעות</span><b>✦</b><span>צמיחה</span><b>✦</b><span>מניות</span><b>✦</b><span>קריפטו</span><b>✦</b><span>חוזים עתידיים</span><b>✦</b><span>מט״ח</span><b>✦</b>
+  </div>
+</div>
+
+<!-- ============ PRESS ============ -->
+<section class="sec press" id="press">
+  <i class="coin-slot coin-slot--side-l" data-ry="0.5" data-rx="0.1" data-rz="-0.05" data-o="0.5" data-spin="0.15"></i>
+  <div class="wrap">
+    <header class="head">
+      <p class="eyebrow" data-reveal><i></i>01</p>
+      <h2 class="h2" data-split>אזכורים בתקשורת</h2>
+    </header>
+    <div class="press__grid">
+      <figure class="press__card" data-reveal data-tilt><div class="press__img"><img loading="lazy" src="img/press1.webp" alt="כתבה על מכללת שגשוג בדה מרקר" width="1000" height="421"></div><figcaption>דה מרקר</figcaption></figure>
+      <figure class="press__card" data-reveal data-tilt><div class="press__img"><img loading="lazy" src="img/press2.webp" alt="כתבה על מכללת שגשוג בכלכליסט" width="1000" height="562"></div><figcaption>כלכליסט</figcaption></figure>
+      <figure class="press__card" data-reveal data-tilt><div class="press__img"><img loading="lazy" src="img/press3.webp" alt="כתבה על מכללת שגשוג בביז פורטל" width="1000" height="562"></div><figcaption>ביז פורטל</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="sec team" id="team">
+  <i class="coin-slot coin-slot--side-r" data-ry="1" data-rx="-0.08" data-rz="0.06" data-o="0.45" data-spin="0.15"></i>
+  <div class="wrap">
+    <header class="head head--split">
+      <div>
+        <p class="eyebrow" data-reveal><i></i>02</p>
+        <h2 class="h2 h2--xl" data-split>אנשים <em>לפני הכל</em></h2>
+      </div>
+      <p class="head__note" data-reveal>קצת על המרצים שלנו</p>
+    </header>
+    <div class="team__grid">
+      <article class="member" data-reveal>
+        <div class="member__img" data-clip><img loading="lazy" src="img/team1.webp" alt="גיל אשר לוי" width="500" height="500"></div>
+        <div class="member__body">
+          <span class="member__n">01</span>
+          <h3>גיל אשר לוי</h3>
+          <p>בעל תואר שני במימון וחשבונאות ותואר ראשון במנהל עסקים - בעברו מנהל בכיר של כ-14 שנה בבנק לאומי ולאחר מכן היה ממקימי בנק ONE ZERO.</p>
+        </div>
+      </article>
+      <article class="member" data-reveal>
+        <div class="member__img" data-clip><img loading="lazy" src="img/team2.webp" alt="איתי ביטון" width="700" height="672"></div>
+        <div class="member__body">
+          <span class="member__n">02</span>
+          <h3>איתי ביטון</h3>
+          <p>מנהל סיכונים ומומחה השקעות עם רישיון ממשרד האוצר, בעברו מנכ״ל סוכנות הביטוח צמרת מהגדולות בישראל עם למעלה מ-5,000 לקוחות.</p>
+        </div>
+      </article>
+      <article class="member" data-reveal>
+        <div class="member__img" data-clip><img loading="lazy" src="img/team3.webp" alt="עמית אהרון" width="325" height="319"></div>
+        <div class="member__body">
+          <span class="member__n">03</span>
+          <h3>עמית אהרון</h3>
+          <p>בוגר מבחני הרשות לניירות ערך, משקיע וסוחר מקצועי מזה 12 שנים, עם ניסיון עשיר במסחר, השקעות וניתוח שווקים.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="partners" id="partners">
+  <h2 class="partners__title" data-reveal>השותפים שלנו</h2>
+  <div class="mq" aria-label="השותפים שלנו">
+    <div class="mq__track mq__track--slow">
+      <img loading="lazy" src="img/partner1.webp" alt="BTB"><img loading="lazy" src="img/partner2.webp" alt="מיטב טרייד"><img loading="lazy" src="img/partner3.webp" alt="Colmex Pro"><img loading="lazy" src="img/partner4.webp" alt="אינטראקטיב ישראל"><img loading="lazy" src="img/partner5.webp" alt="Rise Up"><img loading="lazy" src="img/partner6.webp" alt="מגדל"><img loading="lazy" src="img/partner7.webp" alt="אינפיניטי"><img loading="lazy" src="img/partner8.webp" alt="הראל"><img loading="lazy" src="img/partner9.webp" alt="מנורה מבטחים">
+      <img loading="lazy" src="img/partner1.webp" alt=""><img loading="lazy" src="img/partner2.webp" alt=""><img loading="lazy" src="img/partner3.webp" alt=""><img loading="lazy" src="img/partner4.webp" alt=""><img loading="lazy" src="img/partner5.webp" alt=""><img loading="lazy" src="img/partner6.webp" alt=""><img loading="lazy" src="img/partner7.webp" alt=""><img loading="lazy" src="img/partner8.webp" alt=""><img loading="lazy" src="img/partner9.webp" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFESTO 38% ============ -->
+<section class="sec mani" id="why">
+  <i class="coin-slot coin-slot--mani" data-ry="1.5" data-rx="0.3" data-rz="-0.1" data-o="0.9" data-spin="0.2"></i>
+  <div class="wrap mani__grid">
+    <div class="mani__stick">
+      <p class="eyebrow" data-reveal><i></i>03 · דוח חדש קובע</p>
+      <div class="mani__num" aria-hidden="true"><span data-count="38">0</span><sup>%</sup></div>
+      <h2 class="h2" data-split>דוח חדש קובע יוקר המחיה בישראל גבוה <em>ב-38% מהממוצע בעולם</em></h2>
+      <div class="mani__phone" data-reveal><img loading="lazy" src="img/phone.webp" alt="כתבה: יוקר המחיה בישראל" width="482" height="1024"></div>
+    </div>
+    <div class="mani__text">
+      <p data-scrub>במציאות של היום – כבר ברור שאי אפשר להסתמך יותר על הכנסה יחידה.</p>
+      <p data-scrub>מגיפות, מלחמות, מצבים אישיים, ואפילו התקדמות של כלי AI שנועדו להחליף חלק גדול מהמקצועות, כולם יכולים לגרום לאיבוד או פגיעה בהכנסה ברגע אחד.</p>
+      <p data-scrub>לצד זה – גם יוקר המחיה שעולה מידי שנה, מקשה על אנשים להתפרנס אפילו ממשכורות שבעבר נחשבו לגבוהות, וזה לא רק השנה, בהסתכלות אחורה גם 15 שנה על ציר הזמן, ניתן לראות שהחיים פה מתייקרים משנה לשנה.</p>
+      <p data-scrub>את תחום ההתנהלות הפיננסית והשקעות לא מלמדים אותנו בשום גוף, לא בתיכון, לא בתואר, ולא בצבא.</p>
+      <p class="mani__big" data-scrub>וזה אומר שהאחריות היא עלינו.</p>
+      <p data-scrub>כל אזרח במדינת ישראל חייב לרכוש לעצמו כלים להתנהלות עם כסף. להבין איך מייצרים כסף, איך מתנהלים איתו, ובעיקר איך שומרים עליו וממנפים אותו.</p>
+      <p data-scrub>כבר בעתיד הקרוב צפויות להיות כאן שתי קבוצות – קבוצה אחת שחיה ברמת חיים מאוד גבוהה, וקבוצה שניה שקורעת את עצמה כדי להתפרנס.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOP TRADE ============ -->
+<section class="sec top" id="toptrade">
+  <i class="coin-slot coin-slot--top" data-ry="2" data-rx="-0.1" data-rz="0.08" data-o="0.75" data-spin="0.3"></i>
+  <div class="wrap top__grid">
+    <div class="top__media" data-reveal>
+      <div class="top__halo" aria-hidden="true"></div>
+      <img loading="lazy" src="img/toptrade.webp" alt="תוכנית הליווי TOP TRADE של מכללת שגשוג" width="900" height="835" data-float>
+    </div>
+    <div class="top__text">
+      <p class="eyebrow" data-reveal><i></i>04 · מכללת שגשוג גאה להציג</p>
+      <h2 class="h2 h2--xl" data-split>תוכנית הליווי <em class="ltr">TOP TRADE</em></h2>
+      <p class="lead" data-reveal>בתוכנית הליווי תקבלו את כל הכלים בכדי לייצר הכנסה חודשית נוספת קבועה משוק ההון, תוך ליווי פרטני ואישי ועם התחייבות להצלחה או החזר כספי מלא.</p>
+      <a class="btn" href="#CON" data-magnet data-reveal><span>תיאום שיחה עם יועץ לימודים</span><b>↼</b></a>
+    </div>
+  </div>
+
+  <div class="wrap stats" id="stats">
+    <div class="stat" data-reveal><div class="stat__n"><span data-count="10000" data-sep>0</span><sup>+</sup></div><p>בוגרים</p></div>
+    <div class="stat" data-reveal><div class="stat__n"><span data-count="12">0</span></div><p>שנות ניסיון</p></div>
+    <div class="stat" data-reveal><div class="stat__n"><span data-count="4.9" data-dec="1">0</span><sub>/5</sub></div><p>שביעות רצון</p></div>
+  </div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section class="sec how" id="how">
+  <i class="coin-slot coin-slot--side-l" data-ry="2.5" data-rx="0.12" data-rz="-0.04" data-o="0.35" data-spin="0.15"></i>
+  <div class="wrap">
+    <header class="head">
+      <p class="eyebrow" data-reveal><i></i>05</p>
+      <h2 class="h2 h2--xl" data-split>אז איך זה <em>עובד?</em></h2>
+    </header>
+    <div class="stack">
+      <article class="card" style="--i:0">
+        <div class="card__n">01</div>
+        <div class="card__icon"><img loading="lazy" src="img/icon1.webp" alt="" width="360" height="360"></div>
+        <div class="card__body">
+          <h3>הכשרה</h3>
+          <p>תוכנית ההכשרה שלנו נבנתה ללא פשרות, מתוך מחויבות להעניק לכם את ארגז הכלים המקיף ביותר בשוק. אנו מלמדים את כל קשת המיומנויות בהכשרה אחת – החל מאסטרטגיות למסחר אקטיבי, יומי, סיווג והשקעות לטווח ארוך, ועד לידע ושליטה בעולמות הכלכלה והפנסיה. המטרה היא להוביל כל אחד ואחת מכם, מנקודת פתיחה של חוסר ידע, לרמת מקצוענות שמאפשרת להתפרנס ממסחר והשקעות.</p>
+          <p>בנוסף ההכשרה הוקלטה וניתנת לצפיה נוחה מכל מקום ובכל זמן, כדי שתוכלו להתקדם בקצב שלכם.</p>
+        </div>
+      </article>
+      <article class="card" style="--i:1">
+        <div class="card__n">02</div>
+        <div class="card__icon"><img loading="lazy" src="img/icon2.webp" alt="" width="360" height="360"></div>
+        <div class="card__body">
+          <h3>ליווי פרטני</h3>
+          <p>בעולם של שוק ההון, היתרון שלכם הוא לא רק מה שלמדתם בתיאוריה, אלא מי שעומד לצדכם בזמן אמת. אצלנו במכללה, כל תלמיד ותלמידה זוכים למעטפת ליווי אישית בזמינות יומית ובפורמט של אחד-על-אחד. לא מדובר רק בתמיכה, אלא בחניכה של ממש מצד מרצה פרטי מהצוות שלנו שחי ונושם את עולם המסחר והשקעות מדי יום. כדי להבטיח מעבר חלק משלב התיאוריה למעשי.</p>
+        </div>
+      </article>
+      <article class="card" style="--i:2">
+        <div class="card__n">03</div>
+        <div class="card__icon"><img loading="lazy" src="img/icon3.webp" alt="" width="360" height="360"></div>
+        <div class="card__body">
+          <h3>קהילה אקסלוסיבית</h3>
+          <p>עם הצטרפותכם להכשרה, תזכו לגישה לקהילת הבוגרים הסגורה והאיכותית שלנו. זהו האקו-סיסטם שלכם לרקום קשרים מקצועיים ואישיים, לנתח עסקאות, לשתף ולקבל רעיונות מסחר והזדמנויות בשוק ההון. מדובר במרחב ייחודי המאפשר לכם לשאוב השראה, ללמוד מניסיונם של סוחרים שכבר עושים את זה שנים ולהמשיך להתפתח יחד.</p>
+        </div>
+      </article>
+      <article class="card" style="--i:3">
+        <div class="card__n">04</div>
+        <div class="card__icon"><img loading="lazy" src="img/icon4.webp" alt="" width="360" height="360"></div>
+        <div class="card__body">
+          <h3>סקירות שבועיות</h3>
+          <p>כדי להבטיח שתישארו מעודכנים ומובילים בשוק דינמי, אנו דואגים לשלוח לכלל הבוגרים שלנו סקירה מקיפה שבועית של מצב השווקים הפיננסיים. סקירה זו מנתחת את המגמות הבולטות וההזדמנויות המרכזיות שעומדות על הפרק, וזאת על מנת להעניק לכם יתרון מובהק וכלים לקבלת החלטות מסחר מושכלות ומבוססות נתונים באופן רציף.</p>
+        </div>
+      </article>
+      <article class="card" style="--i:4">
+        <div class="card__n">05</div>
+        <div class="card__icon"><img loading="lazy" src="img/icon5.webp" alt="" width="360" height="360"></div>
+        <div class="card__body">
+          <h3>בית כלכלי</h3>
+          <p>לצד ההכשרה, אנו מעמידים לרשותכם בחינם מומחים מהשורה הראשונה במגוון התחומים: ייעוץ משכנתאות, פנסיה, ביטוחים והחזרי מס. הם יבצעו עבורכם בדק בית פיננסי הכולל מיטוב והוזלת התיק הביטוחי, הפחתת דמי ניהול בפנסיה, ומחזור המשכנתא לחיסכון ניכר בריביות.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="sec results" id="results">
+  <div class="wrap">
+    <header class="head head--split">
+      <div>
+        <p class="eyebrow" data-reveal><i></i>06</p>
+        <h2 class="h2 h2--xl" data-split>תוצאות של <em>תלמידים</em></h2>
+      </div>
+      <p class="head__note" data-reveal>לחצו על תמונה להגדלה</p>
+    </header>
+  </div>
+  <div class="mq mq--res" id="resA">
+    <div class="mq__track">
+      <button class="res"><img loading="lazy" src="img/res01.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="884"></button>
+      <button class="res"><img loading="lazy" src="img/res02.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="657"></button>
+      <button class="res"><img loading="lazy" src="img/res03.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="748"></button>
+      <button class="res"><img loading="lazy" src="img/res04.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="700"></button>
+      <button class="res"><img loading="lazy" src="img/res05.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="853"></button>
+      <button class="res"><img loading="lazy" src="img/res06.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="815"></button>
+      <button class="res"><img loading="lazy" src="img/res07.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="996"></button>
+      <button class="res"><img loading="lazy" src="img/res08.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="997"></button>
+      <button class="res"><img loading="lazy" src="img/res09.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="996"></button>
+      <button class="res"><img loading="lazy" src="img/res10.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="996"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res01.webp" alt="" width="560" height="884"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res02.webp" alt="" width="560" height="657"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res03.webp" alt="" width="560" height="748"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res04.webp" alt="" width="560" height="700"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res05.webp" alt="" width="560" height="853"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res06.webp" alt="" width="560" height="815"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res07.webp" alt="" width="560" height="996"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res08.webp" alt="" width="560" height="997"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res09.webp" alt="" width="560" height="996"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res10.webp" alt="" width="560" height="996"></button>
+    </div>
+  </div>
+  <div class="mq mq--res mq--rev" id="resB">
+    <div class="mq__track">
+      <button class="res"><img loading="lazy" src="img/res11.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="1006"></button>
+      <button class="res"><img loading="lazy" src="img/res12.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="997"></button>
+      <button class="res"><img loading="lazy" src="img/res13.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="997"></button>
+      <button class="res"><img loading="lazy" src="img/res14.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="997"></button>
+      <button class="res"><img loading="lazy" src="img/res15.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="996"></button>
+      <button class="res"><img loading="lazy" src="img/res16.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="951"></button>
+      <button class="res"><img loading="lazy" src="img/res17.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="872"></button>
+      <button class="res"><img loading="lazy" src="img/res18.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="919"></button>
+      <button class="res"><img loading="lazy" src="img/res19.webp" alt="תוצאה של תלמיד במכללת שגשוג" width="560" height="869"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res11.webp" alt="" width="560" height="1006"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res12.webp" alt="" width="560" height="997"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res13.webp" alt="" width="560" height="997"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res14.webp" alt="" width="560" height="997"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res15.webp" alt="" width="560" height="996"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res16.webp" alt="" width="560" height="951"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res17.webp" alt="" width="560" height="872"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res18.webp" alt="" width="560" height="919"></button>
+      <button class="res" aria-hidden="true" tabindex="-1"><img loading="lazy" src="img/res19.webp" alt="" width="560" height="869"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUARANTEE ============ -->
+<section class="sec guar" id="guarantee">
+  <div class="guar__rays" aria-hidden="true"></div>
+  <div class="wrap guar__in">
+    <div class="guar__coin">
+      <i class="coin-slot" data-ry="3.5" data-rx="0" data-rz="0" data-o="1" data-spin="1"></i>
+      <svg class="guar__orbit" viewBox="0 0 400 400" aria-hidden="true"><defs><path id="orb" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"/></defs><text><textPath href="#orb">100% החזר כספי ✦ התחייבות להצלחה ✦ 100% החזר כספי ✦ התחייבות להצלחה ✦ </textPath></text></svg>
+    </div>
+    <h2 class="h2 h2--xxl" data-split>אנחנו מתחייבים להצלחה <em>או החזר כספי מלא!</em></h2>
+    <h3 class="guar__q" data-reveal>למה אנחנו מבטיחים דבר כזה?</h3>
+    <div class="guar__text">
+      <p data-reveal>התחייבות רשמית מחייבת קבלות חותכות, ויש לנו אותן!</p>
+      <p data-reveal>הרוב המכריע של הבוגרים שלנו מתפרנס מהתחום לאחר ההכשרה, ומייצר לעצמו הכנסה חודשית קבועה ויציבה ממסחר והשקעות משוק ההון.</p>
+      <p data-reveal>הנתון הזה, מאפשר לנו לתת 100% ביטחון בתהליך – על ידי התחייבות ייחודית להצלחה בייצור רווחים משוק ההון – או החזר מלא על עלות ההכשרה.</p>
+    </div>
+    <a class="btn btn--lg" href="#CON" data-magnet data-reveal><span>תיאום שיחה עם יועץ לימודים</span><b>↼</b></a>
+  </div>
+</section>
+
+<!-- ============ VIDEOS ============ -->
+<section class="sec vids" id="videos">
+  <div class="wrap">
+    <header class="head head--split">
+      <div>
+        <p class="eyebrow" data-reveal><i></i>07 · לקוחות ממליצים</p>
+        <h2 class="h2 h2--xl" data-split>ככה זה נשמע <em>במילים שלכם</em></h2>
+      </div>
+      <div class="vids__nav" data-reveal>
+        <button id="vPrev" aria-label="הקודם">→</button>
+        <button id="vNext" aria-label="הבא">←</button>
+      </div>
+    </header>
+  </div>
+  <div class="vids__rail" id="vRail">
+    <button class="vid" data-src="https://sigsug-college.com/wp-content/uploads/2026/05/WhatsApp-Video-2026-05-14-at-18.54.10.mp4" aria-label="ניגון המלצת וידאו 1"><img loading="lazy" src="img/vid1.webp" alt=""><span class="vid__play"><i></i></span><span class="vid__n">01</span></button>
+    <button class="vid" data-src="https://sigsug-college.com/wp-content/uploads/2026/05/%D7%94%D7%9E%D7%9C%D7%A6%D7%94-%D7%9E%D7%9B%D7%9C%D7%9C.mp4" aria-label="ניגון המלצת וידאו 2"><img loading="lazy" src="img/vid2.webp" alt=""><span class="vid__play"><i></i></span><span class="vid__n">02</span></button>
+    <button class="vid" data-src="https://sigsug-college.com/wp-content/uploads/2026/05/%D7%94%D7%9E%D7%9C%D7%A6%D7%94-%D7%9E%D7%9B%D7%9C%D7%9C%D7%AA-%D7%A9%D7%92%D7%A9%D7%95%D7%92.mp4" aria-label="ניגון המלצת וידאו 3"><img loading="lazy" src="img/vid3.webp" alt=""><span class="vid__play"><i></i></span><span class="vid__n">03</span></button>
+    <button class="vid" data-src="https://sigsug-college.com/wp-content/uploads/2026/05/%D7%94%D7%9E%D7%9C%D7%A6%D7%94.mp4" aria-label="ניגון המלצת וידאו 4"><img loading="lazy" src="img/vid4.webp" alt=""><span class="vid__play"><i></i></span><span class="vid__n">04</span></button>
+    <button class="vid" data-src="https://sigsug-college.com/wp-content/uploads/2026/05/25.mp4" aria-label="ניגון המלצת וידאו 5"><img loading="lazy" src="img/vid5.webp" alt=""><span class="vid__play"><i></i></span><span class="vid__n">05</span></button>
+    <button class="vid" data-src="https://sigsug-college.com/wp-content/uploads/2026/05/22.mp4" aria-label="ניגון המלצת וידאו 6"><img loading="lazy" src="img/vid6.webp" alt=""><span class="vid__play"><i></i></span><span class="vid__n">06</span></button>
+    <button class="vid" data-src="https://sigsug-college.com/wp-content/uploads/2026/05/26.mp4" aria-label="ניגון המלצת וידאו 7"><img loading="lazy" src="img/vid7.webp" alt=""><span class="vid__play"><i></i></span><span class="vid__n">07</span></button>
+  </div>
+</section>
+
+<!-- ============ BRANCH ============ -->
+<section class="sec branch" id="branch">
+  <div class="wrap branch__grid">
+    <figure class="branch__img" data-clip data-par="-8"><img loading="lazy" src="img/branch1.webp" alt="מכללת שגשוג סניף ראשל״צ" width="1100" height="1467"><figcaption>מכללת שגשוג סניף ראשל״צ</figcaption></figure>
+    <figure class="branch__img branch__img--b" data-clip data-par="8"><img loading="lazy" src="img/branch2.webp" alt="מכללת שגשוג סניף ראשל״צ" width="1100" height="1467"><figcaption>מכללת שגשוג סניף ראשל״צ</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ UNIQUE ============ -->
+<section class="sec uniq" id="unique">
+  <i class="coin-slot coin-slot--side-r" data-ry="4.5" data-rx="-0.1" data-rz="0.05" data-o="0.4" data-spin="0.15"></i>
+  <div class="wrap uniq__grid">
+    <header class="uniq__head">
+      <p class="eyebrow" data-reveal><i></i>08</p>
+      <h2 class="h2 h2--xl" data-split>מה מייחד אותנו <em>משאר המכללות בחוץ?</em></h2>
+    </header>
+    <ol class="uniq__list">
+      <li data-reveal><span>01</span><p>היתרון המרכזי שלנו טמון בראייה המרחבית - אנו מאחדים את כל שיטות המסחר וההשקעות לתוכנית אחת.</p></li>
+      <li data-reveal><span>02</span><p>התוצאה – אתם מקבלים ארגז כלים מוחלט שמאפשר לכם להרוויח בכל מצב שוק. ובכל מכשיר פיננסי (מניות, קריפטו, חוזים עתידיים, מט״ח).</p></li>
+      <li data-reveal><span>03</span><p>מעבר לכך, אנחנו מאמינים שהצלחה בתחום שהוא כל כך אישי, לא יכולה לקרות בכיתה צפופה בעשרות תלמידים, ולכן אנו משתמשים במודל של מורה פרטי.</p></li>
+      <li data-reveal><span>04</span><p>ליווי בפורמט של אחד-על-אחד מבטיח שכל שאלה שלכם מקבלת מענה מידי, והקצב מותאם אליכם אישית.</p></li>
+      <li data-reveal><span>05</span><p>הביטחון שלנו בשיטה הזו מתבטא בהתחייבות כספית מלאה לתוצאות!</p></li>
+      <li data-reveal><span>06</span><p>בנוסף, ה״בית הכלכלי״ שלנו מעניק לכם גישה לצוות מומחים אשר יטפל למי מהבוגרים שיזדקק לכך - בהוזלה ומיטוב של הביטוחים, פנסיה, משכנתא והלוואות. ובכך לסמן V על כל התעסקות כלכלית שנזקקת לטיפול.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ FORM ============ -->
+<section class="sec con" id="CON">
+  <i class="coin-slot coin-slot--con" data-ry="5" data-rx="0.15" data-rz="-0.06" data-o="0.9" data-spin="0.4"></i>
+  <div class="wrap con__grid">
+    <div class="con__head">
+      <p class="eyebrow" data-reveal><i></i>09</p>
+      <h2 class="h2 h2--xl" data-split>מוכנים לעשות צעד ראשון <em>לעתיד כלכלי חדש?</em></h2>
+    </div>
+    <form class="form" id="form" novalidate data-reveal>
+      <label class="field"><input type="text" name="name" required autocomplete="name" placeholder=" "><span>שם מלא</span></label>
+      <label class="field"><input type="email" name="email" required autocomplete="email" placeholder=" " dir="ltr"><span>אימייל</span></label>
+      <label class="field"><input type="tel" name="phone" required autocomplete="tel" placeholder=" " dir="ltr" inputmode="tel"><span>מספר טלפון</span></label>
+      <label class="check"><input type="checkbox" name="ok" required><i></i><span>קראתי ואני מאשר/ת את <a href="https://sigsug-college.com/privacy-policy/" target="_blank" rel="noopener">מדיניות הפרטיות</a> ותקנון האתר</span></label>
+      <button class="btn btn--lg btn--full" type="submit" data-magnet><span>חזרו אליי</span><b>↼</b></button>
+      <p class="form__msg" id="formMsg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec faq" id="faq">
+  <i class="coin-slot coin-slot--side-l" data-ry="5.5" data-rx="0.1" data-rz="-0.05" data-o="0.28" data-spin="0.15"></i>
+  <div class="wrap faq__grid">
+    <header class="faq__head">
+      <p class="eyebrow" data-reveal><i></i>10</p>
+      <h2 class="h2 h2--xl" data-split>שאלות <em>נפוצות</em></h2>
+    </header>
+    <div class="acc">
+      <div class="acc__item" data-reveal>
+        <button class="acc__q" aria-expanded="false"><span>מה בעצם אקבל מההכשרה הזו?</span><i></i></button>
+        <div class="acc__a"><div>
+          <p>תדע לייצר הכנסה קבועה ממסחר והשקעות בשוק ההון, בצורה אחראית, ורווחית, על פי שיטות יחודיות שאנחנו עובדים איתם כבר עשור.</p>
+          <p>בנוסף תוכל לסמן וי לנצח על כל התעסקות כלכלית שהיא – כחלק מתכנית הליווי אנחנו מטפלים לך בכל פן פיננסי בחייך – החל מהחזרי מס דרך ההתנהלות השוטפת ועד לפנסיות הגמל וההשתלמות שלך, כדי לוודא שאין כסף שנשאר על הרצפה.</p>
+          <p>חלק מהתלמידים כבר מייצרים הכנסה נוספת של אלפי שקלים בחודש בנוסף לעבודה שלהם, וחלק אפילו לוקחים את זה כמקצוע והכנסה עיקרית, כל אחד ובחירתו ויכולתו.</p>
+        </div></div>
+      </div>
+      <div class="acc__item" data-reveal>
+        <button class="acc__q" aria-expanded="false"><span>איך בדיוק עובדת ההכשרה?</span><i></i></button>
+        <div class="acc__a"><div>
+          <p>לאחר ההרשמה, תיפתח עבורך גישה להכשרה הדיגיטלית שמכילה 50 פרקים, ובה יכוסו כל הנושאים החל ממושגי היסוד ועד להגעה לרמה מקצועית.</p>
+          <p>התכנים נגישים וזמינים לכל החיים, כולל גישה לכל עדכון עתידי.</p>
+          <p>בנוסף לזה כל תלמיד יהיה זכאי לליווי ממורה פרטי 1 על 1, ולהתחייבות המפורסמת שלנו להצלחה או החזר כספי בהתאם לתנאים בתקנון.</p>
+        </div></div>
+      </div>
+      <div class="acc__item" data-reveal>
+        <button class="acc__q" aria-expanded="false"><span>כמה זמן לוקח לראות תוצאות?</span><i></i></button>
+        <div class="acc__a"><div>
+          <p>כל אחד והקצב שלו. ההכשרה ניתנת לצפייה בזמן שנוח ומתאים לתלמיד. מניסיון שלנו, ברגע שמתחילים לצפות לא רוצים לעצור, גם אם יושבים ללמוד אחרי יום עבודה או לימודים, בממוצע לרוב התלמידים שלנו לוקח חודש וחצי – חודשיים עד שהם פותחים תיק מסחר ראשון ומתחילים תהליך.</p>
+        </div></div>
+      </div>
+      <div class="acc__item" data-reveal>
+        <button class="acc__q" aria-expanded="false"><span>אין לי אפילו רקע בסיסי בשוק ההון, זה מתאים לי?</span><i></i></button>
+        <div class="acc__a"><div>
+          <p>לא רק שזה מומלץ לאנשים ללא ידע וניסיון, למעשה זה נועד ונוצר עבור אנשים שאין להם בכלל ידע וניסיון וההכשרה לוקחת את התלמיד כל הדרך החל מ-0 ידע ועד לרמה מקצועית.</p>
+        </div></div>
+      </div>
+      <div class="acc__item" data-reveal>
+        <button class="acc__q" aria-expanded="false"><span>כמה כסף צריך להתחיל להשקיע?</span><i></i></button>
+        <div class="acc__a"><div>
+          <p>אין צורך בסכומי כסף גדולים על ההתחלה, למעשה אנשים עם סכום נזיל של החל מ-5000₪ ומעלה יכולים לסחור ולהרוויח בשוק ההון.</p>
+        </div></div>
+      </div>
+      <div class="acc__item" data-reveal>
+        <button class="acc__q" aria-expanded="false"><span>האם צריך לדעת אנגלית?</span><i></i></button>
+        <div class="acc__a"><div>
+          <p>אנגלית בסיסית תספיק ויותר מזה – את כל המילים והמושגים שכן נצטרך להכיר על מנת לסחור ולהשקיע נלמד לאורך ההכשרה.</p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot" id="contact">
+  <i class="coin-slot coin-slot--foot" data-ry="6" data-rx="0.03" data-rz="0" data-o="0.5" data-spin="0.5"></i>
+  <div class="wrap">
+    <h2 class="foot__title" data-split>צרו קשר</h2>
+    <div class="foot__grid">
+      <a class="foot__item" href="tel:0557121681" data-reveal><small>טלפון</small><span dir="ltr">055-7121681</span></a>
+      <a class="foot__item" href="https://ul.waze.com/ul?place=ChIJD7o5PptJHRURFYtFxjKJJSc&ll=32.09021420%2C34.85956840&navigate=yes" target="_blank" rel="noopener" data-reveal><small>סניף פתח תקווה · ניווט ב-Waze</small><span>בסר סיטי פתח תקווה, תוצרת הארץ 3</span></a>
+      <a class="foot__item" href="https://ul.waze.com/ul?place=ChIJW1bw3jC1AhURnTh-n0AbD90&ll=31.94942700%2C34.80304600&navigate=yes" target="_blank" rel="noopener" data-reveal><small>סניף ראשון לציון · ניווט ב-Waze</small><span>עזריאלי ראשונים ראשל״צ, שדרות נים 2</span></a>
+      <a class="foot__item" href="https://www.instagram.com/sigsug_college/" target="_blank" rel="noopener" data-reveal><small>עקבו אחרינו</small><span>Instagram</span></a>
+    </div>
+  </div>
+  <div class="foot__word" aria-hidden="true">שגשוג</div>
+  <div class="wrap foot__bar">
+    <span>כל הזכויות שמורות 2026©</span>
+    <a href="https://sigsug-college.com/privacy-policy/" target="_blank" rel="noopener">מדיניות פרטיות</a>
+    <a href="https://sigsug-college.com/accessibility/" target="_blank" rel="noopener">הצהרת נגישות</a>
+    <a class="foot__credit" href="https://siteo.co.il" target="_blank" rel="noopener">עיצוב ובנייה · siteo<i></i></a>
+  </div>
+</footer>
+
+<a class="wa" href="https://api.whatsapp.com/send/?phone=972557121681" target="_blank" rel="noopener" aria-label="וואטסאפ ליועץ לימודים">
+  <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><path d="M16 4a12 12 0 0 0-10.3 18.1L4 28l6.1-1.6A12 12 0 1 0 16 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path fill="currentColor" d="M12.4 10.6c.4-.4 1-.4 1.3 0l1.2 1.7c.3.4.2.9-.1 1.2l-.7.7c.8 1.5 2 2.7 3.5 3.5l.7-.7c.3-.3.8-.4 1.2-.1l1.7 1.2c.4.3.5.9.1 1.3-1 1.1-2.5 1.5-3.9.9-3.2-1.3-5.7-3.8-7-7-.5-1.3-.1-2.8 1-3.7z"/></svg>
+  <span>ליועץ לימודים</span>
+</a>
+
+<div class="lightbox" id="lightbox" aria-hidden="true"><button aria-label="סגירה">✕</button><img alt=""></div>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>

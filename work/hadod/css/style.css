@@ -64,7 +64,7 @@ svg{display:block}
 
 /* hero */
 .hero{position:relative;z-index:3;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:96px var(--pad) calc(28px + env(safe-area-inset-bottom))}
-.hero-h{font-family:var(--disp);font-weight:700;font-size:clamp(104px,29vw,330px);line-height:.8;letter-spacing:-.01em}
+.hero-h{font-family:var(--disp);font-weight:700;font-size:clamp(92px,25.5vw,330px);line-height:.8;letter-spacing:-.01em}
 .ln{display:block;overflow:hidden;padding-top:.06em}
 .ln>span{display:block;will-change:transform}
 .hero-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -73,7 +73,7 @@ svg{display:block}
 .hero-scroll{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:15px}
 .hero-scroll i{width:1.5px;height:26px;background:#fff;transform-origin:top;animation:drop 1.6s var(--ease) infinite}
 @keyframes drop{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
-@media(min-width:900px){.hero-h{font-size:min(17vw,25svh);max-width:60%}}
+@media(min-width:900px){.hero-h{font-size:min(15vw,25svh)}}
 @media(max-width:560px){.hero-cta{width:100%}.hero-cta .btn{flex:1}}
 
 /* tape */
@@ -85,8 +85,8 @@ svg{display:block}
 
 /* products (pinned) */
 .prod{position:relative;height:100svh;overflow:hidden}
-.prod-name{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.prod-name span{font-family:var(--disp);font-size:clamp(170px,46vw,640px);line-height:.8;white-space:nowrap;color:transparent;-webkit-text-stroke:1.5px var(--c);opacity:.55;will-change:transform}
+.prod-logo{position:absolute;inset:0;z-index:1;display:grid;place-items:center;padding-bottom:9svh}
+.prod-logo svg{width:min(88vw,64svh);height:min(88vw,64svh);filter:drop-shadow(0 0 60px color-mix(in srgb,var(--c) 45%,transparent));transition:filter .8s}
 .prod-top{position:absolute;top:84px;inset-inline:var(--pad);z-index:3;display:flex;justify-content:space-between;font-size:14px;color:var(--smoke)}
 .prod-count b{color:#fff;font-size:20px;font-variant-numeric:tabular-nums}
 .prod-info{position:absolute;z-index:3;inset-inline:var(--pad);bottom:calc(30px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:flex-start;gap:6px}

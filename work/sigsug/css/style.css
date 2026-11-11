@@ -516,3 +516,10 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 .partners .mq__track{gap:clamp(44px,6vw,90px);padding-inline-end:clamp(44px,6vw,90px);animation-duration:40s;will-change:transform}
 .partners .mq__track--slow img{height:clamp(38px,4.6vw,56px);width:auto;max-width:none;flex:none;object-fit:contain;filter:none;opacity:.9}
 .partners .mq__track--slow img:hover{opacity:1}
+
+/* v6: every moving strip can also be swiped */
+.mq--drag{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;cursor:grab;touch-action:pan-x pan-y}
+.mq--drag::-webkit-scrollbar{display:none}
+.mq--drag.is-drag{cursor:grabbing}
+.mq--drag .mq__track{animation:none!important;will-change:auto}
+.mq--drag img{pointer-events:none;-webkit-user-drag:none;user-select:none}

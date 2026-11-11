@@ -71,34 +71,35 @@ function pick(city, save) {
 document.addEventListener('click', e => { const c = e.target.closest('[data-city]'); if (c) pick(c.dataset.city, true); });
 { const c = store.get('hadodCity') || (member && member.city); if (c) pick(c); }
 
-/* smoke behind the hero (plain WebGL, half resolution) */
+/* faint smoke over the black page; it drifts down as you scroll (opaque canvas, no alpha blending) */
 (function () {
   const cv = $('#smoke'); if (!cv || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const gl = cv.getContext('webgl', { premultipliedAlpha: false, antialias: false }); if (!gl) return;
+  const gl = cv.getContext('webgl', { alpha: false, antialias: false }); if (!gl) return;
   const sh = (t, src) => { const o = gl.createShader(t); gl.shaderSource(o, src); gl.compileShader(o); return o; };
+  const hp = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT).precision > 0 ? 'highp' : 'mediump';
   const pr = gl.createProgram();
   gl.attachShader(pr, sh(gl.VERTEX_SHADER, 'attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}'));
-  gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, `precision mediump float;varying vec2 v;uniform float t,a,k;
-    float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+  gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, `precision ${hp} float;varying vec2 v;uniform float t,a,k,s;
+    float h(vec2 p){p=fract(p*vec2(.1031,.1030));p+=dot(p,p.yx+33.33);return fract((p.x+p.y)*p.x);}
     float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
-    float fbm(vec2 p){float s=0.,w=.5;for(int i=0;i<4;i++){s+=w*n(p);p=p*2.03+vec2(11.3,7.1);w*=.5;}return s;}
-    void main(){vec2 p=vec2(v.x*a,v.y)*2.3;float q=t*.06;
-      vec2 w=vec2(fbm(p+vec2(0.,-q)),fbm(p+vec2(5.2,1.3)-q*.7));
-      float f=smoothstep(.36,.95,fbm(p+2.6*w+vec2(0.,-q*2.4)));
-      float m=smoothstep(1.05,.1,length((v-vec2(.5,.62))*vec2(a,1.)));
-      vec3 c=mix(vec3(.62),vec3(1.),f*f*.7);
-      gl_FragColor=vec4(c,f*(.1+.9*m)*k*.4);}`));
-  gl.linkProgram(pr); gl.useProgram(pr);
+    float fbm(vec2 p){float r=0.,w=.5;for(int i=0;i<4;i++){r+=w*n(p);p=p*2.03+vec2(11.3,7.1);w*=.5;}return r;}
+    void main(){vec2 p=vec2(v.x*a,v.y+s)*2.2;float q=t*.05;
+      vec2 w=vec2(fbm(p+vec2(0.,q)),fbm(p+vec2(5.2,1.3)+q*.7));
+      float f=smoothstep(.42,.98,fbm(p+2.6*w+vec2(0.,q*2.)));
+      gl_FragColor=vec4(vec3(f*k*.2),1.);}`));
+  gl.linkProgram(pr); if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { cv.remove(); return; }
+  gl.useProgram(pr);
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
   const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-  const ut = gl.getUniformLocation(pr, 't'), ua = gl.getUniformLocation(pr, 'a'), uk = gl.getUniformLocation(pr, 'k');
+  const ut = gl.getUniformLocation(pr, 't'), ua = gl.getUniformLocation(pr, 'a'), uk = gl.getUniformLocation(pr, 'k'), us = gl.getUniformLocation(pr, 's');
   function size() { const w = cv.clientWidth, hh = cv.clientHeight; cv.width = Math.max(2, w >> 1); cv.height = Math.max(2, hh >> 1); gl.viewport(0, 0, cv.width, cv.height); gl.uniform1f(ua, w / hh); }
   size(); addEventListener('resize', size);
-  let seen = true, k = 0; new IntersectionObserver(e => seen = e[0].isIntersecting).observe(cv);
-  (function loop(ms) { requestAnimationFrame(loop); if (!seen || document.hidden) return;
+  let k = 0, sy = 0;
+  (function loop(ms) { requestAnimationFrame(loop); if (document.hidden) return;
     if (document.body.classList.contains('entered')) k = Math.min(1, k + .012);
-    gl.uniform1f(ut, ms / 1000); gl.uniform1f(uk, k); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); })(0);
+    sy += (scrollY / innerHeight * .6 - sy) * .08;      // smoke slides down the page with the scroll
+    gl.uniform1f(ut, ms / 1000); gl.uniform1f(uk, k); gl.uniform1f(us, sy); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); })(0);
 })();
 
 /* age gate, then the 10% popup once per visit */

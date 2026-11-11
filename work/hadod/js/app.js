@@ -34,6 +34,7 @@ function show(which) { [mPromo, mForm, mDone].forEach(x => x.hidden = x !== whic
 function hide() { modal.hidden = true; if ($('#gate').hidden) document.body.classList.remove('locked'); }
 function order(p) {
   let msg = p ? `היי, הגעתי מהאתר של הדוד. אשמח לקבל מחיר על ${p}` : 'היי, הגעתי מהאתר של הדוד. אשמח להזמין';
+  const city = store.get('hadodCity') || (member && member.city); if (city && !member) msg += `\nאני מ${city}.`;
   if (member) msg += `\nאני רשום באתר (${member.name}, ${member.city}, ${member.phone}) ומגיעה לי 10% הנחה.`;
   if (!WA_NUMBER) return say('הוואטסאפ יחובר בקרוב');
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
@@ -64,7 +65,7 @@ function pick(city, save) {
   const has = GROUPS[city];
   pickGo.href = has || MAIN_GROUP; pickGo.hidden = false;
   pickGo.lastElementChild.textContent = has ? `להצטרף לקבוצת הדוד ${city}` : 'להצטרף לקבוצה הראשית של הדוד';
-  $('#pickNote').textContent = has ? 'בקבוצה רואים מחירים ומלאי, ומזמינים משם.' : (city === 'עיר אחרת' ? 'עוד אין קבוצה לעיר שלך. בקבוצה הראשית מתעדכנים כשנפתחת אחת.' : `הקבוצה של ${city} נפתחת בקרוב. בינתיים מתעדכנים בקבוצה הראשית.`);
+  $('#pickNote').textContent = has ? 'בקבוצה רואים מבצעים, מוצרים חדשים ועדכוני מלאי.' : (city === 'עיר אחרת' ? 'עוד אין קבוצה לעיר שלך. בקבוצה הראשית מתעדכנים כשנפתחת אחת.' : `הקבוצה של ${city} נפתחת בקרוב. בינתיים מתעדכנים בקבוצה הראשית.`);
   if (save) store.set('hadodCity', city);
 }
 document.addEventListener('click', e => { const c = e.target.closest('[data-city]'); if (c) pick(c.dataset.city, true); });
@@ -85,8 +86,8 @@ document.addEventListener('click', e => { const c = e.target.closest('[data-city
       vec2 w=vec2(fbm(p+vec2(0.,-q)),fbm(p+vec2(5.2,1.3)-q*.7));
       float f=smoothstep(.36,.95,fbm(p+2.6*w+vec2(0.,-q*2.4)));
       float m=smoothstep(1.05,.1,length((v-vec2(.5,.62))*vec2(a,1.)));
-      vec3 c=mix(vec3(1.,.42,.07),vec3(1.),f*f*.6);
-      gl_FragColor=vec4(c,f*(.12+.88*m)*k*.85);}`));
+      vec3 c=mix(vec3(.62),vec3(1.),f*f*.7);
+      gl_FragColor=vec4(c,f*(.1+.9*m)*k*.4);}`));
   gl.linkProgram(pr); gl.useProgram(pr);
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);

@@ -8,9 +8,9 @@
 <meta name="theme-color" content="#000000">
 <link rel="preload" href="fonts/karantina-hebrew-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/rubik-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=5">
 </head>
-<body class="is-loading">
+<body class="locked">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -27,6 +27,7 @@
       <path d="M30 144H76M124 144H170" stroke="#ff6a13" stroke-width="1.2"/>
       <text x="100" y="151" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-weight="900" font-size="20" fill="#fff">הדוד</text>
     </symbol>
+    <symbol id="ig" viewBox="0 0 24 24"><rect x="3.500" y="3.500" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.200" cy="6.800" r="1.200" fill="currentColor"/></symbol>
     <symbol id="wa" viewBox="0 0 24 24">
       <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
       <path d="M9.200 7.800c-.7 2.700 2.600 6.600 6.300 6.900l1.100-1.600-2.100-1.100-.9.900c-1.100-.5-2-1.500-2.400-2.500l.9-.9-1-2.100z" fill="currentColor"/>
@@ -34,97 +35,82 @@
   </defs>
 </svg>
 
-<!-- פתיח + אישור גיל -->
-<div class="loader" id="loader">
-  <svg class="loader-logo" viewBox="0 0 200 200" aria-label="HADOD הדוד">
-    <circle class="l-ring" cx="100" cy="100" r="95" fill="none" stroke="#ff6a13" stroke-width="5" pathLength="1" transform="rotate(-90 100 100)"/>
-    <circle class="l-ring2" cx="100" cy="100" r="88" fill="none" stroke="#ff6a13" stroke-width="1.2" pathLength="1" transform="rotate(90 100 100)"/>
-    <g class="l-stars"><use href="#star" x="54" y="64"/><use href="#star" x="77" y="64"/><use href="#star" x="100" y="64"/><use href="#star" x="123" y="64"/><use href="#star" x="146" y="64"/></g>
-    <text class="l-word" x="100" y="123" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="47" fill="#ff6a13" textLength="150" lengthAdjust="spacingAndGlyphs" direction="ltr">HADOD</text>
-    <path class="l-rule" d="M30 144H76M124 144H170" stroke="#ff6a13" stroke-width="1.2"/>
-    <text class="l-he" x="100" y="151" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-weight="900" font-size="20" fill="#fff">הדוד</text>
-  </svg>
-  <div class="gate" id="gate">
-    <p class="gate-q">מלאו לך 18?</p>
-    <p class="gate-t">באתר מוצרי עישון עם ניקוטין. הכניסה למבוגרים בלבד.</p>
-    <div class="gate-b">
-      <button class="btn btn-main" id="gateYes">כן, להיכנס</button>
-      <button class="btn btn-line" id="gateNo">לא</button>
-    </div>
+<div class="gate" id="gate">
+  <svg class="gate-logo"><use href="#logo"/></svg>
+  <p class="gate-q">מלאו לך 18?</p>
+  <p class="gate-t">באתר מוצרי עישון עם ניקוטין. הכניסה למבוגרים בלבד.</p>
+  <div class="gate-b">
+    <button class="btn btn-main" id="gateYes">כן, להיכנס</button>
+    <button class="btn btn-line" id="gateNo">לא</button>
   </div>
 </div>
 
-<canvas id="gl" aria-hidden="true"></canvas>
-
-<header class="nav" id="nav">
+<header class="nav">
   <a href="#top" class="nav-logo" aria-label="הדוד"><svg><use href="#logo"/></svg></a>
   <div class="nav-live"><i></i><span>עכשיו <b id="clock">00:00</b> ופתוחים</span></div>
-  <button class="btn btn-main btn-s" data-wa=""><svg><use href="#wa"/></svg>להזמין</button>
+  <div class="nav-end">
+    <a class="nav-ig" href="https://www.instagram.com/hadod.il" target="_blank" rel="noopener" aria-label="אינסטגרם hadod.il"><svg><use href="#ig"/></svg></a>
+    <button class="btn btn-main btn-s" data-wa=""><svg><use href="#wa"/></svg>להזמין</button>
+  </div>
 </header>
 
 <main id="top">
 
-  <section class="hero" id="hero">
-    <h1 class="hero-h" aria-label="נגמר לכם הוויפ? הדוד בדרך.">
-      <span class="ln"><span>נגמר לכם</span></span>
-      <span class="ln"><span>הוויפ?</span></span>
-      <span class="ln"><span>הדוד בדרך.</span></span>
-    </h1>
-    <div class="hero-foot">
-      <p class="hero-p">וייפים חד-פעמיים עם שליח עד הדלת.<br>בכל שעה, בכל יום, גם בשלוש בלילה.</p>
+  <section class="hero">
+    <div class="hero-txt">
+      <h1 class="hero-h">נגמר לכם הוויפ?<br>הדוד בדרך.</h1>
+      <p class="hero-p">וייפים חד-פעמיים עם שליח עד הדלת. בכל שעה, בכל יום, גם בשלוש בלילה.</p>
       <div class="hero-cta">
         <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
-        <a class="hero-scroll" href="#products">מה יש במלאי<i></i></a>
+        <a class="btn btn-line btn-l" href="#products">לכל הוויפים</a>
       </div>
     </div>
+    <svg class="hero-logo" aria-hidden="true"><use href="#logo"/></svg>
   </section>
 
-  <div class="tape" aria-hidden="true">
-    <div class="tape-in" id="tape">
-      <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg>&nbsp;</span>
-      <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg>&nbsp;</span>
-      <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg>&nbsp;</span>
-    </div>
-  </div>
+  <div class="tape" aria-hidden="true"><div class="tape-in">
+    <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg></span>
+    <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg></span>
+  </div></div>
 
-  <section class="prod" id="products" aria-label="המוצרים">
-    <div class="prod-logo" aria-hidden="true"><svg id="plogo"><use href="#logo"/></svg></div>
-    <div class="prod-top"><span class="prod-count"><b id="pidx">1</b> מתוך 4</span><span class="prod-hint">גוללים כדי להחליף</span></div>
-    <div class="prod-info">
-      <h2 id="ptitle">נינג'ה</h2>
-      <p id="pnote">מחיר, טעמים וזמינות בהודעה אחת.</p>
-      <button class="btn btn-main" id="pbtn" data-wa="נינג'ה"><svg><use href="#wa"/></svg><span>מחיר על נינג'ה</span></button>
+  <section class="sec" id="products">
+    <div class="wrap">
+      <h2 class="big">הוויפים שלנו</h2>
+      <p class="lead">בוחרים וייפ, לוחצים, ומקבלים מחיר, טעמים וזמינות ישר לוואטסאפ.</p>
+      <div class="grid" id="grid"></div>
     </div>
-    <div class="prod-dots" id="pdots"><i class="on"></i><i></i><i></i><i></i></div>
   </section>
 
-  <section class="how" id="how">
+  <section class="sec" id="how">
     <div class="wrap how-grid">
       <h2 class="big">הודעה אחת,<br>והשליח יוצא.</h2>
       <div class="chat" aria-label="כך נראית הזמנה">
         <div class="msg me"><p>היי, הגעתי מהאתר של הדוד. אשמח לקבל מחיר על נינג'ה</p></div>
-        <div class="msg them"><svg><use href="#logo"/></svg><p>היי! שולח לך עכשיו מחיר וטעמים שיש במלאי</p><i></i></div>
+        <div class="msg them"><svg><use href="#logo"/></svg><p>היי! שולח לך עכשיו מחיר וטעמים שיש במלאי</p></div>
         <div class="msg me"><p>סגור, אני לוקח</p></div>
-        <div class="msg them"><svg><use href="#logo"/></svg><p>מעולה. לאן להגיע?</p><i></i></div>
-        <div class="msg me"><p class="loc"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>המיקום שלי</p></div>
-        <div class="msg them"><svg><use href="#logo"/></svg><p>השליח יצא אליך. תכין תעודה, המסירה מגיל 18</p><i></i></div>
+        <div class="msg them"><svg><use href="#logo"/></svg><p>מעולה. לאן להגיע?</p></div>
+        <div class="msg me"><p>שולח מיקום</p></div>
+        <div class="msg them"><svg><use href="#logo"/></svg><p>השליח יצא אליך. תכין תעודה, המסירה מגיל 18</p></div>
       </div>
     </div>
   </section>
 
-  <section class="cities" id="cities">
+  <section class="sec" id="cities">
     <div class="wrap">
-      <h2 class="big">הדוד מגיע<br>גם אליך.</h2>
-      <p class="lead">לכל עיר יש קבוצת וואטסאפ משלה. מצטרפים, ורואים ראשונים מה נכנס למלאי.</p>
+      <h2 class="big">רשת הדוד מתרחבת</h2>
+      <p class="lead">הצטרפו לקבוצת הוואטסאפ של העיר שלכם: קבוצות רשמיות, עדכונים, מבצעים ומוצרים חדשים.</p>
       <ul class="city-list" id="cityList"></ul>
     </div>
   </section>
 
-  <section class="end" id="end">
+  <section class="end">
     <div class="wrap">
       <p class="end-clock">השעה <b id="clock2">00:00</b>.</p>
       <h2 class="huge">פתוחים.</h2>
-      <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
+      <div class="end-cta">
+        <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
+        <a class="btn btn-line btn-l" href="https://www.instagram.com/hadod.il" target="_blank" rel="noopener"><svg><use href="#ig"/></svg><span dir="ltr">@hadod.il</span></a>
+      </div>
     </div>
   </section>
 </main>
@@ -141,6 +127,6 @@
 </footer>
 
 <div class="toast" id="toast" role="status"></div>
-<script src="js/app.js?v=4" defer></script>
+<script src="js/app.js?v=5" defer></script>
 </body>
 </html>

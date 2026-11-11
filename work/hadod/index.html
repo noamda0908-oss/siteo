@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#000000">
 <link rel="preload" href="fonts/karantina-hebrew-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/rubik-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body class="locked">
 
@@ -57,13 +57,12 @@
 
 <main id="top">
   <section class="hero">
+    <canvas class="smoke" id="smoke" aria-hidden="true"></canvas>
     <svg class="hero-logo" aria-label="HADOD הדוד"><use href="#logo"/></svg>
     <h1 class="hero-h">נגמר לכם הוויפ?<br>הדוד בדרך.</h1>
     <p class="hero-p">וייפים חד-פעמיים עם שליח עד הדלת. בכל שעה, בכל יום, גם בשלוש בלילה.</p>
-    <div class="hero-cta">
-      <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
-      <a class="btn btn-line btn-l" href="#products">לכל הוויפים</a>
-    </div>
+    <a class="hero-go" href="#products">בוחרים וייפ</a>
+    <button class="hero-wa" data-wa=""><svg><use href="#wa"/></svg>או כותבים לנו בוואטסאפ</button>
   </section>
 
   <div class="tape" aria-hidden="true"><div class="tape-in"><span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> 10% הנחה לנרשמים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> </span><span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> 10% הנחה לנרשמים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> </span></div></div>
@@ -84,27 +83,11 @@
     </div>
   </section>
 
-  <section class="sec member">
-    <div class="wrap member-in">
-      <p class="member-n">10%</p>
-      <div><h2 class="big">הנחה לנרשמים</h2>
-      <p class="lead">פותחים משתמש באתר בחצי דקה, וההנחה נכתבת אוטומטית בהודעת ההזמנה שלכם.</p>
-      <button class="btn btn-main btn-l" data-join>להרשמה</button></div>
-    </div>
-  </section>
-
-  <section class="sec" id="how">
-    <div class="wrap how-grid">
-      <h2 class="big">הודעה אחת,<br>והשליח יוצא.</h2>
-      <div class="chat" aria-label="כך נראית הזמנה">
-        <div class="msg me"><p>היי, הגעתי מהאתר של הדוד. אשמח לקבל מחיר על נינג'ה גולד</p></div>
-        <div class="msg them"><svg><use href="#logo"/></svg><p>היי! שולח לך עכשיו מחיר וטעמים שיש במלאי</p></div>
-        <div class="msg me"><p>סגור, אני לוקח</p></div>
-        <div class="msg them"><svg><use href="#logo"/></svg><p>מעולה. לאן להגיע?</p></div>
-        <div class="msg me"><p>שולח מיקום</p></div>
-        <div class="msg them"><svg><use href="#logo"/></svg><p>השליח יצא אליך. תכין תעודה, המסירה מגיל 18</p></div>
-      </div>
-    </div>
+  <section class="member">
+    <div class="wrap"><div class="member-in">
+      <p class="member-t"><b>10% הנחה</b> לנרשמים לאתר</p>
+      <button class="btn btn-main" data-join>להרשמה</button>
+    </div></div>
   </section>
 
   <section class="sec" id="cities">
@@ -116,16 +99,6 @@
     </div>
   </section>
 
-  <section class="end">
-    <div class="wrap">
-      <p class="end-clock">השעה <b data-clock>00:00</b>.</p>
-      <h2 class="huge">פתוחים.</h2>
-      <div class="end-cta">
-        <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
-        <a class="btn btn-line btn-l" href="https://www.instagram.com/hadod.il" target="_blank" rel="noopener"><svg><use href="#ig"/></svg><span dir="ltr">@hadod.il</span></a>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="foot">
@@ -134,6 +107,7 @@
     <div class="foot-row">
       <svg class="foot-logo"><use href="#logo"/></svg>
       <p>המכירה והמסירה למבוגרים מגיל 18 ומעלה בלבד, בהצגת תעודה מזהה.</p>
+      <a class="foot-ig" href="https://www.instagram.com/hadod.il" target="_blank" rel="noopener"><svg><use href="#ig"/></svg><span dir="ltr">@hadod.il</span></a>
       <span class="age">18+</span>
     </div>
   </div>
@@ -170,6 +144,6 @@
 </div>
 
 <div class="toast" id="toast" role="status"></div>
-<script src="js/app.js?v=6" defer></script>
+<script src="js/app.js?v=7" defer></script>
 </body>
 </html>

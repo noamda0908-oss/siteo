@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#000000">
 <link rel="preload" href="fonts/karantina-hebrew-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/rubik-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body class="locked">
 
@@ -66,7 +66,12 @@
         <p class="pp-intro">הנינג'ה הגדול: מכשיר אחד שמחזיק הרבה זמן, עם שליטה מלאה בעוצמה ובקרירות.</p>
         <dl class="specs"><div><dt>שאיפות</dt><dd>עד 150,000</dd></div><div><dt>ניקוטין</dt><dd>2%</dd></div><div><dt>שליטה</dt><dd>כפתור Boost, רמת ICE וזרימת אוויר</dd></div><div><dt>מסך</dt><dd>מציג סוללה ונוזל</dd></div><div><dt>טעינה</dt><dd>Type-C</dd></div></dl>
         <p class="pp-note">טעמים וזמינות משתנים לפי המלאי. שואלים בוואטסאפ מה יש עכשיו.</p>
-        <button class="btn btn-main btn-l pp-buy" data-wa="נינג'ה גולד"><svg><use href="#wa"/></svg>מחיר בוואטסאפ</button>
+        <div class="pick">
+          <h2 class="pp-sub">באיזו עיר אתם?</h2>
+          <div class="pick-c"><button data-city="אשקלון">אשקלון</button><button data-city="ראשון לציון">ראשון לציון</button><button data-city="פרדס חנה">פרדס חנה</button><button data-city="עכו">עכו</button><button data-city="שלומי">שלומי</button><button data-city="קריות">קריות</button><button data-city="עיר אחרת">עיר אחרת</button></div>
+          <a class="btn btn-main btn-l pick-go" id="pickGo" target="_blank" rel="noopener" hidden><svg><use href="#wa"/></svg><span></span></a>
+          <p class="pp-note" id="pickNote">בוחרים עיר ומקבלים קישור לקבוצת הוואטסאפ שלה, שם מזמינים.</p>
+        </div>
         <button class="pp-member" data-join><b>10% הנחה</b><span class="pp-member-t">לנרשמים לאתר. להרשמה</span></button>
       </div>
     </div>
@@ -91,6 +96,7 @@
     <div class="foot-row">
       <svg class="foot-logo"><use href="#logo"/></svg>
       <p>המכירה והמסירה למבוגרים מגיל 18 ומעלה בלבד, בהצגת תעודה מזהה.</p>
+      <a class="foot-ig" href="https://www.instagram.com/hadod.il" target="_blank" rel="noopener"><svg><use href="#ig"/></svg><span dir="ltr">@hadod.il</span></a>
       <span class="age">18+</span>
     </div>
   </div>
@@ -127,6 +133,6 @@
 </div>
 
 <div class="toast" id="toast" role="status"></div>
-<script src="js/app.js?v=6" defer></script>
+<script src="js/app.js?v=7" defer></script>
 </body>
 </html>

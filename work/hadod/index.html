@@ -2,307 +2,145 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>HADOD הדוד | וייפים חד-פעמיים במשלוח 24/7</title>
-<meta name="description" content="הדוד – וייפים חד-פעמיים במשלוח מהיר עד הדלת, 24 שעות ביממה, 7 ימים בשבוע. למבוגרים מגיל 18 בלבד.">
+<meta name="description" content="הדוד – וייפים חד-פעמיים עם שליח עד הדלת, 24 שעות ביממה, 7 ימים בשבוע. למבוגרים מגיל 18 בלבד.">
 <meta name="theme-color" content="#000000">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#000; --panel:#0d0d0d; --line:#232323;
-  --orange:#ff6a13; --orange2:#ff8a3d;
-  --gold1:#fff1a8; --gold2:#e9b93a; --gold3:#a8740f;
-  --text:#f5f5f5; --muted:#9a9a9a;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:Heebo,system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-.gold{background:linear-gradient(180deg,var(--gold1),var(--gold2) 55%,var(--gold3));-webkit-background-clip:text;background-clip:text;color:transparent}
-
-/* logo */
-.logo{--s:64px;width:var(--s);height:var(--s);border-radius:50%;background:#000;border:calc(var(--s)*.035) solid var(--orange);
-  box-shadow:inset 0 0 0 calc(var(--s)*.03) #000, inset 0 0 0 calc(var(--s)*.04) var(--orange);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;direction:ltr}
-.logo .st{font-size:calc(var(--s)*.11);letter-spacing:calc(var(--s)*.03);line-height:1}
-.logo .en{font-family:Montserrat,sans-serif;font-weight:900;color:var(--orange);font-size:calc(var(--s)*.215);line-height:1.05;letter-spacing:-.01em}
-.logo .he{font-weight:900;font-size:calc(var(--s)*.13);letter-spacing:calc(var(--s)*.04);line-height:1.1;color:#fff;display:flex;align-items:center;gap:calc(var(--s)*.04)}
-.logo .he::before,.logo .he::after{content:"";width:calc(var(--s)*.2);height:1px;background:var(--orange)}
-
-/* header */
-header{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;height:76px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:20px}
-.brand small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
-nav{display:flex;gap:22px;font-weight:500;font-size:15px}
-nav a:hover{color:var(--orange)}
-.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--orange);color:var(--orange);border-radius:99px;padding:6px 14px;font-weight:700;font-size:14px}
-.dot{width:8px;height:8px;border-radius:50%;background:#2be36b;box-shadow:0 0 0 0 rgba(43,227,107,.7);animation:pulse 1.8s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(43,227,107,0)}100%{box-shadow:0 0 0 0 rgba(43,227,107,0)}}
-@media(max-width:720px){nav{display:none}}
-
-/* hero */
-.hero{position:relative;padding:56px 0 64px;text-align:center}
-.hero::before{content:"";position:absolute;inset:-10% -20% auto;height:520px;background:radial-gradient(closest-side,rgba(255,106,19,.28),transparent 70%);pointer-events:none}
-.hero .logo{--s:190px;margin:0 auto 28px;position:relative;animation:float 5s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-8px)}}
-h1{font-size:clamp(34px,7vw,64px);font-weight:900;line-height:1.1;position:relative}
-h1 span{color:var(--orange)}
-.hero p{color:#cfcfcf;font-size:clamp(16px,2.6vw,20px);max-width:560px;margin:16px auto 28px;position:relative}
-.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;font-family:inherit;font-weight:700;font-size:17px;border-radius:14px;padding:14px 24px;transition:transform .15s,box-shadow .15s}
-.btn:active{transform:scale(.97)}
-.btn-wa{background:#25d366;color:#04230f;box-shadow:0 8px 26px rgba(37,211,102,.28)}
-.btn-or{background:linear-gradient(180deg,var(--orange2),var(--orange));color:#160800;box-shadow:0 8px 26px rgba(255,106,19,.3)}
-.btn-ghost{background:transparent;border:1px solid #3a3a3a;color:#fff}
-.btn svg{width:22px;height:22px;flex:none}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:620px;margin:40px auto 0;position:relative}
-.facts div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 8px}
-.facts b{display:block;font-size:22px;font-weight:900}
-.facts span{font-size:13px;color:var(--muted)}
-
-/* sections */
-section{padding:64px 0}
-.eyebrow{color:var(--orange);font-weight:700;font-size:14px;letter-spacing:.08em}
-h2{font-size:clamp(28px,5vw,42px);font-weight:900;line-height:1.15;margin:6px 0 10px}
-.sub{color:var(--muted);max-width:560px;margin-bottom:32px}
-
-/* products */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:460px){.grid{gap:10px}}
-.card{--c:#ff6a13;background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
-.card:hover{transform:translateY(-4px);border-color:var(--c)}
-.shot{position:relative;aspect-ratio:1/1.05;display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(circle at 50% 60%,color-mix(in srgb,var(--c) 34%,transparent),transparent 65%),#080808}
-.shot img{width:100%;height:100%;object-fit:cover}
-.vape{width:34%;aspect-ratio:1/2.5;border-radius:16px 16px 22px 22px;position:relative;transform:rotate(-10deg);
-  background:linear-gradient(100deg,color-mix(in srgb,var(--c) 55%,#000),var(--c) 40%,color-mix(in srgb,var(--c) 70%,#fff) 55%,color-mix(in srgb,var(--c) 45%,#000));
-  box-shadow:0 24px 40px rgba(0,0,0,.6),0 0 46px color-mix(in srgb,var(--c) 45%,transparent)}
-.vape::before{content:"";position:absolute;top:-15%;left:30%;width:40%;height:17%;background:linear-gradient(90deg,#111,#3a3a3a,#111);border-radius:8px 8px 3px 3px}
-.vape::after{content:attr(data-n);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font-weight:900;font-size:clamp(15px,2.4vw,22px);color:rgba(0,0,0,.72);letter-spacing:.06em}
-.tag{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.7);border:1px solid var(--c);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}
-.info{padding:14px 14px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
-.info h3{font-size:22px;font-weight:900;line-height:1.1}
-.info p{font-size:14px;color:var(--muted);flex:1}
-.info .btn{width:100%;font-size:15px;padding:12px 10px;border-radius:12px}
-@media(max-width:460px){.info h3{font-size:19px}.info .btn{font-size:14px;gap:6px}.info .btn svg{width:18px;height:18px}}
-
-/* steps */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:760px){.steps{grid-template-columns:1fr}}
-.step{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px}
-.step i{font-style:normal;font-family:Montserrat,sans-serif;font-weight:900;font-size:40px;line-height:1}
-.step h3{font-size:20px;margin:8px 0 4px}
-.step p{color:var(--muted);font-size:15px}
-
-/* cities */
-.cities{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media(max-width:860px){.cities{grid-template-columns:repeat(2,1fr)}}
-.city{background:linear-gradient(160deg,#141414,#0a0a0a);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:12px}
-.city h3{font-size:20px;font-weight:900;display:flex;align-items:center;gap:8px}
-.city h3 svg{width:18px;height:18px;color:var(--orange)}
-.city span{font-size:13px;color:var(--muted)}
-.city .btn{font-size:14px;padding:10px;border-radius:11px}
-.soon{opacity:.55}
-
-/* footer */
-.warn{border:2px solid #fff;background:#000;padding:14px 18px;font-weight:700;text-align:center;font-size:16px;border-radius:6px;margin-bottom:28px}
-footer{border-top:1px solid var(--line);padding:36px 0 110px;color:var(--muted);font-size:14px}
-.foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.age{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--orange);color:var(--orange);font-weight:900}
-
-/* floating whatsapp */
-.fab{position:fixed;bottom:18px;left:18px;right:18px;z-index:30;display:none}
-.fab .btn{width:100%}
-@media(max-width:720px){.fab{display:block}}
-
-/* toast */
-.toast{position:fixed;bottom:92px;left:50%;transform:translate(-50%,20px);background:#fff;color:#000;font-weight:700;padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;z-index:60;max-width:90vw;text-align:center}
-.toast.on{opacity:1;transform:translate(-50%,0)}
-
-/* age gate */
-.gate{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px}
-.gate[hidden]{display:none}
-.gate .box{background:var(--panel);border:1px solid var(--orange);border-radius:24px;padding:30px 24px;max-width:400px;width:100%;text-align:center}
-.gate .logo{--s:120px;margin:0 auto 18px}
-.gate h2{font-size:26px}
-.gate p{color:var(--muted);margin:8px 0 22px;font-size:15px}
-.gate .btn{width:100%;margin-top:10px}
-
-.reveal{opacity:0;transform:translateY(22px);transition:.6s}
-.reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
-</style>
+<link rel="preload" href="fonts/karantina-hebrew-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/rubik-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=2">
 </head>
-<body>
+<body class="is-loading">
 
-<!-- אישור גיל -->
-<div class="gate" id="gate">
-  <div class="box">
-    <div class="logo"><div class="st gold">★★★★★</div><div class="en">HADOD</div><div class="he">הדוד</div></div>
-    <h2>האם מלאו לך 18?</h2>
-    <p>האתר מציג מוצרי עישון המכילים ניקוטין ומיועד למבוגרים מגיל 18 ומעלה בלבד.</p>
-    <button class="btn btn-or" id="yes">כן, אני מעל 18</button>
-    <button class="btn btn-ghost" id="no">לא</button>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff3b0"/><stop offset=".5" stop-color="#e9b93a"/><stop offset="1" stop-color="#9c6a0c"/>
+    </linearGradient>
+    <polygon id="star" points="0,-10 2.47,-3.4 9.51,-3.09 3.99,1.3 5.88,8.09 0,4.2 -5.88,8.09 -3.99,1.3 -9.51,-3.09 -2.47,-3.4" fill="url(#gold)"/>
+    <symbol id="logo" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="99" fill="#000"/>
+      <circle cx="100" cy="100" r="95" fill="none" stroke="#ff6a13" stroke-width="5"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="#ff6a13" stroke-width="1.2"/>
+      <use href="#star" x="54" y="64"/><use href="#star" x="77" y="64"/><use href="#star" x="100" y="64"/><use href="#star" x="123" y="64"/><use href="#star" x="146" y="64"/>
+      <text x="100" y="123" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="47" fill="#ff6a13" textLength="150" lengthAdjust="spacingAndGlyphs" direction="ltr">HADOD</text>
+      <path d="M30 144H76M124 144H170" stroke="#ff6a13" stroke-width="1.2"/>
+      <text x="100" y="151" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-weight="900" font-size="20" fill="#fff">הדוד</text>
+    </symbol>
+    <symbol id="wa" viewBox="0 0 24 24">
+      <path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M9.200 7.800c-.7 2.700 2.600 6.600 6.300 6.900l1.100-1.600-2.100-1.100-.9.900c-1.100-.5-2-1.500-2.400-2.500l.9-.9-1-2.100z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- פתיח + אישור גיל -->
+<div class="loader" id="loader">
+  <svg class="loader-logo" viewBox="0 0 200 200" aria-label="HADOD הדוד">
+    <circle class="l-ring" cx="100" cy="100" r="95" fill="none" stroke="#ff6a13" stroke-width="5" pathLength="1" transform="rotate(-90 100 100)"/>
+    <circle class="l-ring2" cx="100" cy="100" r="88" fill="none" stroke="#ff6a13" stroke-width="1.2" pathLength="1" transform="rotate(90 100 100)"/>
+    <g class="l-stars"><use href="#star" x="54" y="64"/><use href="#star" x="77" y="64"/><use href="#star" x="100" y="64"/><use href="#star" x="123" y="64"/><use href="#star" x="146" y="64"/></g>
+    <text class="l-word" x="100" y="123" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-weight="900" font-size="47" fill="#ff6a13" textLength="150" lengthAdjust="spacingAndGlyphs" direction="ltr">HADOD</text>
+    <path class="l-rule" d="M30 144H76M124 144H170" stroke="#ff6a13" stroke-width="1.2"/>
+    <text class="l-he" x="100" y="151" text-anchor="middle" font-family="Rubik,Arial,sans-serif" font-weight="900" font-size="20" fill="#fff">הדוד</text>
+  </svg>
+  <div class="gate" id="gate">
+    <p class="gate-q">מלאו לך 18?</p>
+    <p class="gate-t">באתר מוצרי עישון עם ניקוטין. הכניסה למבוגרים בלבד.</p>
+    <div class="gate-b">
+      <button class="btn btn-main" id="gateYes">כן, להיכנס</button>
+      <button class="btn btn-line" id="gateNo">לא</button>
+    </div>
   </div>
 </div>
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="#top">
-      <div class="logo"><div class="st gold">★★★★★</div><div class="en">HADOD</div><div class="he">הדוד</div></div>
-      <div>הדוד<small>משלוחי וייפים 24/7</small></div>
-    </a>
-    <nav>
-      <a href="#products">המוצרים</a>
-      <a href="#how">איך מזמינים</a>
-      <a href="#cities">אזורי משלוח</a>
-    </nav>
-    <span class="pill"><span class="dot"></span>פתוח עכשיו</span>
-  </div>
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a href="#top" class="nav-logo" aria-label="הדוד"><svg><use href="#logo"/></svg></a>
+  <div class="nav-live"><i></i><span>עכשיו <b id="clock">00:00</b> ופתוחים</span></div>
+  <button class="btn btn-main btn-s" data-wa=""><svg><use href="#wa"/></svg>להזמין</button>
 </header>
 
 <main id="top">
-  <div class="hero">
-    <div class="wrap">
-      <div class="logo"><div class="st gold">★★★★★</div><div class="en">HADOD</div><div class="he">הדוד</div></div>
-      <h1>וייפים עד הדלת.<br><span>24/7.</span></h1>
-      <p>נגמר באמצע הלילה? הדוד בדרך. וייפים חד-פעמיים מהמותגים המבוקשים, עם שליח עד אליך – בכל שעה, בכל יום.</p>
-      <div class="cta">
-        <button class="btn btn-wa" data-wa="">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-1.6-.5-3.6-1.5-5.6-4.5-1-1.5-1.4-2.6-1.4-3.6 0-1 .6-1.9 1-2.2.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.6.9c-.1.2-.2.3 0 .6.5.9 1.700 2.200 3.300 2.900.3.1.5.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.4.1.2.1.900-.1 1.700z"/></svg>
-          הזמנה בוואטסאפ
-        </button>
-        <a class="btn btn-ghost" href="#products">לכל המוצרים</a>
+
+  <section class="hero" id="hero">
+    <h1 class="hero-h" aria-label="נגמר לך? הדוד בדרך.">
+      <span class="ln"><span>נגמר לך?</span></span>
+      <span class="ln"><span>הדוד</span></span>
+      <span class="ln"><span>בדרך.</span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="hero-p">וייפים חד-פעמיים עם שליח עד הדלת.<br>בכל שעה, בכל יום, גם בשלוש בלילה.</p>
+      <div class="hero-cta">
+        <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
+        <a class="hero-scroll" href="#products">מה יש במלאי<i></i></a>
       </div>
-      <div class="facts">
-        <div><b class="gold">24/7</b><span>שליחים זמינים</span></div>
-        <div><b class="gold">מהיר</b><span>משלוח עד הדלת</span></div>
-        <div><b class="gold">★★★★★</b><span>שירות חמישה כוכבים</span></div>
-      </div>
+    </div>
+  </section>
+
+  <div class="tape" aria-hidden="true">
+    <div class="tape-in" id="tape">
+      <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg>&nbsp;</span>
+      <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg>&nbsp;</span>
+      <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg>&nbsp;</span>
     </div>
   </div>
 
-  <section id="products">
-    <div class="wrap">
-      <div class="eyebrow">המוצרים שלנו</div>
-      <h2>ארבעה מותגים. <span class="gold">אפס פשרות.</span></h2>
-      <p class="sub">בוחרים מותג, לוחצים, ומקבלים מחיר וזמינות ישירות בוואטסאפ.</p>
-      <div class="grid" id="grid"></div>
+  <section class="prod" id="products" aria-label="המוצרים">
+    <div class="prod-name" aria-hidden="true"><span id="pname">קוויט</span></div>
+    <div class="prod-top"><span class="prod-count"><b id="pidx">1</b> מתוך 4</span><span class="prod-hint">גוללים כדי להחליף</span></div>
+    <div class="prod-info">
+      <h2 id="ptitle">קוויט</h2>
+      <p>מחיר, טעמים וזמינות בהודעה אחת.</p>
+      <button class="btn btn-main" id="pbtn" data-wa="קוויט"><svg><use href="#wa"/></svg><span>מחיר על קוויט</span></button>
     </div>
+    <div class="prod-dots" id="pdots"><i class="on"></i><i></i><i></i><i></i></div>
   </section>
 
-  <section id="how">
+  <section class="how" id="how">
     <div class="wrap">
-      <div class="eyebrow">איך מזמינים</div>
-      <h2>שלושה צעדים והשליח יוצא</h2>
-      <p class="sub">בלי הרשמה, בלי טפסים, בלי לחכות.</p>
-      <div class="steps">
-        <div class="step reveal"><i class="gold">1</i><h3>בוחרים וייפ</h3><p>לוחצים על המותג שרוצים וההודעה לוואטסאפ כבר מוכנה.</p></div>
-        <div class="step reveal"><i class="gold">2</i><h3>מקבלים מחיר</h3><p>אנחנו חוזרים אליך מיד עם מחיר, טעמים זמינים וזמן הגעה.</p></div>
-        <div class="step reveal"><i class="gold">3</i><h3>השליח בדרך</h3><p>משלוח עד הדלת, בכל שעה. מסירה למבוגרים מגיל 18 בלבד.</p></div>
+      <h2 class="big">הודעה אחת,<br>והשליח יוצא.</h2>
+      <div class="route">
+        <div class="route-line"><i id="routeFill"></i><b id="routeDot"></b></div>
+        <ol class="steps">
+          <li class="step"><span class="num">1</span><div><h3>בוחרים וייפ</h3><p>לוחצים על המותג, והודעת הוואטסאפ כבר כתובה בשבילך.</p></div></li>
+          <li class="step"><span class="num">2</span><div><h3>מקבלים מחיר</h3><p>חוזרים אליך עם מחיר, טעמים שיש עכשיו וזמן הגעה.</p></div></li>
+          <li class="step"><span class="num">3</span><div><h3>פותחים את הדלת</h3><p>השליח מגיע עד אליך. המסירה למבוגרים מגיל 18, עם תעודה.</p></div></li>
+        </ol>
       </div>
     </div>
   </section>
 
-  <section id="cities">
+  <section class="cities" id="cities">
     <div class="wrap">
-      <div class="eyebrow">אזורי משלוח</div>
-      <h2>הדוד מגיע <span class="gold">לעיר שלך</span></h2>
-      <p class="sub">הצטרפו לקבוצת הוואטסאפ של העיר שלכם וקבלו עדכונים ומבצעים ראשונים.</p>
-      <div class="cities" id="cityGrid"></div>
+      <h2 class="big">הדוד מגיע<br>גם אליך.</h2>
+      <p class="lead">לכל עיר יש קבוצת וואטסאפ משלה. מצטרפים, ורואים ראשונים מה נכנס למלאי.</p>
+      <ul class="city-list" id="cityList"></ul>
+    </div>
+  </section>
+
+  <section class="end" id="end">
+    <div class="wrap">
+      <p class="end-clock">השעה <b id="clock2">00:00</b>.</p>
+      <h2 class="huge">פתוחים.</h2>
+      <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <div class="warn">אזהרה: מוצר זה מכיל ניקוטין – חומר ממכר ביותר. העישון מזיק לבריאות.</div>
-    <div class="foot">
-      <div class="brand">
-        <div class="logo" style="--s:52px"><div class="st gold">★★★★★</div><div class="en">HADOD</div><div class="he">הדוד</div></div>
-        <div style="color:#fff">הדוד<small>משלוחי וייפים 24/7</small></div>
-      </div>
-      <div>המכירה והמסירה למבוגרים מגיל 18 ומעלה בלבד, בכפוף להצגת תעודה מזהה.</div>
+    <p class="warn">אזהרה: מוצר זה מכיל ניקוטין, חומר ממכר ביותר. העישון מזיק לבריאות.</p>
+    <div class="foot-row">
+      <svg class="foot-logo"><use href="#logo"/></svg>
+      <p>המכירה והמסירה למבוגרים מגיל 18 ומעלה בלבד, בהצגת תעודה מזהה.</p>
       <span class="age">18+</span>
     </div>
   </div>
 </footer>
 
-<div class="fab"><button class="btn btn-wa" data-wa="">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.200a8.200 8.200 0 0 1-4.200-1.200l-.3-.2-3 .8.8-2.900-.2-.3A8.200 8.200 0 1 1 12 20.200z"/></svg>
-  הזמנה מהירה בוואטסאפ</button></div>
-<div class="toast" id="toast"></div>
-
-<script>
-/* ============ הגדרות – כאן מעדכנים ============ */
-const WA_NUMBER = "";   // מספר וואטסאפ בפורמט בינלאומי בלי + (למשל 972501234567). ריק = עיצוב בלבד
-const PRODUCTS = [
-  { name:"קוויט",     color:"#ff6a13", tag:"הכי נמכר", desc:"וייפ חד-פעמי במגוון טעמים.", img:"" },
-  { name:"נינג'ה",    color:"#b14bff", tag:"חדש",      desc:"וייפ חד-פעמי במגוון טעמים.", img:"" },
-  { name:"טומי איקס", color:"#1ea7ff", tag:"פרימיום",  desc:"וייפ חד-פעמי במגוון טעמים.", img:"" },
-  { name:"סוויט",     color:"#ff3d8b", tag:"מתוק",     desc:"וייפ חד-פעמי במגוון טעמים.", img:"" }
-];
-const CITIES = [   // name = שם העיר, link = קישור לקבוצת הוואטסאפ (ריק = "בקרוב")
-  { name:"עיר 1", link:"" },
-  { name:"עיר 2", link:"" },
-  { name:"עיר 3", link:"" },
-  { name:"עיר 4", link:"" }
-];
-/* ============================================== */
-
-const WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.200a8.200 8.200 0 0 1-4.200-1.200l-.3-.2-3 .8.8-2.900-.2-.3A8.200 8.200 0 1 1 12 20.200z"/></svg>';
-const PIN = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500A2.500 2.500 0 1 1 12 6.500a2.500 2.500 0 0 1 0 5z"/></svg>';
-
-document.getElementById('grid').innerHTML = PRODUCTS.map(p => `
-  <article class="card reveal" style="--c:${p.color}">
-    <div class="shot">
-      ${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : `<div class="vape" data-n="${p.name}"></div>`}
-      <span class="tag">${p.tag}</span>
-    </div>
-    <div class="info">
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-      <button class="btn btn-wa" data-wa="${p.name}">${WA_ICON}מחיר בוואטסאפ</button>
-    </div>
-  </article>`).join('');
-
-document.getElementById('cityGrid').innerHTML = CITIES.map(c => `
-  <div class="city reveal ${c.link ? '' : 'soon'}">
-    <h3>${PIN}${c.name}</h3>
-    <span>${c.link ? 'קבוצת וואטסאפ פעילה' : 'הקבוצה תיפתח בקרוב'}</span>
-    ${c.link ? `<a class="btn btn-wa" href="${c.link}" target="_blank" rel="noopener">הצטרפות לקבוצה</a>`
-             : `<button class="btn btn-ghost" disabled>בקרוב</button>`}
-  </div>`).join('');
-
-const toast = document.getElementById('toast'); let tt;
-function say(m){ toast.textContent = m; toast.classList.add('on'); clearTimeout(tt); tt = setTimeout(()=>toast.classList.remove('on'), 2600); }
-
-document.addEventListener('click', e => {
-  const b = e.target.closest('[data-wa]'); if(!b) return;
-  const prod = b.dataset.wa;
-  const msg = prod ? `היי, הגעתי מהאתר של הדוד 👋 אשמח לקבל מחיר על ${prod}`
-                   : `היי, הגעתי מהאתר של הדוד 👋 אשמח להזמין`;
-  if(!WA_NUMBER){ say('הקישור לוואטסאפ יחובר בקרוב'); return; }
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
-});
-
-/* אישור גיל */
-const gate = document.getElementById('gate');
-let ok = false; try{ ok = sessionStorage.getItem('age18') === '1'; }catch(_){}
-if(ok) gate.hidden = true; else document.body.style.overflow = 'hidden';
-document.getElementById('yes').onclick = () => { try{ sessionStorage.setItem('age18','1'); }catch(_){}
-  gate.hidden = true; document.body.style.overflow = ''; };
-document.getElementById('no').onclick = () => {
-  gate.querySelector('.box').innerHTML = '<h2>מצטערים</h2><p>האתר מיועד למבוגרים מגיל 18 ומעלה בלבד.</p>'; };
-
-/* אנימציית כניסה */
-const io = new IntersectionObserver(es => es.forEach(x => { if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }), {threshold:.12});
-document.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay = (i%4)*70+'ms'; io.observe(el); });
-</script>
+<div class="toast" id="toast" role="status"></div>
+<script src="js/app.js?v=2" defer></script>
 </body>
 </html>

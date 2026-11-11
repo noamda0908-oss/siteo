@@ -493,3 +493,19 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 @media (max-width:860px){.how .wrap{grid-template-columns:1fr;gap:0}.how .head{position:relative;top:0;margin-bottom:30px}.step__q>i{width:40px;height:40px}}
 .member p{font-size:1.02rem;line-height:1.7}
 .uniq__list p{line-height:1.65}
+
+/* ================= v4: swipeable results + compact lecturers ================= */
+.mq--res{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;cursor:grab;touch-action:pan-x pan-y}
+.mq--res::-webkit-scrollbar{display:none}
+.mq--res.is-drag{cursor:grabbing}
+.mq--res .mq__track{animation:none!important}
+.mq--res .res{-webkit-user-drag:none;user-select:none}
+.mq--res .res img{pointer-events:none;-webkit-user-drag:none}
+.team__grid{gap:clamp(34px,4vw,60px)}
+.member{text-align:center}
+.member__img{width:clamp(150px,15vw,200px);aspect-ratio:1;border-radius:50%;margin-inline:auto;border:2px solid var(--gold)}
+.member__img::after{display:none}
+.member__body{padding-top:18px}
+.member h3{font-size:clamp(1.35rem,1.9vw,1.7rem)}
+.member p{max-width:30em;margin-inline:auto}
+@media (max-width:860px){.member__img{aspect-ratio:1}.team__grid{gap:44px}}

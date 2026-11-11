@@ -1,6 +1,6 @@
 /* ================= הגדרות ================= */
 const WA_NUMBER = '';   // מספר וואטסאפ להזמנות: 9725XXXXXXXX – ריק = עדיין לא מחובר
-const GROUPS = {"אשקלון": "https://chat.whatsapp.com/Imh2ZDRe7W62kp15ZZScmi", "ראשון לציון": "https://chat.whatsapp.com/Cj6EUaNfvrMJV39FDsxvnP", "פרדס חנה": "https://chat.whatsapp.com/J1wP1OqBdlvLcwPg7Rk8YW", "עכו": "https://chat.whatsapp.com/Lg6ATxYxOeH2Zuyh4pNlcf", "שלומי": "https://chat.whatsapp.com/LmqPUMiXWHVHEY7aMUnWy9"};
+const GROUPS = {"אשקלון": "https://chat.whatsapp.com/Imh2ZDRe7W62kp15ZZScmi", "ראשון לציון": "https://chat.whatsapp.com/Cj6EUaNfvrMJV39FDsxvnP", "פרדס חנה": "https://chat.whatsapp.com/J1wP1OqBdlvLcwPg7Rk8YW", "עכו": "https://chat.whatsapp.com/Lg6ATxYxOeH2Zuyh4pNlcf", "שלומי": "https://chat.whatsapp.com/LmqPUMiXWHVHEY7aMUnWy9", "קריות": "https://chat.whatsapp.com/E9wtf3yIp5pKaKHJBiUeNp"};
 const PACK_NUMBER = '972559277843';   // הזמנות חבילות וודקה (055-927-7843)
 const MAIN_GROUP = "https://chat.whatsapp.com/E9wtf3yIp5pKaKHJBiUeNp";
 /* ========================================== */

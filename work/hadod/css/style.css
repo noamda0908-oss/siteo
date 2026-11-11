@@ -97,7 +97,7 @@ body:not(.entered) .hero-logo,body:not(.entered) .hero-h,body:not(.entered) .her
 
 .sec{padding:clamp(64px,9vw,130px) 0}
 .sec+.sec,.member+.sec{border-top:1px solid var(--ash)}
-#products{padding-bottom:clamp(28px,4vw,48px)}
+#vodka{padding-bottom:clamp(28px,4vw,48px)}
 .big{font-family:var(--disp);font-weight:700;font-size:clamp(64px,11vw,150px);line-height:.84}
 .lead{color:#d0d0d0;max-width:30em;margin-top:14px;font-size:clamp(16px,1.4vw,20px)}
 

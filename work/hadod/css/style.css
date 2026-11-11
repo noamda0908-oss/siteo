@@ -65,6 +65,8 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .cats a:hover{color:var(--orange)}
 body:not(.entered) .cats{opacity:0}
 .entered .cats{animation:rise .9s 1s cubic-bezier(.2,.7,.2,1) both}
+.incl{border-top:1px solid var(--ash)}
+.incl li{padding:12px 0;border-bottom:1px solid var(--ash);font-size:17px}
 .vd{display:grid;gap:clamp(28px,5vw,72px)}
 @media(min-width:900px){.vd{grid-template-columns:1.1fr 1fr;align-items:start}}
 .vd-in{margin-top:22px;border-top:1px solid var(--ash)}
@@ -112,7 +114,7 @@ body:not(.entered) .hero-logo,body:not(.entered) .hero-h,body:not(.entered) .her
 .card h3{font-family:var(--disp);font-size:clamp(40px,4.200vw,58px);line-height:.9}
 .card p{color:var(--smoke);font-size:14px;flex:1;margin-bottom:10px}
 .card .btn{height:46px;padding:0 8px;font-size:24px}
-@media(max-width:430px){.card .btn{font-size:21px;gap:5px}.card .btn svg{width:17px;height:17px}.card-b{padding:12px 10px 12px}.card-a{gap:6px}}
+@media(max-width:430px){.card .btn{font-size:19px;gap:4px;padding:0 4px;min-width:0}.card .btn svg{width:17px;height:17px}.card-b{padding:12px 10px 12px}.card-a{gap:6px}}
 
 .city-list{margin-top:12px;display:grid;gap:12px}
 @media(min-width:760px){.city-list{grid-template-columns:repeat(2,1fr)}}

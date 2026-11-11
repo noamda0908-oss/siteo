@@ -59,16 +59,11 @@ mForm.addEventListener('submit', e => {
 });
 
 /* vodka packages */
-let brand = '';
 document.addEventListener('click', e => {
-  const b = e.target.closest('[data-brand]');
-  if (b) { brand = b.dataset.brand; $$('[data-brand]').forEach(x => x.classList.toggle('on', x === b)); $('#vdGo').lastElementChild.textContent = `להזמין חבילת ${brand}`; return; }
-  if (e.target.closest('#vdGo')) {
-    if (!brand) return say('בוחרים קודם וודקה');
-    let msg = `היי, הגעתי מהאתר של הדוד. אשמח להזמין חבילת וודקה ${brand} (1 ליטר)`;
-    if (member) msg += `\nאני רשום באתר (${member.name}, ${member.city}, ${member.phone}) ומגיעה לי 10% הנחה.`;
-    window.open(`https://wa.me/${PACK_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
-  }
+  const b = e.target.closest('[data-pack]'); if (!b) return;
+  let msg = `היי, הגעתי מהאתר של הדוד. אשמח להזמין חבילת וודקה ${b.dataset.pack} (1 ליטר)`;
+  if (member) msg += `\nאני רשום באתר (${member.name}, ${member.city}, ${member.phone}) ומגיעה לי 10% הנחה.`;
+  window.open(`https://wa.me/${PACK_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
 });
 
 /* product page: pick a city, get that city's group */

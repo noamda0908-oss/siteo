@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#000000">
 <link rel="preload" href="fonts/karantina-hebrew-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/rubik-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body class="locked">
 
@@ -46,38 +46,50 @@
 </div>
 
 <header class="nav">
-  <a href="#top" class="nav-logo" aria-label="הדוד"><svg><use href="#logo"/></svg></a>
-  <div class="nav-live"><i></i><span>עכשיו <b id="clock">00:00</b> ופתוחים</span></div>
+  <a href="./" class="nav-logo" aria-label="הדוד, לדף הבית"><svg><use href="#logo"/></svg></a>
+  <div class="nav-live"><i></i><span>עכשיו <b data-clock>00:00</b> ופתוחים</span></div>
   <div class="nav-end">
     <a class="nav-ig" href="https://www.instagram.com/hadod.il" target="_blank" rel="noopener" aria-label="אינסטגרם hadod.il"><svg><use href="#ig"/></svg></a>
     <button class="btn btn-main btn-s" data-wa=""><svg><use href="#wa"/></svg>להזמין</button>
   </div>
 </header>
+<button class="promo" data-join><span class="promo-t">נרשמים לאתר ומקבלים <b>10% הנחה</b></span><span class="promo-a">להרשמה</span></button>
 
 <main id="top">
-
   <section class="hero">
-    <div class="hero-txt">
-      <h1 class="hero-h">נגמר לכם הוויפ?<br>הדוד בדרך.</h1>
-      <p class="hero-p">וייפים חד-פעמיים עם שליח עד הדלת. בכל שעה, בכל יום, גם בשלוש בלילה.</p>
-      <div class="hero-cta">
-        <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
-        <a class="btn btn-line btn-l" href="#products">לכל הוויפים</a>
-      </div>
+    <svg class="hero-logo" aria-label="HADOD הדוד"><use href="#logo"/></svg>
+    <h1 class="hero-h">נגמר לכם הוויפ?<br>הדוד בדרך.</h1>
+    <p class="hero-p">וייפים חד-פעמיים עם שליח עד הדלת. בכל שעה, בכל יום, גם בשלוש בלילה.</p>
+    <div class="hero-cta">
+      <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
+      <a class="btn btn-line btn-l" href="#products">לכל הוויפים</a>
     </div>
-    <svg class="hero-logo" aria-hidden="true"><use href="#logo"/></svg>
   </section>
 
-  <div class="tape" aria-hidden="true"><div class="tape-in">
-    <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg></span>
-    <span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מזמינים בוואטסאפ <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg></span>
-  </div></div>
+  <div class="tape" aria-hidden="true"><div class="tape-in"><span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> 10% הנחה לנרשמים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> </span><span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שליח עד הדלת <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> 10% הנחה לנרשמים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> מגיל 18 בלבד <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> </span></div></div>
 
   <section class="sec" id="products">
     <div class="wrap">
       <h2 class="big">הוויפים שלנו</h2>
-      <p class="lead">בוחרים וייפ, לוחצים, ומקבלים מחיר, טעמים וזמינות ישר לוואטסאפ.</p>
-      <div class="grid" id="grid"></div>
+      <p class="lead">לוחצים על וייפ כדי לראות פרטים, או מבקשים מחיר ישר בוואטסאפ.</p>
+      <div class="grid"><article class="card"><a href="ninja.html"><img src="img/card-ninja.webp" alt="נינג'ה גולד" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="ninja.html">נינג'ה גולד</a></h3><p>עד 150,000 שאיפות, עם Boost ושליטת ICE.</p>
+      <div class="card-a"><a class="btn btn-line" href="ninja.html">לפרטים</a><button class="btn btn-main" data-wa="נינג'ה גולד" aria-label="מחיר בוואטסאפ על נינג'ה גולד"><svg><use href="#wa"/></svg>מחיר</button></div></div></article><article class="card"><a href="tomi-xl.html"><img src="img/card-tomi.webp" alt="טומי XL" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="tomi-xl.html">טומי XL</a></h3><p>עד 150,000 שאיפות, 11 טעמים לבחירה.</p>
+      <div class="card-a"><a class="btn btn-line" href="tomi-xl.html">לפרטים</a><button class="btn btn-main" data-wa="טומי XL" aria-label="מחיר בוואטסאפ על טומי XL"><svg><use href="#wa"/></svg>מחיר</button></div></div></article><article class="card"><a href="sweet.html"><img src="img/card-sweet.webp" alt="סוויט" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="sweet.html">סוויט</a></h3><p>גימור בד, בכמה צבעים.</p>
+      <div class="card-a"><a class="btn btn-line" href="sweet.html">לפרטים</a><button class="btn btn-main" data-wa="סוויט" aria-label="מחיר בוואטסאפ על סוויט"><svg><use href="#wa"/></svg>מחיר</button></div></div></article><article class="card"><a href="qweet-phantom.html"><img src="img/card-phantom.webp" alt="קוויט פאנטום" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="qweet-phantom.html">קוויט פאנטום</a></h3><p>עד 55,000 שאיפות, שני מצבי שאיפה.</p>
+      <div class="card-a"><a class="btn btn-line" href="qweet-phantom.html">לפרטים</a><button class="btn btn-main" data-wa="קוויט פאנטום" aria-label="מחיר בוואטסאפ על קוויט פאנטום"><svg><use href="#wa"/></svg>מחיר</button></div></div></article></div>
+    </div>
+  </section>
+
+  <section class="sec member">
+    <div class="wrap member-in">
+      <p class="member-n">10%</p>
+      <div><h2 class="big">הנחה לנרשמים</h2>
+      <p class="lead">פותחים משתמש באתר בחצי דקה, וההנחה נכתבת אוטומטית בהודעת ההזמנה שלכם.</p>
+      <button class="btn btn-main btn-l" data-join>להרשמה</button></div>
     </div>
   </section>
 
@@ -85,7 +97,7 @@
     <div class="wrap how-grid">
       <h2 class="big">הודעה אחת,<br>והשליח יוצא.</h2>
       <div class="chat" aria-label="כך נראית הזמנה">
-        <div class="msg me"><p>היי, הגעתי מהאתר של הדוד. אשמח לקבל מחיר על נינג'ה</p></div>
+        <div class="msg me"><p>היי, הגעתי מהאתר של הדוד. אשמח לקבל מחיר על נינג'ה גולד</p></div>
         <div class="msg them"><svg><use href="#logo"/></svg><p>היי! שולח לך עכשיו מחיר וטעמים שיש במלאי</p></div>
         <div class="msg me"><p>סגור, אני לוקח</p></div>
         <div class="msg them"><svg><use href="#logo"/></svg><p>מעולה. לאן להגיע?</p></div>
@@ -98,14 +110,15 @@
   <section class="sec" id="cities">
     <div class="wrap">
       <h2 class="big">רשת הדוד מתרחבת</h2>
-      <p class="lead">הצטרפו לקבוצת הוואטסאפ של העיר שלכם: קבוצות רשמיות, עדכונים, מבצעים ומוצרים חדשים.</p>
-      <ul class="city-list" id="cityList"></ul>
+      <p class="lead">הצטרפו לקבוצת הוואטסאפ הרשמית של העיר שלכם: מבצעים בלעדיים, מוצרים חדשים ועדכוני מלאי.</p>
+      <a class="city main" href="https://chat.whatsapp.com/E9wtf3yIp5pKaKHJBiUeNp" target="_blank" rel="noopener"><span class="city-n">הקבוצה הראשית של רשת הדוד</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a>
+      <ul class="city-list"><li><a class="city" href="https://chat.whatsapp.com/Imh2ZDRe7W62kp15ZZScmi" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>אשקלון</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/Cj6EUaNfvrMJV39FDsxvnP" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>ראשון לציון</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/J1wP1OqBdlvLcwPg7Rk8YW" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>פרדס חנה</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/Lg6ATxYxOeH2Zuyh4pNlcf" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>עכו</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/LmqPUMiXWHVHEY7aMUnWy9" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>שלומי</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><div class="city soon"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>קריות</span><span class="city-s">בקרוב</span></div></li></ul>
     </div>
   </section>
 
   <section class="end">
     <div class="wrap">
-      <p class="end-clock">השעה <b id="clock2">00:00</b>.</p>
+      <p class="end-clock">השעה <b data-clock>00:00</b>.</p>
       <h2 class="huge">פתוחים.</h2>
       <div class="end-cta">
         <button class="btn btn-main btn-l" data-wa=""><svg><use href="#wa"/></svg>להזמין בוואטסאפ</button>
@@ -126,7 +139,37 @@
   </div>
 </footer>
 
+<div class="modal" id="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="modal-x" data-close aria-label="סגירה">×</button>
+    <div id="mPromo">
+      <p class="m-big">10%</p>
+      <h2 class="m-h" id="mTitle">הנחה לנרשמים</h2>
+      <p class="m-p">פותחים משתמש באתר, ומקבלים 10% הנחה על ההזמנה.</p>
+      <button class="btn btn-main btn-l" id="mGo">להרשמה</button>
+      <button class="m-later" data-close>אולי אחר כך</button>
+    </div>
+    <form id="mForm" hidden novalidate>
+      <h2 class="m-h">הרשמה לדוד</h2>
+      <p class="m-p">חצי דקה, ו-10% הנחה אצלך.</p>
+      <label>שם<input name="name" autocomplete="name" required minlength="2"></label>
+      <label>טלפון<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05X-XXXXXXX" required dir="ltr"></label>
+      <label>עיר<select name="city" required><option value="">בחירת עיר</option><option>אשקלון</option><option>ראשון לציון</option><option>פרדס חנה</option><option>עכו</option><option>שלומי</option><option>קריות</option><option>עיר אחרת</option></select></label>
+      <label class="m-chk"><input type="checkbox" name="age" required><span>אני מעל גיל 18</span></label>
+      <p class="m-err" id="mErr" role="alert"></p>
+      <button class="btn btn-main btn-l">לפתוח משתמש</button>
+    </form>
+    <div id="mDone" hidden>
+      <p class="m-big">10%</p>
+      <h2 class="m-h" id="mDoneT">נרשמת!</h2>
+      <p class="m-p">ההנחה תיכתב אוטומטית בהודעת ההזמנה שלך בוואטסאפ.</p>
+      <a class="btn btn-main btn-l" id="mGroup" target="_blank" rel="noopener" hidden><svg><use href="#wa"/></svg><span>להצטרף לקבוצה של העיר</span></a>
+      <button class="m-later" data-close>לסגור</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status"></div>
-<script src="js/app.js?v=5" defer></script>
+<script src="js/app.js?v=6" defer></script>
 </body>
 </html>

@@ -509,3 +509,10 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 .member h3{font-size:clamp(1.35rem,1.9vw,1.7rem)}
 .member p{max-width:30em;margin-inline:auto}
 @media (max-width:860px){.member__img{aspect-ratio:1}.team__grid{gap:44px}}
+
+/* ================= v5: partners in gold on dark ================= */
+.partners{background:none;color:var(--ink);border-block:1px solid var(--line);padding-block:clamp(44px,6vw,80px)}
+.partners::before,.partners::after{display:none}
+.partners .mq__track{gap:clamp(44px,6vw,90px);padding-inline-end:clamp(44px,6vw,90px);animation-duration:40s;will-change:transform}
+.partners .mq__track--slow img{height:clamp(38px,4.6vw,56px);width:auto;max-width:none;flex:none;object-fit:contain;filter:none;opacity:.9}
+.partners .mq__track--slow img:hover{opacity:1}

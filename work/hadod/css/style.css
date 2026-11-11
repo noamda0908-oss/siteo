@@ -47,6 +47,7 @@ ul{list-style:none}svg{display:block}img{display:block;max-width:100%}
 .nav-ig svg{width:22px;height:22px}
 @media(max-width:620px){.nav-live{display:none}}
 
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url(../img/logo-tile.webp) center top/220px 220px;opacity:.1}
 .promo{position:relative;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:9px var(--pad);background:#141414;border-bottom:1px solid var(--ash);font-size:15px;text-align:center}
 .promo b{color:var(--orange)}
 .promo-a{font-weight:700;text-decoration:underline;text-underline-offset:3px}

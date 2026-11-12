@@ -351,3 +351,42 @@ body:not(.entered) .hero-go.nbtn{opacity:0}
 .tape svg use{fill:#ffd27a}
 .tape svg{filter:drop-shadow(0 0 6px #e9b93a)}
 .a11y-contrast .tape span{color:#fff!important}
+
+/* ---- neon buttons everywhere (replaces gold) ---- */
+.btn-gold{background:rgba(0,0,0,.55);color:#fff;border:2px solid var(--orange);box-shadow:0 0 10px var(--orange),0 0 26px rgba(255,106,19,.45),inset 0 0 12px rgba(255,106,19,.4);text-shadow:0 0 10px rgba(255,138,61,.9);overflow:visible}
+.btn-gold svg{color:var(--orange);filter:drop-shadow(0 0 5px var(--orange))}
+.btn-gold:hover{filter:none;background:var(--orange);color:#000;text-shadow:none}
+.btn-gold:hover svg{color:#000;filter:none}
+.nav .btn-gold::after{display:none}
+.promo-b{background:#000;color:#ffd27a;border:1.500px solid var(--orange);box-shadow:0 0 10px var(--orange);text-shadow:0 0 8px var(--orange)}
+.a11y-contrast .btn-gold,.a11y-contrast .btn-gold span{color:#fff!important}
+
+/* ---- lower sections in neon ---- */
+.member-in{border:2px solid var(--orange);border-style:solid;background:rgba(0,0,0,.6);box-shadow:0 0 12px var(--orange),0 0 34px rgba(255,106,19,.35),inset 0 0 18px rgba(255,106,19,.22)}
+.member-t b{text-shadow:0 0 14px rgba(255,106,19,.9)}
+#areas .big,#info .big{text-shadow:0 0 22px rgba(255,255,255,.3)}
+.area-box{border:2px solid var(--orange);background:rgba(0,0,0,.66);box-shadow:0 0 10px rgba(255,106,19,.9),0 0 30px rgba(255,106,19,.3),inset 0 0 20px rgba(255,106,19,.16)}
+.area-box .info-h{color:var(--orange);text-shadow:0 0 14px rgba(255,106,19,.75)}
+.tags li{background:transparent;color:#ffd27a;border:1.500px solid var(--orange);box-shadow:0 0 8px rgba(255,106,19,.8),inset 0 0 8px rgba(255,106,19,.35);text-shadow:0 0 10px rgba(255,106,19,.9);animation:tagl 7s infinite}
+.tags li:nth-child(3n+2){animation-delay:2.300s}.tags li:nth-child(3n){animation-delay:4.600s}
+@keyframes tagl{0%,88%,100%{opacity:1}91%{opacity:.35}94%{opacity:1}}
+.city{background:rgba(0,0,0,.5);box-shadow:0 0 8px rgba(255,106,19,.6)}
+.city.main{background:rgba(0,0,0,.5);color:#fff;border:2px solid var(--orange);box-shadow:0 0 12px var(--orange),inset 0 0 16px rgba(255,106,19,.45);text-shadow:0 0 10px rgba(255,138,61,.9)}
+a.city.main:hover{background:var(--orange);color:#000;text-shadow:none}
+.about{position:relative;background:#000;color:#fff;text-align:center;border-block:2px solid var(--orange);box-shadow:0 0 16px var(--orange),0 0 60px rgba(255,106,19,.4),inset 0 0 60px rgba(255,106,19,.14);overflow:hidden;z-index:1}
+.about::before,.about::after{content:"";position:absolute;top:0;width:3px;height:260px;background:var(--orange);box-shadow:0 0 14px 3px var(--orange);transform-origin:top;animation:nfl 6s infinite}
+.about::before{right:6%;transform:rotate(38deg)}.about::after{left:6%;transform:rotate(-38deg);animation-delay:.7s}
+.about .wrap{position:relative;z-index:1}
+.about-s{color:var(--orange);text-shadow:0 0 18px rgba(255,106,19,.7),0 0 50px rgba(255,106,19,.35)}
+.about-p{margin-inline:auto;color:#eee;font-weight:400}
+.faq{border-top:2px solid var(--orange);box-shadow:0 -1px 12px -2px var(--orange)}
+.faq details{border-bottom:1.500px solid rgba(255,106,19,.45)}
+.faq details[open]{border-bottom-color:var(--orange);box-shadow:0 8px 14px -10px var(--orange)}
+.faq details[open] summary{text-shadow:0 0 14px rgba(255,106,19,.75)}
+.faq summary::after{text-shadow:0 0 10px var(--orange)}
+.warn{border-color:var(--orange);box-shadow:0 0 10px rgba(255,106,19,.7),inset 0 0 12px rgba(255,106,19,.2)}
+.foot-links a{color:#ffd27a}
+.age{box-shadow:0 0 10px var(--orange);text-shadow:0 0 8px var(--orange)}
+.find-box{border-color:var(--orange);box-shadow:0 0 8px rgba(255,106,19,.6)}
+.a11y-contrast .about p,.a11y-contrast .tags li{color:#fff!important}
+@media(prefers-reduced-motion:reduce){.tags li,.about::before,.about::after{animation:none}}

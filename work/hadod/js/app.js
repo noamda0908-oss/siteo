@@ -58,6 +58,17 @@ mForm.addEventListener('submit', e => {
   show(mDone);
 });
 
+/* search: filter the product cards as you type */
+const find = $('#find');
+if (find) find.addEventListener('input', () => {
+  const q = find.value.trim().toLowerCase().replace(/['׳’]/g, ''); let any = false;
+  $$('[data-find]').forEach(sec => { let n = 0;
+    sec.querySelectorAll('.card').forEach(c => { const hit = !q || c.dataset.k.toLowerCase().replace(/['׳’]/g, '').includes(q); c.hidden = !hit; if (hit) n++; });
+    sec.hidden = !n; any = any || n > 0; });
+  $$('.member').forEach(m => m.hidden = !!q);
+  $('#findNone').hidden = any;
+});
+
 /* vodka packages */
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-pack]'); if (!b) return;

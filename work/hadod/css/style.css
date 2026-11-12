@@ -65,6 +65,19 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 .cats a:hover{color:var(--orange)}
 body:not(.entered) .cats{opacity:0}
 .entered .cats{animation:rise .9s 1s cubic-bezier(.2,.7,.2,1) both}
+.find{padding-top:clamp(28px,4vw,48px)}
+.find-box{display:flex;align-items:center;gap:12px;height:58px;padding:0 18px;border:1.5px solid #3a3a3a;border-radius:10px;background:rgba(0,0,0,.7);transition:border-color .2s}
+.find-box:focus-within{border-color:var(--orange)}
+.find-box svg{width:22px;height:22px;flex:none;color:var(--smoke)}
+.find-box input{flex:1;min-width:0;height:100%;background:none;border:0;outline:0;color:#fff;font:inherit;font-size:17px}
+.find-box input::placeholder{color:#777}
+.find-none{margin-top:14px;color:var(--smoke)}
+.find+.sec{padding-top:clamp(36px,5vw,64px)}
+[hidden]{display:none!important}
+.info{display:grid;gap:clamp(28px,4vw,56px)}
+@media(min-width:900px){.info{grid-template-columns:repeat(3,1fr)}}
+.info-h{font-family:var(--disp);font-size:clamp(42px,4.200vw,56px);line-height:.95;margin-bottom:10px}
+.info p{color:#d6d6d6;font-size:16px;line-height:1.7}
 .incl{border-top:1px solid var(--ash)}
 .incl li{padding:12px 0;border-bottom:1px solid var(--ash);font-size:17px}
 .vd{display:grid;gap:clamp(28px,5vw,72px)}

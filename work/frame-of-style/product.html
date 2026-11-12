@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frame of Style — תמונת קיר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="light" id="top">
+<main class="pp">
+  <a class="back" href="index.html#shop">→ לכל התמונות</a>
+  <div class="pgrid">
+    <div class="pstage" id="pStage"></div>
+    <div class="pinfo">
+      <div class="pcat" id="pCat"></div>
+      <h1 class="pname"><i id="pName"></i></h1>
+      <p class="pdesc" id="pDesc"></p>
+      <div><div class="lab">גודל</div><div class="opts" id="pSizes"></div></div>
+      <button class="dark-btn" id="addBtn"><span>הוספה לעגלה</span><span id="pPrice"></span></button>
+      <div class="pnotes">
+        <div>משלוח <span>לכל הארץ</span></div>
+        <div>מגיע <span>ממוסגר ומוכן לתלייה</span></div>
+        <div>רוצים שינוי? <span>התאמה אישית לפי הזמנה</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+<section class="more">
+  <h2 class="rv">עוד תמונות לקיר</h2>
+  <div class="row" id="row"></div>
+</section>
+
+<script src="app.js"></script>
+<script>
+const p=byId(new URLSearchParams(location.search).get("id"))||PRODUCTS[0];let size=CONFIG.SIZES[0];
+document.title=p.name+" — Frame of Style";
+$("#pStage").innerHTML=frame(p.id);$("#pCat").textContent=p.cat;$("#pName").textContent=p.name;$("#pDesc").textContent=p.desc;
+function opts(){$("#pSizes").innerHTML=CONFIG.SIZES.map(s=>`<button class="opt${s==size?" on":""}" data-s="${s.id}">${s.label}<small>${s.dim}</small></button>`).join("");
+  $("#pPrice").textContent=money(size.price);$("#pStage .frame").style.width=`min(${56+CONFIG.SIZES.indexOf(size)*8}%,${300+CONFIG.SIZES.indexOf(size)*40}px)`}
+$("#pSizes").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(b){size=CONFIG.SIZES.find(s=>s.id==b.dataset.s);opts()}});
+$("#addBtn").onclick=()=>addToCart(p,size,$("#pStage .frame"));
+$("#row").innerHTML=PRODUCTS.filter(x=>x.id!=p.id).map(card).join("");
+opts();watch();
+requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add("ready")));
+</script>
+</body>
+</html>

@@ -18,7 +18,7 @@ async function key(code, salt) {
 }
 async function gh(path, opt = {}) {
   const r = await fetch(API + path + (opt.method ? '' : `?ref=${CFG.branch}&t=${Date.now()}`), { ...opt, headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', ...(opt.body ? { 'Content-Type': 'application/json' } : {}) } });
-  if (!r.ok) throw new Error(r.status === 401 ? 'הטוקן לא תקף' : r.status === 404 ? 'not-found' : r.status === 409 || r.status === 422 ? 'מישהו שמר במקביל. רעננו ונסו שוב' : 'שגיאת שמירה (' + r.status + ')');
+  if (!r.ok) throw new Error(r.status === 401 ? 'הטוקן לא תקף' : r.status === 403 ? 'לטוקן אין הרשאת כתיבה לריפו siteo. צריך טוקן חדש עם Contents: Read and write' : r.status === 404 ? 'not-found' : r.status === 409 || r.status === 422 ? 'מישהו שמר במקביל. רעננו ונסו שוב' : 'שגיאת שמירה (' + r.status + ')');
   return r.json();
 }
 async function put(path, bytes, message, sha) {
@@ -49,7 +49,7 @@ async function boot() {
 }
 $('#fSetup').onsubmit = async e => {
   e.preventDefault(); const code = $('#newCode').value.trim(); token = $('#tok').value.trim();
-  if (code.length < 8) return msg('הקוד צריך להיות באורך 8 תווים לפחות', true);
+  if (code.length < 10 || !/[a-zA-Zא-ת]/.test(code) || !/\d/.test(code)) return msg('הקוד צריך להיות באורך 10 תווים לפחות, עם אותיות וגם ספרות', true);
   msg('בודק את הטוקן...');
   try {
     await loadData();

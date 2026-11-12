@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>ניהול | HADOD הדוד</title>
-<link rel="stylesheet" href="css/style.css?v=26">
+<link rel="stylesheet" href="css/style.css?v=27">
 <style>
 body{background:#000}
 .a-wrap{max-width:760px;margin:0 auto;padding:24px 18px 80px}
@@ -41,7 +41,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
 </head>
 <body>
 <div class="a-wrap">
-  <div class="a-top"><h1 class="a-h">ניהול הדוד</h1><a href="./?v=26"><img src="img/logo-s.webp" alt="לאתר"></a></div>
+  <div class="a-top"><h1 class="a-h">ניהול הדוד</h1><a href="./?v=27"><img src="img/logo-s.webp" alt="לאתר"></a></div>
   <p class="a-msg" id="msg" hidden></p>
 
   <section class="a-view" id="vLogin" hidden>
@@ -55,10 +55,10 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
     <ol class="a-steps">
       <li>נכנסים ל-GitHub, להגדרות החשבון, ושם ל-<bdi dir="ltr">Developer settings › Fine-grained tokens</bdi>, ויוצרים טוקן חדש.</li>
       <li>בוחרים גישה רק לריפו <bdi dir="ltr">siteo</bdi>, ובהרשאות מסמנים <bdi dir="ltr">Contents: Read and write</bdi>.</li>
-      <li>מדביקים כאן את הטוקן ובוחרים קוד מנהלים של 8 תווים לפחות.</li>
+      <li>מדביקים כאן את הטוקן ובוחרים קוד מנהלים של 10 תווים לפחות, עם אותיות וספרות.</li>
     </ol>
     <form id="fSetup"><label>טוקן GitHub<input id="tok" type="password" required dir="ltr"></label>
-    <label>קוד מנהלים חדש<input id="newCode" type="text" required minlength="8"></label>
+    <label>קוד מנהלים חדש<input id="newCode" type="text" required minlength="10"></label>
     <button class="btn btn-gold btn-l">לשמור ולהיכנס</button></form>
   </section>
 
@@ -97,6 +97,6 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
     </form>
   </div>
 </div>
-<script src="js/admin.js?v=26"></script>
+<script src="js/admin.js?v=27"></script>
 </body>
 </html>

@@ -390,3 +390,17 @@ a.city.main:hover{background:var(--orange);color:#000;text-shadow:none}
 .find-box{border-color:var(--orange);box-shadow:0 0 8px rgba(255,106,19,.6)}
 .a11y-contrast .about p,.a11y-contrast .tags li{color:#fff!important}
 @media(prefers-reduced-motion:reduce){.tags li,.about::before,.about::after{animation:none}}
+
+/* about: neon sign card, no big lines */
+.about{border:0;box-shadow:none;background:none;padding:clamp(30px,5vw,70px) 0;overflow:visible}
+.about::before,.about::after{display:none}
+.about-card{max-width:760px;margin-inline:auto;padding:clamp(28px,5vw,54px) clamp(18px,4vw,48px);border:2px solid var(--orange);border-radius:26px;background:rgba(0,0,0,.72);box-shadow:0 0 14px var(--orange),0 0 46px rgba(255,106,19,.4),inset 0 0 34px rgba(255,106,19,.18)}
+.about-logo{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;filter:drop-shadow(0 0 16px var(--orange))}
+.about-s{font-size:clamp(46px,8.500vw,96px);line-height:.92;color:#fff;text-shadow:0 0 18px rgba(255,255,255,.3)}
+.about-s span{color:var(--orange);text-shadow:0 0 16px rgba(255,106,19,.7),0 0 44px rgba(255,106,19,.35)}
+.about-line{display:block;width:120px;height:2px;margin:22px auto 20px;background:var(--orange);box-shadow:0 0 10px var(--orange)}
+.about-p{margin-top:0;font-size:clamp(16px,1.400vw,19px);line-height:1.7;max-width:30em}
+/* faq inside one neon frame, nothing spills sideways */
+.faq{border:2px solid var(--orange);border-radius:20px;padding:4px clamp(14px,3vw,28px);background:rgba(0,0,0,.66);box-shadow:0 0 12px rgba(255,106,19,.9),0 0 34px rgba(255,106,19,.3),inset 0 0 22px rgba(255,106,19,.14)}
+.faq details,.faq details[open]{box-shadow:none;border-bottom:1.500px solid rgba(255,106,19,.4)}
+.faq details:last-child{border-bottom:0}

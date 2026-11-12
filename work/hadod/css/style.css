@@ -452,3 +452,17 @@ a.zone-c:hover{background:rgba(255,106,19,.22)}
 /* v38: about sits right after the catalog */
 .sec+.about{padding-top:0}
 .about+.sec{border-top:0;padding-top:clamp(40px,6vw,80px)}
+/* v39: footer in neon */
+.foot{border-top:2px solid var(--orange);box-shadow:0 -1px 14px var(--orange),0 -10px 44px rgba(255,106,19,.25);background:rgba(0,0,0,.72);padding-top:clamp(28px,4vw,48px);position:relative}
+.warn{border-radius:14px;margin-bottom:12px;background:rgba(0,0,0,.6)}
+.warn+.warn{margin-top:0}
+.foot-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 28px}
+.foot-links a{display:flex;align-items:center;justify-content:center;min-height:54px;padding:6px 10px;text-align:center;text-decoration:none;font-family:var(--disp);font-size:27px;line-height:1;color:#fff;border:1.5px solid var(--orange);border-radius:14px;background:rgba(0,0,0,.6);box-shadow:0 0 9px rgba(255,106,19,.85),inset 0 0 12px rgba(255,106,19,.28);text-shadow:0 0 12px rgba(255,138,61,.8);transition:background .2s,color .2s}
+.foot-links a:hover{background:var(--orange);color:#000;text-shadow:none}
+.foot-links a:last-child{border-color:rgba(255,106,19,.4);box-shadow:none;text-shadow:none;color:#bbb}
+@media(min-width:800px){.foot-links{grid-template-columns:repeat(6,1fr)}}
+.foot-logo{border-radius:50%;box-shadow:0 0 12px var(--orange),0 0 30px rgba(255,106,19,.4)}
+.foot-ig{padding:9px 16px;border:1.5px solid var(--orange);border-radius:99px;box-shadow:0 0 8px rgba(255,106,19,.8),inset 0 0 8px rgba(255,106,19,.3)}
+.foot-ig svg{color:var(--orange);filter:drop-shadow(0 0 4px var(--orange))}
+.age{direction:ltr;unicode-bidi:isolate}
+.a11y-contrast .foot-links a{border-color:#fff;color:#fff}

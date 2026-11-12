@@ -449,3 +449,6 @@ a.zone-c:hover{background:rgba(255,106,19,.22)}
 .a11y-still .promo b{animation:none}
 .zone-c b{white-space:nowrap}
 @media(min-width:800px){.zone-c b{font-size:clamp(26px,2.4vw,32px)}}
+/* v38: about sits right after the catalog */
+.sec+.about{padding-top:0}
+.about+.sec{border-top:0;padding-top:clamp(40px,6vw,80px)}

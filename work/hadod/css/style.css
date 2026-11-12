@@ -466,3 +466,9 @@ a.zone-c:hover{background:rgba(255,106,19,.22)}
 .foot-ig svg{color:var(--orange);filter:drop-shadow(0 0 4px var(--orange))}
 .age{direction:ltr;unicode-bidi:isolate}
 .a11y-contrast .foot-links a{border-color:#fff;color:#fff}
+/* v40: instagram in its own colours, glowing */
+.nav-ig:not(.nav-cart){background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%);color:#fff;box-shadow:0 0 10px rgba(214,36,159,.9),0 0 26px rgba(253,89,73,.6),inset 0 1px 0 rgba(255,255,255,.45);animation:igglow 3s ease-in-out infinite}
+.nav-ig:not(.nav-cart) svg{filter:drop-shadow(0 0 4px rgba(255,255,255,.75))}
+@keyframes igglow{0%,100%{box-shadow:0 0 8px rgba(214,36,159,.8),0 0 20px rgba(253,89,73,.45),inset 0 1px 0 rgba(255,255,255,.45)}50%{box-shadow:0 0 14px rgba(214,36,159,1),0 0 38px rgba(253,89,73,.8),0 0 60px rgba(40,90,235,.35),inset 0 1px 0 rgba(255,255,255,.45)}}
+.a11y-still .nav-ig{animation:none}
+@media(prefers-reduced-motion:reduce){.nav-ig:not(.nav-cart){animation:none}}

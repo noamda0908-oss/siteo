@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>ניהול | HADOD הדוד</title>
-<link rel="stylesheet" href="css/style.css?v=28">
+<link rel="stylesheet" href="css/style.css?v=29">
 <style>
 body{background:#000}
 .a-wrap{max-width:760px;margin:0 auto;padding:24px 18px 80px}
@@ -35,13 +35,22 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
 .a-chk{display:flex;align-items:center;gap:10px;color:#fff;font-size:16px}
 .a-chk input{width:22px;height:22px;accent-color:var(--orange)}
 #dlg .modal-box{max-width:560px;text-align:right;max-height:92vh;overflow:auto}
+.a-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;color:var(--smoke);font-size:14px}
+.a-nums b{display:block;font-family:var(--disp);font-size:54px;line-height:1;color:var(--orange)}
+.a-box h3{font-size:15px;color:var(--smoke);margin:16px 0 4px}
+.a-rows li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--ash)}
+.a-tbl{overflow-x:auto;margin-top:12px}
+.a-tbl table{width:100%;border-collapse:collapse;font-size:15px}
+.a-tbl th,.a-tbl td{padding:9px 8px;border-bottom:1px solid var(--ash);text-align:right;white-space:nowrap}
+.a-tbl th{color:var(--smoke);font-weight:500;font-size:13px}
+.a-tbl button{padding:5px 10px;border-radius:8px;border:1.5px solid #7a2a22;color:#ffb4a8;font-size:13px}
 .a-steps{padding-inline-start:20px;list-style:decimal;color:#d6d6d6}
 .a-steps li{margin-bottom:6px}
 </style>
 </head>
 <body>
 <div class="a-wrap">
-  <div class="a-top"><h1 class="a-h">ניהול הדוד</h1><a href="./?v=28"><img src="img/logo-s.webp" alt="לאתר"></a></div>
+  <div class="a-top"><h1 class="a-h">ניהול הדוד</h1><a href="./?v=29"><img src="img/logo-s.webp" alt="לאתר"></a></div>
   <p class="a-msg" id="msg" hidden></p>
 
   <section class="a-view" id="vLogin" hidden>
@@ -63,6 +72,13 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
   </section>
 
   <section class="a-view" id="vPanel" hidden>
+    <h2>פניות מהאתר</h2>
+    <div class="a-box" id="stats"><p>טוען...</p></div>
+
+    <h2>מנויים (<span id="mCount">0</span>)</h2>
+    <button class="btn btn-line" id="csv">להוריד כקובץ אקסל</button>
+    <div class="a-tbl"><table><thead><tr><th>שם</th><th>טלפון</th><th>עיר</th><th>נרשם</th><th></th></tr></thead><tbody id="members"></tbody></table></div>
+
     <h2>מוצרים (<span id="count">0</span>)</h2>
     <button class="btn btn-gold" id="add">מוצר חדש</button>
     <ul id="list" style="margin-top:14px"></ul>
@@ -76,8 +92,6 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
     <form class="a-box" id="fCode"><label>קוד חדש (8 תווים לפחות, אותיות וספרות)<input id="chCode" type="text" autocomplete="off" dir="ltr"></label>
     <button class="btn btn-line">להחליף קוד</button></form>
 
-    <h2>פניות מהאתר</h2>
-    <div class="a-box"><p>ספירת פניות בתוך הפאנל דורשת שרת, ותתווסף כשהאתר יעבור לשרת. עד אז רואים את מספר הפניות דרך הפיקסל, באירוע Contact.</p></div>
   </section>
 </div>
 
@@ -101,6 +115,6 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange)}
     </form>
   </div>
 </div>
-<script src="js/admin.js?v=28"></script>
+<script src="js/admin.js?v=29"></script>
 </body>
 </html>

@@ -25,6 +25,25 @@ async function put(path, bytes, message, sha) {
   const j = await gh(path, { method: 'PUT', body: JSON.stringify({ message, content: b64(bytes), branch: CFG.branch, ...(sha ? { sha } : {}) }) });
   return j.content.sha;
 }
+const SB = 'https://mdtrmfpgxavogcsjqkyf.supabase.co', SB_KEY = 'sb_publishable_-NPTAZma3xTId6h7llckMA_Ww3-SWVz';
+let dbKey = '';
+async function rpc(fn, args) {
+  if (!dbKey) dbKey = [...new Uint8Array(await crypto.subtle.digest('SHA-256', utf8(token + '|hadod-db')))].map(b => b.toString(16).padStart(2, '0')).join('');
+  const r = await fetch(`${SB}/rest/v1/rpc/${fn}`, { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify({ k: dbKey, ...args }) });
+  if (!r.ok) throw new Error('אין גישה לנתוני המנויים (' + r.status + ')'); const t = await r.text(); return t ? JSON.parse(t) : null;
+}
+const SRC_HE = { instagram: 'אינסטגרם', facebook: 'פייסבוק', whatsapp: 'וואטסאפ', google: 'גוגל', tiktok: 'טיקטוק', direct: 'ישיר', other: 'אחר' };
+let members = [];
+async function drawDb() {
+  try {
+    const [st, ms] = await Promise.all([rpc('admin_stats', {}), rpc('admin_members', {})]); members = ms;
+    $('#stats').innerHTML = `<div class="a-nums"><div><b>${st.today}</b>היום</div><div><b>${st.week}</b>7 ימים</div><div><b>${st.total}</b>סה"כ</div></div>
+      <h3>מאיפה הגיעו</h3><ul class="a-rows">${st.by_source.map(x => `<li><span>${esc(SRC_HE[x.source] || x.source)}</span><b>${x.n}</b></li>`).join('') || '<li>עוד אין פניות.</li>'}</ul>
+      <h3>על מה פנו</h3><ul class="a-rows">${st.by_product.map(x => `<li><span>${esc(x.product)}</span><b>${x.n}</b></li>`).join('') || '<li>עוד אין פניות.</li>'}</ul>`;
+    $('#mCount').textContent = ms.length;
+    $('#members').innerHTML = ms.map(m => `<tr><td>${esc(m.name)}</td><td dir="ltr"><a href="tel:${esc(m.phone)}">${esc(m.phone)}</a></td><td>${esc(m.city)}</td><td>${new Date(m.created_at).toLocaleDateString('he-IL')}</td><td><button data-mdel="${m.id}" class="danger">מחיקה</button></td></tr>`).join('') || '<tr><td colspan="5">עוד אין נרשמים.</td></tr>';
+  } catch (err) { $('#stats').innerHTML = `<p>${esc(err.message)}</p>`; }
+}
 async function loadData() { const j = await gh('data.json'); dataSha = j.sha; data = JSON.parse(text(unb64(j.content))); data.products = data.products || []; data.settings = data.settings || {}; }
 async function saveData(what) {
   msg('שומר...');
@@ -68,6 +87,7 @@ $('#fSetup').onsubmit = async e => {
 /* ----- panel ----- */
 const CATS = { vape: 'וייפים', pack: 'חבילות וודקה' };
 function draw() {
+  drawDb();
   $('#count').textContent = data.products.length;
   $('#list').innerHTML = data.products.map((p, i) => `<li class="${p.hidden ? 'off' : ''}">
     <img src="${esc(p.img)}" alt=""><div><b>${esc(p.name)}</b><span>${CATS[p.cat] || p.cat}${p.hidden ? ' · מוסתר' : ''}${p.promo ? ` · <em>${esc(p.promo)}</em>` : ''}</span></div>
@@ -86,6 +106,9 @@ function openForm(i) {
 document.addEventListener('click', async e => {
   const t = e.target;
   if (t.dataset.edit) return openForm(+t.dataset.edit);
+  if (t.dataset.mdel) { const m = members.find(x => x.id == t.dataset.mdel); if (!confirm(`למחוק את ${m.name} מרשימת המנויים?`)) return; try { await rpc('admin_delete_member', { p_id: m.id }); msg('המנוי נמחק.'); drawDb(); } catch (err) { msg(err.message, true); } return; }
+  if (t.id === 'csv') { const rows = [['שם', 'טלפון', 'עיר', 'תאריך']].concat(members.map(m => [m.name, m.phone, m.city, new Date(m.created_at).toLocaleDateString('he-IL')]));
+    const blob = new Blob(['\ufeff' + rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n')], { type: 'text/csv' }); const l = document.createElement('a'); l.href = URL.createObjectURL(blob); l.download = 'hadod-members.csv'; l.click(); return; }
   if (t.id === 'add') return openForm(-1);
   if (t.dataset.close !== undefined || t.id === 'dlg') return $('#dlg').hidden = true;
   if (t.dataset.del) { const p = data.products[+t.dataset.del]; if (!confirm(`למחוק את "${p.name}"?`)) return; data.products.splice(+t.dataset.del, 1); try { await saveData('delete ' + p.id); } catch (err) { msg(err.message, true); } }

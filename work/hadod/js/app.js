@@ -5,6 +5,18 @@ const PACK_NUMBER = '972559277843';   // הזמנות חבילות וודקה (0
 const MAIN_GROUP = "https://chat.whatsapp.com/E9wtf3yIp5pKaKHJBiUeNp";
 /* ========================================== */
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const SB = 'https://mdtrmfpgxavogcsjqkyf.supabase.co', SB_KEY = 'sb_publishable_-NPTAZma3xTId6h7llckMA_Ww3-SWVz';
+async function rpc(fn, args) {
+  const r = await fetch(`${SB}/rest/v1/rpc/${fn}`, { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json' }, body: JSON.stringify(args), keepalive: true });
+  if (!r.ok) throw new Error(r.status); const t = await r.text(); return t ? JSON.parse(t) : null;
+}
+/* where the visitor came from, kept for the visit */
+const SRC = (() => { let s = null; try { s = sessionStorage.getItem('hadodSrc'); } catch (_) {}
+  if (!s) { const u = (new URLSearchParams(location.search).get('utm_source') || '').toLowerCase(), r = document.referrer.toLowerCase();
+    s = u || (/instagram/.test(r) ? 'instagram' : /facebook|fb\./.test(r) ? 'facebook' : /whatsapp|wa\.me/.test(r) ? 'whatsapp' : /google/.test(r) ? 'google' : /tiktok/.test(r) ? 'tiktok' : r && !r.includes(location.host) ? 'other' : 'direct');
+    try { sessionStorage.setItem('hadodSrc', s); } catch (_) {} }
+  return s; })();
+const lead = product => rpc('log_lead', { p_product: product, p_source: SRC }).catch(() => {});
 const store = { get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (_) { return null; } },
                 set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} } };
 const sess = { get(k) { try { return sessionStorage.getItem(k); } catch (_) { return null; } },
@@ -37,7 +49,7 @@ function order(p) {
   let msg = p ? `היי, הגעתי מהאתר של הדוד. אשמח לקבל מחיר על ${p}` : 'היי, הגעתי מהאתר של הדוד. אשמח להזמין';
   const city = store.get('hadodCity') || (member && member.city); if (city) msg += `\nאני מ${city}.`;
   if (member) msg += `\nאני רשום באתר (${member.name}, ${member.phone}) ומגיעה לי 10% הנחה.`;
-  if (!WA_NUMBER) return say('הוואטסאפ יחובר בקרוב');
+  lead(p || 'הזמנה כללית');
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
 }
 document.addEventListener('click', e => {
@@ -47,14 +59,18 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) hide(); });
 $('#mGo').onclick = () => show(mForm);
-mForm.addEventListener('submit', e => {
+mForm.addEventListener('submit', async e => {
   e.preventDefault();
-  const f = new FormData(mForm), name = (f.get('name') || '').trim(), phone = (f.get('phone') || '').replace(/[^0-9]/g, '');
-  const err = name.length < 2 ? 'צריך שם' : !/^05\d{8}$/.test(phone) ? 'מספר טלפון לא תקין (05X ועוד 7 ספרות)' : '';
-  $('#mErr').textContent = err; if (err) return;
-  member = { name, phone, at: Date.now() }; store.set('hadodMember', member); paint();
-  $('#mDoneT').textContent = `${name.split(' ')[0]}, נרשמת!`;
-  const city = store.get('hadodCity'), g = $('#mGroup'); if (city && GROUPS[city]) { g.href = GROUPS[city]; g.lastElementChild.textContent = `להצטרף לקבוצה של ${city}`; g.hidden = false; } else g.hidden = true;
+  const f = new FormData(mForm), name = (f.get('name') || '').trim(), phone = (f.get('phone') || '').replace(/[^0-9]/g, ''), city = f.get('city') || '';
+  const err = name.length < 2 ? 'צריך שם' : !/^05\d{8}$/.test(phone) ? 'מספר טלפון לא תקין (05X ועוד 7 ספרות)' : !city ? 'צריך לבחור עיר' : '';
+  const mErr = $('#mErr'), btn = mForm.querySelector('button'); mErr.textContent = err; if (err) return;
+  btn.disabled = true; let res;
+  try { res = await rpc('register_member', { p_name: name, p_phone: phone, p_city: city }); } catch (_) { res = 'fail'; }
+  btn.disabled = false;
+  if (res === 'fail' || res === 'invalid') { mErr.textContent = 'ההרשמה לא נשמרה. בדקו את החיבור ונסו שוב.'; return; }
+  member = { name, phone, city, at: Date.now() }; store.set('hadodMember', member); if (city !== 'עיר אחרת') store.set('hadodCity', city); paint();
+  $('#mDoneT').textContent = res === 'exists' ? 'המספר הזה כבר רשום' : `${name.split(' ')[0]}, נרשמת!`;
+  const g = $('#mGroup'); if (GROUPS[city]) { g.href = GROUPS[city]; g.lastElementChild.textContent = `להצטרף לקבוצה של ${city}`; g.hidden = false; } else g.hidden = true;
   show(mDone);
 });
 
@@ -157,6 +173,7 @@ document.addEventListener('click', e => {
     let msg = 'היי, הגעתי מהאתר של הדוד. אשמח להזמין:\n' + Object.keys(cart).map(k => `• ${k} × ${cart[k]}`).join('\n');
     const city = store.get('hadodCity') || (member && member.city); if (city) msg += `\nאני מ${city}.`;
     if (member) msg += `\nאני רשום באתר (${member.name}, ${member.phone}) ומגיעה לי 10% הנחה.`;
+    lead('עגלה: ' + Object.keys(cart).map(k => `${k} × ${cart[k]}`).join(', '));
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
   }
 });

@@ -22,6 +22,10 @@ ul{list-style:none}svg{display:block}img{display:block;max-width:100%}
 .btn svg{width:22px;height:22px;flex:none}
 .btn-main{background:var(--orange);color:#000}
 .btn-main:hover{background:#fff}
+.btn-gold{color:#000;background:linear-gradient(170deg,#fff6c2 0%,#f1cb55 28%,#c8921a 52%,#f6dc7c 74%,#a8740f 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(0,0,0,.25),0 0 18px rgba(233,185,58,.35);position:relative;overflow:hidden}
+.btn-gold::after{content:"";position:absolute;top:0;bottom:0;width:38%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:glint 3.600s ease-in-out infinite}
+@keyframes glint{0%,55%{left:-60%}100%{left:130%}}
+.btn-gold:hover{filter:brightness(1.1)}
 .btn-line{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.4)}
 .btn-line:hover{box-shadow:inset 0 0 0 1.5px #fff}
 .btn-s{height:42px;padding:0 16px;font-size:23px}
@@ -38,7 +42,7 @@ ul{list-style:none}svg{display:block}img{display:block;max-width:100%}
 .modal .btn,.gate .btn{font-size:30px}
 
 .nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:10px var(--pad);background:rgba(0,0,0,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--ash)}
-.nav-logo svg{width:52px;height:52px}
+.nav-logo img{width:54px;height:54px}
 .nav-live{display:flex;align-items:center;gap:9px;font-size:14px;color:#d8d8d8}
 .nav-live b{color:#fff;font-variant-numeric:tabular-nums}
 .nav-live i{width:8px;height:8px;border-radius:50%;background:#2be36b}
@@ -47,7 +51,7 @@ ul{list-style:none}svg{display:block}img{display:block;max-width:100%}
 .nav-ig svg{width:22px;height:22px}
 @media(max-width:620px){.nav-live{display:none}}
 
-body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url(../img/logo-tile.webp) center top/220px 220px;opacity:.1}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url(../img/logo-tile.webp) center top/220px 220px;opacity:.09}
 .promo{position:relative;width:100%;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:9px var(--pad);background:#141414;border-bottom:1px solid var(--ash);font-size:15px;text-align:center}
 .promo b{color:var(--orange)}
 .promo-a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
@@ -230,4 +234,4 @@ a.city:hover .city-n svg{color:#000}
 
 .toast{position:fixed;z-index:60;bottom:28px;left:50%;transform:translate(-50%,24px);background:#fff;color:#000;font-weight:700;padding:12px 20px;border-radius:99px;opacity:0;pointer-events:none;transition:.25s;white-space:nowrap}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-@media(prefers-reduced-motion:reduce){.entered .hero>*{animation:none}.tape-in{animation:none}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.btn-gold::after{animation:none}.entered .hero>*{animation:none}.tape-in{animation:none}html{scroll-behavior:auto}}

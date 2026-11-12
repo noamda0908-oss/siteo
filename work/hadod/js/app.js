@@ -116,7 +116,7 @@ document.addEventListener('click', e => { const c = e.target.closest('[data-city
   function size() { const w = cv.clientWidth, hh = cv.clientHeight; cv.width = Math.max(2, w >> 1); cv.height = Math.max(2, hh >> 1); gl.viewport(0, 0, cv.width, cv.height); gl.uniform1f(ua, w / hh); }
   size(); addEventListener('resize', size);
   let k = 0, sy = 0;
-  (function loop(ms) { requestAnimationFrame(loop); if (document.hidden) return;
+  (function loop(ms) { requestAnimationFrame(loop); if (document.hidden || document.documentElement.classList.contains('a11y-still')) return;
     if (document.body.classList.contains('entered')) k = Math.min(1, k + .012);
     sy += (scrollY / innerHeight * .6 - sy) * .08;      // smoke slides down the page with the scroll
     gl.uniform1f(ut, ms / 1000); gl.uniform1f(uk, k); gl.uniform1f(us, sy); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); })(0);
@@ -131,3 +131,59 @@ function enter() {
 if (sess.get('age18')) enter();
 $('#gateYes').onclick = () => { sess.set('age18'); enter(); };
 $('#gateNo').onclick = () => { gate.innerHTML = '<p class="gate-q">מצטערים.</p><p class="gate-t">האתר מיועד למבוגרים מגיל 18 ומעלה בלבד.</p>'; };
+
+/* ---------- cart: collect a few items, order them in one WhatsApp message ---------- */
+let cart = store.get('hadodCart') || {};
+const cartEl = $('#cartBox'), cartN = $('#cartN');
+function cartCount() { return Object.values(cart).reduce((a, b) => a + b, 0); }
+function cartPaint() {
+  const n = cartCount(); cartN.textContent = n; cartN.hidden = !n;
+  $('#cartList').innerHTML = Object.keys(cart).map(k => `<li><span class="cart-n">${k}</span>
+    <span class="cart-q"><button data-q="-1" data-k="${k}" aria-label="להפחית ${k}">−</button><b aria-label="כמות">${cart[k]}</b><button data-q="1" data-k="${k}" aria-label="להוסיף ${k}">+</button></span></li>`).join('');
+  $('#cartEmpty').hidden = !!n; $('#cartGo').hidden = !n; $('#cartClear').hidden = !n;
+}
+function cartSave() { store.set('hadodCart', cart); cartPaint(); }
+let cartFrom = null;
+function cartOpen() { cartFrom = document.activeElement; cartPaint(); cartEl.hidden = false; document.body.classList.add('locked'); cartEl.querySelector('.modal-x').focus(); }
+function cartClose() { cartEl.hidden = true; if ($('#gate').hidden && modal.hidden) document.body.classList.remove('locked'); cartFrom && cartFrom.focus && cartFrom.focus(); }
+document.addEventListener('click', e => {
+  const add = e.target.closest('[data-add]');
+  if (add) { const k = add.dataset.add; cart[k] = (cart[k] || 0) + 1; cartSave(); return say(`${k} נוסף לעגלה`); }
+  const q = e.target.closest('[data-q]');
+  if (q) { const k = q.dataset.k; cart[k] = (cart[k] || 0) + +q.dataset.q; if (cart[k] <= 0) delete cart[k]; return cartSave(); }
+  if (e.target.closest('[data-cart]')) return cartOpen();
+  if (e.target.closest('[data-cart-close]') || e.target === cartEl) return cartClose();
+  if (e.target.closest('#cartClear')) { cart = {}; return cartSave(); }
+  if (e.target.closest('#cartGo')) {
+    let msg = 'היי, הגעתי מהאתר של הדוד. אשמח להזמין:\n' + Object.keys(cart).map(k => `• ${k} × ${cart[k]}`).join('\n');
+    const city = store.get('hadodCity') || (member && member.city); if (city && !member) msg += `\nאני מ${city}.`;
+    if (member) msg += `\nאני רשום באתר (${member.name}, ${member.city}, ${member.phone}) ומגיעה לי 10% הנחה.`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !cartEl.hidden) cartClose(); });
+cartPaint();
+
+/* ---------- accessibility menu ---------- */
+const root = document.documentElement, fab = $('#a11yFab'), panel = $('#a11yPanel');
+let a11y = store.get('hadodA11y') || { zoom: 0, contrast: false, links: false, still: false };
+function a11yApply() {
+  root.style.zoom = a11y.zoom ? String(1 + a11y.zoom * .1) : '';
+  ['contrast', 'links', 'still'].forEach(k => { root.classList.toggle('a11y-' + k, !!a11y[k]); const b = $(`[data-a11y="${k}"]`); b && b.setAttribute('aria-pressed', !!a11y[k]); });
+  store.set('hadodA11y', a11y);
+}
+a11yApply();
+fab.onclick = () => { panel.hidden = !panel.hidden; fab.setAttribute('aria-expanded', !panel.hidden); if (!panel.hidden) panel.querySelector('button').focus(); };
+panel.addEventListener('click', e => {
+  const b = e.target.closest('[data-a11y]'); if (!b) return; const k = b.dataset.a11y;
+  if (k === 'bigger') a11y.zoom = Math.min(4, a11y.zoom + 1);
+  else if (k === 'smaller') a11y.zoom = Math.max(0, a11y.zoom - 1);
+  else if (k === 'reset') a11y = { zoom: 0, contrast: false, links: false, still: false };
+  else a11y[k] = !a11y[k];
+  a11yApply();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) { panel.hidden = true; fab.setAttribute('aria-expanded', false); fab.focus(); } });
+
+/* privacy page: wipe what this site saved on the device */
+const wipe = $('#wipe');
+if (wipe) wipe.onclick = () => { try { ['hadodMember', 'hadodCart', 'hadodCity', 'hadodA11y'].forEach(k => localStorage.removeItem(k)); sessionStorage.clear(); } catch (_) {} say('הפרטים נמחקו מהמכשיר'); setTimeout(() => location.reload(), 1200); };

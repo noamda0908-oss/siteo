@@ -78,9 +78,8 @@ document.addEventListener('click', e => {
 });
 
 /* product page: pick a city, get that city's group */
-const pickGo = $('#pickGo');
 function pick(city, save) {
-  if (!pickGo) return;
+  const pickGo = $('#pickGo'); if (!pickGo) return;
   $$('[data-city]').forEach(b => b.classList.toggle('on', b.dataset.city === city));
   const has = GROUPS[city];
   pickGo.href = has || MAIN_GROUP; pickGo.hidden = false;
@@ -187,3 +186,62 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hid
 /* privacy page: wipe what this site saved on the device */
 const wipe = $('#wipe');
 if (wipe) wipe.onclick = () => { try { ['hadodMember', 'hadodCart', 'hadodCity', 'hadodA11y'].forEach(k => localStorage.removeItem(k)); sessionStorage.clear(); } catch (_) {} say('הפרטים נמחקו מהמכשיר'); setTimeout(() => location.reload(), 1200); };
+
+/* ---------- catalog: products come from data.json (edited in the admin panel) ---------- */
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const VQ = '?v=' + (document.currentScript ? (document.currentScript.src.split('v=')[1] || '') : '');
+function cardHTML(p) {
+  const href = `p.html?id=${encodeURIComponent(p.id)}`;
+  return `<article class="card" data-k="${esc([p.name, p.en, p.cat === 'pack' ? 'וודקה חבילה אלכוהול' : 'וייפ ויפ וייפים סיגריה אלקטרונית'].join(' '))}">
+    <a class="card-i" href="${href}"><img class="${p.cat === 'pack' ? 'sq' : ''}" src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy">${p.promo ? `<span class="promo-b">${esc(p.promo)}</span>` : ''}</a>
+    <div class="card-b"><h3><a href="${href}">${esc(p.name)}</a></h3><p>${esc(p.short)}</p>
+    <div class="card-a"><a class="btn btn-line" href="${href}">לפרטים</a><button class="btn btn-gold" data-add="${esc(p.name)}" aria-label="להוסיף ${esc(p.name)} לעגלה"><svg><use href="#cart"/></svg>לעגלה</button></div></div></article>`;
+}
+function pageHTML(p, others) {
+  const list = (t, a) => a && a.length ? `<h2 class="pp-sub">${t}</h2><ul class="incl">${a.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
+  const specs = p.specs && p.specs.length ? `<dl class="specs">${p.specs.map(s => `<div><dt>${esc(s[0])}</dt><dd>${esc(s[1])}</dd></div>`).join('')}</dl>` : '';
+  const flav = p.flavors && p.flavors.length ? `<h2 class="pp-sub">טעמים</h2><ul class="chips">${p.flavors.map(f => `<li>${esc(f)}</li>`).join('')}</ul>` : '';
+  const cities = p.cat === 'vape' ? `<div class="pick"><h2 class="pp-sub">באיזו עיר אתם?</h2>
+      <div class="pick-c">${Object.keys(GROUPS).concat('עיר אחרת').map(c => `<button data-city="${c}">${c}</button>`).join('')}</div>
+      <a class="btn btn-line btn-l pick-go" id="pickGo" target="_blank" rel="noopener" hidden><svg><use href="#wa"/></svg><span></span></a>
+      <p class="pp-note" id="pickNote">בוחרים עיר ומקבלים קישור לקבוצת הוואטסאפ שלה.</p></div>` : '';
+  return `<section class="pp"><div class="wrap pp-in">
+      <div class="pp-pic"><img class="pp-img" src="${esc(p.img)}" alt="${esc(p.name)}">${p.promo ? `<span class="promo-b">${esc(p.promo)}</span>` : ''}</div>
+      <div class="pp-info">
+        <a class="pp-back" href="./${VQ}#${p.cat === 'pack' ? 'vodka' : 'products'}">${p.cat === 'pack' ? 'לכל החבילות' : 'לכל הוויפים'}</a>
+        <h1 class="pp-h">${esc(p.name)}</h1>
+        ${p.en ? `<p class="pp-en" dir="ltr">${esc(p.en)}</p>` : ''}
+        ${p.promo ? `<p class="pp-promo"><b>מבצע:</b> ${esc(p.promo)}</p>` : ''}
+        <p class="pp-intro">${esc(p.intro)}</p>
+        ${specs}${list('מה בחבילה', p.incl)}${flav}
+        <p class="pp-note">${esc(p.note || 'טעמים וזמינות משתנים לפי המלאי. שואלים בוואטסאפ מה יש עכשיו.')}</p>
+        ${cities}
+        <button class="btn btn-gold btn-l pp-buy" data-wa="${esc(p.name)}"><svg><use href="#wa"/></svg>להזמין מנציג בוואטסאפ</button>
+        <button class="btn btn-gold btn-l pp-add" data-add="${esc(p.name)}"><svg><use href="#cart"/></svg>הוספה לעגלה</button>
+        <p class="pp-note">נציג עונה בוואטסאפ עם מחיר, טעמים וזמן הגעה.</p>
+        <button class="pp-member" data-join><b>10% הנחה</b><span class="pp-member-t">לנרשמים לאתר. להרשמה</span></button>
+      </div></div></section>
+    ${others.length ? `<section class="sec"><div class="wrap"><h2 class="big">${p.cat === 'pack' ? 'עוד חבילות' : 'עוד וייפים'}</h2><div class="grid g3">${others.map(cardHTML).join('')}</div></div></section>` : ''}`;
+}
+fetch('data.json?t=' + Math.floor(Date.now() / 60000)).then(r => r.json()).then(data => {
+  const live = (data.products || []).filter(p => !p.hidden);
+  [['#gridVape', 'vape'], ['#gridPack', 'pack']].forEach(([sel, cat]) => {
+    const g = $(sel); if (!g) return; const items = live.filter(p => p.cat === cat);
+    g.innerHTML = items.map(cardHTML).join(''); const sec = g.closest('section'); if (sec && !items.length) sec.hidden = true;
+  });
+  const pp = $('#pp');
+  if (pp) {
+    const id = new URLSearchParams(location.search).get('id'), p = live.find(x => x.id === id);
+    if (p) { document.title = `${p.name} | HADOD הדוד`; pp.innerHTML = pageHTML(p, live.filter(x => x.cat === p.cat && x !== p).slice(0, 6)); }
+    else pp.innerHTML = '<section class="pp"><div class="wrap"><h1 class="pp-h">המוצר לא נמצא</h1><p class="pp-intro"><a class="pp-back" href="./">חזרה לדף הבית</a></p></div></section>';
+  }
+  paint(); const c = store.get('hadodCity') || (member && member.city); if (c) pick(c);
+  /* Meta pixel, if an id was set in the admin panel */
+  const px = String((data.settings || {}).pixel || '').replace(/\D/g, '');
+  if (px) {
+    !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s) }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', px); fbq('track', 'PageView');
+  }
+}).catch(() => { $$('#gridVape,#gridPack,#pp').forEach(g => g.innerHTML = '<p class="lead">לא הצלחנו לטעון את המוצרים. נסו לרענן את הדף.</p>'); });
+/* every order click counts as a "Contact" event for the pixel */
+document.addEventListener('click', e => { const b = e.target.closest('[data-wa],#cartGo'); if (b && window.fbq) fbq('track', 'Contact', { content_name: b.dataset.wa || 'cart' }); });

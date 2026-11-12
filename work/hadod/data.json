@@ -4,6 +4,86 @@
  },
  "products": [
   {
+   "id": "tesla-bar",
+   "cat": "vape",
+   "name": "טסלה בר",
+   "en": "Tesla Bar 80K",
+   "short": "עד 80,000 שאיפות.",
+   "intro": "הטסלה בר: גוף קומפקטי ו-80 אלף שאיפות במכשיר אחד.",
+   "specs": [
+    [
+     "שאיפות",
+     "עד 80,000"
+    ]
+   ],
+   "flavors": [],
+   "incl": [],
+   "note": "",
+   "img": "img/p-tesla.webp",
+   "promo": "",
+   "hidden": false
+  },
+  {
+   "id": "hermes-paris",
+   "cat": "vape",
+   "name": "הרמס פריז",
+   "en": "Hermes Paris 100K",
+   "short": "עד 100,000 שאיפות.",
+   "intro": "הרמס פריז: עד 100 אלף שאיפות במכשיר אחד.",
+   "specs": [
+    [
+     "שאיפות",
+     "עד 100,000"
+    ]
+   ],
+   "flavors": [],
+   "incl": [],
+   "note": "",
+   "img": "img/logo.webp",
+   "promo": "",
+   "hidden": false
+  },
+  {
+   "id": "qweet-phantom",
+   "cat": "vape",
+   "name": "קוויט פאנטום",
+   "en": "Qweet Phantom 100K",
+   "short": "עד 100,000 שאיפות.",
+   "intro": "קוויט פאנטום: עד 100 אלף שאיפות במכשיר אחד.",
+   "specs": [
+    [
+     "שאיפות",
+     "עד 100,000"
+    ]
+   ],
+   "flavors": [],
+   "incl": [],
+   "note": "",
+   "img": "img/p-qweet.webp",
+   "promo": "",
+   "hidden": false
+  },
+  {
+   "id": "geek-bar-sumex",
+   "cat": "vape",
+   "name": "גיק בר סומקס",
+   "en": "Geek Bar 120K",
+   "short": "עד 120,000 שאיפות.",
+   "intro": "גיק בר סומקס: עד 120 אלף שאיפות במכשיר אחד.",
+   "specs": [
+    [
+     "שאיפות",
+     "עד 120,000"
+    ]
+   ],
+   "flavors": [],
+   "incl": [],
+   "note": "",
+   "img": "img/logo.webp",
+   "promo": "",
+   "hidden": false
+  },
+  {
    "id": "ninja",
    "cat": "vape",
    "name": "נינג'ה גולד",
@@ -88,62 +168,22 @@
    "hidden": false
   },
   {
-   "id": "qweet-phantom",
+   "id": "sweet-horizon",
    "cat": "vape",
-   "name": "קוויט פאנטום",
-   "en": "Qweet Phantom Ultra Plus 55K",
-   "short": "עד 55,000 שאיפות, שני מצבי שאיפה.",
-   "intro": "הקוויט בדגם Ultra Plus: מסך, מצב בוסט וסוללה גדולה.",
+   "name": "סוויט הוריזון",
+   "en": "Sweet Horizon 160K",
+   "short": "עד 160,000 שאיפות.",
+   "intro": "סוויט הוריזון: עד 160 אלף שאיפות במכשיר אחד.",
    "specs": [
     [
      "שאיפות",
-     "עד 55,000"
-    ],
-    [
-     "ניקוטין",
-     "2%"
-    ],
-    [
-     "מצבי שאיפה",
-     "רגיל ובוסט"
-    ],
-    [
-     "סוללה",
-     "1000mAh"
-    ],
-    [
-     "מסך",
-     "מציג סוללה ונוזל"
-    ],
-    [
-     "טעינה",
-     "Type-C"
+     "עד 160,000"
     ]
    ],
    "flavors": [],
    "incl": [],
    "note": "",
-   "img": "img/p-qweet.webp",
-   "promo": "",
-   "hidden": false
-  },
-  {
-   "id": "tesla-bar",
-   "cat": "vape",
-   "name": "טסלה בר",
-   "en": "Tesla Bar 80K",
-   "short": "עד 80,000 שאיפות.",
-   "intro": "הטסלה בר: גוף קומפקטי ו-80 אלף שאיפות במכשיר אחד.",
-   "specs": [
-    [
-     "שאיפות",
-     "עד 80,000"
-    ]
-   ],
-   "flavors": [],
-   "incl": [],
-   "note": "",
-   "img": "img/p-tesla.webp",
+   "img": "img/logo.webp",
    "promo": "",
    "hidden": false
   },

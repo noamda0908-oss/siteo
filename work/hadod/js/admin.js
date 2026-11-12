@@ -32,6 +32,13 @@ async function saveData(what) {
   msg('נשמר. השינוי יופיע באתר תוך דקה או שתיים.'); draw();
 }
 
+const CODE_RULE = 'הקוד צריך להיות באורך 8 תווים לפחות, עם אותיות וגם ספרות';
+const okCode = c => c.length >= 8 && /[a-zA-Zא-ת]/.test(c) && /\d/.test(c);
+async function writeCode(code, sha) {
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await key(code, salt), utf8(token));
+  await put('admin.json', utf8(JSON.stringify({ salt: b64(salt), iv: b64(iv), ct: b64(ct) })), 'HADOD admin: ' + (sha ? 'change code' : 'setup'), sha);
+}
 /* ----- first-time setup / login ----- */
 async function boot() {
   let conf = null;
@@ -49,13 +56,11 @@ async function boot() {
 }
 $('#fSetup').onsubmit = async e => {
   e.preventDefault(); const code = $('#newCode').value.trim(); token = $('#tok').value.trim();
-  if (code.length < 10 || !/[a-zA-Zא-ת]/.test(code) || !/\d/.test(code)) return msg('הקוד צריך להיות באורך 10 תווים לפחות, עם אותיות וגם ספרות', true);
+  if (!okCode(code)) return msg(CODE_RULE, true);
   msg('בודק את הטוקן...');
   try {
     await loadData();
-    const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
-    const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await key(code, salt), utf8(token));
-    await put('admin.json', utf8(JSON.stringify({ salt: b64(salt), iv: b64(iv), ct: b64(ct) })), 'HADOD admin: setup');
+    await writeCode(code);
     msg('ההגדרה נשמרה. מעכשיו נכנסים עם הקוד.'); view('vPanel'); draw();
   } catch (err) { msg(err.message === 'not-found' ? 'הטוקן לא מגיע לריפו. בדקו שיש לו הרשאת Contents: Read and write' : err.message, true); }
 };
@@ -107,4 +112,9 @@ F.onsubmit = async e => {
   } catch (err) { msg(err.message, true); }
 };
 $('#fPixel').onsubmit = async e => { e.preventDefault(); data.settings.pixel = $('#pixel').value.replace(/\D/g, ''); try { await saveData('pixel'); } catch (err) { msg(err.message, true); } };
+$('#fCode').onsubmit = async e => {
+  e.preventDefault(); const code = $('#chCode').value.trim();
+  if (!okCode(code)) return msg(CODE_RULE, true);
+  try { msg('שומר...'); const cur = await gh('admin.json'); await writeCode(code, cur.sha); $('#chCode').value = ''; msg('הקוד הוחלף. מעכשיו נכנסים עם הקוד החדש.'); } catch (err) { msg(err.message, true); }
+};
 boot();

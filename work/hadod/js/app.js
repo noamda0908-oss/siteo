@@ -210,7 +210,7 @@ const VQ = '?v=' + (document.currentScript ? (document.currentScript.src.split('
 function cardHTML(p) {
   const href = `p.html?id=${encodeURIComponent(p.id)}`;
   return `<article class="card" data-k="${esc([p.name, p.en, p.cat === 'pack' ? 'וודקה חבילה אלכוהול' : 'וייפ ויפ וייפים סיגריה אלקטרונית'].join(' '))}">
-    <a class="card-i" href="${href}"><img class="${p.cat === 'pack' ? 'sq' : ''}" src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy">${p.promo ? `<span class="promo-b">${esc(p.promo)}</span>` : ''}</a>
+    <a class="card-i" href="${href}"><img class="${p.cat === 'pack' ? 'sq' : ''}" src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy">${p.promo ? `<span class="promo-b">${esc(p.promo)}</span>` : ''}<span class="illus">התמונה להמחשה בלבד</span></a>
     <div class="card-b"><h3><a href="${href}">${esc(p.name)}</a></h3><p>${esc(p.short)}</p>
     <div class="card-a"><a class="btn btn-line" href="${href}">לפרטים</a><button class="btn btn-gold" data-add="${esc(p.name)}" aria-label="להוסיף ${esc(p.name)} לעגלה"><svg><use href="#cart"/></svg>לעגלה</button></div></div></article>`;
 }
@@ -223,7 +223,7 @@ function pageHTML(p, others) {
       <a class="btn btn-line btn-l pick-go" id="pickGo" target="_blank" rel="noopener" hidden><svg><use href="#wa"/></svg><span></span></a>
       <p class="pp-note" id="pickNote">בוחרים עיר ומקבלים קישור לקבוצת הוואטסאפ שלה.</p></div>` : '';
   return `<section class="pp"><div class="wrap pp-in">
-      <div class="pp-pic"><img class="pp-img" src="${esc(p.img)}" alt="${esc(p.name)}">${p.promo ? `<span class="promo-b">${esc(p.promo)}</span>` : ''}</div>
+      <div class="pp-pic"><img class="pp-img" src="${esc(p.img)}" alt="${esc(p.name)}">${p.promo ? `<span class="promo-b">${esc(p.promo)}</span>` : ''}<span class="illus">התמונה להמחשה בלבד</span></div>
       <div class="pp-info">
         <a class="pp-back" href="./${VQ}#${p.cat === 'pack' ? 'vodka' : 'products'}">${p.cat === 'pack' ? 'לכל החבילות' : 'לכל הוויפים'}</a>
         <h1 class="pp-h">${esc(p.name)}</h1>

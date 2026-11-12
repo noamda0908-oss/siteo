@@ -148,7 +148,7 @@ body:not(.entered) .hero-logo,body:not(.entered) .hero-h,body:not(.entered) .her
 @media(min-width:980px){.grid{grid-template-columns:repeat(4,1fr)}}
 .card{display:flex;flex-direction:column;background:#0b0b0b;border:1px solid var(--ash);border-radius:20px;overflow:hidden;transition:border-color .2s}
 .card:hover{border-color:var(--orange)}
-.card img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center top}
+.card img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}
 .card img.sq{aspect-ratio:1/1}
 .card-a{display:flex;gap:8px}
 .card-a .btn{flex:1}
@@ -299,3 +299,11 @@ a.city:hover .city-n svg{color:#000}
 
 .m-terms{font-size:13px;color:var(--smoke);margin:0 0 12px;text-align:right}
 .m-terms a{text-decoration:underline}
+
+.illus{position:absolute;left:0;right:0;bottom:0;padding:14px 8px 6px;background:linear-gradient(transparent,rgba(0,0,0,.82));color:#fff;font-size:12px;text-align:center;pointer-events:none}
+.pp-pic .illus{font-size:14px;padding:22px 10px 10px;border-radius:0 0 24px 24px}
+.pp-pic{overflow:hidden;border-radius:24px}
+.hero-go.btn-gold{background:linear-gradient(170deg,#fff6c2 0%,#f1cb55 28%,#c8921a 52%,#f6dc7c 74%,#a8740f 100%);display:flex;align-items:center;justify-content:center;gap:12px;color:#000;box-shadow:6px 6px 0 #fff,inset 0 1px 0 rgba(255,255,255,.75);border:0;cursor:pointer;position:relative;overflow:hidden}
+.hero-go.btn-gold:hover{box-shadow:3px 3px 0 #fff,inset 0 1px 0 rgba(255,255,255,.75)}
+.hero-go.btn-gold svg{width:.72em;height:.72em;flex:none}
+.hero-go.btn-gold::after{content:"";position:absolute;top:0;bottom:0;width:38%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:glint 3.600s ease-in-out infinite}

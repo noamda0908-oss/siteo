@@ -148,7 +148,7 @@ body:not(.entered) .hero-logo,body:not(.entered) .hero-h,body:not(.entered) .her
 @media(min-width:980px){.grid{grid-template-columns:repeat(4,1fr)}}
 .card{display:flex;flex-direction:column;background:#0b0b0b;border:1px solid var(--ash);border-radius:20px;overflow:hidden;transition:border-color .2s}
 .card:hover{border-color:var(--orange)}
-.card img{width:100%;height:auto;aspect-ratio:5/6;object-fit:cover}
+.card img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:center top}
 .card-a{display:flex;gap:8px}
 .card-a .btn{flex:1}
 @media(max-width:620px){.card-a{flex-direction:column}.card-a .btn{width:100%;flex:0 0 46px;font-size:24px!important}}

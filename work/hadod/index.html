@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#000000">
 <link rel="preload" href="fonts/karantina-hebrew-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/rubik-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=17">
+<link rel="stylesheet" href="css/style.css?v=18">
 </head>
 <body class="locked">
 <canvas class="smoke" id="smoke" aria-hidden="true"></canvas>
@@ -47,7 +47,7 @@
 </div>
 
 <header class="nav">
-  <a href="./?v=17" class="nav-logo" aria-label="הדוד, לדף הבית"><svg><use href="#logo"/></svg></a>
+  <a href="./?v=18" class="nav-logo" aria-label="הדוד, לדף הבית"><svg><use href="#logo"/></svg></a>
   <div class="nav-live"><i></i><span>עכשיו <b data-clock>00:00</b> ופתוחים</span></div>
   <div class="nav-end">
     <a class="nav-ig" href="https://www.instagram.com/hadod.il" target="_blank" rel="noopener" aria-label="אינסטגרם hadod.il"><svg><use href="#ig"/></svg></a>
@@ -59,13 +59,20 @@
 <main id="top">
   <section class="hero">
     <svg class="hero-logo" aria-label="HADOD הדוד"><use href="#logo"/></svg>
-    <h1 class="hero-h">נגמר לכם הוויפ?<br>הדוד בדרך.</h1>
-    <p class="hero-p">וייפים חד-פעמיים עם שליח עד הדלת. בכל שעה, בכל יום, גם בשלוש בלילה.</p>
+    <h1 class="hero-h">חסר משהו?<br>הדוד בדרך.</h1>
+    <p class="hero-p">וייפים, אלכוהול, סיגריות, שתייה, חטיפים וקרח. שליח עד הדלת, 24/7.</p>
     <a class="hero-go" href="#products">לרכישה</a>
-    <nav class="cats" aria-label="קטגוריות"><a href="#products">וייפים</a><a href="#vodka">חבילות וודקה</a><a href="#cities">קבוצות וואטסאפ</a><a href="#about">אודות ומדיניות</a></nav>
+    <ul class="tiles" aria-label="מה הדוד מביא">
+      <li><a class="on" href="#products"><b>וייפים</b><span>לקטלוג</span></a></li>
+      <li><a class="on" href="#vodka"><b>חבילות וודקה</b><span>לקטלוג</span></a></li>
+      <li><a href="#areas"><b>סיגריות</b><span>בהזמנה בוואטסאפ</span></a></li>
+      <li><a href="#areas"><b>שתייה</b><span>בהזמנה בוואטסאפ</span></a></li>
+      <li><a href="#areas"><b>חטיפים</b><span>בהזמנה בוואטסאפ</span></a></li>
+      <li><a href="#areas"><b>קרח</b><span>בהזמנה בוואטסאפ</span></a></li>
+    </ul>
   </section>
 
-  <div class="tape" aria-hidden="true"><div class="tape-in"><span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> וייפים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> חבילות וודקה <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> 10% הנחה לנרשמים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> </span><span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> וייפים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> חבילות וודקה <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> 10% הנחה לנרשמים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> </span></div></div>
+  <div class="tape" aria-hidden="true"><div class="tape-in"><span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> וייפים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> אלכוהול <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> סיגריות <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שתייה וחטיפים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> 10% הנחה לנרשמים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> </span><span>משלוחים 24/7 <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> וייפים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> אלכוהול <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> סיגריות <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> שתייה וחטיפים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> 10% הנחה לנרשמים <svg viewBox="-10 -10 20 20"><use href="#star"/></svg> </span></div></div>
 
   <div class="wrap find">
     <label class="find-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.500 16.500 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -76,68 +83,84 @@
   <section class="sec" id="products" data-find>
     <div class="wrap">
       <h2 class="big">הוויפים שלנו</h2>
-      <p class="lead">לוחצים על וייפ כדי לראות פרטים, או מבקשים מחיר ישר בוואטסאפ.</p>
-      <div class="grid"><article class="card" data-k="נינג'ה גולד Ninja Gold 150K וייפ ויפ וייפים סיגריה אלקטרונית"><a href="ninja.html?v=17"><img src="img/card-ninja.webp" alt="נינג'ה גולד" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="ninja.html?v=17">נינג'ה גולד</a></h3><p>עד 150,000 שאיפות, עם Boost ושליטת ICE.</p>
-      <div class="card-a"><a class="btn btn-line" href="ninja.html?v=17">לפרטים</a><button class="btn btn-main" data-wa="נינג'ה גולד" aria-label="מחיר בוואטסאפ על נינג'ה גולד"><svg><use href="#wa"/></svg>מחיר</button></div></div></article><article class="card" data-k="טומי XL Tomi XL 150K וייפ ויפ וייפים סיגריה אלקטרונית"><a href="tomi-xl.html?v=17"><img src="img/card-tomi.webp" alt="טומי XL" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="tomi-xl.html?v=17">טומי XL</a></h3><p>עד 150,000 שאיפות, 11 טעמים לבחירה.</p>
-      <div class="card-a"><a class="btn btn-line" href="tomi-xl.html?v=17">לפרטים</a><button class="btn btn-main" data-wa="טומי XL" aria-label="מחיר בוואטסאפ על טומי XL"><svg><use href="#wa"/></svg>מחיר</button></div></div></article><article class="card" data-k="סוויט Sweet וייפ ויפ וייפים סיגריה אלקטרונית"><a href="sweet.html?v=17"><img src="img/card-sweet.webp" alt="סוויט" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="sweet.html?v=17">סוויט</a></h3><p>גימור בד, בכמה צבעים.</p>
-      <div class="card-a"><a class="btn btn-line" href="sweet.html?v=17">לפרטים</a><button class="btn btn-main" data-wa="סוויט" aria-label="מחיר בוואטסאפ על סוויט"><svg><use href="#wa"/></svg>מחיר</button></div></div></article><article class="card" data-k="קוויט פאנטום Qweet Phantom Ultra Plus 55K וייפ ויפ וייפים סיגריה אלקטרונית"><a href="qweet-phantom.html?v=17"><img src="img/card-phantom.webp" alt="קוויט פאנטום" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="qweet-phantom.html?v=17">קוויט פאנטום</a></h3><p>עד 55,000 שאיפות, שני מצבי שאיפה.</p>
-      <div class="card-a"><a class="btn btn-line" href="qweet-phantom.html?v=17">לפרטים</a><button class="btn btn-main" data-wa="קוויט פאנטום" aria-label="מחיר בוואטסאפ על קוויט פאנטום"><svg><use href="#wa"/></svg>מחיר</button></div></div></article></div>
+      <p class="lead">"לפרטים" פותח את דף המוצר. "להזמין" פותח וואטסאפ מול נציג, שם מקבלים מחיר וזמינות.</p>
+      <div class="grid"><article class="card" data-k="נינג'ה גולד Ninja Gold 150K וייפ ויפ וייפים סיגריה אלקטרונית"><a href="ninja.html?v=18"><img src="img/card-ninja.webp" alt="נינג'ה גולד" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="ninja.html?v=18">נינג'ה גולד</a></h3><p>עד 150,000 שאיפות, עם Boost ושליטת ICE.</p>
+      <div class="card-a"><a class="btn btn-line" href="ninja.html?v=18">לפרטים</a><button class="btn btn-main" data-wa="נינג'ה גולד" aria-label="להזמין נינג'ה גולד בוואטסאפ"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="טומי XL Tomi XL 150K וייפ ויפ וייפים סיגריה אלקטרונית"><a href="tomi-xl.html?v=18"><img src="img/card-tomi.webp" alt="טומי XL" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="tomi-xl.html?v=18">טומי XL</a></h3><p>עד 150,000 שאיפות, 11 טעמים לבחירה.</p>
+      <div class="card-a"><a class="btn btn-line" href="tomi-xl.html?v=18">לפרטים</a><button class="btn btn-main" data-wa="טומי XL" aria-label="להזמין טומי XL בוואטסאפ"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="סוויט Sweet וייפ ויפ וייפים סיגריה אלקטרונית"><a href="sweet.html?v=18"><img src="img/card-sweet.webp" alt="סוויט" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="sweet.html?v=18">סוויט</a></h3><p>גימור בד, בכמה צבעים.</p>
+      <div class="card-a"><a class="btn btn-line" href="sweet.html?v=18">לפרטים</a><button class="btn btn-main" data-wa="סוויט" aria-label="להזמין סוויט בוואטסאפ"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="קוויט פאנטום Qweet Phantom Ultra Plus 55K וייפ ויפ וייפים סיגריה אלקטרונית"><a href="qweet-phantom.html?v=18"><img src="img/card-phantom.webp" alt="קוויט פאנטום" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="qweet-phantom.html?v=18">קוויט פאנטום</a></h3><p>עד 55,000 שאיפות, שני מצבי שאיפה.</p>
+      <div class="card-a"><a class="btn btn-line" href="qweet-phantom.html?v=18">לפרטים</a><button class="btn btn-main" data-wa="קוויט פאנטום" aria-label="להזמין קוויט פאנטום בוואטסאפ"><svg><use href="#wa"/></svg>להזמין</button></div></div></article></div>
     </div>
   </section>
 
   <section class="sec" id="vodka" data-find>
     <div class="wrap">
       <h2 class="big">חבילות וודקה</h2>
-      <p class="lead">בקבוק ליטר לבחירה עם כל מה שצריך מסביב. משלוחים לחיפה, נשר, קריות, עכו, נהריה והסביבה.</p>
-      <div class="grid g3"><article class="card" data-k="חבילת גרייגוס וודקה חבילה אלכוהול grey goose"><a href="vodka-grey-goose.html?v=17"><img src="img/card-pack.webp" alt="חבילת וודקה גרייגוס" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="vodka-grey-goose.html?v=17">חבילת גרייגוס</a></h3><p>וודקה 1 ליטר, 8 פחיות, חטיפים, קרח, לונגים וקשים.</p>
-      <div class="card-a"><a class="btn btn-line" href="vodka-grey-goose.html?v=17">מה בחבילה</a><button class="btn btn-main" data-pack="גרייגוס" aria-label="להזמין חבילת גרייגוס"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת בלוודיר וודקה חבילה אלכוהול belvedere"><a href="vodka-belvedere.html?v=17"><img src="img/card-pack.webp" alt="חבילת וודקה בלוודיר" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="vodka-belvedere.html?v=17">חבילת בלוודיר</a></h3><p>וודקה 1 ליטר, 8 פחיות, חטיפים, קרח, לונגים וקשים.</p>
-      <div class="card-a"><a class="btn btn-line" href="vodka-belvedere.html?v=17">מה בחבילה</a><button class="btn btn-main" data-pack="בלוודיר" aria-label="להזמין חבילת בלוודיר"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת בלוגה וודקה חבילה אלכוהול beluga"><a href="vodka-beluga.html?v=17"><img src="img/card-pack.webp" alt="חבילת וודקה בלוגה" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="vodka-beluga.html?v=17">חבילת בלוגה</a></h3><p>וודקה 1 ליטר, 8 פחיות, חטיפים, קרח, לונגים וקשים.</p>
-      <div class="card-a"><a class="btn btn-line" href="vodka-beluga.html?v=17">מה בחבילה</a><button class="btn btn-main" data-pack="בלוגה" aria-label="להזמין חבילת בלוגה"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת רוברטו קוואלי וודקה חבילה אלכוהול roberto cavalli"><a href="vodka-roberto-cavalli.html?v=17"><img src="img/card-pack.webp" alt="חבילת וודקה רוברטו קוואלי" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="vodka-roberto-cavalli.html?v=17">חבילת רוברטו קוואלי</a></h3><p>וודקה 1 ליטר, 8 פחיות, חטיפים, קרח, לונגים וקשים.</p>
-      <div class="card-a"><a class="btn btn-line" href="vodka-roberto-cavalli.html?v=17">מה בחבילה</a><button class="btn btn-main" data-pack="רוברטו קוואלי" aria-label="להזמין חבילת רוברטו קוואלי"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת רוסקי סטנדרט וודקה חבילה אלכוהול russian standard"><a href="vodka-russian-standard.html?v=17"><img src="img/card-pack.webp" alt="חבילת וודקה רוסקי סטנדרט" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="vodka-russian-standard.html?v=17">חבילת רוסקי סטנדרט</a></h3><p>וודקה 1 ליטר, 8 פחיות, חטיפים, קרח, לונגים וקשים.</p>
-      <div class="card-a"><a class="btn btn-line" href="vodka-russian-standard.html?v=17">מה בחבילה</a><button class="btn btn-main" data-pack="רוסקי סטנדרט" aria-label="להזמין חבילת רוסקי סטנדרט"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת פינלנדיה וודקה חבילה אלכוהול finlandia"><a href="vodka-finlandia.html?v=17"><img src="img/card-pack.webp" alt="חבילת וודקה פינלנדיה" width="1000" height="1200" loading="lazy"></a>
-      <div class="card-b"><h3><a href="vodka-finlandia.html?v=17">חבילת פינלנדיה</a></h3><p>וודקה 1 ליטר, 8 פחיות, חטיפים, קרח, לונגים וקשים.</p>
-      <div class="card-a"><a class="btn btn-line" href="vodka-finlandia.html?v=17">מה בחבילה</a><button class="btn btn-main" data-pack="פינלנדיה" aria-label="להזמין חבילת פינלנדיה"><svg><use href="#wa"/></svg>להזמין</button></div></div></article></div>
+      <p class="lead">בוחרים וודקה, ומקבלים חבילה מלאה לערב. החבילות נשלחות לחיפה, נשר, קריות, עכו, נהריה והסביבה.</p>
+      <div class="grid g3"><article class="card" data-k="חבילת גרייגוס וודקה חבילה אלכוהול grey goose"><a href="vodka-grey-goose.html?v=18"><img src="img/card-pack.webp" alt="חבילת וודקה גרייגוס" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="vodka-grey-goose.html?v=18">חבילת גרייגוס</a></h3><p>בקבוק 1 ליטר, 8 פחיות אקסל, 3 חטיפים, שקית קרח, לונגים וקשים.</p>
+      <div class="card-a"><a class="btn btn-line" href="vodka-grey-goose.html?v=18">לפרטים</a><button class="btn btn-main" data-pack="גרייגוס" aria-label="להזמין חבילת גרייגוס"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת בלוודיר וודקה חבילה אלכוהול belvedere"><a href="vodka-belvedere.html?v=18"><img src="img/card-pack.webp" alt="חבילת וודקה בלוודיר" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="vodka-belvedere.html?v=18">חבילת בלוודיר</a></h3><p>בקבוק 1 ליטר, 8 פחיות אקסל, 3 חטיפים, שקית קרח, לונגים וקשים.</p>
+      <div class="card-a"><a class="btn btn-line" href="vodka-belvedere.html?v=18">לפרטים</a><button class="btn btn-main" data-pack="בלוודיר" aria-label="להזמין חבילת בלוודיר"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת בלוגה וודקה חבילה אלכוהול beluga"><a href="vodka-beluga.html?v=18"><img src="img/card-pack.webp" alt="חבילת וודקה בלוגה" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="vodka-beluga.html?v=18">חבילת בלוגה</a></h3><p>בקבוק 1 ליטר, 8 פחיות אקסל, 3 חטיפים, שקית קרח, לונגים וקשים.</p>
+      <div class="card-a"><a class="btn btn-line" href="vodka-beluga.html?v=18">לפרטים</a><button class="btn btn-main" data-pack="בלוגה" aria-label="להזמין חבילת בלוגה"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת רוברטו קוואלי וודקה חבילה אלכוהול roberto cavalli"><a href="vodka-roberto-cavalli.html?v=18"><img src="img/card-pack.webp" alt="חבילת וודקה רוברטו קוואלי" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="vodka-roberto-cavalli.html?v=18">חבילת רוברטו קוואלי</a></h3><p>בקבוק 1 ליטר, 8 פחיות אקסל, 3 חטיפים, שקית קרח, לונגים וקשים.</p>
+      <div class="card-a"><a class="btn btn-line" href="vodka-roberto-cavalli.html?v=18">לפרטים</a><button class="btn btn-main" data-pack="רוברטו קוואלי" aria-label="להזמין חבילת רוברטו קוואלי"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת רוסקי סטנדרט וודקה חבילה אלכוהול russian standard"><a href="vodka-russian-standard.html?v=18"><img src="img/card-pack.webp" alt="חבילת וודקה רוסקי סטנדרט" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="vodka-russian-standard.html?v=18">חבילת רוסקי סטנדרט</a></h3><p>בקבוק 1 ליטר, 8 פחיות אקסל, 3 חטיפים, שקית קרח, לונגים וקשים.</p>
+      <div class="card-a"><a class="btn btn-line" href="vodka-russian-standard.html?v=18">לפרטים</a><button class="btn btn-main" data-pack="רוסקי סטנדרט" aria-label="להזמין חבילת רוסקי סטנדרט"><svg><use href="#wa"/></svg>להזמין</button></div></div></article><article class="card" data-k="חבילת פינלנדיה וודקה חבילה אלכוהול finlandia"><a href="vodka-finlandia.html?v=18"><img src="img/card-pack.webp" alt="חבילת וודקה פינלנדיה" width="1000" height="1200" loading="lazy"></a>
+      <div class="card-b"><h3><a href="vodka-finlandia.html?v=18">חבילת פינלנדיה</a></h3><p>בקבוק 1 ליטר, 8 פחיות אקסל, 3 חטיפים, שקית קרח, לונגים וקשים.</p>
+      <div class="card-a"><a class="btn btn-line" href="vodka-finlandia.html?v=18">לפרטים</a><button class="btn btn-main" data-pack="פינלנדיה" aria-label="להזמין חבילת פינלנדיה"><svg><use href="#wa"/></svg>להזמין</button></div></div></article></div>
     </div>
   </section>
 
   <section class="member">
     <div class="wrap"><div class="member-in">
-      <p class="member-t"><b>10% הנחה</b> לנרשמים לאתר</p>
+      <div><p class="member-t"><b>10% הנחה</b> לנרשמים לאתר</p>
+      <p class="member-s">נרשמים עם שם, טלפון ועיר. ההנחה נכתבת אוטומטית בהודעת ההזמנה שלכם לנציג.</p></div>
       <button class="btn btn-main" data-join>להרשמה</button>
     </div></div>
   </section>
 
-  <section class="sec" id="cities">
+  <section class="sec" id="areas">
     <div class="wrap">
-      <h2 class="big">רשת הדוד מתרחבת</h2>
-      <p class="lead">הצטרפו לקבוצת הוואטסאפ הרשמית של העיר שלכם: מבצעים בלעדיים, מוצרים חדשים ועדכוני מלאי.</p>
-      <a class="city main" href="https://chat.whatsapp.com/E9wtf3yIp5pKaKHJBiUeNp" target="_blank" rel="noopener"><span class="city-n">הקבוצה הראשית של רשת הדוד</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a>
-      <ul class="city-list"><li><a class="city" href="https://chat.whatsapp.com/Imh2ZDRe7W62kp15ZZScmi" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>אשקלון</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/Cj6EUaNfvrMJV39FDsxvnP" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>ראשון לציון</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/J1wP1OqBdlvLcwPg7Rk8YW" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>פרדס חנה</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/Lg6ATxYxOeH2Zuyh4pNlcf" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>עכו</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/LmqPUMiXWHVHEY7aMUnWy9" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>שלומי</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/E9wtf3yIp5pKaKHJBiUeNp" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>קריות</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li></ul>
+      <h2 class="big">איפה הדוד פועל</h2>
+      <div class="areas">
+        <div class="area-box">
+          <h3 class="info-h">אזורי משלוח</h3>
+          <p class="area-p">לכאן השליחים מגיעים. מזמינים מול נציג בוואטסאפ.</p>
+          <ul class="tags"><li>אשקלון</li><li>ראשון לציון</li><li>פרדס חנה</li><li>עכו</li><li>שלומי</li><li>קריות</li><li>חיפה</li><li>נשר</li><li>נהריה</li></ul>
+          <p class="area-n">חבילות וודקה נשלחות כרגע לחיפה, נשר, קריות, עכו, נהריה והסביבה.</p>
+        </div>
+        <div class="area-box" id="cities">
+          <h3 class="info-h">קבוצות וואטסאפ</h3>
+          <p class="area-p">הקבוצות הן לעדכונים: מבצעים, מוצרים חדשים ומלאי. לא מזמינים בתוך הקבוצה.</p>
+          <a class="city main" href="https://chat.whatsapp.com/E9wtf3yIp5pKaKHJBiUeNp" target="_blank" rel="noopener"><span class="city-n">הקבוצה הראשית</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a>
+          <ul class="city-list"><li><a class="city" href="https://chat.whatsapp.com/Imh2ZDRe7W62kp15ZZScmi" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>אשקלון</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/Cj6EUaNfvrMJV39FDsxvnP" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>ראשון לציון</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/J1wP1OqBdlvLcwPg7Rk8YW" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>פרדס חנה</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/Lg6ATxYxOeH2Zuyh4pNlcf" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>עכו</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li><li><a class="city" href="https://chat.whatsapp.com/LmqPUMiXWHVHEY7aMUnWy9" target="_blank" rel="noopener"><span class="city-n"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.500a2.500 2.500 0 1 1 0-5 2.500 2.500 0 0 1 0 5z" fill="currentColor"/></svg>שלומי</span><span class="city-s">להצטרף<svg><use href="#wa"/></svg></span></a></li></ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="sec" id="about">
-    <div class="wrap info">
-      <div>
-        <h2 class="info-h">מי זה הדוד</h2>
-        <p>הדוד היא רשת משלוחים שפועלת 24/7 ומביאה עד הדלת וייפים, אלכוהול, סיגריות, שתייה, חטיפים, קרח ועוד. מותג אחד ורשת אחת, שפועלת היום באשקלון, ראשון לציון, פרדס חנה, עכו, שלומי והקריות, וממשיכה להתרחב לערים נוספות.</p>
-      </div>
-      <div>
-        <h2 class="info-h">משלוחים ואיסוף</h2>
-        <p>מזמינים בוואטסאפ, ושליח יוצא אליכם עד הדלת בכל שעה, באזורי הפעילות של הרשת. זמן ההגעה נמסר בהודעה לפי העיר והעומס. אפשר גם לאסוף עצמאית, בתיאום מראש בוואטסאפ. המסירה למבוגרים מגיל 18 בלבד, בהצגת תעודה מזהה.</p>
-      </div>
-      <div>
-        <h2 class="info-h">ביטולים והחזרות</h2>
-        <p>אפשר לבטל הזמנה בוואטסאפ כל עוד השליח לא יצא לדרך. קיבלתם מוצר שגוי או פגום? כותבים לנו בוואטסאפ סמוך לקבלה, ונחליף או נזכה. מוצר שנפתח או שנעשה בו שימוש לא ניתן להחזיר. ביטול עסקה נעשה בהתאם לחוק הגנת הצרכן.</p>
+  <section class="about" id="about">
+    <div class="wrap">
+      <p class="about-s">מותג אחד.<br>רשת אחת.<br>הדוד בכל מקום.</p>
+      <p class="about-p">הדוד היא רשת משלוחים שפועלת 24/7 ומביאה עד הדלת וייפים, אלכוהול, סיגריות, שתייה, חטיפים, קרח ועוד. התחלנו בעיר אחת, והיום הרשת פועלת בכמה ערים וממשיכה להתרחב.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="info">
+    <div class="wrap">
+      <h2 class="big">טוב לדעת</h2>
+      <div class="faq">
+        <details open><summary>איך מזמינים</summary><p>לוחצים "להזמין" ליד המוצר, ונפתחת הודעת וואטסאפ מוכנה מול נציג. הנציג חוזר עם מחיר, זמינות וזמן הגעה, ושליח יוצא אליכם.</p></details>
+        <details><summary>משלוחים</summary><p>שליח עד הדלת, בכל שעה, באזורי המשלוח של הרשת. זמן ההגעה נמסר בהודעה לפי העיר והעומס.</p></details>
+        <details><summary>איסוף עצמי</summary><p>אפשר לאסוף עצמאית, בתיאום מראש בוואטסאפ.</p></details>
+        <details><summary>ביטולים והחזרות</summary><p>אפשר לבטל הזמנה בוואטסאפ כל עוד השליח לא יצא לדרך. קיבלתם מוצר שגוי או פגום? כותבים לנו בוואטסאפ סמוך לקבלה, ונחליף או נזכה. מוצר שנפתח או שנעשה בו שימוש לא ניתן להחזיר. ביטול עסקה נעשה בהתאם לחוק הגנת הצרכן.</p></details>
+        <details><summary>הנחת נרשמים</summary><p>נרשמים באתר עם שם, טלפון ועיר, ומקבלים 10% הנחה. ההנחה נכתבת אוטומטית בהודעת ההזמנה לנציג.</p></details>
+        <details><summary>גיל 18 ומעלה</summary><p>מוצרי עישון ואלכוהול נמכרים ונמסרים למבוגרים מגיל 18 בלבד, בהצגת תעודה מזהה לשליח.</p></details>
       </div>
     </div>
   </section>
@@ -168,7 +191,7 @@
     </div>
     <form id="mForm" hidden novalidate>
       <h2 class="m-h">הרשמה לדוד</h2>
-      <p class="m-p">חצי דקה, ו-10% הנחה אצלך.</p>
+      <p class="m-p">שם, טלפון ועיר. ההנחה של 10% נכתבת אוטומטית בהודעת ההזמנה לנציג.</p>
       <label>שם<input name="name" autocomplete="name" required minlength="2"></label>
       <label>טלפון<input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05X-XXXXXXX" required dir="ltr"></label>
       <label>עיר<select name="city" required><option value="">בחירת עיר</option><option>אשקלון</option><option>ראשון לציון</option><option>פרדס חנה</option><option>עכו</option><option>שלומי</option><option>קריות</option><option>עיר אחרת</option></select></label>
@@ -187,6 +210,6 @@
 </div>
 
 <div class="toast" id="toast" role="status"></div>
-<script src="js/app.js?v=17" defer></script>
+<script src="js/app.js?v=18" defer></script>
 </body>
 </html>

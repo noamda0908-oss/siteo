@@ -35,8 +35,8 @@ function show(which) { [mPromo, mForm, mDone].forEach(x => x.hidden = x !== whic
 function hide() { modal.hidden = true; if ($('#gate').hidden) document.body.classList.remove('locked'); }
 function order(p) {
   let msg = p ? `היי, הגעתי מהאתר של הדוד. אשמח לקבל מחיר על ${p}` : 'היי, הגעתי מהאתר של הדוד. אשמח להזמין';
-  const city = store.get('hadodCity') || (member && member.city); if (city && !member) msg += `\nאני מ${city}.`;
-  if (member) msg += `\nאני רשום באתר (${member.name}, ${member.city}, ${member.phone}) ומגיעה לי 10% הנחה.`;
+  const city = store.get('hadodCity') || (member && member.city); if (city) msg += `\nאני מ${city}.`;
+  if (member) msg += `\nאני רשום באתר (${member.name}, ${member.phone}) ומגיעה לי 10% הנחה.`;
   if (!WA_NUMBER) return say('הוואטסאפ יחובר בקרוב');
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
 }
@@ -49,12 +49,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hid
 $('#mGo').onclick = () => show(mForm);
 mForm.addEventListener('submit', e => {
   e.preventDefault();
-  const f = new FormData(mForm), name = (f.get('name') || '').trim(), phone = (f.get('phone') || '').replace(/[^0-9]/g, ''), city = f.get('city');
-  const err = name.length < 2 ? 'צריך שם' : !/^05\d{8}$/.test(phone) ? 'מספר טלפון לא תקין (05X ועוד 7 ספרות)' : !city ? 'צריך לבחור עיר' : !f.get('age') ? 'ההרשמה למבוגרים מגיל 18 בלבד' : '';
+  const f = new FormData(mForm), name = (f.get('name') || '').trim(), phone = (f.get('phone') || '').replace(/[^0-9]/g, '');
+  const err = name.length < 2 ? 'צריך שם' : !/^05\d{8}$/.test(phone) ? 'מספר טלפון לא תקין (05X ועוד 7 ספרות)' : '';
   $('#mErr').textContent = err; if (err) return;
-  member = { name, phone, city, at: Date.now() }; store.set('hadodMember', member); paint();
+  member = { name, phone, at: Date.now() }; store.set('hadodMember', member); paint();
   $('#mDoneT').textContent = `${name.split(' ')[0]}, נרשמת!`;
-  const g = $('#mGroup'); if (GROUPS[city]) { g.href = GROUPS[city]; g.lastElementChild.textContent = `להצטרף לקבוצה של ${city}`; g.hidden = false; } else g.hidden = true;
+  const city = store.get('hadodCity'), g = $('#mGroup'); if (city && GROUPS[city]) { g.href = GROUPS[city]; g.lastElementChild.textContent = `להצטרף לקבוצה של ${city}`; g.hidden = false; } else g.hidden = true;
   show(mDone);
 });
 
@@ -73,7 +73,7 @@ if (find) find.addEventListener('input', () => {
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-pack]'); if (!b) return;
   let msg = `היי, הגעתי מהאתר של הדוד. אשמח להזמין חבילת וודקה ${b.dataset.pack} (1 ליטר)`;
-  if (member) msg += `\nאני רשום באתר (${member.name}, ${member.city}, ${member.phone}) ומגיעה לי 10% הנחה.`;
+  if (member) msg += `\nאני רשום באתר (${member.name}, ${member.phone}) ומגיעה לי 10% הנחה.`;
   window.open(`https://wa.me/${PACK_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
 });
 
@@ -156,8 +156,8 @@ document.addEventListener('click', e => {
   if (e.target.closest('#cartClear')) { cart = {}; return cartSave(); }
   if (e.target.closest('#cartGo')) {
     let msg = 'היי, הגעתי מהאתר של הדוד. אשמח להזמין:\n' + Object.keys(cart).map(k => `• ${k} × ${cart[k]}`).join('\n');
-    const city = store.get('hadodCity') || (member && member.city); if (city && !member) msg += `\nאני מ${city}.`;
-    if (member) msg += `\nאני רשום באתר (${member.name}, ${member.city}, ${member.phone}) ומגיעה לי 10% הנחה.`;
+    const city = store.get('hadodCity') || (member && member.city); if (city) msg += `\nאני מ${city}.`;
+    if (member) msg += `\nאני רשום באתר (${member.name}, ${member.phone}) ומגיעה לי 10% הנחה.`;
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
   }
 });

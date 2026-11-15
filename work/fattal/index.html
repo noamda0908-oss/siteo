@@ -88,16 +88,19 @@ em{font-style:normal}
 
 /* hero */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;padding-block:96px 56px;overflow:hidden}
-#net{position:absolute;inset:0;width:100%;height:100%;opacity:.7;-webkit-mask-image:radial-gradient(120% 90% at 20% 40%,#000 30%,transparent 78%);mask-image:radial-gradient(120% 90% at 20% 40%,#000 30%,transparent 78%)}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.7;-webkit-mask-image:radial-gradient(90% 90% at 50% 45%,transparent 18%,#000 60%,transparent 100%);mask-image:radial-gradient(90% 90% at 50% 45%,transparent 18%,#000 60%,transparent 100%)}
 .hero__glow{position:absolute;width:90vmax;height:90vmax;left:-34vmax;top:-26vmax;background:radial-gradient(closest-side,rgba(255,140,70,.2),transparent 70%);pointer-events:none}
 .hero__glow--b{left:auto;right:-50vmax;top:auto;bottom:-60vmax;background:radial-gradient(closest-side,rgba(60,190,190,.13),transparent 70%)}
-.hero__grid{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:clamp(20px,4vw,70px)}
+.hero__grid{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center}
+.hero__text{display:flex;flex-direction:column;align-items:center;max-width:900px}
+.hero .search{width:100%;text-align:start}
+.hero .stats{justify-content:center}
 .live{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:99px;padding:6px 16px 6px 18px;font-size:14px;font-weight:400;color:var(--amber2);margin-bottom:26px;background:rgba(255,176,74,.06)}
 .live i{width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 0 rgba(255,122,85,.7);animation:ping 1.8s infinite}
 @keyframes ping{to{box-shadow:0 0 0 12px rgba(255,122,85,0)}}
 .live span{display:inline-block;overflow:hidden;height:1.7em;vertical-align:bottom}
 .live b{display:block;font-weight:600;color:var(--ink)}
-.hero__title{font-weight:900;font-size:clamp(2.8rem,5.7vw,5.7rem);line-height:.98;letter-spacing:-.02em;margin-bottom:clamp(20px,2.4vw,34px)}
+.hero__title{font-weight:900;font-size:clamp(2.8rem,6.6vw,6.6rem);line-height:.98;letter-spacing:-.02em;margin-bottom:clamp(20px,2.4vw,34px)}
 .hero__sub{font-size:clamp(1.05rem,1.4vw,1.3rem);color:#CFD8D6;max-width:31em;margin-bottom:clamp(24px,3vw,38px)}
 .search{display:grid;grid-template-columns:1.3fr 1fr auto;gap:6px;padding:8px;border-radius:99px;border:1px solid var(--line);background:rgba(18,41,47,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-width:680px}
 .search label{display:flex;flex-direction:column;justify-content:center;padding:4px 22px;min-width:0}
@@ -369,10 +372,6 @@ td span{color:var(--muted);font-size:13px}
         <div><b data-count="24">0</b><span>שעות עד תשובה</span></div>
       </div>
     </div>
-    <div class="deck" id="deck" data-in>
-      <div class="deck__ring"></div>
-      <div class="deck__in" id="deckIn"></div>
-    </div>
   </div>
   <div class="hero__scroll" aria-hidden="true">גלילה<i></i></div>
 </section>
@@ -594,6 +593,7 @@ function goToJob(id){const el=$("#job-"+id);if(!el){cat="הכול";$("#q").value
 let deckTop=0,deckCards=[],deckTimer=null,introDone=false;
 function startDeck(){clearInterval(deckTimer);if(HAS&&introDone&&deckCards.length>1)deckTimer=setInterval(nextCard,3200)}
 function buildDeck(){
+  if(!$("#deckIn"))return;
   const pick=jobs.slice(0,4);
   $("#deckIn").innerHTML=pick.map(j=>`<button class="jc" data-id="${j.id}" data-hover><div class="jc__cat">${esc(j.cat)} ${tagHtml(j)}</div><h3>${esc(j.biz)}</h3><p>${esc(j.roles.slice(0,3).join(", "))}</p><div class="jc__pay">${esc(j.city)}, גילאי ${esc(j.ages||"הכול")}<span>${ARROW}</span></div></button>`).join("");
   deckCards=$$("#deckIn .jc");deckTop=0;layDeck(0);startDeck();
@@ -682,7 +682,6 @@ $("#list").onclick=e=>{
   const p=e.target.closest(".play");if(p){playYt(p);return}
   if(0){const c=p.closest(".cover");c.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(c.dataset.yt)}?autoplay=1" title="סרטון" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`}
 };
-$("#deckIn").onclick=e=>{const c=e.target.closest(".jc");if(c)location.hash="#/job/"+c.dataset.id};
 $("#openPool").onclick=openPool;$("#closeDrawer").onclick=closeDrawer;$("#scrim").onclick=closeDrawer;
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();if(location.hash.startsWith("#/job/"))location.hash=""}});
 $("#openAdmin").onclick=()=>{renderAdmin();$("#admin").classList.add("on");lenis&&lenis.stop()};
@@ -740,7 +739,6 @@ if(HAS){
     .set("#loader",{display:"none"})
     .to(heroWords,{yPercent:0,duration:1.1,stagger:.09,ease:"power4.out"},"-=.45")
     .to("[data-in]",{opacity:1,y:0,duration:.9,stagger:.12,ease:"power3.out"},"-=.8")
-    .from("#deckIn",{rotationZ:14,scale:.8,duration:1.3,ease:"power3.out"},"-=1.2")
     .add(()=>{$$(".stats b").forEach(b=>{const to=b.dataset.count?+b.dataset.count:jobs.length,o={v:0};gsap.to(o,{v:to,duration:1.4,ease:"power2.out",onUpdate(){b.textContent=Math.round(o.v)}})})},"-=1");
   /* headings */
   $$(".h2[data-split]").forEach(h=>{const w=split(h);gsap.set(w,{yPercent:115});ScrollTrigger.create({trigger:h,start:"top 86%",once:true,onEnter(){gsap.to(w,{yPercent:0,duration:1,stagger:.08,ease:"power4.out"})}})});
@@ -753,14 +751,11 @@ if(HAS){
     gsap.from(c.querySelector(".card__n"),{xPercent:40,opacity:0,duration:1,ease:"power3.out",scrollTrigger:{trigger:c,start:"top 85%",once:true}})});
   /* hero parallax out */
   gsap.to(".hero__text",{yPercent:-12,opacity:.2,ease:"none",scrollTrigger:{trigger:"#hero",start:"top top",end:"bottom top",scrub:true}});
-  gsap.to("#deck",{yPercent:10,ease:"none",scrollTrigger:{trigger:"#hero",start:"top top",end:"bottom top",scrub:true}});
   /* progress + nav */
   gsap.to("#prog",{scaleX:1,ease:"none",scrollTrigger:{start:0,end:"max",scrub:.3}});
   ScrollTrigger.create({start:0,end:"max",onUpdate(s){const y=s.scroll();$("#nav").classList.toggle("is-solid",y>40);$("#nav").classList.toggle("is-hidden",s.direction===1&&y>500)}});
   /* deck tilt + cursor */
   if(matchMedia("(hover:hover)").matches){
-    const rx=gsap.quickTo("#deckIn","rotationX",{duration:.8,ease:"power3"}),ry=gsap.quickTo("#deckIn","rotationY",{duration:.8,ease:"power3"});
-    $("#hero").addEventListener("pointermove",e=>{rx((e.clientY/innerHeight-.5)*-14);ry((e.clientX/innerWidth-.5)*18)});
     const cur=$("#cursor"),cx=gsap.quickTo(cur,"x",{duration:.35,ease:"power3"}),cy=gsap.quickTo(cur,"y",{duration:.35,ease:"power3"});
     addEventListener("pointermove",e=>{cur.classList.add("is-on");cx(e.clientX);cy(e.clientY);cur.classList.toggle("is-hover",!!e.target.closest("a,button,[data-hover],label.file"))});
     /* magnetic buttons */

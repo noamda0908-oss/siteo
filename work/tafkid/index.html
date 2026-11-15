@@ -142,16 +142,6 @@ em{font-style:normal}
   .hero__scroll{display:none}
 }
 
-/* ticker */
-.ticker{border-block:1px solid var(--line);overflow:hidden;direction:ltr;background:rgba(10,25,29,.6)}
-.ticker__track{display:flex;align-items:center;gap:34px;width:max-content;padding-block:16px;animation:mq 40s linear infinite;font-size:clamp(1.3rem,2.6vw,2.2rem);font-weight:700}
-.ticker--b .ticker__track{animation-direction:reverse;animation-duration:52s}
-.ticker--b{border-top:0}
-.ticker__track span{direction:rtl;color:transparent;-webkit-text-stroke:1px rgba(255,176,74,.6)}
-.ticker__track span:nth-of-type(3n+1){color:var(--ink);-webkit-text-stroke:0}
-.ticker__track b{width:8px;height:8px;border-radius:50%;background:var(--amber)}
-@keyframes mq{to{transform:translateX(-50%)}}
-
 /* jobs */
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
 .chip{border:1px solid var(--line2);border-radius:99px;padding:7px 18px;font-size:15px;font-weight:400;transition:border-color .3s,background .3s,color .3s}
@@ -184,11 +174,11 @@ em{font-style:normal}
 
 /* how (stack) */
 .stack{display:grid;gap:26px}
-.card{position:sticky;top:calc(96px + var(--i) * 16px);display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,5vw,80px);align-items:center;padding:clamp(26px,4vw,60px);border-radius:28px;border:1px solid var(--line);background:linear-gradient(150deg,#153036 0%,#0E2227 60%);box-shadow:0 -24px 60px -30px rgba(0,0,0,.8);overflow:hidden}
+.card{position:sticky;top:calc(96px + var(--i) * 16px);display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,5vw,80px);align-items:center;padding:clamp(26px,4vw,60px);border-radius:28px;border:1px solid var(--line);background:linear-gradient(150deg,#1B3D45 0%,#122C32 60%);box-shadow:0 -18px 40px -24px rgba(0,0,0,.55);transform-origin:50% 0;overflow:hidden}
 .card::before{content:"";position:absolute;width:420px;height:420px;inset-inline-end:-140px;top:-180px;background:radial-gradient(closest-side,rgba(255,150,70,.18),transparent);pointer-events:none}
 .card__n{font-weight:900;font-size:clamp(4rem,11vw,10rem);line-height:.9;color:transparent;-webkit-text-stroke:1px var(--amber)}
 .card h3{font-size:clamp(1.8rem,3.6vw,3.2rem);font-weight:800;line-height:1.1;margin-bottom:12px}
-.card p{color:#C5D0CE;max-width:30em}
+.card p{color:#DCE4E2;max-width:30em}
 @media (max-width:860px){.card{top:calc(78px + var(--i) * 10px);border-radius:22px;grid-template-columns:1fr}}
 
 /* cta + foot */
@@ -268,7 +258,6 @@ td span{color:var(--muted);font-size:13px}
 
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
-  .ticker__track{animation:none}
 }
 </style>
 </head>
@@ -312,8 +301,6 @@ td span{color:var(--muted);font-size:13px}
   <div class="hero__scroll" aria-hidden="true">גלילה<i></i></div>
 </section>
 
-<div class="ticker" aria-hidden="true"><div class="ticker__track" id="tk1"></div></div>
-<div class="ticker ticker--b" aria-hidden="true"><div class="ticker__track" id="tk2"></div></div>
 
 <section class="sec" id="jobs">
   <div class="wrap">
@@ -431,8 +418,6 @@ function fillStatic(){
   $("#city").innerHTML='<option value="">כל הארץ</option>'+cities.map(c=>`<option>${esc(c)}</option>`).join("");
   $("#city").value=cities.includes(cur)?cur:"";
   $("#chips").innerHTML=["הכול",...CATS].map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c}</button>`).join("");
-  const a=jobs.slice(0,6).map(j=>`<span>${esc(short(j.title))}</span><b></b>`).join(""),b=[...new Set(jobs.map(j=>j.city)),...CATS].map(x=>`<span>${esc(x)}</span><b></b>`).join("");
-  $("#tk1").innerHTML=a+a;$("#tk2").innerHTML=b+b;
   $("#newJob [name=cat]").innerHTML=CATS.map(c=>`<option>${c}</option>`).join("");
   $("#sJobs").textContent=jobs.length;
 }
@@ -583,14 +568,11 @@ if(HAS){
   gsap.set("#list .row",{opacity:0,y:40});
   ScrollTrigger.create({trigger:"#list",start:"top 88%",once:true,onEnter(){listReady=true;gsap.to("#list .row",{opacity:1,y:0,duration:.8,stagger:.07,ease:"power3.out",clearProps:"all"})}});
   /* stack cards scale as next covers */
-  const cards=$$(".card");cards.forEach((c,i)=>{if(i<cards.length-1)gsap.to(c,{scale:.93,filter:"brightness(.62)",ease:"none",scrollTrigger:{trigger:cards[i+1],start:"top bottom",end:"top 20%",scrub:true}});
+  const cards=$$(".card");cards.forEach((c,i)=>{if(i<cards.length-1)gsap.to(c,{scale:.94,ease:"none",scrollTrigger:{trigger:cards[i+1],start:"top 85%",end:"top 25%",scrub:true}});
     gsap.from(c.querySelector(".card__n"),{xPercent:40,opacity:0,duration:1,ease:"power3.out",scrollTrigger:{trigger:c,start:"top 85%",once:true}})});
   /* hero parallax out */
   gsap.to(".hero__text",{yPercent:-12,opacity:.2,ease:"none",scrollTrigger:{trigger:"#hero",start:"top top",end:"bottom top",scrub:true}});
   gsap.to("#deck",{yPercent:10,ease:"none",scrollTrigger:{trigger:"#hero",start:"top top",end:"bottom top",scrub:true}});
-  /* ticker reacts to scroll speed */
-  const sk=gsap.quickTo(".ticker__track","skewX",{duration:.5,ease:"power3"});
-  ScrollTrigger.create({onUpdate(s){sk(gsap.utils.clamp(-14,14,s.getVelocity()/-180))}});
   /* progress + nav */
   gsap.to("#prog",{scaleX:1,ease:"none",scrollTrigger:{start:0,end:"max",scrub:.3}});
   ScrollTrigger.create({start:0,end:"max",onUpdate(s){const y=s.scroll();$("#nav").classList.toggle("is-solid",y>40);$("#nav").classList.toggle("is-hidden",s.direction===1&&y>500)}});

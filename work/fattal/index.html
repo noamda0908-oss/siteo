@@ -441,11 +441,17 @@ body[data-theme="green"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;--line
 
 body[data-theme="blue"]{--amber:#6FB6FF;--amber2:#CFE6FF;--coral:#4C8DF6;--line:rgba(111,182,255,.24);--grad:linear-gradient(100deg,#4C8DF6 0%,#6FB6FF 28%,#DCEBFF 50%,#ffffff 64%,#6FB6FF 100%)}
 body[data-theme="pink"]{--amber:#FF8FC0;--amber2:#FFD6E8;--coral:#F0508F;--line:rgba(255,143,192,.24);--grad:linear-gradient(100deg,#F0508F 0%,#FF8FC0 28%,#FFE1EE 50%,#ffffff 64%,#FF8FC0 100%)}
-.hero__bg{position:absolute;inset:-4% 0;background-size:cover;background-position:center 22%;opacity:0;transition:opacity 1.2s;will-change:transform}
+.hero__bg{position:absolute;inset:-4% 0;background-size:cover;background-position:center 62%;opacity:0;transition:opacity 1.2s;will-change:transform}
 .hero__bg.on{opacity:1;animation:kb 26s ease-in-out infinite alternate}
-.hero__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,25,29,.74) 0%,rgba(10,25,29,.66) 40%,rgba(10,25,29,.92) 82%,var(--bg) 100%),radial-gradient(70% 60% at 50% 45%,rgba(10,25,29,.55),transparent 75%)}
+.hero__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,25,29,.5) 0%,rgba(10,25,29,.42) 45%,rgba(10,25,29,.7) 84%,var(--bg) 100%)}
 @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translateY(-1.5%)}}
-.hero__sub,.stats span{text-shadow:0 2px 24px rgba(5,14,16,.7)}
+.hero__sub,.stats span{text-shadow:0 1px 3px rgba(5,14,16,.9),0 2px 24px rgba(5,14,16,.9)}
+.hero__bg.on~.wrap .hero__sub{color:#fff;font-weight:400}
+.hero__bg.on~.wrap .stats span{color:#E8EEEC}
+.hero__bg.on~.wrap .hero__title .wi{filter:drop-shadow(0 4px 22px rgba(5,14,16,.75))}
+.hero__bg.on~#net{opacity:.35}
+.hero__bg.on~.wrap .live{background:rgba(10,25,29,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hero__bg.on~.wrap .search{background:rgba(12,30,35,.86)}
 /* admin v5 */
 @media (max-width:760px){.a-top{position:static}.a-bar label{flex:1 1 100%}.a-bar .a-city{flex:1;min-width:0;max-width:100%}}
 .login{max-width:420px;margin:clamp(40px,10vh,120px) auto}
@@ -690,7 +696,7 @@ const CATS=["מסעדות וקפה","קמעונאות","אירועים","הדר�
 const HUE={"מסעדות וקפה":24,"קמעונאות":192,"אירועים":338,"הדרכה וקייטנות":44,"שירות לקוחות":158,"אחר":260};
 const TH={amber:"255,176,74",green:"111,227,165",blue:"111,182,255",pink:"255,143,192"};
 const LG="https://noar.fatall.co.il/wp-content/uploads/2022/04/";
-const BG="https://images.unsplash.com/photo-1569617084133-26942bb441f2?fm=jpg&q=60&w=1800&auto=format&fit=crop";
+const BG="https://images.unsplash.com/photo-1531844251246-9a1bfaae09fc?fm=jpg&q=60&w=1800&auto=format&fit=crop";
 const J=(id,muni,fairId,biz,cat,city,roles,minAge,maxAge,tag,desc,pay,hours,about,req)=>({id,muni,fairId,biz,cat,city,roles,minAge,maxAge,tag,desc,pay,hours,about,req,phone:"",on:true});
 const SEED=[
  J(1,"rehovot","r26","קפה נורדי","מסעדות וקפה","רחובות",["בריסטה","מלצר/ית","קופאי/ת"],16,18,"new","רשת בתי קפה מחפשת צוות לסניף החדש. משמרות גמישות, ארוחה בכל משמרת ואפשרות קידום.","32 עד 38 ₪ לשעה ועוד טיפים","משמרות בוקר או ערב, עד 8 שעות","קפה נורדי היא רשת של חמישה בתי קפה שכונתיים. הצוות צעיר, ורוב העובדים התחילו אצלנו בעבודה ראשונה ונשארו.",["זמינות לשלוש משמרות בשבוע לפחות","שירותיות וסבלנות מול לקוחות","ניסיון קודם הוא יתרון, לא חובה"]),

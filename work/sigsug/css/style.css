@@ -675,3 +675,6 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 .nav__logo img,.loader img,.foot__logo img,.hero__logo img{filter:none}
 .nav__logo img{width:70px;height:auto}
 .hero__logo{margin-bottom:26px}
+
+/* v12: original logo lettering, vowel marks corrected; shown in white */
+.nav__logo img,.loader img,.foot__logo img,.hero__logo img{filter:grayscale(1) brightness(1.75)}

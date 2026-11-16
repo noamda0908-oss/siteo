@@ -779,3 +779,7 @@ body{transition:background-color .5s}
 [data-theme="green"] .vids__nav button{color:var(--tx)}
 .themer [data-t="green"]{background:linear-gradient(135deg,#F5F6F1 50%,#1F7A4D 50%)}
 .themer{gap:8px;padding:8px 12px}.themer button{width:28px;height:28px}
+
+/* v20: stronger hero paragraph */
+.hero__sub{color:var(--tx);font-weight:400;font-size:clamp(1.1rem,1.5vw,1.4rem)}
+.hero__sub strong{font-size:1.15em}

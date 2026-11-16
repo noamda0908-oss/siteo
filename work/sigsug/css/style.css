@@ -837,3 +837,8 @@ body{transition:background-color .5s}
 .quote__rule b{font-size:clamp(3.4rem,6vw,4.6rem);line-height:.5;height:.36em}
 .quote__end{font-family:"Quote",serif;font-weight:800;color:var(--ac);font-size:1.9em;line-height:0;margin-inline-start:.08em;vertical-align:-.05em}
 .quote__rule--b b{width:9px;height:9px;font-size:0;line-height:0}
+
+/* v26: portrait slot above the quote — shows initials until img/quote-portrait.webp is supplied */
+.quote__ph{position:relative;width:clamp(84px,9vw,112px);aspect-ratio:1;margin:0 auto 16px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--pn);box-shadow:0 0 0 2px var(--ac),0 0 0 7px rgb(var(--ac-rgb) / .18)}
+.quote__ph span{font-family:"Quote",serif;font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);color:var(--ac);letter-spacing:.02em}
+.quote__ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}

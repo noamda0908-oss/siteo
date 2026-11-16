@@ -441,6 +441,11 @@ body[data-theme="green"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;--line
 
 body[data-theme="blue"]{--amber:#6FB6FF;--amber2:#CFE6FF;--coral:#4C8DF6;--line:rgba(111,182,255,.24);--grad:linear-gradient(100deg,#4C8DF6 0%,#6FB6FF 28%,#DCEBFF 50%,#ffffff 64%,#6FB6FF 100%)}
 body[data-theme="pink"]{--amber:#FF8FC0;--amber2:#FFD6E8;--coral:#F0508F;--line:rgba(255,143,192,.24);--grad:linear-gradient(100deg,#F0508F 0%,#FF8FC0 28%,#FFE1EE 50%,#ffffff 64%,#FF8FC0 100%)}
+.hero__bg{position:absolute;inset:-4% 0;background-size:cover;background-position:center 22%;opacity:0;transition:opacity 1.2s;will-change:transform}
+.hero__bg.on{opacity:1;animation:kb 26s ease-in-out infinite alternate}
+.hero__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,25,29,.74) 0%,rgba(10,25,29,.66) 40%,rgba(10,25,29,.92) 82%,var(--bg) 100%),radial-gradient(70% 60% at 50% 45%,rgba(10,25,29,.55),transparent 75%)}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translateY(-1.5%)}}
+.hero__sub,.stats span{text-shadow:0 2px 24px rgba(5,14,16,.7)}
 /* admin v5 */
 @media (max-width:760px){.a-top{position:static}.a-bar label{flex:1 1 100%}.a-bar .a-city{flex:1;min-width:0;max-width:100%}}
 .login{max-width:420px;margin:clamp(40px,10vh,120px) auto}
@@ -485,6 +490,7 @@ body[data-theme="pink"]{--amber:#FF8FC0;--amber2:#FFD6E8;--coral:#F0508F;--line:
 
 <main id="top">
 <section class="hero" id="hero">
+  <div class="hero__bg" id="heroBg" aria-hidden="true"></div>
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="hero__glow"></div><div class="hero__glow hero__glow--b"></div>
   <div class="wrap hero__grid">
@@ -631,6 +637,8 @@ body[data-theme="pink"]{--amber:#FF8FC0;--amber2:#FFD6E8;--coral:#F0508F;--line:
           <label class="f"><span>כתובת האתר</span><input name="url" readonly dir="ltr" style="text-align:right;opacity:.7"></label>
           <label class="f"><span>צבע האתר</span><select name="theme"><option value="amber">כתום</option><option value="green">ירוק</option><option value="blue">כחול</option><option value="pink">ורוד</option></select></label>
           <label class="f"><span>לוגואים, אחד בכל שורה: שם, קו ישר, קישור לתמונה</span><textarea name="logos" rows="4"></textarea></label>
+          <label class="f"><span>תמונת רקע לדף הבית, קישור לתמונה</span><input name="bg" dir="ltr" style="text-align:right" placeholder="https://..."></label>
+          <p class="hint">משאירים ריק כדי להציג את דף הבית בלי תמונה.</p>
           <label class="f"><span>מזהה Google Analytics</span><input name="ga" dir="ltr" style="text-align:right" placeholder="G-XXXXXXXXXX"></label>
           <p class="hint">אחרי שמזינים מזהה, כל כניסה לאתר של הרשות נספרת בחשבון האנליטיקס שלך.</p>
           <button class="btn btn--full" type="submit">שמירת ההגדרות <b><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></b></button>
@@ -682,6 +690,7 @@ const CATS=["מסעדות וקפה","קמעונאות","אירועים","הדר�
 const HUE={"מסעדות וקפה":24,"קמעונאות":192,"אירועים":338,"הדרכה וקייטנות":44,"שירות לקוחות":158,"אחר":260};
 const TH={amber:"255,176,74",green:"111,227,165",blue:"111,182,255",pink:"255,143,192"};
 const LG="https://noar.fatall.co.il/wp-content/uploads/2022/04/";
+const BG="https://images.unsplash.com/photo-1569617084133-26942bb441f2?fm=jpg&q=60&w=1800&auto=format&fit=crop";
 const J=(id,muni,fairId,biz,cat,city,roles,minAge,maxAge,tag,desc,pay,hours,about,req)=>({id,muni,fairId,biz,cat,city,roles,minAge,maxAge,tag,desc,pay,hours,about,req,phone:"",on:true});
 const SEED=[
  J(1,"rehovot","r26","קפה נורדי","מסעדות וקפה","רחובות",["בריסטה","מלצר/ית","קופאי/ת"],16,18,"new","רשת בתי קפה מחפשת צוות לסניף החדש. משמרות גמישות, ארוחה בכל משמרת ואפשרות קידום.","32 עד 38 ₪ לשעה ועוד טיפים","משמרות בוקר או ערב, עד 8 שעות","קפה נורדי היא רשת של חמישה בתי קפה שכונתיים. הצוות צעיר, ורוב העובדים התחילו אצלנו בעבודה ראשונה ונשארו.",["זמינות לשלוש משמרות בשבוע לפחות","שירותיות וסבלנות מול לקוחות","ניסיון קודם הוא יתרון, לא חובה"]),
@@ -789,6 +798,7 @@ function setMuni(m,force){
   if(muni===m&&!force)return;const changed=muni!==m;muni=m;if(changed){cat="הכול";$("#q").value=""}
   const c=cfg.cities[m],f=fairOf(m);document.body.dataset.theme=c.theme||"amber";
   setBrand();renderNav();loadGa(c.ga);
+  {const u=c.bg===undefined?BG:c.bg,el=$("#heroBg");if(u){const im=new Image();im.onload=()=>{el.style.backgroundImage='url("'+u.replace(/"/g,"")+'")';el.classList.add("on")};im.onerror=()=>el.classList.remove("on");im.src=u}else el.classList.remove("on")}
   $("#logos").innerHTML=c.logos.map(l=>{const[n,u]=l.split("|").map(x=>x.trim());return u?`<span class="lg"><img src="${esc(encodeURI(u))}" alt="${esc(n)}" onerror="this.parentNode.className='';this.replaceWith('${esc(n).replace(/'/g,"")}')"></span>`:`<span>${esc(n)}</span>`}).join("");
   const h=$("#heroTitle");h.innerHTML=`${esc(f.title)} <em>${esc(f.accent)}</em>`;
   const w=split(h);if(HAS&&ready)gsap.fromTo(w,{yPercent:115},{yPercent:0,duration:1,stagger:.08,ease:"power4.out",delay:.2});
@@ -946,7 +956,7 @@ function renderAdmin(){
   /* pages */
   $("#aPages").innerHTML=`<table><tr><th>דף</th><th>בתפריט</th><th></th></tr>${Object.keys(cfg.pages).map(k=>{const p=cfg.pages[k];return `<tr data-page="${k}"><td><b>${esc(p.t)}</b></td><td><span class="pill ${p.nav?"ok":""}">${p.nav?"כן":"לא"}</span></td><td><div class="rowacts"><button class="lnk" data-p="edit">עריכה</button>${p.core?"":'<button class="lnk red" data-p="del">מחיקה</button>'}</div></td></tr>`}).join("")}</table>`;
   /* site */
-  const sf=$("#siteForm");$("#siteFormH").textContent="הגדרות האתר של "+c.name;sf.name.value=c.name;sf.url.value=location.origin+location.pathname+"#/"+aMuni;sf.theme.value=c.theme||"amber";sf.logos.value=c.logos.join("\n");sf.ga.value=c.ga||"";
+  const sf=$("#siteForm");$("#siteFormH").textContent="הגדרות האתר של "+c.name;sf.name.value=c.name;sf.url.value=location.origin+location.pathname+"#/"+aMuni;sf.theme.value=c.theme||"amber";sf.logos.value=c.logos.join("\n");sf.ga.value=c.ga||"";sf.bg.value=c.bg===undefined?BG:c.bg;
   $("#siteList").innerHTML=`<table><tr><th>האתרים על הדומיין</th><th></th></tr>${Object.keys(cfg.cities).map(m=>`<tr><td><b>${esc(cfg.cities[m].name)}</b><span class="ltr">/#/${esc(m)}</span></td><td><span class="pill">${cfg.cities[m].fairs.length} ירידים</span></td></tr>`).join("")}</table>`;
 }
 function changed(msg){const ok=saveAll();renderAdmin();if(muni)setMuni(muni,true);msg&&toast(ok?msg:msg+". התמונה גדולה מדי ולא נשמרה")}
@@ -1012,7 +1022,7 @@ $("#aPages").onclick=e=>{const b=e.target.closest("[data-p]");if(!b)return;const
   if(b.dataset.p==="edit"){const f=$("#pageForm");f.key.value=k;f.t.value=p.t;f.b.value=p.b;f.nav.checked=!!p.nav;f.classList.add("editing");$("#pageFormH").textContent="עריכת הדף";$("#pageFormBtn").textContent="שמירת הדף";$("#pageCancel").style.display="";f.scrollIntoView({behavior:"smooth",block:"start"})}
 };
 /* site */
-$("#siteForm").onsubmit=e=>{e.preventDefault();const f=e.target,c=cfg.cities[aMuni];Object.assign(c,{name:f.name.value.trim()||c.name,theme:f.theme.value,ga:f.ga.value.trim().toUpperCase(),logos:f.logos.value.split("\n").map(x=>x.trim()).filter(Boolean).slice(0,5)});changed("ההגדרות של "+c.name+" נשמרו")};
+$("#siteForm").onsubmit=e=>{e.preventDefault();const f=e.target,c=cfg.cities[aMuni];Object.assign(c,{name:f.name.value.trim()||c.name,theme:f.theme.value,ga:f.ga.value.trim().toUpperCase(),bg:f.bg.value.trim(),logos:f.logos.value.split("\n").map(x=>x.trim()).filter(Boolean).slice(0,5)});changed("ההגדרות של "+c.name+" נשמרו")};
 $("#newSite").onsubmit=e=>{e.preventDefault();const f=e.target,slug=f.slug.value.trim().toLowerCase(),name=f.name.value.trim(),bad=!/^[a-z0-9-]{2,30}$/.test(slug)||cfg.cities[slug]||["info","job"].includes(slug);
   f.slug.closest(".f").classList.toggle("bad",!!bad);if(bad)return;const id="f"+Date.now(),yr=new Date().getFullYear()+1;
   cfg.cities[slug]={name,theme:"blue",ga:"",active:id,logos:["לוגו "+name],fairs:[{id,title:"יריד תעסוקה לנוער",accent:name+" "+yr,open:false,closed:"היריד ייפתח בקרוב",closedSub:"המשרות יעלו לאתר לקראת היריד."}]};

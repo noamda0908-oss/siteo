@@ -716,3 +716,9 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 .a11y-still [data-clip]{clip-path:none!important}.a11y-still [data-clip] img{transform:none!important}
 .a11y-still .beat{opacity:1!important}.a11y-still .hl{background-size:100% 38%!important}
 @media (max-width:640px){.a11y-btn{width:52px;height:52px;right:14px}}
+
+/* v14: WhatsApp on the right, accessibility on the left */
+.wa{left:auto;right:18px}
+.a11y-btn{right:auto;left:18px}
+.a11y-panel{right:auto;left:14px}
+@media (max-width:640px){.a11y-btn{right:auto;left:14px}}

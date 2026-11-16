@@ -725,3 +725,8 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 
 /* v15: WhatsApp button visible from the top of the page */
 .wa{opacity:1;pointer-events:auto;transform:none}
+
+/* v16: header logo a little larger and further from the edge */
+.nav{padding:6px 30px 6px 18px}
+.nav__logo img{width:88px;height:auto}
+@media (max-width:640px){.nav{padding:6px 26px 6px 14px}.nav__logo img{width:82px}}

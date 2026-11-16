@@ -678,3 +678,41 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 
 /* v12: original logo lettering, vowel marks corrected; shown in white */
 .nav__logo img,.loader img,.foot__logo img,.hero__logo img{filter:grayscale(1) brightness(1.75)}
+
+/* ================= v13: accessibility menu ================= */
+.skip{position:fixed;top:8px;right:8px;z-index:200;background:#fff;color:#111;padding:10px 16px;border-radius:10px;font-weight:600;transform:translateY(-200%)}
+.skip:focus{transform:none}
+.a11y-btn{position:fixed;z-index:66;bottom:calc(18px + env(safe-area-inset-bottom));right:18px;width:56px;height:56px;border-radius:50%;background:#1F5FFF;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -10px rgba(31,95,255,.8);border:2px solid #fff}
+.a11y-panel{position:fixed;z-index:96;bottom:calc(84px + env(safe-area-inset-bottom));right:14px;width:min(330px,calc(100vw - 28px));background:#fff;color:#111;border-radius:20px;padding:16px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7);font-family:Arial,sans-serif;font-size:15px;line-height:1.4;direction:rtl}
+.a11y-panel[hidden]{display:none}
+.a11y-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:18px}
+.a11y-x{width:36px;height:36px;border-radius:50%;background:#eee;color:#111;font-size:16px}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a11y-grid button{display:grid;gap:6px;justify-items:center;padding:14px 6px;border-radius:14px;background:#f1f1f4;color:#111;border:2px solid transparent;font:inherit;text-align:center}
+.a11y-grid button i{font-style:normal;font-weight:700;font-size:18px}
+.a11y-grid button[aria-pressed="true"]{background:#1F5FFF;color:#fff;border-color:#0b2fa8}
+.a11y-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px}
+.a11y-reset{padding:9px 14px;border-radius:10px;background:#111;color:#fff;font:inherit}
+.a11y-foot a{color:#0b2fa8;text-decoration:underline}
+.a11y-panel button:focus-visible,.a11y-btn:focus-visible,.a11y-panel a:focus-visible{outline:3px solid #ffb400;outline-offset:2px}
+/* states */
+.a11y-z1 main,.a11y-z1 .foot{zoom:1.15}.a11y-z2 main,.a11y-z2 .foot{zoom:1.3}.a11y-z3 main,.a11y-z3 .foot{zoom:1.45}
+.a11y-gray{filter:grayscale(1)}
+.a11y-font body,.a11y-font body *:not(.a11y-panel *){font-family:Arial,"Arial Hebrew",sans-serif!important;letter-spacing:0!important}
+.a11y-links a:not(.a11y-panel a){text-decoration:underline!important;outline:2px solid #ffe600;outline-offset:2px}
+.a11y-contrast body{background:#000!important}
+.a11y-contrast #coin,.a11y-contrast .hero__chart,.a11y-contrast .slide{display:none!important}
+.a11y-contrast main *,.a11y-contrast .foot *,.a11y-contrast .nav *{color:#fff!important;-webkit-text-fill-color:#fff!important;-webkit-text-stroke:0!important;text-shadow:none!important}
+.a11y-contrast main a,.a11y-contrast .foot a{color:#ffe600!important;-webkit-text-fill-color:#ffe600!important;text-decoration:underline!important}
+.a11y-contrast .btn,.a11y-contrast .btn b{background:#ffe600!important}.a11y-contrast .btn *,.a11y-contrast .btn{color:#000!important;-webkit-text-fill-color:#000!important}
+.a11y-contrast .stp__card,.a11y-contrast .ucard,.a11y-contrast .stat,.a11y-contrast .form,.a11y-contrast .press__card,.a11y-contrast .legal__box{background:#000!important;outline:2px solid #fff}
+.a11y-contrast .hl{background:none!important;text-decoration:underline}
+.a11y-contrast .stat__n,.a11y-contrast .mani__num,.a11y-contrast .stp__n{background:none!important}
+.a11y-contrast .field input{border-bottom:2px solid #fff!important}
+.a11y-contrast .nav::before{background:#000!important;outline:2px solid #fff}
+.a11y-still *,.a11y-still *::before,.a11y-still *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+.a11y-still #coin{display:none!important}
+.a11y-still [data-reveal],.a11y-still .member,.a11y-still .ucard,.a11y-still .stp,.a11y-still .stp__card,.a11y-still .stat,.a11y-still .wi{opacity:1!important;transform:none!important;filter:none!important}
+.a11y-still [data-clip]{clip-path:none!important}.a11y-still [data-clip] img{transform:none!important}
+.a11y-still .beat{opacity:1!important}.a11y-still .hl{background-size:100% 38%!important}
+@media (max-width:640px){.a11y-btn{width:52px;height:52px;right:14px}}

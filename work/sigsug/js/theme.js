@@ -1,6 +1,6 @@
 /* Demo colour switcher — remembers the choice in this browser only */
 (function () {
-  var KEY = 'sigsug-theme', NAMES = ['lilac', 'gold', 'navy'], LABEL = { lilac: 'סגול־לילך', gold: 'שחור־זהב', navy: 'כחול כהה וזהב' }, BAR = { lilac: '#16171C', gold: '#0B0A08', navy: '#0A1428' };
+  var KEY = 'sigsug-theme', NAMES = ['lilac', 'gold', 'navy', 'cream'], LABEL = { lilac: 'סגול־לילך', gold: 'שחור־זהב', navy: 'כחול כהה וזהב', cream: 'שמנת, כחול כהה וזהב' }, BAR = { lilac: '#16171C', gold: '#0B0A08', navy: '#0A1428', cream: '#F4EFE4' };
   var root = document.documentElement, cur = 'lilac';
   try { var q = new URLSearchParams(location.search).get('theme'); var s = q || localStorage.getItem(KEY); if (NAMES.indexOf(s) > -1) cur = s; } catch (e) {}
   function set(t, silent) {

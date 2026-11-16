@@ -633,3 +633,5 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 .partners .mq__track{gap:clamp(14px,2vw,24px);padding-inline-end:clamp(14px,2vw,24px)}
 
 .pchip{min-width:clamp(96px,10vw,130px);padding:10px 20px}.partners .mq__track--slow .pchip img{height:clamp(42px,4.6vw,58px)}
+
+.head--stack{text-align:center}.head--stack .h2{text-wrap:balance}

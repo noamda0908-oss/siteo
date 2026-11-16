@@ -722,3 +722,6 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 .a11y-btn{right:auto;left:18px}
 .a11y-panel{right:auto;left:14px}
 @media (max-width:640px){.a11y-btn{right:auto;left:14px}}
+
+/* v15: WhatsApp button visible from the top of the page */
+.wa{opacity:1;pointer-events:auto;transform:none}

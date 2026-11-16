@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>יריד התעסוקה לנוער 2026 | פתאל הפקות</title>
+<title>יריד תעסוקה לנוער</title>
 <meta name="description" content="יריד התעסוקה לנוער: משרות לנוער ברחובות ובפתח תקווה והגשת מועמדות ישירות מהאתר.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A191D">
@@ -339,7 +339,7 @@ td span{color:var(--muted);font-size:13px}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
-body[data-city="petah-tikva"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;--line:rgba(111,227,165,.24);--grad:linear-gradient(100deg,#2FC6A0 0%,#6FE3A5 28%,#D9FBE7 50%,#ffffff 64%,#6FE3A5 100%)}
+body[data-theme="green"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;--line:rgba(111,227,165,.24);--grad:linear-gradient(100deg,#2FC6A0 0%,#6FE3A5 28%,#D9FBE7 50%,#ffffff 64%,#6FE3A5 100%)}
 /* nav extras */
 .nav__links button{position:relative;padding:6px 0;opacity:.8;font-weight:400;font-size:15px;transition:opacity .3s}
 .nav__links button:hover{opacity:1}
@@ -438,6 +438,37 @@ body[data-city="petah-tikva"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;-
 .set-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start;padding-bottom:60px}
 @media (max-width:900px){.set-grid{grid-template-columns:1fr}.grp__list{grid-template-columns:1fr;padding-inline:14px}}
 @media print{#printArea h2{font-size:20px;margin:26px 0 6px}#printArea .ptable th{width:auto;text-align:start}#printArea .ptable td,#printArea .ptable th{font-size:13px;padding:7px 6px;border:1px solid #bbb}}
+
+body[data-theme="blue"]{--amber:#6FB6FF;--amber2:#CFE6FF;--coral:#4C8DF6;--line:rgba(111,182,255,.24);--grad:linear-gradient(100deg,#4C8DF6 0%,#6FB6FF 28%,#DCEBFF 50%,#ffffff 64%,#6FB6FF 100%)}
+body[data-theme="pink"]{--amber:#FF8FC0;--amber2:#FFD6E8;--coral:#F0508F;--line:rgba(255,143,192,.24);--grad:linear-gradient(100deg,#F0508F 0%,#FF8FC0 28%,#FFE1EE 50%,#ffffff 64%,#FF8FC0 100%)}
+/* admin v5 */
+@media (max-width:760px){.a-top{position:static}.a-bar label{flex:1 1 100%}.a-bar .a-city{flex:1;min-width:0;max-width:100%}}
+.login{max-width:420px;margin:clamp(40px,10vh,120px) auto}
+.login h3{font-size:30px;font-weight:800;margin-bottom:6px}
+.a-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.a-bar label{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.tabs .chip{white-space:nowrap}
+.rowacts{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.lnk{color:var(--amber2);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.lnk.red{color:#FF9B80}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tscroll table{min-width:720px}
+.grp .tscroll{padding:0 14px 14px}
+.grp td,.grp th{padding:10px 8px;white-space:nowrap}
+.grp td.wrapc{white-space:normal;min-width:160px;color:var(--muted);font-size:13px}
+.warn{display:inline-block;margin-inline-start:8px;font-size:11px;border-radius:99px;padding:0 8px;border:1px solid rgba(255,122,85,.5);color:#FF9B80}
+.fairs{display:grid;gap:14px}
+.fair{border:1px solid var(--line2);border-radius:18px;padding:16px 18px;display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}
+.fair.on{border-color:var(--line);background:linear-gradient(150deg,rgba(255,255,255,.05),transparent)}
+.fair b{font-size:19px;font-weight:700;display:block}
+.fair span{color:var(--muted);font-size:13px}
+.toast button{margin-inline-start:14px;text-decoration:underline;font-weight:700}
+.editing{outline:2px solid var(--amber);outline-offset:4px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.kpi{border:1px solid var(--line2);border-radius:18px;padding:14px 18px;background:linear-gradient(150deg,#122B31,#0D2025)}
+.kpi b{display:block;font-size:30px;font-weight:800;line-height:1.1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi span{font-size:13px;color:var(--muted)}
+@media (max-width:760px){.kpis{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -448,13 +479,7 @@ body[data-city="petah-tikva"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;-
 
 <header class="nav" id="nav">
   <button class="logo" data-scroll="#top" aria-label="לראש הדף"><span class="brand"></span><i></i></button>
-  <nav class="nav__links" id="navLinks">
-    <button data-scroll="#jobs">המשרות</button>
-    <button data-info="rights">זכויות בני נוער בעבודה</button>
-    <button data-info="wage">טבלת שכר מינימום</button>
-    <button data-info="tips">טיפים למציאת עבודה</button>
-    <button data-info="terms">תקנון האתר</button>
-  </nav>
+  <nav class="nav__links" id="navLinks"></nav>
   <button class="burger" id="burger" aria-label="תפריט" aria-expanded="false"><i></i><i></i></button>
 </header>
 
@@ -469,12 +494,12 @@ body[data-city="petah-tikva"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;-
       <h1 class="hero__title" id="heroTitle"></h1>
       <p class="hero__sub" data-in>אספנו עבורכם את המעסיקים והעבודות הכי שוות לנוער. בוחרים משרה, מגישים מועמדות, וחוזרים אליכם להמשך קבלה לעבודה.</p>
       <form class="search" id="search" data-in>
-        <label><small>מה מחפשים</small><input id="q" type="search" placeholder="תפקיד או שם עסק" autocomplete="off"></label>
+        <label><small>מה מחפשים</small><input id="q" type="search" placeholder="תפקיד או שם מעסיק" autocomplete="off"></label>
         <button class="btn" type="submit">למשרות <b><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></b></button>
       </form>
       <div class="stats" data-in>
-        <div><b id="sJobs">0</b><span>משרות פתוחות</span></div>
-        <div><b id="sRoles">0</b><span>תפקידים</span></div>
+        <div><b id="sJobs">0</b><span>מעסיקים</span></div>
+        <div><b id="sRoles">0</b><span>משרות פתוחות</span></div>
         <div><b id="sAge">14</b><span>גיל מינימום בחופשות</span></div>
       </div>
     </div>
@@ -508,78 +533,117 @@ body[data-city="petah-tikva"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;-
   </div>
 </section>
 </main>
-<footer class="foot"><div class="wrap"><span>כל הנכתב באתר, לרבות המשרות, מתייחס לכל המינים.</span><span><button data-info="access">הצהרת נגישות</button> &nbsp; <button data-info="privacy">מדיניות פרטיות</button> &nbsp; <button id="openAdmin">ניהול</button> &nbsp; אתר הדגמה</span></div></footer>
-
-<section class="gate" id="gate" data-lenis-prevent aria-label="בחירת עירייה">
-  <div class="wrap gate__in">
-    <div class="gate__k" data-g>פתאל הפקות, עמוד פנימי למנהל. הקישורים של העיריות נשלחים לציבור בנפרד.</div>
-    <h1 id="gateTitle">יריד התעסוקה לנוער <em>2026</em></h1>
-    <p class="gate__sub" data-g>לכל עירייה אתר משלה, עם הלוגואים והמשרות שלה. מכאן נכנסים לכל אחד מהם ולפאנל הניהול.</p>
-    <div class="gate__cards" id="gateCards"></div>
-    <div class="gate__foot" data-g><button data-info="rights">זכויות בני נוער בעבודה</button><button data-info="wage">טבלת שכר מינימום</button><button data-info="terms">תקנון האתר</button><button id="openAdmin2">כניסת מנהל</button></div>
-  </div>
-</section>
+<footer class="foot"><div class="wrap"><span>כל הנכתב באתר, לרבות המשרות, מתייחס לכל המינים.</span><span><button data-info="access">הצהרת נגישות</button> &nbsp; <button data-info="privacy">מדיניות פרטיות</button> &nbsp; <button id="openAdmin">כניסת מנהל</button> &nbsp; אתר הדגמה</span></div></footer>
 
 <section class="jp" id="jp" data-lenis-prevent aria-label="פרטי המשרה">
   <div class="jp__bar"><div class="wrap"><button class="nav__admin" id="jpBack">חזרה לכל המשרות</button><span class="logo"><span class="brand"></span><i></i></span></div></div>
   <div class="wrap jp__grid" id="jpIn"></div>
   <button class="btn jp__go" id="jpGo">הגשת מועמדות <b><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></b></button>
 </section>
-
 <section class="jp info" id="info" data-lenis-prevent aria-label="דף מידע">
   <div class="jp__bar"><div class="wrap"><button class="nav__admin" id="infoBack">חזרה</button><span class="logo"><span class="brand"></span><i></i></span></div></div>
   <article class="wrap jp__grid" id="infoIn"></article>
 </section>
-
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle">
   <div class="d-top"><button class="x" id="closeDrawer" aria-label="סגירה">×</button><h3 id="dTitle"></h3><p id="dSub"></p></div>
   <div class="d-body" id="dBody" data-lenis-prevent></div>
 </aside>
 
-<section class="admin" id="admin" aria-label="ניהול" data-lenis-prevent>
-  <div class="a-top"><div class="wrap"><div><strong>פאנל ניהול</strong><small>מצב הדגמה, בלי סיסמה</small></div><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><select class="a-city" id="aCity" aria-label="עירייה"></select><button class="nav__admin" id="closeAdmin">חזרה לאתר</button></div></div></div>
+<section class="admin" id="admin" aria-label="ממשק ניהול" data-lenis-prevent>
+  <div class="a-top"><div class="wrap"><div><strong>ממשק ניהול</strong><small>הדגמה</small></div>
+    <div class="a-bar" id="aBar"><label>רשות <select class="a-city" id="aCity"></select></label><label>יריד <select class="a-city" id="aFair"></select></label><button class="nav__admin" id="viewSite">לצפייה באתר</button><button class="nav__admin" id="logout">יציאה</button></div></div></div>
   <div class="wrap">
-    <div class="tabs"><button class="chip" data-tab="Jobs" aria-pressed="true">משרות</button><button class="chip" data-tab="Apps" aria-pressed="false">מועמדויות לפי מעסיק <span id="appsBadge"></span></button><button class="chip" data-tab="Set" aria-pressed="false">הגדרות ודפים</button></div>
-    <div class="a-grid" id="tabJobs">
-      <form class="panel" id="newJob">
-        <h3>פרסום משרה חדשה</h3>
-        <p class="hint" id="newJobCity"></p>
-        <label class="f"><span>שם העסק</span><input name="biz" required></label>
-        <div class="two"><label class="f"><span>תחום</span><select name="cat"></select></label><label class="f"><span>מיקום</span><input name="city" required></label></div>
-        <label class="f"><span>תפקידים, מופרדים בפסיק</span><input name="roles" placeholder="קופאי/ת, סדרן/ית" required></label>
-        <label class="f"><span>תיאור קצר, מופיע בכרטיס</span><textarea name="desc" rows="2" required></textarea></label>
-        <label class="f"><span>קצת על העסק</span><textarea name="about" rows="3"></textarea></label>
-        <div class="two"><label class="f"><span>שכר</span><input name="pay" placeholder="35 ₪ לשעה"></label><label class="f"><span>שעות</span><input name="hours" placeholder="08:00 עד 13:00"></label></div>
-        <label class="f"><span>מה מחפשים, כל דרישה בשורה</span><textarea name="req" rows="3"></textarea></label>
-        <div class="two"><label class="f"><span>גילאים</span><input name="ages" placeholder="16 ומעלה"></label><label class="f"><span>מוצגת עד תאריך</span><input name="until" type="date"></label></div>
-        <label class="f"><span>טלפון המעסיק, לא מוצג באתר</span><input name="phone" type="tel" dir="ltr" style="text-align:right"></label>
-        <label class="f"><span>קישור לסרטון יוטיוב</span><input name="yt" dir="ltr" style="text-align:right" placeholder="https://youtu.be/..."></label>
-        <div class="f"><span>או תמונה</span><label class="file"><input type="file" name="img" accept="image/*"><b id="imgName" style="font-weight:400">בחירת תמונה</b></label></div>
-        <button class="btn btn--full" type="submit">פרסום המשרה <b><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg></b></button>
-      </form>
-      <div class="panel"><h3>משרות בעירייה</h3><div id="aJobs"></div></div>
-    </div>
-    <div id="tabApps" style="display:none;padding-bottom:60px"></div>
-    <div class="set-grid" id="tabSet" style="display:none">
-      <form class="panel" id="setCity">
-        <h3 id="setCityH">הגדרות היריד</h3>
-        <label class="sw"><input type="checkbox" name="open"><span>היריד פתוח והמשרות מוצגות באתר</span></label>
-        <label class="f"><span>כותרת</span><input name="title"></label>
-        <label class="f"><span>המשך הכותרת, בצבע</span><input name="accent"></label>
-        <label class="f"><span>הודעה כשהיריד סגור</span><input name="closed"></label>
-        <label class="f"><span>שורה שנייה כשהיריד סגור</span><input name="closedSub"></label>
-        <label class="f"><span>לוגואים, אחד בכל שורה: שם, קו ישר, קישור לתמונה</span><textarea name="logos" rows="3"></textarea></label>
-        <button class="btn btn--full" type="submit">שמירת ההגדרות <b><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></b></button>
-      </form>
-      <form class="panel" id="setPage">
-        <h3>עריכת דפי המידע</h3>
-        <label class="f"><span>איזה דף</span><select name="key"></select></label>
-        <label class="f"><span>כותרת הדף</span><input name="t"></label>
-        <label class="f"><span>תוכן הדף</span><textarea name="b" rows="12"></textarea></label>
-        <p class="hint">שורה שמתחילה ב-# היא כותרת, שורה שמתחילה במקף היא סעיף ברשימה. בטבלת השכר: גיל, קו ישר, סכום.</p>
-        <button class="btn btn--full" type="submit">שמירת הדף <b><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></b></button>
-      </form>
+    <form class="panel login" id="login">
+      <h3>כניסה לממשק הניהול</h3>
+      <p class="hint" style="margin:0 0 16px">בהדגמה: שם משתמש admin, סיסמה 1234.</p>
+      <label class="f"><span>שם משתמש</span><input name="u" autocomplete="username" value="admin"></label>
+      <label class="f"><span>סיסמה</span><input name="p" type="password" autocomplete="current-password"><em>שם המשתמש או הסיסמה לא נכונים</em></label>
+      <button class="btn btn--full" type="submit">כניסה <b><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></b></button>
+    </form>
+    <div id="aMain" style="display:none">
+      <div class="tabs" id="tabs">
+        <button class="chip" data-tab="Apps" aria-pressed="true">מועמדים לפי מעסיק <span id="appsBadge"></span></button>
+        <button class="chip" data-tab="Jobs" aria-pressed="false">מעסיקים ומשרות</button>
+        <button class="chip" data-tab="Fairs" aria-pressed="false">ירידים</button>
+        <button class="chip" data-tab="Pages" aria-pressed="false">דפי תוכן</button>
+        <button class="chip" data-tab="Set" aria-pressed="false">הגדרות האתר</button>
+      </div>
+
+      <div id="tabApps" style="padding-bottom:60px"></div>
+
+      <div class="a-grid" id="tabJobs" style="display:none">
+        <form class="panel" id="jobForm">
+          <h3 id="jobFormH">הוספת מעסיק</h3>
+          <p class="hint" id="jobFormHint"></p>
+          <input type="hidden" name="id">
+          <label class="f"><span>שם המעסיק</span><input name="biz" required></label>
+          <div class="two"><label class="f"><span>תחום</span><select name="cat"></select></label><label class="f"><span>מיקום</span><input name="city" required></label></div>
+          <label class="f"><span>קישור לסרטון יוטיוב</span><input name="yt" dir="ltr" style="text-align:right" placeholder="https://youtu.be/..."></label>
+          <div class="f"><span>או תמונה</span><label class="file"><input type="file" name="img" accept="image/*"><b id="imgName" style="font-weight:400">בחירת תמונה</b></label></div>
+          <label class="f"><span>המשרות אצל המעסיק, מופרדות בפסיק</span><input name="roles" placeholder="קופאי/ת, סדרן/ית" required></label>
+          <label class="f"><span>תיאור קצר, מופיע בכרטיס</span><textarea name="desc" rows="2" required></textarea></label>
+          <label class="f"><span>קצת על העסק</span><textarea name="about" rows="3"></textarea></label>
+          <div class="two"><label class="f"><span>שכר</span><input name="pay" placeholder="35 ₪ לשעה"></label><label class="f"><span>שעות</span><input name="hours" placeholder="08:00 עד 13:00"></label></div>
+          <label class="f"><span>מה מחפשים, כל דרישה בשורה</span><textarea name="req" rows="3"></textarea></label>
+          <div class="two"><label class="f"><span>גיל מינימום להגשה</span><input name="minAge" inputmode="numeric" maxlength="2" placeholder="16"></label><label class="f"><span>גיל מקסימום להגשה</span><input name="maxAge" inputmode="numeric" maxlength="2" placeholder="18"></label></div>
+          <p class="hint">מי שהגיל שלו מחוץ לטווח לא יוכל להגיש מועמדות למעסיק הזה.</p>
+          <div class="two"><label class="f"><span>מוצגת עד תאריך</span><input name="until" type="date"></label><label class="f"><span>טלפון המעסיק, לא מוצג באתר</span><input name="phone" type="tel" dir="ltr" style="text-align:right"></label></div>
+          <button class="btn btn--full" type="submit"><span id="jobFormBtn">הוספה ליריד</span> <b><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></b></button>
+          <button class="more" type="button" id="jobCancel" style="display:none">ביטול העריכה</button>
+        </form>
+        <div class="panel"><h3>המעסיקים ביריד</h3><div class="tscroll" id="aJobs"></div></div>
+      </div>
+
+      <div class="a-grid" id="tabFairs" style="display:none">
+        <form class="panel" id="fairForm">
+          <h3 id="fairFormH">יריד חדש</h3>
+          <input type="hidden" name="id">
+          <label class="f"><span>שם היריד</span><input name="title" placeholder="יריד תעסוקה לנוער" required></label>
+          <label class="f"><span>המשך הכותרת, בצבע</span><input name="accent" placeholder="רחובות 2027"></label>
+          <label class="f"><span>הודעה כשהיריד סגור</span><input name="closed" value="יריד התעסוקה הסתיים"></label>
+          <label class="f"><span>שורה שנייה כשהיריד סגור</span><input name="closedSub" value="מאחלים לכם הצלחה רבה בהמשך הדרך!"></label>
+          <label class="sw" id="copyWrap"><input type="checkbox" name="copy"><span>להעתיק את המעסיקים מהיריד הנוכחי</span></label>
+          <button class="btn btn--full" type="submit"><span id="fairFormBtn">יצירת היריד</span> <b><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></b></button>
+          <button class="more" type="button" id="fairCancel" style="display:none">ביטול העריכה</button>
+        </form>
+        <div class="panel"><h3>הירידים של הרשות</h3><p class="hint" style="margin:0 0 14px">היריד שמסומן "מוצג באתר" הוא מה שהציבור רואה. ירידים קודמים נשמרים בארכיון עם המעסיקים והמועמדים שלהם.</p><div class="fairs" id="aFairs"></div></div>
+      </div>
+
+      <div class="a-grid" id="tabPages" style="display:none">
+        <form class="panel" id="pageForm">
+          <h3 id="pageFormH">דף חדש</h3>
+          <input type="hidden" name="key">
+          <label class="f"><span>כותרת הדף</span><input name="t" required></label>
+          <label class="f"><span>תוכן הדף</span><textarea name="b" rows="12" required></textarea></label>
+          <p class="hint">שורה שמתחילה ב-# היא כותרת, שורה שמתחילה במקף היא סעיף ברשימה. לטבלה: טקסט, קו ישר, סכום.</p>
+          <label class="sw"><input type="checkbox" name="nav" checked><span>הדף מופיע בתפריט העליון</span></label>
+          <button class="btn btn--full" type="submit"><span id="pageFormBtn">יצירת הדף</span> <b><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></b></button>
+          <button class="more" type="button" id="pageCancel" style="display:none">ביטול העריכה</button>
+        </form>
+        <div class="panel"><h3>דפי התוכן</h3><div id="aPages"></div></div>
+      </div>
+
+      <div class="set-grid" id="tabSet" style="display:none">
+        <form class="panel" id="siteForm">
+          <h3 id="siteFormH">הגדרות האתר</h3>
+          <label class="f"><span>שם הרשות</span><input name="name" required></label>
+          <label class="f"><span>כתובת האתר</span><input name="url" readonly dir="ltr" style="text-align:right;opacity:.7"></label>
+          <label class="f"><span>צבע האתר</span><select name="theme"><option value="amber">כתום</option><option value="green">ירוק</option><option value="blue">כחול</option><option value="pink">ורוד</option></select></label>
+          <label class="f"><span>לוגואים, אחד בכל שורה: שם, קו ישר, קישור לתמונה</span><textarea name="logos" rows="4"></textarea></label>
+          <label class="f"><span>מזהה Google Analytics</span><input name="ga" dir="ltr" style="text-align:right" placeholder="G-XXXXXXXXXX"></label>
+          <p class="hint">אחרי שמזינים מזהה, כל כניסה לאתר של הרשות נספרת בחשבון האנליטיקס שלך.</p>
+          <button class="btn btn--full" type="submit">שמירת ההגדרות <b><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></b></button>
+        </form>
+        <form class="panel" id="newSite">
+          <h3>הוספת אתר לרשות נוספת</h3>
+          <p class="hint" style="margin:0 0 14px">כל רשות מקבלת אתר נפרד עם כתובת משלה על אותו דומיין, עם לוגואים, ירידים ומעסיקים משלה.</p>
+          <label class="f"><span>שם הרשות</span><input name="name" placeholder="נס ציונה" required></label>
+          <label class="f"><span>שם באנגלית לכתובת</span><input name="slug" dir="ltr" style="text-align:right" placeholder="ness-ziona" required><em>רק אותיות באנגלית, מספרים ומקף, ושם שעוד לא קיים</em></label>
+          <button class="btn btn--full" type="submit">יצירת האתר <b><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></b></button>
+          <div id="siteList" style="margin-top:20px"></div>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -614,58 +678,66 @@ body[data-city="petah-tikva"]{--amber:#6FE3A5;--amber2:#C8F7DC;--coral:#2FC6A0;-
 //# sourceMappingURL=lenis.min.js.map</script>
 
 <script>
-const CATS=["מסעדות וקפה","קמעונאות","אירועים","הדרכה וקייטנות","שירות לקוחות"];
-const HUE={"מסעדות וקפה":24,"קמעונאות":192,"אירועים":338,"הדרכה וקייטנות":44,"שירות לקוחות":158};
-const R="rehovot",P="petah-tikva";
+const CATS=["מסעדות וקפה","קמעונאות","אירועים","הדרכה וקייטנות","שירות לקוחות","אחר"];
+const HUE={"מסעדות וקפה":24,"קמעונאות":192,"אירועים":338,"הדרכה וקייטנות":44,"שירות לקוחות":158,"אחר":260};
+const TH={amber:"255,176,74",green:"111,227,165",blue:"111,182,255",pink:"255,143,192"};
+const LG="https://noar.fatall.co.il/wp-content/uploads/2022/04/";
+const J=(id,muni,fairId,biz,cat,city,roles,minAge,maxAge,tag,desc,pay,hours,about,req)=>({id,muni,fairId,biz,cat,city,roles,minAge,maxAge,tag,desc,pay,hours,about,req,phone:"",on:true});
 const SEED=[
- {id:1,muni:R,biz:"קפה נורדי",cat:"מסעדות וקפה",city:"רחובות",roles:["בריסטה","מלצר/ית","קופאי/ת"],ages:"16 ומעלה",tag:"new",desc:"רשת בתי קפה מחפשת צוות לסניף החדש. משמרות גמישות, ארוחה בכל משמרת ואפשרות קידום.",pay:"32 עד 38 ₪ לשעה ועוד טיפים",hours:"משמרות בוקר או ערב, עד 8 שעות",about:"קפה נורדי היא רשת של חמישה בתי קפה שכונתיים. הצוות צעיר, ורוב העובדים התחילו אצלנו בעבודה ראשונה ונשארו.",req:["זמינות לשלוש משמרות בשבוע לפחות","שירותיות וסבלנות מול לקוחות","ניסיון קודם הוא יתרון, לא חובה"]},
- {id:2,muni:R,biz:"קייטנת גלים",cat:"הדרכה וקייטנות",city:"רחובות",roles:["מדריך/ה","עוזר/ת מדריך","מציל/ה"],ages:"16 ומעלה",tag:"hot",desc:"דרושים מדריכים אנרגטיים ויצירתיים לקייטנת הקיץ. חודשים יולי ואוגוסט, בין השעות 08:00 ל-13:00.",pay:"34 ₪ לשעה",hours:"ימים א׳ עד ה׳, 08:00 עד 13:00",about:"קייטנת גלים פועלת כבר 12 קיצים, עם בריכה, סדנאות וטיולים לילדים בגילאי 6 עד 12.",req:["זמינות לכל חודשי יולי ואוגוסט","ניסיון בהדרכה או בתנועת נוער","אחריות ויחסי אנוש מעולים"]},
- {id:3,muni:R,biz:"סופר השכונה",cat:"קמעונאות",city:"רחובות",roles:["קופאי/ת","סדרן/ית","מחסנאי/ת"],ages:"16 ומעלה",tag:"",desc:"סניף חדש מחפש עובדים למגוון תפקידים. שכר הולם, משמרות נוחות וקרוב לבית.",pay:"31 עד 36 ₪ לשעה",hours:"משמרות של 5 עד 8 שעות",about:"סופר השכונה הוא סופרמרקט משפחתי שפותח סניף שני. מחפשים צוות קבוע שגר בסביבה.",req:["זמינות לשתי משמרות בשבוע לפחות","דייקנות ואמינות","נכונות לעבודה בעמידה"]},
- {id:4,muni:R,biz:"לונה פארק הקיץ",cat:"אירועים",city:"רחובות",roles:["מפעיל/ת מתקנים","כרטיסן/ית","דוכן מזון"],ages:"16 ומעלה",tag:"new",desc:"עבודת קיץ בפארק השעשועים. משמרות אחר הצהריים וערב, כניסה חופשית לעובדים בימי חופש.",pay:"33 ₪ לשעה",hours:"אחר הצהריים וערב, 16:00 עד 22:00",about:"לונה פארק הקיץ פתוח מיוני ועד ספטמבר, עם 30 מתקנים ודוכני מזון.",req:["זמינות לכל חודשי הקיץ","אחריות ותשומת לב לבטיחות","יחס טוב לילדים ולמשפחות"]},
- {id:5,muni:P,biz:"אולמי הגן",cat:"אירועים",city:"פתח תקווה",roles:["מלצר/ית","עוזר/ת בר","צוות הקמה"],ages:"17 ומעלה",tag:"hot",desc:"עבודה באירועים בערבים ובסופי שבוע. שכר גבוה למשמרת, טיפים והסעה הביתה בסוף האירוע.",pay:"300 עד 400 ₪ למשמרת ועוד טיפים",hours:"ערבים וסופי שבוע, עד 22:00",about:"אולמי הגן מארחים חתונות ואירועים עסקיים של עד 600 אורחים, כשלושה אירועים בשבוע.",req:["הופעה ייצוגית","זמינות לשני אירועים בשבוע","ניסיון במלצרות הוא יתרון"]},
- {id:6,muni:P,biz:"ראן ספורט",cat:"קמעונאות",city:"פתח תקווה",roles:["מוכר/ת","סדרן/ית"],ages:"16 ומעלה",tag:"",desc:"חנות ספורט בקניון מחפשת אנשי מכירה שאוהבים לדבר עם אנשים. שכר בסיס, בונוסים והנחת עובד.",pay:"33 ₪ לשעה ועוד בונוסים",hours:"משמרות קניון, בוקר או ערב",about:"ראן ספורט היא חנות לציוד ריצה וכושר. הצוות מורכב מאנשים שמתאמנים בעצמם ואוהבים לייעץ.",req:["אהבה לספורט","תקשורת טובה עם לקוחות","זמינות לסופי שבוע"]},
- {id:7,muni:P,biz:"פיצה פינה",cat:"מסעדות וקפה",city:"פתח תקווה",roles:["עובד/ת דלפק","עוזר/ת מטבח"],ages:"16 ומעלה",tag:"new",desc:"פיצרייה שכונתית מחפשת צוות למשמרות ערב. אווירה צעירה וארוחות עלינו.",pay:"32 ₪ לשעה",hours:"משמרות ערב, 17:00 עד 22:00",about:"פיצה פינה היא פיצרייה שכונתית עם תנור אבן ומשלוחים לכל העיר.",req:["זמינות לערבים","עבודה מהירה ונעימה בצוות","אחריות וניקיון"]},
- {id:8,muni:P,biz:"מוקד קשר",cat:"שירות לקוחות",city:"פתח תקווה",roles:["נציג/ת שירות","נציג/ת תיאום"],ages:"17 ומעלה",tag:"",desc:"מוקד שירות טלפוני במשרדים ממוזגים. הכשרה מלאה בתשלום, משמרות בוקר או ערב לבחירה.",pay:"36 ₪ לשעה",hours:"בוקר 08:00 עד 15:00 או ערב 15:00 עד 22:00",about:"מוקד קשר נותן שירות טלפוני לחברות תקשורת. ההכשרה נמשכת שבועיים ומשולמת במלואה.",req:["עברית ברמה גבוהה","שליטה בסיסית במחשב","סבלנות ויכולת הקשבה"]}
+ J(1,"rehovot","r26","קפה נורדי","מסעדות וקפה","רחובות",["בריסטה","מלצר/ית","קופאי/ת"],16,18,"new","רשת בתי קפה מחפשת צוות לסניף החדש. משמרות גמישות, ארוחה בכל משמרת ואפשרות קידום.","32 עד 38 ₪ לשעה ועוד טיפים","משמרות בוקר או ערב, עד 8 שעות","קפה נורדי היא רשת של חמישה בתי קפה שכונתיים. הצוות צעיר, ורוב העובדים התחילו אצלנו בעבודה ראשונה ונשארו.",["זמינות לשלוש משמרות בשבוע לפחות","שירותיות וסבלנות מול לקוחות","ניסיון קודם הוא יתרון, לא חובה"]),
+ J(2,"rehovot","r26","קייטנת גלים","הדרכה וקייטנות","רחובות",["מדריך/ה","עוזר/ת מדריך","מציל/ה"],16,18,"hot","דרושים מדריכים אנרגטיים ויצירתיים לקייטנת הקיץ. חודשים יולי ואוגוסט, בין השעות 08:00 ל-13:00.","34 ₪ לשעה","ימים א׳ עד ה׳, 08:00 עד 13:00","קייטנת גלים פועלת כבר 12 קיצים, עם בריכה, סדנאות וטיולים לילדים בגילאי 6 עד 12.",["זמינות לכל חודשי יולי ואוגוסט","ניסיון בהדרכה או בתנועת נוער","אחריות ויחסי אנוש מעולים"]),
+ J(3,"rehovot","r26","סופר השכונה","קמעונאות","רחובות",["קופאי/ת","סדרן/ית","מחסנאי/ת"],16,18,"","סניף חדש מחפש עובדים למגוון תפקידים. שכר הולם, משמרות נוחות וקרוב לבית.","31 עד 36 ₪ לשעה","משמרות של 5 עד 8 שעות","סופר השכונה הוא סופרמרקט משפחתי שפותח סניף שני. מחפשים צוות קבוע שגר בסביבה.",["זמינות לשתי משמרות בשבוע לפחות","דייקנות ואמינות","נכונות לעבודה בעמידה"]),
+ J(4,"rehovot","r26","לונה פארק הקיץ","אירועים","רחובות",["מפעיל/ת מתקנים","כרטיסן/ית","דוכן מזון"],15,18,"new","עבודת קיץ בפארק השעשועים. משמרות אחר הצהריים וערב, כניסה חופשית לעובדים בימי חופש.","33 ₪ לשעה","אחר הצהריים וערב, 16:00 עד 22:00","לונה פארק הקיץ פתוח מיוני ועד ספטמבר, עם 30 מתקנים ודוכני מזון.",["זמינות לכל חודשי הקיץ","אחריות ותשומת לב לבטיחות","יחס טוב לילדים ולמשפחות"]),
+ J(5,"petah-tikva","p26","אולמי הגן","אירועים","פתח תקווה",["מלצר/ית","עוזר/ת בר","צוות הקמה"],17,18,"hot","עבודה באירועים בערבים ובסופי שבוע. שכר גבוה למשמרת, טיפים והסעה הביתה בסוף האירוע.","300 עד 400 ₪ למשמרת ועוד טיפים","ערבים וסופי שבוע, עד 22:00","אולמי הגן מארחים חתונות ואירועים עסקיים של עד 600 אורחים, כשלושה אירועים בשבוע.",["הופעה ייצוגית","זמינות לשני אירועים בשבוע","ניסיון במלצרות הוא יתרון"]),
+ J(6,"petah-tikva","p26","ראן ספורט","קמעונאות","פתח תקווה",["מוכר/ת","סדרן/ית"],16,18,"","חנות ספורט בקניון מחפשת אנשי מכירה שאוהבים לדבר עם אנשים. שכר בסיס, בונוסים והנחת עובד.","33 ₪ לשעה ועוד בונוסים","משמרות קניון, בוקר או ערב","ראן ספורט היא חנות לציוד ריצה וכושר. הצוות מורכב מאנשים שמתאמנים בעצמם ואוהבים לייעץ.",["אהבה לספורט","תקשורת טובה עם לקוחות","זמינות לסופי שבוע"]),
+ J(7,"petah-tikva","p26","פיצה פינה","מסעדות וקפה","פתח תקווה",["עובד/ת דלפק","עוזר/ת מטבח"],16,18,"new","פיצרייה שכונתית מחפשת צוות למשמרות ערב. אווירה צעירה וארוחות עלינו.","32 ₪ לשעה","משמרות ערב, 17:00 עד 22:00","פיצה פינה היא פיצרייה שכונתית עם תנור אבן ומשלוחים לכל העיר.",["זמינות לערבים","עבודה מהירה ונעימה בצוות","אחריות וניקיון"])
 ];
-const mkApp=(id,jobId,muni,biz,name,age,gender,city,phone,role,note,at,sent)=>({id,jobId,muni,biz,name,age,gender,city,phone,role,note,at,sent});
+const A=(id,jobId,muni,fairId,biz,name,age,gender,city,phone,role,note,at)=>({id,jobId,muni,fairId,biz,name,age,gender,city,phone,role,note,at,sent:false});
 const SEED_APPS=[
- mkApp(101,2,R,"קייטנת גלים","נועה לוי","17","נקבה","רחובות","052-5550142","מדריך/ה","הדרכתי שנתיים בתנועת נוער, פנויה לכל הקיץ.","14.11.2026, 18:20",false),
- mkApp(102,2,R,"קייטנת גלים","איתי בן דוד","16","זכר","רחובות","054-5550118","עוזר/ת מדריך","","14.11.2026, 17:02",false),
- mkApp(103,2,R,"קייטנת גלים","מאיה אזולאי","17","נקבה","נס ציונה","050-5550171","מדריך/ה","יש לי תעודת מגישת עזרה ראשונה.","13.11.2026, 20:41",false),
- mkApp(104,2,R,"קייטנת גלים","עומר שלום","16","זכר","רחובות","053-5550109","מציל/ה","","13.11.2026, 12:15",false),
- mkApp(105,2,R,"קייטנת גלים","שירה כהן","17","נקבה","רחובות","052-5550133","עוזר/ת מדריך","זמינה מ-1.7.","12.11.2026, 09:30",false),
- mkApp(106,1,R,"קפה נורדי","דניאל פרץ","16","זכר","רחובות","054-5550164","בריסטה","","13.11.2026, 16:48",false),
- mkApp(107,1,R,"קפה נורדי","רוני אברהם","17","נקבה","רחובות","050-5550190","מלצר/ית","עבדתי בקיץ שעבר בגלידרייה.","12.11.2026, 19:05",true),
- mkApp(108,5,P,"אולמי הגן","יואב מזרחי","17","זכר","פתח תקווה","054-5550187","מלצר/ית","זמין בסופי שבוע.","13.11.2026, 21:05",false),
- mkApp(109,5,P,"אולמי הגן","תמר גולן","17","נקבה","פתח תקווה","052-5550156","עוזר/ת בר","","12.11.2026, 14:22",false),
- mkApp(110,7,P,"פיצה פינה","אור חדד","16","זכר","פתח תקווה","053-5550127","עובד/ת דלפק","","11.11.2026, 18:10",false)
+ A(101,2,"rehovot","r26","קייטנת גלים","נועה לוי","17","נקבה","רחובות","052-5550142","מדריך/ה","הדרכתי שנתיים בתנועת נוער, פנויה לכל הקיץ.","14.11.2026, 18:20"),
+ A(102,2,"rehovot","r26","קייטנת גלים","איתי בן דוד","16","זכר","רחובות","054-5550118","עוזר/ת מדריך","","14.11.2026, 17:02"),
+ A(103,2,"rehovot","r26","קייטנת גלים","מאיה אזולאי","17","נקבה","נס ציונה","050-5550171","מדריך/ה","יש לי תעודת מגישת עזרה ראשונה.","13.11.2026, 20:41"),
+ A(104,2,"rehovot","r26","קייטנת גלים","עומר שלום","14","זכר","רחובות","053-5550109","מציל/ה","","13.11.2026, 12:15"),
+ A(105,2,"rehovot","r26","קייטנת גלים","שירה כהן","17","נקבה","אשדוד","052-5550133","עוזר/ת מדריך","זמינה מ-1.7.","12.11.2026, 09:30"),
+ A(106,2,"rehovot","r26","קייטנת גלים","יובל דהן","16","זכר","רחובות","058-5550160","מדריך/ה","","11.11.2026, 15:44"),
+ A(107,1,"rehovot","r26","קפה נורדי","דניאל פרץ","16","זכר","רחובות","054-5550164","בריסטה","","13.11.2026, 16:48"),
+ A(108,1,"rehovot","r26","קפה נורדי","רוני אברהם","17","נקבה","רחובות","050-5550190","מלצר/ית","עבדתי בקיץ שעבר בגלידרייה.","12.11.2026, 19:05"),
+ A(109,3,"rehovot","r26","סופר השכונה","ליאור ממן","17","זכר","רחובות","052-5550177","סדרן/ית","","12.11.2026, 11:12"),
+ A(110,5,"petah-tikva","p26","אולמי הגן","יואב מזרחי","17","זכר","פתח תקווה","054-5550187","מלצר/ית","זמין בסופי שבוע.","13.11.2026, 21:05"),
+ A(111,5,"petah-tikva","p26","אולמי הגן","תמר גולן","17","נקבה","פתח תקווה","052-5550156","עוזר/ת בר","","12.11.2026, 14:22")
 ];
+const FAIR=(id,title,accent,open)=>({id,title,accent,open,closed:"יריד התעסוקה הסתיים",closedSub:"מאחלים לכם הצלחה רבה בהמשך הדרך!"});
 const DEF={cities:{
-  [R]:{name:"רחובות",title:"יריד תעסוקה לנוער",accent:"רחובות 2026",open:true,closed:"יריד התעסוקה הסתיים",closedSub:"מאחלים לכם הצלחה רבה בהמשך הדרך!",logos:["עיר ונוער רחובות | https://noar.fatall.co.il/wp-content/uploads/2022/04/New-Project-36-1.jpg","החברה העירונית רחובות | https://noar.fatall.co.il/wp-content/uploads/2022/04/לוגו-חברה-עירונית-מעודכן-2017-003-2.jpg","מינהל החינוך רחובות | https://noar.fatall.co.il/wp-content/uploads/2022/04/לוגו-מינהל-חינוך-רחובות-01-002-1.jpg"]},
-  [P]:{name:"פתח תקווה",title:"שבוע תעסוקה לנוער",accent:"פתח תקווה 2026",open:true,closed:"שבוע התעסוקה הסתיים",closedSub:"מאחלים לכם הצלחה רבה בהמשך הדרך!",logos:["לוגו עיריית פתח תקווה","לוגו אגף הנוער","לוגו מרכז הצעירים"]}},
+  "rehovot":{name:"רחובות",theme:"amber",ga:"",active:"r26",logos:["עיר ונוער רחובות | "+LG+"New-Project-36-1.jpg","החברה העירונית רחובות | "+LG+"לוגו-חברה-עירונית-מעודכן-2017-003-2.jpg","מינהל החינוך רחובות | "+LG+"לוגו-מינהל-חינוך-רחובות-01-002-1.jpg"],fairs:[FAIR("r26","יריד תעסוקה לנוער","רחובות 2026",true),FAIR("r25","יריד תעסוקה לנוער","רחובות 2025",false)]},
+  "petah-tikva":{name:"פתח תקווה",theme:"green",ga:"",active:"p26",logos:["לוגו עיריית פתח תקווה","לוגו אגף הנוער","לוגו מרכז הצעירים"],fairs:[FAIR("p26","שבוע תעסוקה לנוער","פתח תקווה 2026",true)]}},
  pages:{
-  rights:{t:"זכויות בני נוער בעבודה",b:"# מאיזה גיל מותר לעבוד\n- מותר להעסיק בני נוער מגיל 16.\n- בחופשות מהלימודים מותר לעבוד כבר מגיל 14.\n# מה מביאים למעסיק\n- צילום תעודת זהות של הנער או הנערה, או של אחד ההורים שבה הם רשומים.\n- אישור רפואי.\n# שעות עבודה והפסקות\n- עד 8 שעות עבודה ביום ועד 40 שעות בשבוע.\n- אחרי 6 שעות עבודה מגיעה הפסקה של 45 דקות, מתוכן לפחות 30 דקות ברצף.\n- ההפסקה אינה בתשלום.\n# עבודה בערב ובלילה\n- מתחת לגיל 16 לא עובדים אחרי 20:00.\n- בגילאי 16 עד 18 לא עובדים אחרי 22:00.\n- בחופשות מהלימודים, מגיל 16 אפשר לעבוד עד 24:00, בתנאי שהמעסיק דואג להסעה הביתה.\n# שכר ונסיעות\n- משלמים על כל שעת עבודה, גם בתקופת התלמדות וגם בתקופת ניסיון.\n- מגיע החזר הוצאות נסיעה מהבית לעבודה ובחזרה, עד התקרה שנקבעה בחוק.\nלפרטים המלאים כדאי לעיין בחוק עבודת נוער באתר gov.il."},
-  wage:{t:"טבלת שכר מינימום",b:"שכר מינימום לשעה, מעודכן ליוני 2026.\n גילאי 14 עד 16 | 26.07 ₪\n גילאי 16 עד 17 | 27.94 ₪\n גילאי 17 עד 18 | 30.92 ₪\n חניך | 22.35 ₪\n מעל גיל 18 | 35.40 ₪\nחניך הוא נער עד גיל 18 שעובד כדי לרכוש מקצוע בעבודה מעשית מודרכת, שאושרה לפי חוק החניכות."},
-  tips:{t:"טיפים למציאת עבודה",b:"- קוראים את דף המשרה עד הסוף לפני שמגישים: שעות, מיקום וגיל מינימלי.\n- ממלאים טלפון שעונים בו. מעסיקים מתקשרים, ולא תמיד מנסים פעמיים.\n- בשדה ההערות כותבים במשפט אחד מה עשיתם עד היום: הדרכה, התנדבות, עבודה קודמת.\n- מגישים לכמה משרות. לא כל מעסיק חוזר, וזה בסדר.\n- לפגישה מגיעים חמש דקות לפני הזמן, עם תעודת זהות.\n- לפני שמתחילים לעבוד שואלים על השכר לשעה, על המשמרות ועל ההסעות."},
-  terms:{t:"תקנון האתר",b:"כאן יופיע התקנון המלא, כפי שהוא מופיע באתר הקיים. הוא יועבר לכאן כלשונו בבניית האתר הסופי."},
-  access:{t:"הצהרת נגישות",b:"כאן תופיע הצהרת הנגישות מהאתר הקיים."},
-  privacy:{t:"מדיניות פרטיות",b:"כאן תופיע מדיניות הפרטיות מהאתר הקיים."}}};
-const POOL={id:0,biz:"רשימת העדכון ליריד הבא",roles:[]};
+  rights:{nav:true,t:"זכויות בני נוער בעבודה",b:"# מאיזה גיל מותר לעבוד\n- מותר להעסיק בני נוער מגיל 16.\n- בחופשות מהלימודים מותר לעבוד כבר מגיל 14.\n# מה מביאים למעסיק\n- צילום תעודת זהות של הנער או הנערה, או של אחד ההורים שבה הם רשומים.\n- אישור רפואי.\n# שעות עבודה והפסקות\n- עד 8 שעות עבודה ביום ועד 40 שעות בשבוע.\n- אחרי 6 שעות עבודה מגיעה הפסקה של 45 דקות, מתוכן לפחות 30 דקות ברצף.\n- ההפסקה אינה בתשלום.\n# עבודה בערב ובלילה\n- מתחת לגיל 16 לא עובדים אחרי 20:00.\n- בגילאי 16 עד 18 לא עובדים אחרי 22:00.\n- בחופשות מהלימודים, מגיל 16 אפשר לעבוד עד 24:00, בתנאי שהמעסיק דואג להסעה הביתה.\n# שכר ונסיעות\n- משלמים על כל שעת עבודה, גם בתקופת התלמדות וגם בתקופת ניסיון.\n- מגיע החזר הוצאות נסיעה מהבית לעבודה ובחזרה, עד התקרה שנקבעה בחוק.\nלפרטים המלאים כדאי לעיין בחוק עבודת נוער באתר gov.il."},
+  wage:{nav:true,t:"טבלת שכר מינימום",b:"שכר מינימום לשעה, מעודכן ליוני 2026.\n גילאי 14 עד 16 | 26.07 ₪\n גילאי 16 עד 17 | 27.94 ₪\n גילאי 17 עד 18 | 30.92 ₪\n חניך | 22.35 ₪\n מעל גיל 18 | 35.40 ₪\nחניך הוא נער עד גיל 18 שעובד כדי לרכוש מקצוע בעבודה מעשית מודרכת, שאושרה לפי חוק החניכות."},
+  tips:{nav:true,t:"טיפים למציאת עבודה",b:"- קוראים את דף המשרה עד הסוף לפני שמגישים: שעות, מיקום וגיל מינימלי.\n- ממלאים טלפון שעונים בו. מעסיקים מתקשרים, ולא תמיד מנסים פעמיים.\n- בשדה ההערות כותבים במשפט אחד מה עשיתם עד היום: הדרכה, התנדבות, עבודה קודמת.\n- מגישים לכמה משרות. לא כל מעסיק חוזר, וזה בסדר.\n- לפגישה מגיעים חמש דקות לפני הזמן, עם תעודת זהות.\n- לפני שמתחילים לעבוד שואלים על השכר לשעה, על המשמרות ועל ההסעות."},
+  terms:{nav:true,t:"תקנון האתר",b:"כאן יופיע התקנון המלא, כפי שהוא מופיע באתר הקיים. הוא יועבר לכאן כלשונו בבניית האתר הסופי."},
+  access:{nav:false,core:true,t:"הצהרת נגישות",b:"כאן תופיע הצהרת הנגישות מהאתר הקיים."},
+  privacy:{nav:false,core:true,t:"מדיניות פרטיות",b:"כאן תופיע מדיניות הפרטיות מהאתר הקיים."}}};
+["rights","wage","tips","terms"].forEach(k=>DEF.pages[k].core=true);
 const ARROW='<svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const load=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}};
 const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
-let jobs=load("fp4_jobs",SEED),apps=load("fp4_apps",SEED_APPS),cfg=load("fp5_cfg",DEF);
-let muni=null,aMuni=R,cat="הכול",ready=false,lenis=null,cameFrom="";
+let jobs=load("fp6_jobs",SEED),apps=load("fp6_apps",SEED_APPS),cfg=load("fp6_cfg",DEF);
+const saveAll=()=>{save("fp6_cfg",cfg);save("fp6_apps",apps);return save("fp6_jobs",jobs)};
+let muni=null,aMuni=Object.keys(cfg.cities)[0],aFair=null,cat="הכול",ready=false,lenis=null,cameFrom="",authed=false;
+try{authed=sessionStorage.getItem("fp6_auth")==="1"}catch(e){}
 const RM=matchMedia("(prefers-reduced-motion:reduce)").matches,HAS=!!window.gsap&&!RM;
 if(HAS){document.documentElement.classList.add("js");gsap.registerPlugin(ScrollTrigger)}
 const today=()=>new Date().toISOString().slice(0,10);
-const live=j=>!j.until||j.until>=today();
-const cityJobs=m=>jobs.filter(j=>j.muni===m&&live(j));
-function toast(t){const el=$("#toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),2600)}
+const live=j=>j.on!==false&&(!j.until||j.until>=today());
+const fairOf=(m,id)=>{const c=cfg.cities[m];return c.fairs.find(f=>f.id===(id||c.active))||c.fairs[0]};
+const cityJobs=m=>jobs.filter(j=>j.muni===m&&j.fairId===cfg.cities[m].active&&live(j));
+const agesText=j=>j.minAge&&j.maxAge?j.minAge+" עד "+j.maxAge:j.minAge?j.minAge+" ומעלה":j.maxAge?"עד "+j.maxAge:"כל הגילים";
+const ageOk=(j,a)=>(!j.minAge||a>=j.minAge)&&(!j.maxAge||a<=j.maxAge);
+function toast(t,undo){const el=$("#toast");el.textContent=t;if(undo){const b=document.createElement("button");b.textContent="ביטול";b.onclick=()=>{undo();el.classList.remove("on")};el.append(b)}el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove("on"),undo?6000:2600)}
 const tagHtml=j=>j.tag==="new"?'<span class="tag new">חדש</span>':j.tag==="hot"?'<span class="tag hot">דחוף</span>':"";
-const ytId=u=>{const m=String(u||"").match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);return m?m[1]:""};
-function syncLock(){if(!lenis)return;["#gate","#jp","#info","#admin","#drawer"].some(s=>$(s).classList.contains("on"))?lenis.stop():lenis.start()}
+const ytId=u=>{const m=String(u||"").match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);return m?m[1]:(/^[\w-]{11}$/.test(u||"")?u:"")};
+function syncLock(){if(!lenis)return;["#jp","#info","#admin","#drawer"].some(s=>$(s).classList.contains("on"))?lenis.stop():lenis.start()}
 function split(el){
   const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.append(" ");return}const w=document.createElement("span");w.className="w";const i=document.createElement("span");i.className="wi";i.textContent=t;w.append(i);f.append(w)});c.replaceWith(f)}else walk(c)})};
   walk(el);return el.querySelectorAll(".wi");
@@ -678,7 +750,7 @@ function coverHtml(j){
 }
 function playYt(p){const c=p.closest(".cover");c.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(c.dataset.yt)}?autoplay=1" title="סרטון" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`}
 function formHtml(j){
-  const role=j.roles&&j.roles.length?`<select name="role"><option value="">בחירת תפקיד</option>${j.roles.map(r=>`<option>${esc(r)}</option>`).join("")}</select>`:`<input name="role" placeholder="לדוגמה: מדריך/ה">`;
+  const role=j.roles&&j.roles.length?`<select name="role"><option value="">בחירת משרה</option>${j.roles.map(r=>`<option>${esc(r)}</option>`).join("")}</select>`:`<input name="role" placeholder="לדוגמה: מדריך/ה">`;
   return `<form class="apply" novalidate data-job="${j.id}">
     <label class="f"><span>שם מלא</span><input name="name" autocomplete="name"><em>צריך שם מלא כדי שנדע למי לחזור</em></label>
     <div class="two">
@@ -689,49 +761,52 @@ function formHtml(j){
       <label class="f"><span>עיר מגורים</span><input name="city" autocomplete="address-level2"><em>צריך עיר מגורים</em></label>
       <label class="f"><span>טלפון</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" style="text-align:right"><em>מספר הטלפון לא תקין</em></label>
     </div>
-    <label class="f"><span>תפקיד רצוי</span>${role}</label>
+    <label class="f"><span>משרה רצויה</span>${role}</label>
     <label class="f"><span>הערות</span><textarea name="note" rows="2"></textarea></label>
     <label class="terms"><input type="checkbox" name="terms"><span>אני מאשר/ת את תקנון האתר</span><em>צריך לאשר את התקנון כדי לשלוח</em></label>
     <button class="btn btn--full" type="submit">שליחת מועמדות <b>${ARROW}</b></button>
   </form>`;
 }
 function submitApply(f){
-  const j=f.dataset.job==="0"?POOL:jobs.find(x=>x.id==f.dataset.job);if(!j)return;
-  const bad=(el,c)=>{el.closest(".f,.terms").classList.toggle("bad",c);return c};
-  const e=[bad(f.name,f.name.value.trim().length<2),bad(f.age,!/^\d{2}$/.test(f.age.value.trim())),bad(f.city,f.city.value.trim().length<2),bad(f.phone,!/^0\d{1,2}-?\d{7}$/.test(f.phone.value.replace(/\s/g,""))),bad(f.terms,!f.terms.checked)];
+  const pool=f.dataset.job==="0",j=pool?{id:0,biz:"רשימת העדכון ליריד הבא",muni,fairId:cfg.cities[muni].active}:jobs.find(x=>x.id==f.dataset.job);if(!j)return;
+  const bad=(el,c,msg)=>{const w=el.closest(".f,.terms");w.classList.toggle("bad",c);if(msg&&c)w.querySelector("em").textContent=msg;return c};
+  const age=+f.age.value.trim(),ageBad=!/^\d{2}$/.test(f.age.value.trim());
+  const e=[bad(f.name,f.name.value.trim().length<2),ageBad?bad(f.age,true,"צריך גיל במספרים"):bad(f.age,!pool&&!ageOk(j,age),"המשרה מיועדת לגילאי "+agesText(j)+". אי אפשר להגיש מועמדות בגיל הזה."),bad(f.city,f.city.value.trim().length<2),bad(f.phone,!/^0\d{1,2}-?\d{7}$/.test(f.phone.value.replace(/\s/g,""))),bad(f.terms,!f.terms.checked)];
   if(e.some(Boolean)){const b=f.querySelector(".bad input");b&&b.focus();return}
   const name=f.name.value.trim();
-  apps.unshift({id:Date.now(),jobId:j.id,muni:j.muni||muni||R,biz:j.biz,name,age:f.age.value.trim(),gender:f.gender.value,city:f.city.value.trim(),phone:f.phone.value.trim(),role:f.role.value.trim(),note:f.note.value.trim(),at:new Date().toLocaleString("he-IL",{dateStyle:"short",timeStyle:"short"}),sent:false});
-  save("fp4_apps",apps);
-  f.outerHTML=`<div class="done"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="45"/><path d="M30 50l12 12 24-26"/></svg><h4>${j.id?"המועמדות נשלחה":"הפרטים נשמרו"}</h4><p>${esc(name)}, קיבלנו את הפרטים שלך${j.id?" למשרה ב"+esc(j.biz)+". המעסיק יחזור אליך להמשך קבלה לעבודה.":". נעדכן אותך כשהיריד הבא נפתח."}</p></div>`;
+  apps.unshift({id:Date.now(),jobId:j.id,muni:j.muni,fairId:j.fairId,biz:j.biz,name,age:String(age),gender:f.gender.value,city:f.city.value.trim(),phone:f.phone.value.trim(),role:f.role.value.trim(),note:f.note.value.trim(),at:new Date().toLocaleString("he-IL",{dateStyle:"short",timeStyle:"short"}),sent:false});
+  save("fp6_apps",apps);
+  f.outerHTML=`<div class="done"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="45"/><path d="M30 50l12 12 24-26"/></svg><h4>${pool?"הפרטים נשמרו":"המועמדות נשלחה"}</h4><p>${esc(name)}, קיבלנו את הפרטים שלך${pool?". נעדכן אותך כשהיריד הבא נפתח.":" למשרה ב"+esc(j.biz)+". המעסיק יחזור אליך להמשך קבלה לעבודה."}</p></div>`;
 }
 document.addEventListener("submit",e=>{const f=e.target.closest("form.apply");if(f){e.preventDefault();submitApply(f)}});
 
-/* ---------- city board ---------- */
-const brandText=()=>muni?cfg.cities[muni].title+" "+cfg.cities[muni].name:"פתאל הפקות";
+/* ---------- public site ---------- */
+const brandText=()=>{const f=fairOf(muni);return f.title+" "+cfg.cities[muni].name};
 function setBrand(){$$(".brand").forEach(b=>b.textContent=brandText())}
-function setMuni(m){
-  if(muni===m)return;muni=m;cat="הכול";$("#q").value="";
-  document.body.dataset.city=m;const c=cfg.cities[m];
-  setBrand();
+function renderNav(){$("#navLinks").innerHTML='<button data-scroll="#jobs">המשרות</button>'+Object.keys(cfg.pages).filter(k=>cfg.pages[k].nav).map(k=>`<button data-info="${k}">${esc(cfg.pages[k].t)}</button>`).join("")}
+function loadGa(id){if(!/^G-[A-Z0-9]{4,}$/.test(id||"")||loadGa.done===id)return;loadGa.done=id;const s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.append(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config",id)}
+function setMuni(m,force){
+  if(muni===m&&!force)return;const changed=muni!==m;muni=m;if(changed){cat="הכול";$("#q").value=""}
+  const c=cfg.cities[m],f=fairOf(m);document.body.dataset.theme=c.theme||"amber";
+  setBrand();renderNav();loadGa(c.ga);
   $("#logos").innerHTML=c.logos.map(l=>{const[n,u]=l.split("|").map(x=>x.trim());return u?`<span class="lg"><img src="${esc(encodeURI(u))}" alt="${esc(n)}" onerror="this.parentNode.className='';this.replaceWith('${esc(n).replace(/'/g,"")}')"></span>`:`<span>${esc(n)}</span>`}).join("");
-  const h=$("#heroTitle");h.innerHTML=`${esc(c.title)} <em>${esc(c.accent)}</em>`;
-  const w=split(h);if(HAS&&ready)gsap.fromTo(w,{yPercent:115},{yPercent:0,duration:1,stagger:.08,ease:"power4.out",delay:.25});
-  renderBoard(true);window.scrollTo(0,0);lenis&&lenis.scrollTo(0,{immediate:true,force:true});
+  const h=$("#heroTitle");h.innerHTML=`${esc(f.title)} <em>${esc(f.accent)}</em>`;
+  const w=split(h);if(HAS&&ready)gsap.fromTo(w,{yPercent:115},{yPercent:0,duration:1,stagger:.08,ease:"power4.out",delay:.2});
+  renderBoard(true);if(changed){window.scrollTo(0,0);lenis&&lenis.scrollTo(0,{immediate:true,force:true})}
 }
 function renderBoard(anim){
-  const c=cfg.cities[muni],list=cityJobs(muni),open=c.open;
-  $("#liveTxt").textContent=open?"מגייסים עכשיו":c.closed;
+  const f=fairOf(muni),list=cityJobs(muni),open=f.open;
+  $("#liveTxt").textContent=open?"מגייסים עכשיו":f.closed;
   $("#sJobs").textContent=open?list.length:0;$("#sRoles").textContent=open?list.reduce((n,j)=>n+j.roles.length,0):0;
   $("#chips").style.display=open?"":"none";
   $("#chips").innerHTML=["הכול",...CATS.filter(k=>list.some(j=>j.cat===k))].map(k=>`<button class="chip" aria-pressed="${k===cat}" data-cat="${k}">${k}</button>`).join("");
   renderList(anim);
 }
 function renderList(anim){
-  const c=cfg.cities[muni],q=$("#q").value.trim();
-  if(!c.open){$("#count").textContent="";$("#list").innerHTML=`<div class="closed"><h3>${esc(c.closed)}</h3><p>${esc(c.closedSub)}</p><button class="btn" id="openPool">עדכנו אותי כשהיריד הבא נפתח <b>${ARROW}</b></button></div>`;return}
+  const f=fairOf(muni),q=$("#q").value.trim();
+  if(!f.open){$("#count").textContent="";$("#list").innerHTML=`<div class="closed"><h3>${esc(f.closed)}</h3><p>${esc(f.closedSub)}</p><button class="btn" id="openPool">עדכנו אותי כשהיריד הבא נפתח <b>${ARROW}</b></button></div>`;return}
   const res=cityJobs(muni).filter(j=>(cat==="הכול"||j.cat===cat)&&(!q||(j.biz+j.desc+j.cat+j.roles.join(" ")).includes(q)));
-  $("#count").textContent=res.length===1?"נמצאה משרה אחת":"נמצאו "+res.length+" משרות";
+  $("#count").textContent=res.length===1?"נמצא מעסיק אחד":"נמצאו "+res.length+" מעסיקים";
   $("#list").innerHTML=res.length?res.map(j=>`
     <article class="job" id="job-${j.id}">
       ${coverHtml(j)}
@@ -739,12 +814,12 @@ function renderList(anim){
         <h3>${esc(j.biz)}</h3>
         <p>${esc(j.desc)}</p>
         <div class="roles">${j.roles.map(r=>`<span>${esc(r)}</span>`).join("")}</div>
-        <div class="job__meta"><span>גילאים: <b>${esc(j.ages||"כל הגילים")}</b></span><span>${esc(j.city)}</span></div>
+        <div class="job__meta"><span>גילאים: <b>${esc(agesText(j))}</b></span><span>${esc(j.city)}</span></div>
         <button class="btn btn--full job__go" aria-expanded="false" data-id="${j.id}">הגשת מועמדות <b>${ARROW}</b></button>
         <button class="more" data-more="${j.id}" data-hover>לכל הפרטים על המשרה</button>
       </div>
       <div class="job__form" id="form-${j.id}"><div class="job__form-in"></div></div>
-    </article>`).join(""):`<div class="empty">אין כרגע משרה שמתאימה לחיפוש הזה. <button id="reset">הצגת כל המשרות</button></div>`;
+    </article>`).join(""):`<div class="empty">${cityJobs(muni).length?'אין כרגע משרה שמתאימה לחיפוש הזה. <button id="reset">הצגת כל המשרות</button>':"המשרות של היריד יעלו לכאן בקרוב."}</div>`;
   if(HAS&&anim&&ready)gsap.from("#list .job",{opacity:0,y:50,duration:.8,stagger:.08,delay:.15,ease:"power3.out",clearProps:"opacity,transform"});
   HAS&&ScrollTrigger.refresh();
 }
@@ -760,18 +835,6 @@ function toggleForm(id){
 }
 function closeForm(w){w.classList.remove("on");w.parentElement.querySelector(".job__go").setAttribute("aria-expanded","false");
   if(HAS)gsap.to(w,{height:0,duration:.5,ease:"power3.inOut",onComplete(){w.firstElementChild.innerHTML="";ScrollTrigger.refresh()}});else{w.style.height=0;w.firstElementChild.innerHTML=""}}
-
-/* ---------- gate ---------- */
-function renderGate(){
-  $("#gateCards").innerHTML=[R,P].map(m=>{const c=cfg.cities[m],n=cityJobs(m).length;
-    return `<button class="gcard ${m===P?"gcard--pt":""}" data-go="${m}" data-hover>
-      <span class="gcard__st ${c.open?"":"off"}"><i></i>${c.open?"היריד פתוח":"היריד הסתיים"}</span>
-      <h2>${esc(c.name)}</h2><p>${esc(c.title)} ${esc(c.accent)}</p>
-      <span class="gcard__go"><span>${c.open?(n===1?"משרה אחת פתוחה":n+" משרות פתוחות"):esc(c.closed)}</span><b>${ARROW}</b></span>
-    </button>`}).join("");
-}
-
-/* ---------- pages ---------- */
 function pageHtml(key){
   const p=cfg.pages[key];let out=`<div><h1>${esc(p.t)}</h1>`,ul=false,tb=false;
   const end=()=>{if(ul){out+="</ul>";ul=false}if(tb){out+="</div>";tb=false}};
@@ -783,16 +846,16 @@ function pageHtml(key){
   end();return out+"</div>";
 }
 function jobPageHtml(j){
-  const fact=(k,v)=>v?`<div><small>${k}</small>${esc(v)}</div>`:"";
+  const fact=(k,v)=>v?`<div><small>${k}</small>${esc(v)}</div>`:"",f=fairOf(j.muni,j.fairId);
   return `<div class="jp__main">
     ${coverHtml(j)}
-    <div class="jp__cat">${esc(j.cat)}, ${esc(cfg.cities[j.muni].title)} ${esc(cfg.cities[j.muni].accent)}</div>
+    <div class="jp__cat">${esc(j.cat)}, ${esc(f.title)} ${esc(f.accent)}</div>
     <h1>${esc(j.biz)}</h1>
     <p class="jp__lead">${esc(j.desc)}</p>
-    <div class="jp__facts">${fact("שכר",j.pay)}${fact("שעות",j.hours)}${fact("גילאים",j.ages)}${fact("מיקום",j.city)}</div>
+    <div class="jp__facts">${fact("שכר",j.pay)}${fact("שעות",j.hours)}${fact("גילאים",agesText(j))}${fact("מיקום",j.city)}</div>
     ${j.about?`<h2>קצת על העסק</h2><p>${esc(j.about)}</p>`:""}
     ${j.req&&j.req.length?`<h2>מה מחפשים</h2><ul>${j.req.map(r=>`<li>${esc(r)}</li>`).join("")}</ul>`:""}
-    ${j.roles.length?`<h2>תפקידים פתוחים</h2><div class="roles">${j.roles.map(r=>`<span>${esc(r)}</span>`).join("")}</div>`:""}
+    ${j.roles.length?`<h2>המשרות הפתוחות</h2><div class="roles">${j.roles.map(r=>`<span>${esc(r)}</span>`).join("")}</div>`:""}
    </div>
    <aside class="jp__side" id="jpForm"><div><h2>הגשת מועמדות</h2><p>ממלאים את הפרטים, והם עוברים למעסיק.</p>${formHtml(j)}</div></aside>`;
 }
@@ -801,53 +864,42 @@ function showOverlay(el){
   if(HAS&&ready){gsap.fromTo(el,{clipPath:"inset(100% 0 0 0)"},{clipPath:"inset(0% 0 0 0)",duration:.8,ease:"power4.inOut",clearProps:"clipPath"});
     gsap.from(el.querySelectorAll(".jp__main > *, .jp__side, #infoIn > div > *"),{opacity:0,y:36,duration:.7,stagger:.05,delay:.35,ease:"power3.out",clearProps:"opacity,transform"})}
 }
-function gateIn(){if(!HAS||!ready)return;const w=$$("#gateTitle .wi");
-  gsap.fromTo(w,{yPercent:115},{yPercent:0,duration:1,stagger:.08,ease:"power4.out"});
-  gsap.fromTo("#gate [data-g]",{opacity:0,y:26},{opacity:1,y:0,duration:.8,stagger:.1,delay:.2,ease:"power3.out"});
-  gsap.fromTo("#gate .gcard",{opacity:0,y:70},{opacity:1,y:0,duration:1,stagger:.14,delay:.3,ease:"power4.out",clearProps:"opacity,transform"})}
-
 /* ---------- router ---------- */
 function route(){
-  const p=decodeURIComponent(location.hash).replace(/^#\/?/,"").split("/"),gate=$("#gate"),jp=$("#jp"),info=$("#info");
+  const p=decodeURIComponent(location.hash).replace(/^#\/?/,"").split("/"),jp=$("#jp"),info=$("#info");
   $("#navLinks").classList.remove("is-open");$("#burger").setAttribute("aria-expanded","false");
-  let wantGate=false,wantJob=null,wantInfo=null;
-  if(p[0]==="info"&&cfg.pages[p[1]])wantInfo=p[1];
-  else if(cfg.cities[p[0]]){setMuni(p[0]);if(p[1]==="job")wantJob=jobs.find(j=>j.id==p[2]&&j.muni===p[0]&&live(j)&&cfg.cities[p[0]].open)}
-  else wantGate=true;
-  if(wantInfo){$("#infoIn").innerHTML=pageHtml(wantInfo);setBrand();document.title=cfg.pages[wantInfo].t+(muni?" | "+brandText():"");showOverlay(info)}
-  else{info.classList.remove("on");
-    if(wantJob){$("#jpIn").innerHTML=jobPageHtml(wantJob);document.title=wantJob.biz+" | "+brandText();showOverlay(jp);
-      if(route.io)route.io.disconnect();route.io=new IntersectionObserver(([e])=>{$("#jpGo").style.cssText=e.isIntersecting?"opacity:0;pointer-events:none":""},{root:jp,threshold:.15});route.io.observe($("#jpForm"))}
-    else jp.classList.remove("on");
-    if(wantGate||!muni){renderGate();const was=gate.classList.contains("on");gate.classList.add("on");if(!was)gateIn();document.title="יריד התעסוקה לנוער 2026 | פתאל הפקות"}
-    else{gate.classList.remove("on");if(!wantJob)document.title=cfg.cities[muni].title+" "+cfg.cities[muni].accent}
-  }
+  if(p[0]==="admin"){setMuni(muni||Object.keys(cfg.cities)[0]);jp.classList.remove("on");info.classList.remove("on");openAdmin();return}
+  const m=cfg.cities[p[0]]?p[0]:(muni||Object.keys(cfg.cities)[0]);setMuni(m);
+  const sub=cfg.cities[p[0]]?p.slice(1):p;
+  let wantJob=null,wantInfo=null;
+  if(sub[0]==="info"&&cfg.pages[sub[1]])wantInfo=sub[1];
+  if(sub[0]==="job")wantJob=cityJobs(m).find(j=>j.id==sub[1]&&fairOf(m).open);
+  if(wantInfo){$("#infoIn").innerHTML=pageHtml(wantInfo);document.title=cfg.pages[wantInfo].t+" | "+brandText();showOverlay(info)}else info.classList.remove("on");
+  if(wantJob){$("#jpIn").innerHTML=jobPageHtml(wantJob);document.title=wantJob.biz+" | "+brandText();showOverlay(jp);
+    if(route.io)route.io.disconnect();route.io=new IntersectionObserver(([e])=>{$("#jpGo").style.cssText=e.isIntersecting?"opacity:0;pointer-events:none":""},{root:jp,threshold:.15});route.io.observe($("#jpForm"))}
+  else jp.classList.remove("on");
+  if(!wantInfo&&!wantJob){const f=fairOf(m);document.title=f.title+" "+f.accent}
   syncLock();
 }
-const go=h=>{if(location.hash===h||(!h&&!location.hash))route();else location.hash=h};
+const go=h=>{if(location.hash===h)route();else location.hash=h};
 addEventListener("hashchange",route);
 document.addEventListener("click",e=>{
-  const g=e.target.closest("[data-go]");if(g){go(g.dataset.go?"#/"+g.dataset.go:"#/");return}
-  const i=e.target.closest("[data-info]");if(i){cameFrom=location.hash.startsWith("#/info")?cameFrom:location.hash;go("#/info/"+i.dataset.info);return}
+  const i=e.target.closest("[data-info]");if(i){cameFrom=/\/info\//.test(location.hash)?cameFrom:location.hash;go("#/"+muni+"/info/"+i.dataset.info);return}
   const s=e.target.closest("[data-scroll]");if(s){$("#navLinks").classList.remove("is-open");$("#burger").setAttribute("aria-expanded","false");lenis?lenis.scrollTo(s.dataset.scroll,{offset:-40}):$(s.dataset.scroll).scrollIntoView({behavior:"smooth"})}
 });
-$("#infoBack").onclick=()=>go(cameFrom||(muni?"#/"+muni:"#/"));
+$("#infoBack").onclick=()=>go(cameFrom&&!/\/info\//.test(cameFrom)?cameFrom:"#/"+muni);
 $("#jpBack").onclick=()=>go("#/"+muni);
 $("#jpGo").onclick=()=>$("#jpForm").scrollIntoView({behavior:"smooth"});
 $("#jpIn").onclick=e=>{const p=e.target.closest(".play");if(p)playYt(p)};
 $("#burger").onclick=()=>{const o=$("#navLinks").classList.toggle("is-open");$("#burger").setAttribute("aria-expanded",o)};
-
-/* ---------- drawer: next fair list ---------- */
 function openPool(){
   $("#dTitle").textContent="עדכון על היריד הבא";$("#dSub").textContent=cfg.cities[muni].name;
-  $("#dBody").innerHTML=`<p>משאירים פרטים פעם אחת, ומקבלים הודעה כשהמשרות של היריד הבא עולות לאתר.</p>`+formHtml(POOL);
+  $("#dBody").innerHTML=`<p>משאירים פרטים פעם אחת, ומקבלים הודעה כשהמשרות של היריד הבא עולות לאתר.</p>`+formHtml({id:0,roles:[]});
   $("#drawer").classList.add("on");$("#scrim").classList.add("on");syncLock();
 }
 function closeDrawer(){$("#drawer").classList.remove("on");$("#scrim").classList.remove("on");syncLock()}
 $("#closeDrawer").onclick=closeDrawer;$("#scrim").onclick=closeDrawer;
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();if(/^#\/(info|[\w-]+\/job)/.test(location.hash))history.length>1?history.back():go("#/")}});
-
-/* ---------- board events ---------- */
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();if(/\/(info|job)\//.test(location.hash))go("#/"+muni)}});
 $("#search").onsubmit=e=>{e.preventDefault();renderList(true);lenis?lenis.scrollTo("#jobs",{offset:-40}):$("#jobs").scrollIntoView({behavior:"smooth"})};
 $("#q").oninput=()=>renderList(false);
 $("#chips").onclick=e=>{const b=e.target.closest("[data-cat]");if(!b)return;cat=b.dataset.cat;$$("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));renderList(true)};
@@ -860,74 +912,119 @@ $("#list").onclick=e=>{
 };
 
 /* ---------- admin ---------- */
-const cols=[["עסק","biz"],["תפקיד רצוי","role"],["שם מלא","name"],["גיל","age"],["מין","gender"],["עיר מגורים","city"],["טלפון","phone"],["הערות","note"],["התקבל","at"]];
-const fairOf=m=>cfg.cities[m].title+" "+cfg.cities[m].accent;
-const appText=a=>["טופס מועמדות, "+fairOf(a.muni),"","עסק: "+a.biz,"תפקיד רצוי: "+(a.role||"לא צוין"),"","שם מלא: "+a.name,"גיל: "+a.age,"מין: "+(a.gender||"לא צוין"),"עיר מגורים: "+a.city,"טלפון: "+a.phone,"הערות: "+(a.note||"אין"),"","התקבל: "+a.at].join("\n");
-const groupText=(biz,l)=>["רשימת מועמדים, "+biz,cfg.cities[aMuni].title+" "+cfg.cities[aMuni].accent,"סך הכול: "+l.length,"",...l.map((a,i)=>`${i+1}. ${a.name}, גיל ${a.age}, ${a.city}, ${a.phone}${a.role?", "+a.role:""}${a.note?" ("+a.note+")":""}`)].join("\n");
+const cols=[["מעסיק","biz"],["משרה רצויה","role"],["שם מלא","name"],["גיל","age"],["מין","gender"],["עיר מגורים","city"],["טלפון","phone"],["הערות","note"],["התקבל","at"]];
+const fairLabel=f=>f.title+" "+f.accent;
+const groupText=(biz,l)=>["רשימת מועמדים, "+biz,fairLabel(fairOf(aMuni,aFair)),"סך הכול: "+l.length,"",...l.map((a,i)=>`${i+1}. ${a.name}, גיל ${a.age}, ${a.city}, ${a.phone}${a.role?", "+a.role:""}${a.note?" ("+a.note+")":""}`)].join("\n");
 const waNum=p=>{const d=String(p||"").replace(/\D/g,"");return d?(d.startsWith("0")?"972"+d.slice(1):d):""};
-const bizPhone=biz=>{const j=jobs.find(x=>x.biz===biz&&x.muni===aMuni);return waNum(j&&j.phone)};
-function subHtml(a){return `<article class="sub" data-app="${a.id}">
-  <header><div><h4>${esc(a.name)}</h4><span>${esc(a.at)}</span></div><span class="pill ${a.sent?"ok":""}">${a.sent?"הועבר למעסיק":"חדש"}</span></header>
-  <dl><div><dt>תפקיד רצוי</dt><dd>${esc(a.role||"לא צוין")}</dd></div><div><dt>גיל</dt><dd>${esc(a.age)}</dd></div><div><dt>מין</dt><dd>${esc(a.gender||"לא צוין")}</dd></div><div><dt>עיר מגורים</dt><dd>${esc(a.city)}</dd></div><div class="wide"><dt>טלפון</dt><dd class="ltr">${esc(a.phone)}</dd></div><div class="wide"><dt>הערות</dt><dd>${esc(a.note||"אין")}</dd></div></dl>
-  <footer><button class="act" data-act="wa">שליחה בוואטסאפ</button><button class="act" data-act="copy">העתקה</button><button class="act" data-act="sent">${a.sent?"סימון כחדש":"סימון כהועבר"}</button></footer>
-</article>`}
+const myJobs=()=>jobs.filter(j=>j.muni===aMuni&&j.fairId===aFair);
+const myApps=()=>apps.filter(a=>a.muni===aMuni&&a.fairId===aFair);
 function renderAdmin(){
-  const c=cfg.cities[aMuni],mine=apps.filter(a=>a.muni===aMuni),fresh=mine.filter(a=>!a.sent).length;
-  $("#aCity").innerHTML=[R,P].map(m=>`<option value="${m}"${m===aMuni?" selected":""}>עיריית ${esc(cfg.cities[m].name)}</option>`).join("");
-  $("#appsBadge").innerHTML=fresh?`<span class="pill">${fresh}</span>`:"";
-  $("#newJobCity").textContent="המשרה תעלה ללוח של "+c.name+".";
-  $("#newJob [name=cat]").innerHTML=CATS.map(k=>`<option>${k}</option>`).join("");
-  const jl=jobs.filter(j=>j.muni===aMuni);
-  $("#aJobs").innerHTML=jl.length?`<table><tr><th>עסק</th><th>מועמדים</th><th>מוצגת</th><th></th></tr>${jl.map(j=>`<tr><td><b>${esc(j.biz)}</b><span>${esc(j.roles.join(", "))}</span></td><td><span class="pill">${mine.filter(a=>a.jobId==j.id).length}</span></td><td><span>${live(j)?(j.until?"עד "+j.until.split("-").reverse().join("."):"ללא הגבלה"):"הסתיימה"}</span></td><td><button class="del" data-del="${j.id}">הסרה</button></td></tr>`).join("")}</table>`:'<p class="note">אין משרות בעירייה הזאת. מפרסמים משרה בטופס שליד.</p>';
+  $("#login").style.display=authed?"none":"";$("#aMain").style.display=authed?"":"none";$("#aBar").style.display=authed?"":"none";
+  if(!authed)return;
+  const c=cfg.cities[aMuni];if(!c.fairs.some(f=>f.id===aFair))aFair=c.active;
+  const fair=fairOf(aMuni,aFair),mine=myApps(),jl=myJobs();
+  $("#aCity").innerHTML=Object.keys(cfg.cities).map(m=>`<option value="${m}"${m===aMuni?" selected":""}>${esc(cfg.cities[m].name)}</option>`).join("");
+  $("#aFair").innerHTML=c.fairs.map(f=>`<option value="${f.id}"${f.id===aFair?" selected":""}>${esc(fairLabel(f))}${f.id===c.active?" (מוצג באתר)":""}</option>`).join("");
+  const fresh=mine.filter(a=>!a.sent).length;$("#appsBadge").innerHTML=fresh?`<span class="pill">${fresh}</span>`:"";
+  /* candidates */
   const groups={};mine.forEach(a=>(groups[a.biz]=groups[a.biz]||[]).push(a));
   const names=Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length);
-  $("#tabApps").innerHTML=names.length?names.map(n=>{const l=groups[n],nf=l.filter(a=>!a.sent).length;return `<section class="grp" data-biz="${esc(n)}">
-    <div class="grp__h"><h4>${esc(n)}<span>${l.length} מועמדים${nf?", "+nf+" חדשים":""}</span></h4>
-      <div class="grp__acts"><button class="act act--main" data-g="wa">שליחת כל ה-${l.length} למעסיק בוואטסאפ</button><button class="act" data-g="csv">הורדה לאקסל</button><button class="act" data-g="print">הדפסה או PDF</button><button class="act" data-g="sent">סימון כולם כהועברו</button></div></div>
-    <details><summary>הצגת הטפסים אחד אחד</summary><div class="grp__list">${l.map(subHtml).join("")}</div></details>
-  </section>`}).join(""):'<div class="panel"><p class="note">עוד לא התקבלו מועמדויות בעירייה הזאת. כל טופס שנשלח מהאתר מופיע כאן, מסודר לפי מעסיק.</p></div>';
-  const f=$("#setCity");$("#setCityH").textContent="הגדרות היריד, "+c.name;f.open.checked=c.open;f.title.value=c.title;f.accent.value=c.accent;f.closed.value=c.closed;f.closedSub.value=c.closedSub;f.logos.value=c.logos.join("\n");
-  const pf=$("#setPage"),cur=pf.key.value||"rights";pf.key.innerHTML=Object.keys(cfg.pages).map(k=>`<option value="${k}"${k===cur?" selected":""}>${esc(cfg.pages[k].t)}</option>`).join("");pf.t.value=cfg.pages[cur].t;pf.b.value=cfg.pages[cur].b;
+  $("#tabApps").innerHTML=`<div class="kpis"><div class="kpi"><b>${mine.length}</b><span>מועמדויות ביריד</span></div><div class="kpi"><b>${fresh}</b><span>עוד לא הועברו למעסיק</span></div><div class="kpi"><b>${jl.length}</b><span>מעסיקים ביריד</span></div><div class="kpi"><b>${jl.reduce((n,j)=>n+j.roles.length,0)}</b><span>משרות</span></div></div>`+
+   (names.length?names.map(n=>{const l=groups[n],job=jobs.find(j=>j.id==l[0].jobId);return `<section class="grp" data-biz="${esc(n)}">
+    <div class="grp__h"><h4>${esc(n)}<span>${l.length} מועמדים</span></h4>
+      <div class="grp__acts"><button class="act act--main" data-g="csv">ייצוא לאקסל</button><button class="act" data-g="wa">שליחה למעסיק בוואטסאפ</button><button class="act" data-g="print">הדפסה או PDF</button><button class="act" data-g="sent">סימון כולם כהועברו</button></div></div>
+    <div class="tscroll"><table><tr><th>שם מלא</th><th>גיל</th><th>עיר מגורים</th><th>טלפון</th><th>משרה רצויה</th><th>הערות</th><th>התקבל</th><th>סטטוס</th><th></th></tr>
+    ${l.map(a=>`<tr data-app="${a.id}"><td><b>${esc(a.name)}</b></td><td>${esc(a.age)}${job&&!ageOk(job,+a.age)?'<span class="warn">גיל לא מתאים</span>':""}</td><td>${esc(a.city)}</td><td class="ltr">${esc(a.phone)}</td><td>${esc(a.role||"")}</td><td class="wrapc">${esc(a.note||"")}</td><td><span>${esc(a.at)}</span></td><td><span class="pill ${a.sent?"ok":""}">${a.sent?"הועבר":"חדש"}</span></td><td><button class="lnk red" data-act="del">מחיקה</button></td></tr>`).join("")}</table></div>
+  </section>`}).join(""):'<div class="panel"><p class="note">עוד לא התקבלו מועמדויות ביריד הזה. כל טופס שנשלח מהאתר מופיע כאן, מסודר לפי מעסיק.</p></div>');
+  /* employers */
+  $("#jobForm [name=cat]").innerHTML=CATS.map(k=>`<option>${k}</option>`).join("");
+  if(!$("#jobForm").id.value)$("#jobFormHint").textContent="המעסיק יתווסף ליריד: "+fairLabel(fair)+".";
+  $("#aJobs").innerHTML=jl.length?`<table><tr><th>מעסיק</th><th>גילאים</th><th>סרטון</th><th>מועמדים</th><th>מצב</th><th></th></tr>${jl.map(j=>`<tr data-job="${j.id}"><td><b>${esc(j.biz)}</b><span>${esc(j.roles.join(", "))}</span></td><td>${esc(agesText(j))}</td><td><span>${j.yt?"יש":j.img?"תמונה":"אין"}</span></td><td><span class="pill">${mine.filter(a=>a.jobId==j.id).length}</span></td><td><span class="pill ${live(j)?"ok":""}">${j.on===false?"מוסתרת":live(j)?"מוצגת":"הסתיימה"}</span></td><td><div class="rowacts"><button class="lnk" data-j="edit">עריכה</button><button class="lnk" data-j="toggle">${j.on===false?"הצגה":"הסתרה"}</button><button class="lnk red" data-j="del">מחיקה</button></div></td></tr>`).join("")}</table>`:'<p class="note">אין עדיין מעסיקים ביריד הזה. מוסיפים מעסיק בטופס שליד.</p>';
+  /* fairs */
+  $("#aFairs").innerHTML=c.fairs.map(f=>{const on=f.id===c.active;return `<div class="fair ${on?"on":""}" data-fair="${f.id}"><div><b>${esc(fairLabel(f))}</b><span>${jobs.filter(j=>j.muni===aMuni&&j.fairId===f.id).length} מעסיקים, ${apps.filter(a=>a.muni===aMuni&&a.fairId===f.id).length} מועמדויות</span></div>
+    <div class="rowacts"><span class="pill ${on?"ok":""}">${on?(f.open?"מוצג באתר, פתוח":"מוצג באתר, סגור"):"בארכיון"}</span>${on?`<button class="lnk" data-f="open">${f.open?"סגירת היריד":"פתיחת היריד"}</button>`:`<button class="lnk" data-f="show">הצגה באתר</button>`}<button class="lnk" data-f="edit">עריכה</button>${on?"":`<button class="lnk red" data-f="del">מחיקה</button>`}</div></div>`}).join("");
+  /* pages */
+  $("#aPages").innerHTML=`<table><tr><th>דף</th><th>בתפריט</th><th></th></tr>${Object.keys(cfg.pages).map(k=>{const p=cfg.pages[k];return `<tr data-page="${k}"><td><b>${esc(p.t)}</b></td><td><span class="pill ${p.nav?"ok":""}">${p.nav?"כן":"לא"}</span></td><td><div class="rowacts"><button class="lnk" data-p="edit">עריכה</button>${p.core?"":'<button class="lnk red" data-p="del">מחיקה</button>'}</div></td></tr>`}).join("")}</table>`;
+  /* site */
+  const sf=$("#siteForm");$("#siteFormH").textContent="הגדרות האתר של "+c.name;sf.name.value=c.name;sf.url.value=location.origin+location.pathname+"#/"+aMuni;sf.theme.value=c.theme||"amber";sf.logos.value=c.logos.join("\n");sf.ga.value=c.ga||"";
+  $("#siteList").innerHTML=`<table><tr><th>האתרים על הדומיין</th><th></th></tr>${Object.keys(cfg.cities).map(m=>`<tr><td><b>${esc(cfg.cities[m].name)}</b><span class="ltr">/#/${esc(m)}</span></td><td><span class="pill">${cfg.cities[m].fairs.length} ירידים</span></td></tr>`).join("")}</table>`;
 }
-function afterChange(){save("fp5_cfg",cfg);renderAdmin();if(muni){const m=muni;muni=null;setMuni(m)}renderGate()}
+function changed(msg){const ok=saveAll();renderAdmin();if(muni)setMuni(muni,true);msg&&toast(ok?msg:msg+". התמונה גדולה מדי ולא נשמרה")}
 function shrink(file){return new Promise(res=>{if(!file)return res("");const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,900/im.width),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.8))};im.onerror=()=>res("");im.src=r.result};r.onerror=()=>res("");r.readAsDataURL(file)})}
-function openAdmin(){aMuni=muni||aMuni;renderAdmin();$("#admin").scrollTop=0;$("#admin").classList.add("on");$("#navLinks").classList.remove("is-open");syncLock()}
-$("#openAdmin").onclick=openAdmin;$("#openAdmin2").onclick=openAdmin;
-$("#closeAdmin").onclick=()=>{$("#admin").classList.remove("on");syncLock()};
-$("#aCity").onchange=e=>{aMuni=e.target.value;renderAdmin()};
-$(".tabs").onclick=e=>{const b=e.target.closest("[data-tab]");if(!b)return;$$(".tabs .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));["Jobs","Apps","Set"].forEach(t=>$("#tab"+t).style.display=t===b.dataset.tab?"":"none")};
-$("#newJob [name=img]").onchange=e=>{$("#imgName").textContent=e.target.files[0]?e.target.files[0].name:"בחירת תמונה"};
-$("#newJob").onsubmit=async e=>{e.preventDefault();const f=e.target,img=await shrink(f.img.files[0]);
-  jobs.unshift({id:Date.now(),muni:aMuni,biz:f.biz.value.trim(),cat:f.cat.value,city:f.city.value.trim(),roles:f.roles.value.split(",").map(s=>s.trim()).filter(Boolean),ages:f.ages.value.trim(),until:f.until.value,phone:f.phone.value.trim(),tag:"new",desc:f.desc.value.trim(),about:f.about.value.trim(),pay:f.pay.value.trim(),hours:f.hours.value.trim(),req:f.req.value.split("\n").map(x=>x.trim()).filter(Boolean),img,yt:ytId(f.yt.value)});
-  if(!save("fp4_jobs",jobs)){jobs[0].img="";save("fp4_jobs",jobs);toast("המשרה פורסמה, התמונה גדולה מדי ולא נשמרה")}else toast("המשרה פורסמה בלוח של "+cfg.cities[aMuni].name);
-  f.reset();$("#imgName").textContent="בחירת תמונה";afterChange()};
-$("#aJobs").onclick=e=>{const b=e.target.closest("[data-del]");if(!b)return;jobs=jobs.filter(j=>j.id!=b.dataset.del);save("fp4_jobs",jobs);afterChange();toast("המשרה הוסרה מהלוח")};
-$("#setCity").onsubmit=e=>{e.preventDefault();const f=e.target,c=cfg.cities[aMuni];Object.assign(c,{open:f.open.checked,title:f.title.value.trim()||c.title,accent:f.accent.value.trim(),closed:f.closed.value.trim()||c.closed,closedSub:f.closedSub.value.trim(),logos:f.logos.value.split("\n").map(x=>x.trim()).filter(Boolean).slice(0,4)});afterChange();toast("ההגדרות של "+c.name+" נשמרו")};
-$("#setPage [name=key]").onchange=e=>{const p=cfg.pages[e.target.value],f=$("#setPage");f.t.value=p.t;f.b.value=p.b};
-$("#setPage").onsubmit=e=>{e.preventDefault();const f=e.target;cfg.pages[f.key.value]={t:f.t.value.trim()||cfg.pages[f.key.value].t,b:f.b.value};save("fp5_cfg",cfg);renderAdmin();toast("הדף נשמר")};
+function openAdmin(){aMuni=muni||aMuni;aFair=cfg.cities[aMuni].active;renderAdmin();$("#admin").scrollTop=0;$("#admin").classList.add("on");syncLock()}
+function closeAdmin(){$("#admin").classList.remove("on");syncLock()}
+$("#openAdmin").onclick=openAdmin;
+$("#viewSite").onclick=()=>{closeAdmin();go("#/"+aMuni)};
+const _ca=closeAdmin;closeAdmin=function(){_ca();if(location.hash.startsWith("#/admin"))go("#/"+(muni||aMuni))};
+$("#logout").onclick=()=>{authed=false;try{sessionStorage.removeItem("fp6_auth")}catch(e){}closeAdmin()};
+$("#login").onsubmit=e=>{e.preventDefault();const f=e.target,ok=f.u.value.trim()==="admin"&&f.p.value==="1234";f.p.closest(".f").classList.toggle("bad",!ok);if(!ok)return;authed=true;try{sessionStorage.setItem("fp6_auth","1")}catch(e){}f.p.value="";renderAdmin()};
+$("#aCity").onchange=e=>{aMuni=e.target.value;aFair=cfg.cities[aMuni].active;resetJobForm();resetFairForm();renderAdmin()};
+$("#aFair").onchange=e=>{aFair=e.target.value;resetJobForm();renderAdmin()};
+$("#tabs").onclick=e=>{const b=e.target.closest("[data-tab]");if(!b)return;$$("#tabs .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));["Apps","Jobs","Fairs","Pages","Set"].forEach(t=>$("#tab"+t).style.display=t===b.dataset.tab?"":"none")};
+/* candidates actions */
 function download(name,text){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["﻿"+text],{type:"text/csv;charset=utf-8"}));a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
 $("#tabApps").onclick=e=>{
   const gb=e.target.closest("[data-g]");
-  if(gb){const biz=gb.closest(".grp").dataset.biz,l=apps.filter(a=>a.muni===aMuni&&a.biz===biz),act=gb.dataset.g;
-    if(act==="wa"){window.open("https://wa.me/"+bizPhone(biz)+"?text="+encodeURIComponent(groupText(biz,l)),"_blank","noopener");l.forEach(a=>a.sent=true)}
-    if(act==="csv"){download("מועמדים - "+biz+".csv",[cols.map(c=>c[0]).join(","),...l.map(a=>cols.map(c=>'"'+String(a[c[1]]??"").replace(/"/g,'""')+'"').join(","))].join("\r\n"));toast("הקובץ ירד, נפתח באקסל")}
-    if(act==="print"){$("#printArea").innerHTML=`<h1>רשימת מועמדים, ${esc(biz)}</h1><p>${esc(cfg.cities[aMuni].title)} ${esc(cfg.cities[aMuni].accent)}, ${l.length} מועמדים.</p><table class="ptable"><tr>${cols.slice(1).map(c=>`<th>${c[0]}</th>`).join("")}</tr>${l.map(a=>`<tr>${cols.slice(1).map(c=>`<td>${esc(a[c[1]]||"")}</td>`).join("")}</tr>`).join("")}</table>`;window.print()}
-    if(act==="sent"){l.forEach(a=>a.sent=true);toast("כל המועמדים של "+biz+" סומנו כהועברו")}
-    save("fp4_apps",apps);if(act!=="csv"&&act!=="print")renderAdmin();return}
-  const b=e.target.closest("[data-act]");if(!b)return;const a=apps.find(x=>x.id==b.closest(".sub").dataset.app);if(!a)return;const act=b.dataset.act;
-  if(act==="copy"){(navigator.clipboard?navigator.clipboard.writeText(appText(a)):Promise.reject()).then(()=>toast("הטופס הועתק"),()=>toast("ההעתקה נחסמה בדפדפן הזה"));return}
-  if(act==="wa"){window.open("https://wa.me/"+bizPhone(a.biz)+"?text="+encodeURIComponent(appText(a)),"_blank","noopener");a.sent=true}
-  if(act==="sent")a.sent=!a.sent;
-  save("fp4_apps",apps);const open=b.closest("details").open;renderAdmin();if(open){const g=$$(".grp").find(x=>x.dataset.biz===a.biz);g&&(g.querySelector("details").open=true)}
+  if(gb){const biz=gb.closest(".grp").dataset.biz,l=myApps().filter(a=>a.biz===biz),act=gb.dataset.g,fair=fairLabel(fairOf(aMuni,aFair));
+    if(act==="csv"){download("מועמדים - "+biz+".csv",[cols.map(c=>c[0]).join(","),...l.map(a=>cols.map(c=>'"'+String(a[c[1]]??"").replace(/"/g,'""')+'"').join(","))].join("\r\n"));toast("הקובץ ירד, נפתח באקסל");return}
+    if(act==="print"){$("#printArea").innerHTML=`<h1>רשימת מועמדים, ${esc(biz)}</h1><p>${esc(fair)}, ${l.length} מועמדים.</p><table class="ptable"><tr>${cols.slice(1).map(c=>`<th>${c[0]}</th>`).join("")}</tr>${l.map(a=>`<tr>${cols.slice(1).map(c=>`<td>${esc(a[c[1]]||"")}</td>`).join("")}</tr>`).join("")}</table>`;window.print();return}
+    if(act==="wa"){const j=jobs.find(x=>x.id==l[0].jobId);window.open("https://wa.me/"+waNum(j&&j.phone)+"?text="+encodeURIComponent(groupText(biz,l)),"_blank","noopener")}
+    l.forEach(a=>a.sent=true);save("fp6_apps",apps);renderAdmin();if(act==="sent")toast("כל המועמדים של "+biz+" סומנו כהועברו");return}
+  const b=e.target.closest("[data-act=del]");if(!b)return;const id=b.closest("tr").dataset.app,i=apps.findIndex(x=>x.id==id);if(i<0)return;
+  const [gone]=apps.splice(i,1);save("fp6_apps",apps);renderAdmin();toast(gone.name+" נמחק/ה מהרשימה",()=>{apps.splice(i,0,gone);save("fp6_apps",apps);renderAdmin()});
 };
+/* employers */
+function resetJobForm(){const f=$("#jobForm");f.reset();f.id.value="";f.classList.remove("editing");$("#jobFormH").textContent="הוספת מעסיק";$("#jobFormBtn").textContent="הוספה ליריד";$("#jobCancel").style.display="none";$("#imgName").textContent="בחירת תמונה"}
+$("#jobCancel").onclick=()=>{resetJobForm();renderAdmin()};
+$("#jobForm [name=img]").onchange=e=>{$("#imgName").textContent=e.target.files[0]?e.target.files[0].name:"בחירת תמונה"};
+$("#jobForm").onsubmit=async e=>{e.preventDefault();const f=e.target,img=await shrink(f.img.files[0]),ex=f.id.value?jobs.find(j=>j.id==f.id.value):null;
+  const num=v=>{const n=parseInt(v,10);return n>0?n:null};
+  const d={biz:f.biz.value.trim(),cat:f.cat.value,city:f.city.value.trim(),roles:f.roles.value.split(",").map(s=>s.trim()).filter(Boolean),minAge:num(f.minAge.value),maxAge:num(f.maxAge.value),until:f.until.value,phone:f.phone.value.trim(),desc:f.desc.value.trim(),about:f.about.value.trim(),pay:f.pay.value.trim(),hours:f.hours.value.trim(),req:f.req.value.split("\n").map(x=>x.trim()).filter(Boolean),yt:ytId(f.yt.value.trim())};
+  if(ex){const old=ex.biz;Object.assign(ex,d);if(img)ex.img=img;if(old!==d.biz)apps.forEach(a=>{if(a.jobId==ex.id)a.biz=d.biz})}
+  else jobs.unshift({id:Date.now(),muni:aMuni,fairId:aFair,tag:"new",on:true,img,...d});
+  resetJobForm();changed(ex?"השינויים נשמרו":"המעסיק נוסף ליריד")};
+$("#aJobs").onclick=e=>{const b=e.target.closest("[data-j]");if(!b)return;const j=jobs.find(x=>x.id==b.closest("tr").dataset.job);if(!j)return;
+  if(b.dataset.j==="toggle"){j.on=j.on===false;changed(j.on?"המשרה מוצגת באתר":"המשרה הוסתרה מהאתר")}
+  if(b.dataset.j==="del"){const i=jobs.indexOf(j);jobs.splice(i,1);changed();toast(j.biz+" נמחק מהיריד",()=>{jobs.splice(i,0,j);changed()})}
+  if(b.dataset.j==="edit"){const f=$("#jobForm");f.id.value=j.id;f.biz.value=j.biz;f.cat.value=j.cat;f.city.value=j.city;f.roles.value=j.roles.join(", ");f.minAge.value=j.minAge||"";f.maxAge.value=j.maxAge||"";f.until.value=j.until||"";f.phone.value=j.phone||"";f.desc.value=j.desc;f.about.value=j.about||"";f.pay.value=j.pay||"";f.hours.value=j.hours||"";f.req.value=(j.req||[]).join("\n");f.yt.value=j.yt?"https://youtu.be/"+j.yt:"";
+    f.classList.add("editing");$("#jobFormH").textContent="עריכת "+j.biz;$("#jobFormHint").textContent="משנים מה שצריך ושומרים.";$("#jobFormBtn").textContent="שמירת השינויים";$("#jobCancel").style.display="";f.scrollIntoView({behavior:"smooth",block:"start"})}
+};
+/* fairs */
+function resetFairForm(){const f=$("#fairForm");f.reset();f.id.value="";f.classList.remove("editing");$("#fairFormH").textContent="יריד חדש";$("#fairFormBtn").textContent="יצירת היריד";$("#fairCancel").style.display="none";$("#copyWrap").style.display=""}
+$("#fairCancel").onclick=resetFairForm;
+$("#fairForm").onsubmit=e=>{e.preventDefault();const f=e.target,c=cfg.cities[aMuni],d={title:f.title.value.trim(),accent:f.accent.value.trim(),closed:f.closed.value.trim()||"יריד התעסוקה הסתיים",closedSub:f.closedSub.value.trim()};
+  if(f.id.value){Object.assign(c.fairs.find(x=>x.id===f.id.value),d);resetFairForm();changed("היריד עודכן");return}
+  const id="f"+Date.now();c.fairs.unshift({id,open:false,...d});
+  if(f.copy.checked)myJobs().slice().reverse().forEach((j,i)=>jobs.unshift({...j,id:Date.now()+i+1,fairId:id,tag:""}));
+  aFair=id;resetFairForm();changed("היריד נוצר. הוא עדיין בארכיון עד שתלחץ על הצגה באתר")};
+$("#aFairs").onclick=e=>{const b=e.target.closest("[data-f]");if(!b)return;const c=cfg.cities[aMuni],id=b.closest(".fair").dataset.fair,fr=c.fairs.find(x=>x.id===id);
+  if(b.dataset.f==="show"){c.active=id;aFair=id;changed("היריד מוצג עכשיו באתר")}
+  if(b.dataset.f==="open"){fr.open=!fr.open;changed(fr.open?"היריד נפתח, המשרות מוצגות":"היריד נסגר, מוצגת הודעת הסיום")}
+  if(b.dataset.f==="del"){c.fairs=c.fairs.filter(x=>x.id!==id);jobs=jobs.filter(j=>!(j.muni===aMuni&&j.fairId===id));apps=apps.filter(a=>!(a.muni===aMuni&&a.fairId===id));changed("היריד נמחק מהארכיון")}
+  if(b.dataset.f==="edit"){const f=$("#fairForm");f.id.value=id;f.title.value=fr.title;f.accent.value=fr.accent;f.closed.value=fr.closed;f.closedSub.value=fr.closedSub;f.classList.add("editing");$("#fairFormH").textContent="עריכת היריד";$("#fairFormBtn").textContent="שמירת השינויים";$("#fairCancel").style.display="";$("#copyWrap").style.display="none";f.scrollIntoView({behavior:"smooth",block:"start"})}
+};
+/* pages */
+function resetPageForm(){const f=$("#pageForm");f.reset();f.key.value="";f.classList.remove("editing");$("#pageFormH").textContent="דף חדש";$("#pageFormBtn").textContent="יצירת הדף";$("#pageCancel").style.display="none"}
+$("#pageCancel").onclick=resetPageForm;
+$("#pageForm").onsubmit=e=>{e.preventDefault();const f=e.target,k=f.key.value||"p"+Date.now();cfg.pages[k]={...(cfg.pages[k]||{}),t:f.t.value.trim(),b:f.b.value,nav:f.nav.checked};const was=!!f.key.value;resetPageForm();changed(was?"הדף נשמר":"הדף נוצר")};
+$("#aPages").onclick=e=>{const b=e.target.closest("[data-p]");if(!b)return;const k=b.closest("tr").dataset.page,p=cfg.pages[k];
+  if(b.dataset.p==="del"){delete cfg.pages[k];changed();toast("הדף נמחק",()=>{cfg.pages[k]=p;changed()})}
+  if(b.dataset.p==="edit"){const f=$("#pageForm");f.key.value=k;f.t.value=p.t;f.b.value=p.b;f.nav.checked=!!p.nav;f.classList.add("editing");$("#pageFormH").textContent="עריכת הדף";$("#pageFormBtn").textContent="שמירת הדף";$("#pageCancel").style.display="";f.scrollIntoView({behavior:"smooth",block:"start"})}
+};
+/* site */
+$("#siteForm").onsubmit=e=>{e.preventDefault();const f=e.target,c=cfg.cities[aMuni];Object.assign(c,{name:f.name.value.trim()||c.name,theme:f.theme.value,ga:f.ga.value.trim().toUpperCase(),logos:f.logos.value.split("\n").map(x=>x.trim()).filter(Boolean).slice(0,5)});changed("ההגדרות של "+c.name+" נשמרו")};
+$("#newSite").onsubmit=e=>{e.preventDefault();const f=e.target,slug=f.slug.value.trim().toLowerCase(),name=f.name.value.trim(),bad=!/^[a-z0-9-]{2,30}$/.test(slug)||cfg.cities[slug]||["info","job"].includes(slug);
+  f.slug.closest(".f").classList.toggle("bad",!!bad);if(bad)return;const id="f"+Date.now(),yr=new Date().getFullYear()+1;
+  cfg.cities[slug]={name,theme:"blue",ga:"",active:id,logos:["לוגו "+name],fairs:[{id,title:"יריד תעסוקה לנוער",accent:name+" "+yr,open:false,closed:"היריד ייפתח בקרוב",closedSub:"המשרות יעלו לאתר לקראת היריד."}]};
+  aMuni=slug;aFair=id;f.reset();changed("האתר של "+name+" נוצר")};
 
 /* ---------- motion ---------- */
-(function(){const el=$("#rot");let i=0;const roles=()=>muni&&cfg.cities[muni].open?cityJobs(muni).flatMap(j=>j.roles).slice(0,8):[];
+(function(){const el=$("#rot");let i=0;const roles=()=>muni&&fairOf(muni).open?cityJobs(muni).flatMap(j=>j.roles).slice(0,8):[];
   setInterval(()=>{const r=roles();if(!r.length){el.textContent="";return}i=(i+1)%r.length;if(!HAS){el.textContent=r[i];return}
     gsap.to(el,{yPercent:-100,duration:.4,ease:"power2.in",onComplete(){el.textContent=r[i];gsap.fromTo(el,{yPercent:100},{yPercent:0,duration:.5,ease:"power3.out"})}})},2400)})();
 (function(){const c=$("#net"),x=c.getContext("2d");let W,H,P2=[],run=true,mx=-999,my=-999;const D=Math.min(devicePixelRatio||1,2);
   function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0);const n=Math.round(Math.min(90,W*H/14000));P2=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.8+.6}))}
-  function draw(){if(!run)return;x.clearRect(0,0,W,H);const col=muni===P?"111,227,165":"255,176,74";
+  function draw(){if(!run)return;x.clearRect(0,0,W,H);const col=TH[(muni&&cfg.cities[muni].theme)||"amber"]||TH.amber;
     for(const p of P2){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;const dm=Math.hypot(p.x-mx,p.y-my);if(dm<150&&dm>0){p.x+=(p.x-mx)/dm*1.2;p.y+=(p.y-my)/dm*1.2}}
     for(let i=0;i<P2.length;i++){const a=P2[i];for(let j=i+1;j<P2.length;j++){const b=P2[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){x.strokeStyle=`rgba(${col},${(1-d/130)*.32})`;x.lineWidth=1;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
       x.fillStyle=`rgba(${col},.8)`;x.beginPath();x.arc(a.x,a.y,a.r,0,6.3);x.fill()}
@@ -936,19 +1033,17 @@ $("#tabApps").onclick=e=>{
   $("#hero").addEventListener("pointermove",e=>{const r=c.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
   new IntersectionObserver(([e])=>{const was=run;run=e.isIntersecting;if(run&&!was)draw()}).observe(c)})();
 
-split($("#gateTitle"));
-{const k=decodeURIComponent(location.hash).replace(/^#\/?/,"").split("/")[0];$("#loaderTxt").textContent=cfg.cities[k]?cfg.cities[k].title+" "+cfg.cities[k].name:"פתאל הפקות";setBrand()}
+route();$("#loaderTxt").textContent=brandText();
 if(HAS){
   if(window.Lenis){lenis=new Lenis({duration:1.1});lenis.on("scroll",ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}
-  route();
-  gsap.set("#heroTitle .wi,#gateTitle .wi",{yPercent:115});gsap.set("[data-in],#gate [data-g]",{opacity:0,y:30});gsap.set("#gate .gcard",{opacity:0,y:70});
+  gsap.set("#heroTitle .wi",{yPercent:115});gsap.set("[data-in]",{opacity:0,y:30});
   lenis&&lenis.stop();
   const n={v:0},tl=gsap.timeline({onComplete(){ready=true;syncLock()}});
   tl.to(n,{v:100,duration:1.4,ease:"power2.inOut",onUpdate(){$("#loadNum").textContent=Math.round(n.v)}})
     .to(".loader__bar i",{scaleX:1,duration:1.4,ease:"power2.inOut"},0)
     .to("#loader",{yPercent:-100,duration:.9,ease:"power4.inOut"},"+=.1")
     .set("#loader",{display:"none"})
-    .add(()=>{ready=true;gsap.to("#heroTitle .wi",{yPercent:0,duration:1.1,stagger:.09,ease:"power4.out"});gsap.to("[data-in]",{opacity:1,y:0,duration:.9,stagger:.1,delay:.2,ease:"power3.out"});gateIn()},"-=.45");
+    .add(()=>{ready=true;gsap.to("#heroTitle .wi",{yPercent:0,duration:1.1,stagger:.09,ease:"power4.out"});gsap.to("[data-in]",{opacity:1,y:0,duration:.9,stagger:.1,delay:.2,ease:"power3.out"})},"-=.45");
   $$(".h2[data-split]").forEach(h=>{const w=split(h);gsap.set(w,{yPercent:115});ScrollTrigger.create({trigger:h,start:"top 86%",once:true,onEnter(){gsap.to(w,{yPercent:0,duration:1,stagger:.08,ease:"power4.out"})}})});
   ScrollTrigger.batch("[data-reveal]",{start:"top 90%",once:true,onEnter(b){gsap.to(b,{opacity:1,y:0,duration:.9,stagger:.1,ease:"power3.out"})}});
   const cards=$$(".card");cards.forEach((c,i)=>{if(i<cards.length-1)gsap.to(c,{scale:.94,ease:"none",scrollTrigger:{trigger:cards[i+1],start:"top 85%",end:"top 25%",scrub:true}});
@@ -960,7 +1055,7 @@ if(HAS){
     const cur=$("#cursor"),cx=gsap.quickTo(cur,"x",{duration:.35,ease:"power3"}),cy=gsap.quickTo(cur,"y",{duration:.35,ease:"power3"});
     addEventListener("pointermove",e=>{cur.classList.add("is-on");cx(e.clientX);cy(e.clientY);cur.classList.toggle("is-hover",!!e.target.closest("a,button,[data-hover],label.file"))});
   }
-}else{route();ready=true}
+}else ready=true;
 </script>
 </body>
 </html>

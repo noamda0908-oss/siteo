@@ -793,3 +793,13 @@ body{transition:background-color .5s}
 
 .guar__box{background:var(--bgc)}
 .guar__coin{margin-bottom:18px}
+
+/* v22: "success or refund" sticker on the corner of the guarantee notice */
+.seal{position:absolute;z-index:2;top:-58px;right:-10px;width:clamp(118px,15vw,170px);height:auto;color:var(--seal,#D9B25A);transform:rotate(9deg);font-family:var(--sans);filter:drop-shadow(0 8px 14px rgba(0,0,0,.45));animation:sealIn .9s cubic-bezier(.3,1.5,.5,1) both;background:radial-gradient(closest-side,var(--bgc) 72%,transparent 74%)}
+@keyframes sealIn{from{transform:rotate(-20deg) scale(.4);opacity:0}}
+[data-theme="lilac"]{--seal:#CFCBEA}[data-theme="cream"]{--seal:#A67C1E}[data-theme="green"]{--seal:#A67C1E}
+.guar__box{padding-top:clamp(74px,8vw,84px)}
+.a11y-still .seal{animation:none}
+
+.seal{top:-70px;right:2px;width:clamp(136px,15vw,176px)}
+.guar__box{padding-top:clamp(84px,8vw,92px)}

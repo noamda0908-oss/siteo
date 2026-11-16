@@ -153,10 +153,65 @@
     <footer>
       <p class="cart__total"><span>סה״כ</span><b id="cartTotal">₪0</b></p>
       <button class="btn btn--tape" type="button" id="checkout">מעבר לתשלום</button>
-      <p class="cart__note" id="demoNote" hidden>זה אתר הדגמה, אז כאן עוצרים. באתר המלא הכפתור הזה פותח את דף הסליקה.</p>
     </footer>
   </div>
 </aside>
+
+<section class="pay" id="pay" aria-hidden="true" data-state="form" role="dialog" aria-modal="true" aria-label="תשלום">
+  <p class="pay__demo">תצוגת הדגמה. לא מתבצע חיוב, ושום פרט לא נשלח או נשמר.</p>
+  <header class="pay__top">
+    <span class="tape">משופצר</span>
+    <button type="button" data-payclose>חזרה לחנות</button>
+  </header>
+
+  <form class="pay__grid" id="payForm" autocomplete="off">
+    <div class="pay__col">
+      <h2>תשלום מאובטח</h2>
+      <fieldset>
+        <legend>לאן לשלוח</legend>
+        <div class="row2">
+          <label>שם מלא<input type="text" placeholder="ישראל ישראלי"></label>
+          <label>טלפון<input type="tel" inputmode="tel" placeholder="050-0000000"></label>
+        </div>
+        <label>כתובת או נקודת איסוף<input type="text" placeholder="רחוב, מספר, עיר"></label>
+      </fieldset>
+      <fieldset>
+        <legend>איך משלמים</legend>
+        <div class="methods">
+          <button type="button" data-method="card" aria-pressed="true">כרטיס אשראי</button>
+          <button type="button" data-method="bit" aria-pressed="false">Bit</button>
+        </div>
+        <div id="payCard">
+          <div class="ccard" aria-hidden="true"><i></i><span dir="ltr">4580 0000 0000 0000</span><small>כרטיס לדוגמה</small><em dir="ltr">12/29</em></div>
+          <label>מספר כרטיס<input type="text" dir="ltr" value="4580 0000 0000 0000" readonly></label>
+          <div class="row2">
+            <label>תוקף<input type="text" dir="ltr" value="12/29" readonly></label>
+            <label>3 ספרות בגב הכרטיס<input type="text" dir="ltr" value="123" readonly></label>
+          </div>
+          <p class="pay__hint">בהדגמה פרטי הכרטיס ממולאים מראש בכרטיס לדוגמה ואי אפשר לערוך אותם.</p>
+        </div>
+        <p class="pay__hint" id="payBit" hidden>באתר המלא נפתחת כאן בקשת תשלום באפליקציית Bit.</p>
+      </fieldset>
+    </div>
+
+    <aside class="pay__col pay__sum">
+      <h3>ההזמנה שלך</h3>
+      <ul id="payItems"></ul>
+      <p class="sumrow"><span>סכום ביניים</span><b id="paySub"></b></p>
+      <p class="sumrow"><span>משלוח</span><b id="payShip"></b></p>
+      <p class="sumrow sumrow--total"><span>לתשלום</span><b data-paytotal></b></p>
+      <button class="btn btn--tape pay__go" type="submit"><span class="go__txt">תשלום <span data-paytotal></span></span><span class="go__busy">מעבד תשלום</span></button>
+    </aside>
+  </form>
+
+  <div class="pay__done">
+    <svg class="pay__check" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29"/><path d="M19 33l9 9 17-19"/></svg>
+    <h2>ההזמנה התקבלה</h2>
+    <p>הזמנה מספר <b id="payOrder"></b>. באתר המלא נשלח כאן אישור לנייד ולמייל.</p>
+    <p class="pay__hint">זו הייתה הדגמה בלבד. לא בוצע חיוב.</p>
+    <button class="btn btn--tape" type="button" data-payclose>חזרה לחנות</button>
+  </div>
+</section>
 
 <script src="js/app.js" defer></script>
 </body>

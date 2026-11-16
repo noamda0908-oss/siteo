@@ -761,3 +761,21 @@ body{transition:background-color .5s}
 [data-theme="cream"] .vids__nav button{color:var(--tx)}
 .wa{color:#fff}
 .themer [data-t="cream"]{background:linear-gradient(135deg,#F4EFE4 50%,#101B33 50%)}
+
+/* v19: light theme — off-white with deep green */
+[data-theme="green"]{--ac:#1F7A4D;--ac-rgb:31 122 77;--ac2:#14583A;--ac2-rgb:20 88 58;--ac-h:#2A9160;--ac3:#7FB89A;--ac3-rgb:127 184 154;--ac4:#5DA07E;--ac5:#BFD8C8;--bgc:#F5F6F1;--bg-rgb:245 246 241;--pn:#FFFFFF;--pn2:#FBFCF9;--pn-rgb:255 255 255;--navring:#DDE6DE;--tx:#0F2A1F;--tx-rgb:15 42 31;--tx2:#35503F;--tx3:#66796D;--logo-f:brightness(.68) saturate(1.35) contrast(1.1);--ic-f:brightness(.92) saturate(1.1);--tt-f:brightness(1)}
+[data-theme="green"] .btn,[data-theme="green"] .btn b{color:#fff;background:#0F2A1F}
+[data-theme="green"] .btn:hover,[data-theme="green"] .btn:hover b{background:#17422F}
+[data-theme="green"] .nav::before{background:rgb(255 255 255 / .82);box-shadow:0 6px 24px -12px rgb(15 42 31 / .35)}
+[data-theme="green"] .pchip,[data-theme="green"] .press__img{box-shadow:0 0 0 1px rgb(15 42 31 / .12)}
+[data-theme="green"] .stp__card,[data-theme="green"] .ucard,[data-theme="green"] .stat,[data-theme="green"] .form,[data-theme="green"] .press__card,[data-theme="green"] .legal__box{box-shadow:0 18px 44px -26px rgb(15 42 31 / .45)}
+[data-theme="green"] .hl{background-image:linear-gradient(rgb(31 122 77 / .3),rgb(31 122 77 / .3))}
+[data-theme="green"] .hero__chart{opacity:.5}
+[data-theme="green"] .hrow img{opacity:.92}
+[data-theme="green"] .slide__row span:nth-child(3n){color:var(--ac)}
+[data-theme="green"] .stat__n,[data-theme="green"] .mani__num{background:linear-gradient(to bottom,#14583A 0%,#1F7A4D 55%,#BFD8C8 130%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-stroke:0}
+[data-theme="green"] .stp__n{background:linear-gradient(to bottom,#1F7A4D 0%,#F5F6F1 105%);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:0}
+[data-theme="green"] .field input{border-bottom-color:rgb(15 42 31 / .25)}
+[data-theme="green"] .vids__nav button{color:var(--tx)}
+.themer [data-t="green"]{background:linear-gradient(135deg,#F5F6F1 50%,#1F7A4D 50%)}
+.themer{gap:8px;padding:8px 12px}.themer button{width:28px;height:28px}

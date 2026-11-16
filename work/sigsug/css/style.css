@@ -638,3 +638,35 @@ html:not(.js) .step__a{grid-template-rows:1fr}html:not(.js) .step li{opacity:1;t
 
 .results .head--stack .head__note{padding-top:12px}
 .vids{padding-bottom:clamp(40px,6vw,90px)}
+
+/* ================= v10: reference-style steps and "what makes us different" ================= */
+/* steps: ombre number, dotted connector, card; on phones each card pins and blurs away */
+.stps{display:grid;gap:0}
+.stp{position:relative;padding-top:58px}
+.stp+.stp{padding-top:104px}
+.stp+.stp::before{content:"";position:absolute;top:8px;left:50%;height:44px;border-inline-start:2px dotted rgba(159,155,190,.55)}
+.stp__n{position:absolute;inset-inline:0;bottom:calc(100% - 66px);text-align:center;font-weight:800;font-size:3.1rem;line-height:1;letter-spacing:-.03em;background:linear-gradient(to bottom,#9F9BBE 0%,#16171C 96%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px #16171C;pointer-events:none}
+.stp+.stp .stp__n{bottom:calc(100% - 112px)}
+.stp__card{position:relative;border-radius:30px;background:#1c1d24;padding:clamp(20px,2.6vw,36px)}
+.stp__card::before{content:"";position:absolute;inset:0;padding:2px;border-radius:inherit;background:var(--gb);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.stp:nth-child(even) .stp__card{--gdir:200deg}
+.stp__top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px}
+.stp__top h3{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.stp__ic{flex:none;width:clamp(46px,5vw,64px);animation:flap 2.4s ease-in-out infinite;transform-origin:center bottom}
+.stp__ic img{width:100%;filter:grayscale(1) sepia(.45) hue-rotate(200deg) saturate(1.5) brightness(1.1)}
+.stp ul{list-style:none;display:grid;gap:9px}
+.stp li{position:relative;padding-inline-start:20px;color:#CBC7BB;font-size:.97rem;line-height:1.62;opacity:1;transform:none}
+.stp li::before{content:"";position:absolute;inset-inline-start:0;top:.74em;width:9px;height:1.5px;background:#9F9BBE}
+.stp li.lead{padding-inline-start:0;font-size:1.08rem;line-height:1.5;color:#fff;font-weight:500}
+.stp li.lead::before{display:none}
+@media (max-width:860px){.how .head{text-align:center;margin-bottom:6px}.stp{position:sticky;top:74px}.how{padding-bottom:60px}}
+/* what makes us different: centred title, cards that turn in */
+.uniq__head2 .h2 em{display:block}
+.ucards{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,1.8vw,24px);perspective:1200px;max-width:1040px;margin-inline:auto}
+.ucard{position:relative;border-radius:30px;background:#1c1d24;padding:clamp(22px,2.8vw,38px);will-change:transform;backface-visibility:visible}
+.ucard::before{content:"";position:absolute;inset:0;padding:2px;border-radius:inherit;background:var(--gb);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.ucard:nth-child(even){--gdir:200deg}
+.ucard__ic{display:block;color:#9F9BBE;margin-bottom:14px;width:44px;margin-inline-start:auto}
+.ucard p{font-size:clamp(1.02rem,1.25vw,1.15rem);line-height:1.7;color:#CBC7BB}
+.ucard .hl{font-size:1.12em;font-weight:700}
+@media (max-width:860px){.ucards{grid-template-columns:1fr}}

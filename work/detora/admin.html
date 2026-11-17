@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>ניהול מוצרים | DE'TORA</title>
+<link rel="icon" href="img/logo.jpg">
+<link rel="stylesheet" href="css/style.css?v=1">
+<style>
+body{background:var(--paper)}
+.a{max-width:760px;margin:0 auto;padding:22px 18px 110px}
+.a-top{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.a-top img{width:56px;height:56px;border-radius:50%}
+.a-top h1{font-family:var(--he);font-weight:500;font-size:32px;line-height:1.1}
+.a-top a{margin-inline-start:auto;font-size:15px;text-underline-offset:4px;white-space:nowrap}
+.a-note{background:var(--butter-l);border-radius:10px;padding:12px 16px;font-size:15px;margin:14px 0 24px}
+.a-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.a-bar h2{font-size:26px}
+.a-list{list-style:none;border-top:1px solid var(--line)}
+.a-list li{display:grid;grid-template-columns:58px 1fr;column-gap:12px;align-items:center;padding:12px 0 6px;border-bottom:1px solid var(--line)}
+.a-list li.off .th,.a-list li.off .meta{opacity:.45}
+.a-list .th{width:58px;height:72px;border-radius:40px 40px 4px 4px;overflow:hidden;background:var(--stripes)}
+.a-list .th img{width:100%;height:100%;object-fit:cover}
+.a-list b{font-family:var(--he);font-weight:500;font-size:18px;line-height:1.25;display:block}
+.a-list small{color:var(--ink-s);font-size:14.5px}
+.acts{grid-column:2;display:flex;gap:6px;margin-inline-start:-10px}
+.acts button{font-size:14.5px;padding:8px 10px;border-radius:8px;text-decoration:underline;text-underline-offset:3px}
+.acts .del.sure{background:#9B3B2E;color:#fff;text-decoration:none}
+.a-form{background:var(--plaster);border-radius:14px;padding:22px 18px;margin-top:26px;scroll-margin-top:16px}
+.a-form h2{font-size:26px;margin-bottom:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pick{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.pick .pv{flex:none;width:92px;height:116px;border-radius:60px 60px 4px 4px;overflow:hidden;background:var(--stripes)}
+.pick .pv img{width:100%;height:100%;object-fit:cover}
+.pick input{position:absolute;opacity:0;width:1px;height:1px}
+.pick label{margin:0}
+.pick .btn{min-height:46px;padding:0 20px;font-size:15.5px}
+.pick input:focus-visible + .btn{outline:2px solid var(--ink);outline-offset:3px}
+.f-btns{display:flex;gap:10px;margin-top:6px}
+.f-btns .btn{flex:1}
+.reset{display:block;margin:30px auto 0;font-size:14.5px;color:var(--ink-s);text-decoration:underline;text-underline-offset:3px;padding:8px}
+</style>
+</head>
+<body>
+<div class="a">
+  <div class="a-top">
+    <img src="img/logo.jpg" alt="">
+    <h1>ניהול מוצרים</h1>
+    <a href="index.html">לצפייה באתר</a>
+  </div>
+  <p class="a-note">מכאן מעלים מוצר, משנים מחיר או מסתירים מהאתר, בלי לגעת בקוד. בדמו השינויים נשמרים במכשיר הזה בלבד. באתר האמיתי הכניסה תהיה בסיסמה והשינויים יופיעו לכל הגולשים.</p>
+
+  <div class="a-bar"><h2>המוצרים שלי</h2><button class="btn btn-ink" id="newBtn" style="min-height:44px;padding:0 20px">מוצר חדש</button></div>
+  <ul class="a-list" id="list"></ul>
+
+  <form class="a-form" id="form" novalidate>
+    <h2 id="fTitle">מוצר חדש</h2>
+    <div class="pick">
+      <span class="pv" id="pv"></span>
+      <label><input type="file" id="file" accept="image/*"><span class="btn btn-line" id="fileBtn">בחירת תמונה</span></label>
+    </div>
+    <label>שם המוצר<input id="fName" required maxlength="60"></label>
+    <div class="two">
+      <label>מחיר בשקלים<input id="fPrice" type="number" inputmode="numeric" min="0" required></label>
+      <label>עולם<select id="fCat"></select></label>
+    </div>
+    <label>תיאור קצר<textarea id="fDesc" rows="3" maxlength="300"></textarea></label>
+    <p class="form-err" id="fErr" hidden></p>
+    <div class="f-btns">
+      <button class="btn btn-ink" type="submit" id="fSave">שמירת המוצר</button>
+      <button class="btn btn-line" type="button" id="fCancel" hidden>ביטול</button>
+    </div>
+  </form>
+
+  <button class="reset" id="reset">איפוס הדמו למוצרים המקוריים</button>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js?v=1"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = DT.esc, list = DT.load(), editId = null, img = '';
+
+  $('fCat').innerHTML = DT.CATS.map(function (c) { return '<option value="' + c.id + '">' + c.he + '</option>'; }).join('');
+
+  function render() {
+    $('list').innerHTML = list.map(function (p) {
+      return '<li class="' + (p.on === false ? 'off' : '') + '">' +
+        '<span class="th">' + (p.img ? '<img src="' + esc(p.img) + '" alt="">' : '') + '</span>' +
+        '<span class="meta"><b>' + esc(p.name) + '</b><small>' + DT.money(p.price) + ' · ' + DT.cat(p.cat).he + (p.on === false ? ' · מוסתר' : '') + '</small></span>' +
+        '<span class="acts"><button data-a="edit" data-id="' + esc(p.id) + '">עריכה</button>' +
+        '<button data-a="tog" data-id="' + esc(p.id) + '">' + (p.on === false ? 'הצגה' : 'הסתרה') + '</button>' +
+        '<button class="del" data-a="del" data-id="' + esc(p.id) + '">מחיקה</button></span></li>';
+    }).join('') || '<li style="display:block;color:var(--ink-s)">עוד אין מוצרים. ממלאים את הטופס למטה והמוצר הראשון עולה לאתר.</li>';
+  }
+  function persist(msg) {
+    if (!DT.save(list)) { toast('אין מקום לשמור במכשיר. כדאי למחוק מוצר עם תמונה ולנסות שוב'); return false; }
+    render(); toast(msg); return true;
+  }
+  function find(id) { return list.filter(function (p) { return p.id === id; })[0]; }
+
+  function setForm(p) {
+    editId = p ? p.id : null; img = p ? (p.img || '') : '';
+    $('fTitle').textContent = p ? 'עריכת מוצר' : 'מוצר חדש';
+    $('fName').value = p ? p.name : ''; $('fPrice').value = p ? p.price : '';
+    $('fCat').value = p ? p.cat : DT.CATS[0].id; $('fDesc').value = p ? (p.desc || '') : '';
+    $('fCancel').hidden = !p; $('fErr').hidden = true; $('file').value = '';
+    pv();
+  }
+  function pv() {
+    $('pv').innerHTML = img ? '<img src="' + esc(img) + '" alt="">' : '';
+    $('fileBtn').textContent = img ? 'החלפת תמונה' : 'בחירת תמונה';
+  }
+
+  $('file').addEventListener('change', function () {
+    var f = this.files[0]; if (!f) return;
+    var url = URL.createObjectURL(f), im = new Image();
+    im.onload = function () {
+      var m = 900, s = Math.min(1, m / Math.max(im.width, im.height));
+      var c = document.createElement('canvas'); c.width = Math.round(im.width * s); c.height = Math.round(im.height * s);
+      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+      img = c.toDataURL('image/jpeg', 0.8); URL.revokeObjectURL(url); pv();
+    };
+    im.onerror = function () { URL.revokeObjectURL(url); err('הקובץ הזה לא נפתח כתמונה. כדאי לנסות JPG או PNG.'); };
+    im.src = url;
+  });
+
+  function err(s) { $('fErr').textContent = s; $('fErr').hidden = false; }
+
+  $('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = $('fName').value.trim(), price = parseFloat($('fPrice').value);
+    if (!name) { err('חסר שם למוצר.'); $('fName').focus(); return; }
+    if (!(price >= 0)) { err('חסר מחיר בשקלים.'); $('fPrice').focus(); return; }
+    var data = { name: name, price: price, cat: $('fCat').value, desc: $('fDesc').value.trim(), img: img };
+    if (editId) { var p = find(editId); for (var k in data) p[k] = data[k]; }
+    else { data.id = 'n' + Date.now(); data.on = true; list.unshift(data); }
+    if (persist('המוצר נשמר')) { setForm(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  });
+  $('fCancel').addEventListener('click', function () { setForm(null); });
+  $('newBtn').addEventListener('click', function () { setForm(null); $('form').scrollIntoView({ behavior: 'smooth' }); $('fName').focus({ preventScroll: true }); });
+
+  $('list').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-a]'); if (!b) return;
+    var p = find(b.dataset.id); if (!p) return;
+    if (b.dataset.a === 'edit') { setForm(p); $('form').scrollIntoView({ behavior: 'smooth' }); }
+    if (b.dataset.a === 'tog') { p.on = p.on === false; persist(p.on ? 'המוצר מוצג באתר' : 'המוצר הוסתר מהאתר'); }
+    if (b.dataset.a === 'del') {
+      if (!b.classList.contains('sure')) { b.classList.add('sure'); b.textContent = 'למחוק?'; setTimeout(function () { b.classList.remove('sure'); b.textContent = 'מחיקה'; }, 3000); return; }
+      list = list.filter(function (x) { return x.id !== p.id; });
+      if (editId === p.id) setForm(null);
+      persist('המוצר נמחק');
+    }
+  });
+
+  var rT;
+  $('reset').addEventListener('click', function () {
+    if (this.dataset.sure) { DT.reset(); list = DT.load(); setForm(null); render(); toast('הדמו אופס'); delete this.dataset.sure; this.textContent = 'איפוס הדמו למוצרים המקוריים'; return; }
+    var me = this; me.dataset.sure = 1; me.textContent = 'לחיצה נוספת תמחק את כל השינויים';
+    clearTimeout(rT); rT = setTimeout(function () { delete me.dataset.sure; me.textContent = 'איפוס הדמו למוצרים המקוריים'; }, 3500);
+  });
+
+  var tT;
+  function toast(s) { var t = $('toast'); t.textContent = s; t.classList.add('on'); clearTimeout(tT); tT = setTimeout(function () { t.classList.remove('on'); }, 2400); }
+
+  setForm(null); render();
+})();
+</script>
+</body>
+</html>

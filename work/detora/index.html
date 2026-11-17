@@ -4,100 +4,126 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#F3E3A0">
+<meta name="theme-color" content="#2F353E">
 <title>DE'TORA | קונספטים יוקרתיים לאירועים, דייטים ומארזים</title>
 <meta name="description" content="דיטורה: דייטים רומנטיים מול הים, מסיבות רווקות, הפרשות חלה ומארזים בעיצוב אישי.">
 <link rel="icon" href="img/logo.jpg">
-<link rel="preload" href="fonts/frank-ruhl-libre-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="preload" href="fonts/bellefair-hebrew-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/bellefair-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/sunset.jpg" as="image">
+<link rel="stylesheet" href="css/style.css?v=2">
 </head>
-<body class="loading">
+<body>
 
-<div class="demo-bar">גרסת דמו. המוצרים והמחירים לדוגמה בלבד <a href="admin.html">כניסה לניהול מוצרים</a></div>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-strips"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loader-in">
+    <img src="img/logo.jpg" alt="" width="96" height="96">
+    <p class="loader-w"><span>De’Tora</span></p>
+    <div class="loader-line"><i id="loaderBar"></i></div>
+  </div>
+</div>
 
 <header class="nav" id="nav">
-  <a class="nav-logo" href="#top" aria-label="DE'TORA, לראש העמוד"><img src="img/logo.jpg" alt="" width="44" height="44"><span>De’Tora</span></a>
+  <a class="nav-logo" href="#top" aria-label="DE'TORA, לראש העמוד"><img src="img/logo.jpg" alt="" width="42" height="42"></a>
   <nav class="nav-links" aria-label="ניווט ראשי">
     <a href="#worlds">העולמות</a>
     <a href="#shop">הבוטיק</a>
     <a href="#how">איך זה עובד</a>
     <a href="#contact">יצירת קשר</a>
   </nav>
-  <button class="bag-btn" id="bagBtn" aria-label="ההזמנה שלי">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-    <span class="bag-n" id="bagN" hidden>0</span>
-  </button>
+  <div class="nav-end">
+    <button class="bag-btn" id="bagBtn" aria-label="ההזמנה שלי">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="bag-n" id="bagN" hidden>0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="תפריט" aria-expanded="false"><i></i><i></i></button>
+  </div>
 </header>
+
+<div class="menu" id="menu" hidden>
+  <nav aria-label="תפריט">
+    <a href="#worlds"><span>העולמות</span></a>
+    <a href="#shop"><span>הבוטיק</span></a>
+    <a href="#how"><span>איך זה עובד</span></a>
+    <a href="#contact"><span>יצירת קשר</span></a>
+  </nav>
+  <p class="menu-s">Where ideas become worlds</p>
+</div>
 
 <main id="top">
 
-<section class="hero">
-  <div class="hero-awning" aria-hidden="true"></div>
-  <div class="hero-in">
-    <p class="hero-script" aria-hidden="true"><span>Where ideas become worlds</span></p>
-    <h1 class="wordmark" aria-label="DE'TORA">
+<section class="hero" id="hero">
+  <div class="hero-wall" id="wall">
+    <p class="hero-script" id="heroScript">Where ideas become worlds</p>
+    <h1 class="wordmark" id="wordmark" aria-label="DE'TORA">
       <span>D</span><span>E</span><span class="apo">’</span><span>T</span><span>O</span><span>R</span><span>A</span>
     </h1>
-    <div class="hero-arch" id="heroArch">
-      <img src="img/sunset.jpg" alt="שולחן לשניים מול שקיעה על מצוק, עם ורדים ונרות" width="876" height="976" fetchpriority="high">
-    </div>
-    <div class="hero-copy">
-      <p class="hero-he">רגע אחד, מעוצב עד הפרט האחרון</p>
-      <p class="hero-sub">דייטים מול הים, מסיבות רווקות, הפרשות חלה ומארזים. כל קונספט נבנה מאפס, סביב האנשים שהוא בשבילם.</p>
-      <div class="hero-cta">
-        <a class="btn btn-ink" href="#shop">לבחירת קונספט</a>
-        <a class="btn btn-line" href="#contact">לתיאום אירוע</a>
-      </div>
+  </div>
+  <div class="door-ring" id="ring" aria-hidden="true"></div>
+  <div class="hero-door" id="door">
+    <img id="doorImg" src="img/sunset.jpg" alt="שולחן לשניים מול שקיעה על מצוק, עם ורדים ונרות" width="876" height="976" fetchpriority="high">
+    <div class="hero-shade" id="shade"></div>
+  </div>
+  <div class="hero-over" id="over">
+    <p class="hero-he" id="heroHe">רגע אחד, מעוצב עד הפרט האחרון</p>
+    <p class="hero-sub">דייטים מול הים, מסיבות רווקות, הפרשות חלה ומארזים. כל קונספט נבנה מאפס.</p>
+    <div class="hero-cta">
+      <a class="btn btn-paper" href="#shop">לבחירת קונספט</a>
+      <a class="btn btn-ghost" href="#contact">לתיאום אירוע</a>
     </div>
   </div>
+  <div class="cue" id="cue" aria-hidden="true"><i></i></div>
+</section>
+
+<section class="mani" id="mani">
+  <p class="mani-t" id="maniT">דיטורה בונה עולמות קטנים. <span class="mi"><img src="img/sea.jpg" alt=""></span> שולחן לשניים מעל הים, <span class="mi"><img src="img/bach.jpg" alt=""></span> קיר קשתות על שם הכלה, <span class="mi"><img src="img/challah.jpg" alt=""></span> ערב שקט של הפרשת חלה. כל פרט נבחר ביד.</p>
 </section>
 
 <section class="worlds" id="worlds">
-  <div class="sec-head rv">
-    <p class="script">The worlds</p>
-    <h2>ארבעה עולמות, יד אחת</h2>
+  <div class="worlds-head">
+    <h2 class="split">העולמות</h2>
+    <div class="worlds-bar" aria-hidden="true"><i id="worldsBar"></i></div>
   </div>
-  <div class="worlds-rail" id="worldsRail">
-    <button class="world rv" data-cat="dates">
-      <span class="world-arch"><img src="img/sea.jpg" alt="שולחן זוגי מעל הים" loading="lazy"></span>
+  <div class="worlds-track" id="worldsTrack">
+    <button class="world" data-cat="dates">
+      <span class="world-arch"><img src="img/sea.jpg" alt="שולחן זוגי מעל הים"></span>
       <span class="world-en">Romantic dates</span>
       <span class="world-he">דייטים רומנטיים</span>
       <span class="world-tx">שולחן לשניים מול המים, בשעה שבוחרים.</span>
     </button>
-    <button class="world rv" data-cat="bach">
-      <span class="world-arch"><img src="img/bach.jpg" alt="קיר קשתות ועמודים למסיבת רווקות" loading="lazy"></span>
+    <button class="world" data-cat="bach">
+      <span class="world-arch"><img src="img/bach.jpg" alt="קיר קשתות ועמודים למסיבת רווקות"></span>
       <span class="world-en">Bachelorette</span>
       <span class="world-he">מסיבות רווקות</span>
-      <span class="world-tx">קונספט ממותג בשם הכלה, מההזמנה ועד השלט.</span>
+      <span class="world-tx">קונספט על שם הכלה, מההזמנה ועד השלט.</span>
     </button>
-    <button class="world rv" data-cat="challah">
-      <span class="world-arch"><img src="img/challah.jpg" alt="עמדת הפרשת חלה לבנה עם פמוטים" loading="lazy"></span>
+    <button class="world" data-cat="challah">
+      <span class="world-arch"><img src="img/challah.jpg" alt="עמדת הפרשת חלה לבנה עם פמוטים"></span>
       <span class="world-en">Hafrashat challah</span>
       <span class="world-he">הפרשות חלה</span>
       <span class="world-tx">עמדה לבנה ושקטה לערב שכולו כוונה.</span>
     </button>
-    <button class="world rv" data-cat="boxes">
-      <span class="world-arch world-arch--ph"><i>De’Tora</i></span>
-      <span class="world-en">Gift boxes</span>
-      <span class="world-he">מארזי דיטורה</span>
-      <span class="world-tx">מארזים מעוצבים ליום האהבה ולכל סיבה אחרת.</span>
+    <button class="world" data-cat="boxes">
+      <span class="world-arch"><img src="img/invite.jpg" alt="הזמנה במעטפת תחרה"></span>
+      <span class="world-en">Paper &amp; boxes</span>
+      <span class="world-he">הזמנות ומארזים</span>
+      <span class="world-tx">הזמנות מעוצבות ומארזים ליום האהבה ולכל סיבה אחרת.</span>
     </button>
   </div>
 </section>
 
 <div class="ribbon" aria-hidden="true">
-  <div class="ribbon-track">
+  <div class="ribbon-track" id="ribbon">
     <span>Sip, smile &amp; celebrate</span><b></b><span>Sip, smile &amp; celebrate</span><b></b><span>Sip, smile &amp; celebrate</span><b></b><span>Sip, smile &amp; celebrate</span><b></b>
     <span>Sip, smile &amp; celebrate</span><b></b><span>Sip, smile &amp; celebrate</span><b></b><span>Sip, smile &amp; celebrate</span><b></b><span>Sip, smile &amp; celebrate</span><b></b>
   </div>
 </div>
 
 <section class="shop" id="shop">
-  <div class="sec-head rv">
-    <p class="script">The boutique</p>
-    <h2>הבוטיק</h2>
-    <p class="sec-sub">בוחרים קונספט או מארז, מוסיפים להזמנה ושולחים. אני חוזרת עם תאריך ופרטים.</p>
+  <div class="shop-head">
+    <h2 class="split">הבוטיק</h2>
+    <p class="sec-sub fade">בוחרים קונספט או מארז, מוסיפים להזמנה ושולחים. אני חוזרת עם תאריך ופרטים.</p>
   </div>
   <div class="chips" id="chips" role="tablist" aria-label="סינון לפי עולם"></div>
   <div class="grid" id="grid"></div>
@@ -106,36 +132,38 @@
 
 <section class="how" id="how">
   <div class="how-in">
-    <div class="sec-head rv">
-      <p class="script">How it works</p>
-      <h2>מהרעיון ועד שמתיישבים</h2>
-    </div>
-    <ol class="steps">
-      <li class="rv"><span class="step-n">1</span><h3>מספרים לי על הרגע</h3><p>למי זה, מתי, ומה חשוב שיהיה שם. הודעה קצרה בוואטסאפ מספיקה.</p></li>
-      <li class="rv"><span class="step-n">2</span><h3>אני בונה את הקונספט</h3><p>צבעים, שלטים, פרחים ופרטים קטנים. מקבלים הדמיה לאישור לפני שמתחילים.</p></li>
-      <li class="rv"><span class="step-n">3</span><h3>מגיעים לעולם מוכן</h3><p>ההקמה והפירוק עליי. לכם נשאר להגיע בזמן.</p></li>
+    <svg class="bow" id="bow" viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true">
+      <path d="M60 34c-10-16-34-24-40-12-5 11 14 20 40 12z"/>
+      <path d="M60 34c10-16 34-24 40-12 5 11-14 20-40 12z"/>
+      <path d="M57 31c2-3 4-3 6 0 2 3 1 6-3 6s-5-3-3-6z"/>
+      <path d="M58 37c-4 14-12 28-24 44"/>
+      <path d="M62 37c4 14 11 27 22 42"/>
+    </svg>
+    <h2 class="split">מהרעיון ועד שמתיישבים</h2>
+    <ol class="steps" id="steps">
+      <li><span class="step-n">1</span><div><h3>מספרים לי על הרגע</h3><p>למי זה, מתי, ומה חשוב שיהיה שם. הודעה קצרה בוואטסאפ מספיקה.</p></div></li>
+      <li><span class="step-n">2</span><div><h3>אני בונה את הקונספט</h3><p>צבעים, שלטים, פרחים ופרטים קטנים. מקבלים הדמיה לאישור לפני שמתחילים.</p></div></li>
+      <li><span class="step-n">3</span><div><h3>מגיעים לעולם מוכן</h3><p>ההקמה והפירוק עליי. לכם נשאר להגיע בזמן.</p></div></li>
     </ol>
   </div>
 </section>
 
 <section class="contact" id="contact">
-  <div class="contact-card rv">
+  <div class="contact-bg" id="contactBg" aria-hidden="true"></div>
+  <div class="contact-card" id="contactCard">
     <div class="contact-side">
-      <p class="script">Let’s talk</p>
-      <h2>מתאמים אירוע</h2>
+      <h2 class="split">מתאמים אירוע</h2>
       <p>ממלאים כמה פרטים וההודעה נפתחת מוכנה בוואטסאפ.</p>
       <a class="ig" href="https://www.instagram.com/detoraevents1/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>
         <bdi dir="ltr">@detoraevents1</bdi>
       </a>
     </div>
     <form id="cform" novalidate>
       <label>שם מלא<input name="name" autocomplete="name" required></label>
-      <label>סוג האירוע
-        <select name="type" id="ctype"></select>
-      </label>
+      <label>סוג האירוע<select name="type" id="ctype"></select></label>
       <label>תאריך משוער<input name="date" type="date"></label>
-      <label>כמה מילים על הרגע<textarea name="msg" rows="3"></textarea></label>
+      <label>כמה מילים על הרגע<textarea name="msg" rows="2"></textarea></label>
       <p class="form-err" id="cerr" hidden>חסר שם מלא, כדי שאדע למי לחזור.</p>
       <button class="btn btn-ink" type="submit">שליחה בוואטסאפ</button>
     </form>
@@ -144,16 +172,18 @@
 
 </main>
 
-<footer class="foot">
-  <img src="img/logo.jpg" alt="DE'TORA Designs" width="84" height="84" loading="lazy">
-  <p class="script">Where ideas become worlds</p>
-  <p class="foot-s"><bdi dir="ltr">DE’TORA | Luxury Concepts</bdi></p>
-  <p class="foot-s">אתר דמו שנבנה על ידי <a href="https://siteo.co.il" target="_blank" rel="noopener">Siteo</a></p>
+<footer class="foot" id="foot">
+  <p class="foot-script">Where ideas become worlds</p>
+  <p class="foot-word" id="footWord" aria-hidden="true"><span>D</span><span>E</span><span class="apo">’</span><span>T</span><span>O</span><span>R</span><span>A</span></p>
+  <div class="foot-row">
+    <span><bdi dir="ltr">DE’TORA | Luxury Concepts</bdi></span>
+    <span>גרסת דמו, המוצרים והמחירים לדוגמה. <a href="admin.html">כניסה לניהול מוצרים</a></span>
+    <span>נבנה על ידי <a href="https://siteo.co.il" target="_blank" rel="noopener">Siteo</a></span>
+  </div>
 </footer>
 
-<!-- product sheet -->
 <div class="veil" id="veil" hidden></div>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shName" hidden>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shName" data-lenis-prevent hidden>
   <button class="x" id="shX" aria-label="סגירה">×</button>
   <div class="sheet-img" id="shImg"></div>
   <div class="sheet-body">
@@ -168,8 +198,7 @@
   </div>
 </div>
 
-<!-- order drawer -->
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drT" hidden>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drT" data-lenis-prevent hidden>
   <div class="drawer-top"><h3 id="drT">ההזמנה שלי</h3><button class="x" id="drX" aria-label="סגירה">×</button></div>
   <ul class="drawer-list" id="drList"></ul>
   <p class="drawer-empty" id="drEmpty">ההזמנה ריקה. בוחרים קונספט בבוטיק והוא יופיע כאן.</p>
@@ -182,7 +211,12 @@
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<script src="js/data.js?v=1"></script>
-<script src="js/app.js?v=1"></script>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/SplitText.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="js/data.js?v=2"></script>
+<script src="js/app.js?v=2"></script>
+<script src="js/motion.js?v=2"></script>
 </body>
 </html>

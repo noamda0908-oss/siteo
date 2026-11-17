@@ -852,3 +852,8 @@ body{transition:background-color .5s}
 .vids__head .eyebrow--big{justify-content:center}
 .vids__head .eyebrow--big i{display:none}
 .vids__head .vids__nav{justify-content:center;padding:18px 0 0}
+
+/* v28: two slimmer hero results rows */
+.hero__rows--two{gap:10px}
+.hero__rows--two .hrow .mq__track{gap:10px;padding-inline-end:10px}
+.hero__rows--two .hrow img{width:clamp(118px,31vw,190px);height:auto;aspect-ratio:1/1.1;border-radius:14px;opacity:1}

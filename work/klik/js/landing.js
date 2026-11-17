@@ -1,7 +1,7 @@
 /* קליק: דף הנחיתה והאנימציות המשותפות */
 (function () {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const COLORS = ['#ffd43a', '#ff4f8b', '#27e0a3', '#ffffff', '#b9a5ff'];
+  const COLORS = ['#ff5648', '#161616', '#ff9d94', '#ffc9c3', '#ff5648'];
 
   // פיצוץ ה"קליק": ניצוצות עגולים שעפים מהמרכז
   function burst(host, n = 22) {
@@ -45,11 +45,11 @@
   const HAIR_SHORT = 'M84 160c-6-52 24-82 66-82s72 30 66 82c-10-24-28-40-66-40s-56 16-66 40z';
   const HAIR_CURLY = 'M80 168c-22-30-4-74 26-78 10-22 78-22 88 0 30 4 48 48 26 78-6-30-30-48-70-48s-64 18-70 48z';
   const PEOPLE = [
-    { name: 'נועה', age: 24, city: 'תל אביב', pct: 92, bg: '#ffb8d2', blob: '#ff4f8b', shirt: '#4b1fd6', skin: '#f3c6a5', hair: HAIR_LONG, hairc: '#3a2417', cx: 60 },
-    { name: 'עומר', age: 27, city: 'חיפה', pct: 88, bg: '#9be8cf', blob: '#27e0a3', shirt: '#1b0f3b', skin: '#d9a47c', hair: HAIR_SHORT, hairc: '#1c1410', cx: 240 },
-    { name: 'מאיה', age: 23, city: 'באר שבע', pct: 95, bg: '#ffe680', blob: '#ffd43a', shirt: '#ff4f8b', skin: '#e9b58f', hair: HAIR_CURLY, hairc: '#5a2e12', cx: 70 },
-    { name: 'איתי', age: 26, city: 'ירושלים', pct: 81, bg: '#c7b8ff', blob: '#4b1fd6', shirt: '#ffd43a', skin: '#f0c9a8', hair: HAIR_CURLY, hairc: '#2b1b12', cx: 230 },
-    { name: 'שירה', age: 25, city: 'אשקלון', pct: 90, bg: '#ffc9a8', blob: '#ff8a4f', shirt: '#27e0a3', skin: '#c98f66', hair: HAIR_LONG, hairc: '#120c0a', cx: 50 }
+    { name: 'נועה', age: 24, city: 'תל אביב', pct: 92, bg: '#ffd5ce', blob: '#ff5648', shirt: '#161616', skin: '#f3c6a5', hair: HAIR_LONG, hairc: '#3a2417', cx: 60 },
+    { name: 'עומר', age: 27, city: 'חיפה', pct: 88, bg: '#e8e4de', blob: '#cfc8bd', shirt: '#ff5648', skin: '#d9a47c', hair: HAIR_SHORT, hairc: '#1c1410', cx: 240 },
+    { name: 'מאיה', age: 23, city: 'באר שבע', pct: 95, bg: '#ffc4ba', blob: '#ff8a7f', shirt: '#ffffff', skin: '#e9b58f', hair: HAIR_CURLY, hairc: '#5a2e12', cx: 70 },
+    { name: 'איתי', age: 26, city: 'ירושלים', pct: 81, bg: '#f3ded0', blob: '#e6c3ab', shirt: '#161616', skin: '#f0c9a8', hair: HAIR_CURLY, hairc: '#2b1b12', cx: 230 },
+    { name: 'שירה', age: 25, city: 'אשקלון', pct: 90, bg: '#dedede', blob: '#c4c4c4', shirt: '#ff5648', skin: '#c98f66', hair: HAIR_LONG, hairc: '#120c0a', cx: 50 }
   ];
 
   // גרירת קלף: משותף לדמו ולאפליקציה
@@ -148,19 +148,33 @@
     gsap.fromTo(ring, { scale: 0.9 }, { scale: 1, duration: 0.6, ease: 'elastic.out(1,0.45)' });
   });
 
-  // ---------- גלילה: שני קלפים נפגשים ----------
+  // ---------- סיפור ההתאמה ההדדית: שני טלפונים ----------
   function initScroll() {
-    if (reduce || !window.ScrollTrigger || !document.querySelector('.mutual')) return;
+    const scene = document.querySelector('.mutual__scene'); if (!scene) return;
+    const cap = document.getElementById('mutCap');
+    const hA = '.phone--a .phone__heart', hB = '.phone--b .phone__heart';
+    const say = t => () => { cap.textContent = t; if (!reduce) gsap.fromTo(cap, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3 }); };
+    if (reduce || !window.ScrollTrigger) {
+      gsap.set('.phone__match, .phone__msg', { opacity: 1 }); cap.textContent = 'יש קליק. רק עכשיו נפתח הצ\'אט'; return;
+    }
     gsap.registerPlugin(ScrollTrigger);
-    const scene = document.querySelector('.mutual__scene');
-    const dist = () => scene.offsetWidth / 2 - document.querySelector('.mutual__card').offsetWidth / 2;
-    const rtl = 1; // card--a בצד ימין ב-RTL
-    const tl = gsap.timeline({ scrollTrigger: { trigger: '.mutual', start: 'top top', end: '+=120%', pin: '.mutual__pin', scrub: 0.6, invalidateOnRefresh: true } });
-    tl.fromTo('.mutual__card--a', { x: 0, rotation: 8 }, { x: () => -dist() * rtl, rotation: 0, ease: 'power2.in' }, 0)
-      .fromTo('.mutual__card--b', { x: 0, rotation: -8 }, { x: () => dist() * rtl, rotation: 0, ease: 'power2.in' }, 0)
-      .to('.mutual__card', { scale: 0.2, opacity: 0, duration: 0.15 })
-      .fromTo('.mutual__snap', { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1.4, duration: 0.25, ease: 'back.out(3)' }, '<')
-      .fromTo('.mutual__text', { opacity: 0.25 }, { opacity: 1, duration: 0.2 }, '<');
+    const press = h => gsap.timeline()
+      .to(h, { scale: 0.8, duration: 0.12 })
+      .to(h + ' svg', { fill: '#ff5648', duration: 0.1 }, '<')
+      .to(h, { scale: 1.35, duration: 0.25, ease: 'back.out(3)' })
+      .to(h, { scale: 1, duration: 0.3 });
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2, scrollTrigger: { trigger: scene, start: 'top 75%', end: 'bottom 10%', toggleActions: 'play pause resume pause' } });
+    tl.set('.phone__match, .phone__msg', { opacity: 0 }).set('.phone__heart svg', { fill: '#cfcfcf' })
+      .add(say('סימנתם את מאיה. היא עוד לא יודעת'))
+      .add(press(hA), 0.5)
+      .add(say('גם מאיה סימנה אתכם'), 2.3)
+      .add(press(hB), 2.6)
+      .add(say('יש קליק. רק עכשיו נפתח הצ\'אט'), 3.9)
+      .fromTo('.phone__match', { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(2)' }, 3.9)
+      .add(() => burst(document.getElementById('mutBurst'), 20), 3.95)
+      .fromTo('.phone--a .phone__msg', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: 'back.out(2)' }, 5)
+      .fromTo('.phone--b .phone__msg', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: 'back.out(2)' }, 5.9)
+      .to({}, { duration: 1.5 });
     gsap.from('.plan', { scrollTrigger: { trigger: '.plus__grid', start: 'top 80%' }, y: 60, rotation: i => (i ? 4 : -4), opacity: 0, duration: 0.8, ease: 'back.out(1.5)', stagger: 0.12 });
   }
 

@@ -842,3 +842,13 @@ body{transition:background-color .5s}
 .quote__ph{position:relative;width:clamp(84px,9vw,112px);aspect-ratio:1;margin:0 auto 16px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--pn);box-shadow:0 0 0 2px var(--ac),0 0 0 7px rgb(var(--ac-rgb) / .18)}
 .quote__ph span{font-family:"Quote",serif;font-weight:700;font-size:clamp(1.5rem,2.6vw,2rem);color:var(--ac);letter-spacing:.02em}
 .quote__ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+
+/* v27: single hero results row, single word band, centred testimonials heading */
+.hero__rows--one .hrow .mq__track{gap:12px;padding-inline-end:12px}
+.hero__rows--one .hrow img{width:clamp(170px,46vw,250px);height:auto;aspect-ratio:4/5;border-radius:16px;opacity:1}
+.slide__row span:nth-child(3n){color:transparent;-webkit-text-stroke:.5px var(--tx)}
+.slide__row span.on{color:var(--ac);-webkit-text-stroke:0}
+.slide{padding-block:14px}
+.vids__head .eyebrow--big{justify-content:center}
+.vids__head .eyebrow--big i{display:none}
+.vids__head .vids__nav{justify-content:center;padding:18px 0 0}

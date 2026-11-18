@@ -860,3 +860,7 @@ body{transition:background-color .5s}
 
 /* v29: two word rows again, with space above them */
 .slide{margin-top:clamp(60px,8vw,84px);padding-block:16px}
+
+/* v30: hero without buttons */
+.hero__stats{margin-top:clamp(22px,3vw,34px)}
+.partners .mq__track--slow .pchip img{max-width:clamp(150px,40vw,230px);object-fit:contain}

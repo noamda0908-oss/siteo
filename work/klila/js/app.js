@@ -61,7 +61,7 @@
     }
     box.innerHTML = c.map(function (l, i) {
       var p = KL.byId(l.id), col = KL.colors[l.color];
-      return '<div class="kl-line"><a class="kl-line__img" href="product.html?id=' + p.id + '">' + KL.art({ style: p.style, color: col.hex, pattern: p.pattern, skin: p.skin }) + '</a>' +
+      return '<div class="kl-line"><a class="kl-line__img" href="product.html?id=' + p.id + '">' + '<img src="' + KL.img(p) + '" alt="" loading="lazy"></a>' +
         '<div><div class="kl-line__name">' + p.name + '</div><div class="kl-line__opt">' + col.name + '</div>' +
         '<div class="kl-qty"><button data-q="-1" data-i="' + i + '" aria-label="פחות">−</button><span>' + l.qty + '</span><button data-q="1" data-i="' + i + '" aria-label="עוד">+</button></div></div>' +
         '<div><div class="kl-line__price">' + KL.money(p.price * l.qty) + '</div><button class="kl-line__rm" data-rm="' + i + '">הסרה</button></div></div>';
@@ -74,8 +74,8 @@
   KL.card = function (p, i) {
     var c0 = KL.colors[p.colors[0]];
     return '<article class="kl-card kl-reveal" style="--d:' + ((i % 4) * 0.07) + 's" data-id="' + p.id + '" data-color="' + p.colors[0] + '">' +
-      '<div class="kl-card__top"><a class="kl-card__media" href="product.html?id=' + p.id + '" aria-label="' + p.name + '">' +
-      KL.art({ style: p.style, color: c0.hex, pattern: p.pattern, skin: p.skin }) +
+      '<div class="kl-card__top"><a class="kl-card__media" style="--pbg:' + p.bg + '" href="product.html?id=' + p.id + '" aria-label="' + p.name + '">' +
+      '<img src="' + KL.img(p) + '" alt="' + p.name + '" loading="lazy" width="560" height="700">' +
       (p.tag ? '<span class="kl-card__tag">' + p.tag + '</span>' : '') + '</a>' +
       '<button class="kl-card__quick" aria-label="הוספה לעגלה: ' + p.name + '">' + I.plus + '</button></div>' +
       '<div><div class="kl-card__row"><a class="kl-card__name" href="product.html?id=' + p.id + '">' + p.name + '</a><span class="kl-card__price">' + KL.money(p.price) + '</span></div>' +
@@ -89,7 +89,6 @@
       var card = t.closest('.kl-card');
       $$('.kl-dot', card).forEach(function (d) { d.classList.toggle('is-on', d === t); });
       card.dataset.color = t.dataset.c;
-      $('.kl-art', card).style.setProperty('--w', KL.colors[t.dataset.c].hex);
       return;
     }
     t = e.target.closest('.kl-card__quick');

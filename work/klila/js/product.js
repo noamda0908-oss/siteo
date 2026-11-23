@@ -8,27 +8,26 @@
     chiffon: 'כביסה ביד או בשקית כביסה, ייבוש בתלייה.', velvet: 'כביסה ביד במים קרים. לא לגהץ, לנער ולתלות.',
     satin: 'כביסה ביד במים קרים, ייבוש בצל. גיהוץ מהצד ההפוך.', jersey: 'כביסה ב-30°, אפשר במייבש בחום נמוך.'
   };
-  var tint = function (k) { return 'color-mix(in srgb,' + KL.colors[k].hex + ' 22%,#FFFAF7)'; };
-  var art = function () { return KL.art({ style: p.style, color: KL.colors[color].hex, pattern: p.pattern, skin: p.skin }); };
+  var pic = function (big) { return '<img src="' + KL.img(p, big) + '" alt="' + p.name + '">'; };
 
   document.title = p.name + ' | כלילה';
   $('#crumbs').innerHTML = '<a href="index.html">בית</a><span aria-hidden="true">/</span><a href="collection.html?cat=' + p.cat + '">' + KL.catName(p.cat) + '</a><span aria-hidden="true">/</span><span>' + p.name + '</span>';
 
   $('#pdp').innerHTML =
-    '<div class="kl-gallery">' +
-      '<div class="kl-gallery__main kl-arch-in" id="gMain">' + art() + '</div>' +
+    '<div class="kl-gallery" style="--pbg:' + p.bg + '">' +
+      '<div class="kl-gallery__main kl-arch-in" id="gMain">' + pic(true) + '</div>' +
       '<div class="kl-gallery__thumbs">' +
-        '<button class="kl-thumb is-on" data-v="full" aria-label="מבט מלא">' + art() + '</button>' +
-        '<button class="kl-thumb kl-thumb--zoom" data-v="zoom" aria-label="תקריב">' + art() + '</button>' +
-        '<button class="kl-thumb kl-thumb--side" data-v="side" aria-label="מהצד">' + art() + '</button>' +
-        '<button class="kl-thumb" data-v="fabric" aria-label="הבד מקרוב">' + KL.swatch(KL.colors[color].hex) + '</button>' +
+        '<button class="kl-thumb is-on" data-v="full" aria-label="מבט מלא">' + pic() + '</button>' +
+        '<button class="kl-thumb kl-thumb--zoom" data-v="zoom" aria-label="תקריב">' + pic() + '</button>' +
+        '<button class="kl-thumb kl-thumb--side" data-v="side" aria-label="הבד מקרוב">' + pic() + '</button>' +
+        '<button class="kl-thumb kl-thumb--low" data-v="low" aria-label="הלוק המלא">' + pic() + '</button>' +
       '</div></div>' +
     '<div class="kl-pdp__info">' +
       (p.tag ? '<span class="kl-pdp__tag kl-reveal">' + p.tag + '</span>' : '') +
       '<h1 class="kl-lines">' + p.name + '</h1>' +
       '<div class="kl-pdp__price kl-reveal" style="--d:.15s">' + KL.money(p.price) + '</div>' +
       '<p class="kl-pdp__short kl-reveal" style="--d:.2s">' + p.short + '</p>' +
-      '<div class="kl-opt kl-reveal" style="--d:.25s"><div class="kl-opt__label">גוון: <b id="colorName"></b></div><div class="kl-dots" id="pColors">' +
+      '<div class="kl-opt kl-reveal" style="--d:.25s"><div class="kl-opt__label">גוון: <b id="colorName"></b> <b id="colorHint"></b></div><div class="kl-dots" id="pColors">' +
         p.colors.map(function (k) { return '<button class="kl-dot" style="--c:' + KL.colors[k].hex + '" data-k="' + k + '" aria-label="' + KL.colors[k].name + '"></button>'; }).join('') + '</div></div>' +
       '<div class="kl-buy kl-reveal" style="--d:.3s"><div class="kl-qty"><button id="qMinus" aria-label="פחות">−</button><span id="qVal">1</span><button id="qPlus" aria-label="עוד">+</button></div>' +
         '<button class="kl-btn" id="addBtn">הוספה לעגלה</button></div>' +
@@ -48,25 +47,30 @@
   $('#sticky').innerHTML = '<div><b>' + p.name + '</b><span>' + KL.money(p.price) + '</span></div><button class="kl-btn" id="addBtn2">הוספה לעגלה</button>';
 
   function setColor(k) {
-    color = k; var hex = KL.colors[k].hex;
+    color = k;
     $('#colorName').textContent = KL.colors[k].name;
+    $('#colorHint').textContent = k === p.colors[0] ? '' : '(בתמונה: ' + KL.colors[p.colors[0]].name + ')';
     $$('#pColors .kl-dot').forEach(function (d) { d.classList.toggle('is-on', d.dataset.k === k); });
-    $$('.kl-gallery .kl-art,.kl-gallery .kl-swatch').forEach(function (s) { s.style.setProperty('--w', hex); });
-    $('.kl-gallery').style.setProperty('--pbg', tint(k));
   }
+  var V = { full: [1, '50%', '30%'], zoom: [1.9, '50%', '22%'], side: [2.6, '38%', '14%'], low: [1.7, '50%', '92%'] };
   function view(v) {
     var m = $('#gMain');
     $$('.kl-thumb').forEach(function (t) { t.classList.toggle('is-on', t.dataset.v === v); });
-    if (v === 'fabric') { m.innerHTML = KL.swatch(KL.colors[color].hex); m.firstChild.style.cssText += ';width:100%;height:100%'; return; }
-    if (!$('.kl-art', m)) m.innerHTML = art();
-    m.style.setProperty('--zoom', v === 'zoom' ? 2 : v === 'side' ? 1.5 : 1.06);
-    m.style.setProperty('--ox', v === 'side' ? '72%' : '50%');
-    m.style.setProperty('--oy', v === 'zoom' ? '24%' : v === 'side' ? '30%' : '40%');
+    m.style.setProperty('--zoom', V[v][0]); m.style.setProperty('--ox', V[v][1]); m.style.setProperty('--oy', V[v][2]);
+    m.dataset.v = v;
   }
   function add() { KL.cart.add(p.id, color, qty); }
 
   $('#pColors').onclick = function (e) { var b = e.target.closest('.kl-dot'); if (b) setColor(b.dataset.k); };
   $('.kl-gallery__thumbs').onclick = function (e) { var b = e.target.closest('.kl-thumb'); if (b) view(b.dataset.v); };
+  /* זום שעוקב אחרי העכבר על התמונה הראשית */
+  var gm = $('#gMain');
+  gm.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var r = gm.getBoundingClientRect();
+    gm.style.setProperty('--zoom', 1.8); gm.style.setProperty('--ox', ((e.clientX - r.left) / r.width * 100) + '%'); gm.style.setProperty('--oy', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+  gm.addEventListener('pointerleave', function () { view(gm.dataset.v || 'full'); });
   $('#qPlus').onclick = function () { qty = Math.min(9, qty + 1); $('#qVal').textContent = qty; };
   $('#qMinus').onclick = function () { qty = Math.max(1, qty - 1); $('#qVal').textContent = qty; };
   $('#addBtn').onclick = add; $('#addBtn2').onclick = add;

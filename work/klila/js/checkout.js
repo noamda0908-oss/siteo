@@ -11,7 +11,7 @@
     }
     $('#sumItems').innerHTML = c.map(function (l) {
       var p = KL.byId(l.id), col = KL.colors[l.color];
-      return '<div class="kl-line"><div class="kl-line__img">' + KL.art({ style: p.style, color: col.hex, pattern: p.pattern, skin: p.skin }) + '</div><div><div class="kl-line__name">' + p.name + '</div><div class="kl-line__opt">' + col.name + ' × ' + l.qty + '</div></div><div class="kl-line__price">' + KL.money(p.price * l.qty) + '</div></div>';
+      return '<div class="kl-line"><div class="kl-line__img">' + '<img src="' + KL.img(p) + '" alt=""></div><div><div class="kl-line__name">' + p.name + '</div><div class="kl-line__opt">' + col.name + ' × ' + l.qty + '</div></div><div class="kl-line__price">' + KL.money(p.price * l.qty) + '</div></div>';
     }).join('');
     var free = sub >= KL.FREE_SHIPPING, m = ($('input[name=ship]:checked') || {}).value || 'home';
     var ship = m === 'home' && free ? 0 : SHIP[m], d = Math.round(sub * disc);

@@ -6,11 +6,11 @@
 <title>כלילה | כיסויי ראש, מטפחות וטורבנים</title>
 <meta name="description" content="כלילה — מטפחות, טורבנים קשורים מראש, סרטים ואביזרים לכיסוי ראש. בדים רכים שלא מחליקים, משלוח עד הבית.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#F7EEEA">
+<meta name="theme-color" content="#FAF6F1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233A1D2B'/%3E%3Cpath d='M7 23C7 13 11 7 16 7s9 6 9 16M5 26h22' fill='none' stroke='%23E7B9C0' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="preload" href="fonts/frank-ruhl-libre-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/assistant-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/heebo-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/base.css">
+<link rel="preload" as="image" href="img/hero.webp">
 <link rel="stylesheet" href="css/home.css">
 </head>
 <body class="kl-home">
@@ -19,59 +19,50 @@
 
 <!-- ===== סקשן: klila-hero ===== -->
 <section class="kl-hero" data-section="klila-hero">
-  <canvas class="kl-hero__silk" aria-hidden="true"></canvas>
+  <div class="kl-hero__media"><img src="img/hero.webp" alt="אישה חובשת טורבן בצבע יין, בד משי ורוד מתעופף מאחוריה" fetchpriority="high" width="1536" height="864"></div>
   <div class="kl-wrap kl-hero__in">
     <div class="kl-hero__copy">
       <p class="kl-hero__season">קולקציית חורף 2026</p>
       <h1 class="kl-hero__title kl-lines">כיסוי ראש|שבא לך|לחבוש</h1>
-      <p class="kl-hero__lead kl-reveal" style="--d:.5s">מטפחות, טורבנים וסרטים מבדים רכים שנשארים במקום. קשירה של דקה בבוקר, ונוח עד הערב.</p>
-      <div class="kl-hero__cta kl-reveal" style="--d:.65s">
+      <p class="kl-hero__lead kl-reveal" style="--d:.7s">מטפחות, טורבנים וסרטים מבדים רכים שנשארים במקום. קשירה של דקה בבוקר, ונוח עד הערב.</p>
+      <div class="kl-hero__cta kl-reveal" style="--d:.85s">
         <a class="kl-btn" href="collection.html">לקולקציה</a>
         <a class="kl-link" href="#guide">איך קושרים?</a>
       </div>
     </div>
-    <div class="kl-hero__figure">
-      <div class="kl-hero__arch" id="heroArt"></div>
-      <a class="kl-hero__chip kl-hero__chip--a" href="product.html?id=ruth"><i style="--c:#6E2A3F"></i><span><b>טורבן רות</b>קשור מראש, ₪149</span></a>
-      <div class="kl-hero__chip kl-hero__chip--b"><span><b>12 גוונים</b>בקולקציה</span></div>
-    </div>
   </div>
+  <a class="kl-hero__tag" href="product.html?id=ruth"><span></span><b>טורבן רות</b><i>₪149</i></a>
 </section>
 
-<!-- ===== סקשן: klila-benefits ===== -->
-<section class="kl-benefits" data-section="klila-benefits">
-  <div class="kl-wrap kl-benefits__in">
-    <div class="kl-reveal"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17.500" cy="18" r="1.8"/></svg><b>משלוח חינם מעל ₪299</b><span>עד הבית, 2–4 ימי עסקים</span></div>
-    <div class="kl-reveal" style="--d:.08s"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 1 2.6 5.900"/><path d="M4 18v-5h5"/></svg><b>החלפה תוך 14 יום</b><span>לא התאים? מחליפות בלי שאלות</span></div>
-    <div class="kl-reveal" style="--d:.16s"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><b>תשלום מאובטח</b><span>אשראי, ביט ו-Apple Pay</span></div>
-    <div class="kl-reveal" style="--d:.24s"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 0-6.900 12L4 20l4.100-1A8 8 0 1 0 12 4z"/></svg><b>עזרה בבחירה</b><span>שולחות תמונה בוואטסאפ ונעזור</span></div>
-  </div>
+<!-- ===== סקשן: klila-marquee ===== -->
+<section class="kl-band" data-section="klila-marquee" aria-hidden="true">
+  <div class="kl-band__row" data-speed="-1"></div>
+  <div class="kl-band__row kl-band__row--alt" data-speed="1"></div>
 </section>
 
 <!-- ===== סקשן: klila-categories ===== -->
 <section class="kl-cats" data-section="klila-categories">
   <div class="kl-wrap">
     <header class="kl-sechead">
-      <h2 class="kl-lines">מה חובשים היום?</h2>
+      <h2 class="kl-lines">מה חובשים|היום?</h2>
       <p class="kl-reveal">שש דרכים לכסות את הראש. בוחרים לפי מצב רוח, לפי בגד, או לפי כמה זמן יש בבוקר.</p>
     </header>
-    <div class="kl-cats__grid" id="cats"></div>
   </div>
+  <div class="kl-cats__strip" id="cats"></div>
 </section>
 
 <!-- ===== סקשן: klila-color-story (הרגע החתימה של האתר) ===== -->
 <section class="kl-color" data-section="klila-color-story">
   <div class="kl-color__sticky">
-    <div class="kl-wrap kl-color__in">
-      <div class="kl-color__stage"><div class="kl-color__arch" id="colorArt"></div></div>
-      <div class="kl-color__copy">
-        <p class="kl-color__label">הגוון שלך</p>
-        <div class="kl-color__names" id="colorNames" aria-live="polite"></div>
-        <p class="kl-color__note" id="colorNote"></p>
-        <div class="kl-color__dots" id="colorDots"></div>
-        <a class="kl-btn kl-btn--ghost" id="colorLink" href="collection.html">למוצרים בגוון הזה</a>
-      </div>
+    <div class="kl-color__stage" id="colorStage"></div>
+    <div class="kl-color__copy">
+      <p class="kl-color__label">הגוון שלך</p>
+      <div class="kl-color__names" id="colorNames" aria-live="polite"></div>
+      <p class="kl-color__note" id="colorNote"></p>
+      <div class="kl-color__dots" id="colorDots"></div>
+      <a class="kl-btn" id="colorLink" href="collection.html">לדגם הזה</a>
     </div>
+    <div class="kl-color__count"><b id="colorNum">01</b><span id="colorTot"></span></div>
   </div>
 </section>
 
@@ -90,6 +81,21 @@
   <div class="kl-wrap kl-feat__more"><a class="kl-link" href="collection.html">לכל הקולקציה</a></div>
 </section>
 
+<!-- ===== סקשן: klila-story ===== -->
+<section class="kl-story" data-section="klila-story">
+  <div class="kl-wrap kl-story__in">
+    <div class="kl-story__pics">
+      <div class="kl-story__pic kl-story__pic--a"><img src="img/stack.webp" alt="ערימת מטפחות מקופלות בבדים שונים" loading="lazy" width="1024" height="1280"></div>
+      <div class="kl-story__pic kl-story__pic--b"><img src="img/tying-s.webp" alt="קשירת מטפחת מאחור" loading="lazy" width="560" height="700"></div>
+    </div>
+    <div class="kl-story__copy">
+      <h2 class="kl-lines">כל בד|עובר קודם|דרכנו</h2>
+      <p class="kl-reveal">לפני שמטפחת נכנסת לחנות אנחנו חובשות אותה יום שלם. בודקות אם היא מחליקה, אם חם בה, ואיך היא נראית אחרי כביסה. רק מה שעובר נשאר.</p>
+      <p class="kl-reveal" style="--d:.1s"><a class="kl-link" href="about.html">הסיפור המלא</a></p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== סקשן: klila-fabrics ===== -->
 <section class="kl-fab" data-section="klila-fabrics">
   <div class="kl-wrap">
@@ -99,45 +105,44 @@
     </header>
     <ul class="kl-fab__list" id="fabrics"></ul>
   </div>
+  <div class="kl-fab__float" id="fabFloat" aria-hidden="true"><img alt=""></div>
 </section>
 
 <!-- ===== סקשן: klila-tying-guide ===== -->
 <section class="kl-guide" id="guide" data-section="klila-tying-guide">
-  <div class="kl-wrap">
-    <header class="kl-sechead">
-      <h2 class="kl-lines">קשירה בסיסית|בשלושה צעדים</h2>
-      <p class="kl-reveal">מתחילה לכסות? זאת הקשירה שכדאי ללמוד קודם. עובדת עם כל מטפחת מרובעת.</p>
-    </header>
-    <ol class="kl-guide__steps">
-      <li class="kl-reveal">
-        <svg viewBox="0 0 200 160" class="kl-guide__art"><path class="kl-draw" d="M40 30h110v100H40z"/><path class="kl-draw kl-draw--dash" d="M40 130 150 30"/><path class="kl-draw kl-draw--rose" d="M128 108c18-8 28-26 26-48m0 0-9 8m9-8 6 10"/></svg>
-        <h3>מקפלים למשולש</h3>
-        <p>פורשים את המטפחת ומקפלים פינה אל פינה. הקפל הארוך יהיה על המצח.</p>
-      </li>
-      <li class="kl-reveal" style="--d:.12s">
-        <svg viewBox="0 0 200 160" class="kl-guide__art"><ellipse class="kl-draw" cx="100" cy="92" rx="34" ry="44"/><path class="kl-draw kl-draw--rose" d="M62 84C60 44 82 26 100 26s40 18 38 58"/><path class="kl-draw kl-draw--rose" d="M62 84c-14 16-18 34-10 52m86-52c14 16 18 34 10 52"/><path class="kl-draw kl-draw--dash" d="M52 136c18 10 34 4 44-10m52 10c-18 10-34 4-44-10"/></svg>
-        <h3>מניחים ומצליבים מאחור</h3>
-        <p>מניחים את הקפל על קו השיער, מושכים את שני הקצוות לעורף ומצליבים מעל הפינה השלישית.</p>
-      </li>
-      <li class="kl-reveal" style="--d:.24s">
-        <div class="kl-guide__done" id="guideArt"></div>
-        <h3>עוטפים וקושרים</h3>
-        <p>מביאים את הקצוות חזרה למעלה, קושרים קשר כפול ומכניסים את השאריות פנימה. זהו.</p>
-      </li>
-    </ol>
-    <p class="kl-guide__tip kl-reveal">המטפחת מחליקה אחורה? <a class="kl-link" href="product.html?id=grip">סרט החלקה מקטיפה</a> מתחת פותר את זה.</p>
+  <div class="kl-wrap kl-guide__in">
+    <div class="kl-guide__photo"><div class="kl-arch-in"><img src="img/tying.webp" alt="אישה קושרת מטפחת בצבע חרדל מאחורי הראש" loading="lazy" width="1024" height="1280"></div></div>
+    <div class="kl-guide__body">
+      <header class="kl-sechead">
+        <h2 class="kl-lines">קשירה|בשלושה|צעדים</h2>
+        <p class="kl-reveal">מתחילה לכסות? זאת הקשירה שכדאי ללמוד קודם. עובדת עם כל מטפחת מרובעת.</p>
+      </header>
+      <ol class="kl-guide__steps">
+        <li class="kl-reveal">
+          <svg viewBox="0 0 120 100" class="kl-guide__art"><path class="kl-draw" d="M25 15h65v70H25z"/><path class="kl-draw kl-draw--dash" d="M25 85 90 15"/><path class="kl-draw kl-draw--rose" d="M78 70c12-6 18-18 16-32m0 0-6 6m6-6 5 7"/></svg>
+          <div><h3>מקפלים למשולש</h3><p>פורשים את המטפחת ומקפלים פינה אל פינה. הקפל הארוך יהיה על המצח.</p></div>
+        </li>
+        <li class="kl-reveal" style="--d:.1s">
+          <svg viewBox="0 0 120 100" class="kl-guide__art"><ellipse class="kl-draw" cx="60" cy="58" rx="20" ry="27"/><path class="kl-draw kl-draw--rose" d="M37 52C36 28 48 16 60 16s24 12 23 36"/><path class="kl-draw kl-draw--rose" d="M37 52c-8 10-11 22-6 34m52-34c8 10 11 22 6 34"/><path class="kl-draw kl-draw--dash" d="M31 86c11 6 21 2 27-7m31 7c-11 6-21 2-27-7"/></svg>
+          <div><h3>מניחים ומצליבים מאחור</h3><p>מניחים את הקפל על קו השיער, מושכים את שני הקצוות לעורף ומצליבים מעל הפינה השלישית.</p></div>
+        </li>
+        <li class="kl-reveal" style="--d:.2s">
+          <svg viewBox="0 0 120 100" class="kl-guide__art"><path class="kl-draw kl-draw--rose" d="M30 60c0-24 13-40 30-40s30 16 30 40"/><path class="kl-draw" d="M52 62c0-7 16-7 16 0s-16 7-16 0z"/><path class="kl-draw" d="M54 66c-6 6-10 14-10 22m22-22c6 6 10 14 10 22"/></svg>
+          <div><h3>עוטפים וקושרים</h3><p>מביאים את הקצוות חזרה למעלה, קושרים קשר כפול ומכניסים את השאריות פנימה. זהו.</p></div>
+        </li>
+      </ol>
+      <p class="kl-guide__tip kl-reveal">המטפחת מחליקה אחורה? <a class="kl-link" href="product.html?id=grip">סרט החלקה מקטיפה</a> מתחת פותר את זה.</p>
+    </div>
   </div>
 </section>
 
-<!-- ===== סקשן: klila-story ===== -->
-<section class="kl-story" data-section="klila-story">
-  <div class="kl-wrap kl-story__in">
-    <div class="kl-story__swatches" aria-hidden="true" id="storySw"></div>
-    <div class="kl-story__copy">
-      <h2 class="kl-lines">כל בד עובר|קודם דרכנו</h2>
-      <p class="kl-reveal">לפני שמטפחת נכנסת לחנות אנחנו חובשות אותה יום שלם. בודקות אם היא מחליקה, אם חם בה, ואיך היא נראית אחרי כביסה. רק מה שעובר נשאר.</p>
-      <p class="kl-reveal" style="--d:.1s"><a class="kl-link" href="about.html">הסיפור המלא</a></p>
-    </div>
+<!-- ===== סקשן: klila-benefits ===== -->
+<section class="kl-benefits" data-section="klila-benefits">
+  <div class="kl-wrap kl-benefits__in">
+    <div class="kl-reveal"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg><b>משלוח חינם מעל ₪299</b><span>עד הבית, 2–4 ימי עסקים</span></div>
+    <div class="kl-reveal" style="--d:.08s"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 1 2.6 5.9"/><path d="M4 18v-5h5"/></svg><b>החלפה תוך 14 יום</b><span>לא התאים? מחליפות בלי שאלות</span></div>
+    <div class="kl-reveal" style="--d:.16s"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><b>תשלום מאובטח</b><span>אשראי, ביט ו-Apple Pay</span></div>
+    <div class="kl-reveal" style="--d:.24s"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 0-6.9 12L4 20l4.1-1A8 8 0 1 0 12 4z"/></svg><b>עזרה בבחירה</b><span>שולחות תמונה בוואטסאפ ונעזור</span></div>
   </div>
 </section>
 
@@ -158,7 +163,6 @@
 </main>
 
 <script src="js/data.js"></script>
-<script src="js/art.js"></script>
 <script src="js/app.js"></script>
 <script src="js/home.js"></script>
 </body>

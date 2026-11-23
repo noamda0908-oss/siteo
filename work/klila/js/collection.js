@@ -25,8 +25,8 @@
     var grid = $('#grid');
     grid.innerHTML = list.length ? list.map(function (p, i) {
       var html = KL.card(p, i);
-      if (st.color) { /* מציגים את הגוון שסונן */
-        html = html.replace('data-color="' + p.colors[0] + '"', 'data-color="' + st.color + '"').replace('--w:' + KL.colors[p.colors[0]].hex, '--w:' + KL.colors[st.color].hex)
+      if (st.color) { /* מסמנים את הגוון שסונן */
+        html = html.replace('data-color="' + p.colors[0] + '"', 'data-color="' + st.color + '"')
           .replace('kl-dot is-on', 'kl-dot').replace('class="kl-dot" style="--c:' + KL.colors[st.color].hex, 'class="kl-dot is-on" style="--c:' + KL.colors[st.color].hex);
       }
       return html;

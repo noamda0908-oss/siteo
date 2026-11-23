@@ -46,10 +46,9 @@ main>.kl-hero{position:relative;padding:0;height:calc(100svh - var(--kl-header-h
 }
 
 /* ===== klila-marquee ===== */
-main>.kl-band{padding-block:clamp(2rem,5vw,4rem);overflow:hidden;display:grid;gap:.4rem;direction:ltr}
-.kl-band__row{display:flex;align-items:center;gap:.35em;white-space:nowrap;font-family:var(--kl-display);font-size:clamp(4rem,13vw,11rem);font-weight:200;line-height:1.05;letter-spacing:-.04em;will-change:transform;direction:rtl;width:max-content}
-.kl-band__row--alt{font-weight:800;color:transparent;-webkit-text-stroke:1.2px var(--kl-ink)}
-.kl-band__row img{height:.62em;width:1.15em;object-fit:cover;object-position:50% 22%;border-radius:999px;flex:none}
+main>.kl-band{padding-block:1.4rem;overflow:hidden;direction:ltr;border-bottom:1px solid var(--kl-line)}
+.kl-band__row{display:flex;align-items:center;gap:1.6rem;white-space:nowrap;font-family:var(--kl-display);font-size:clamp(1.5rem,3.2vw,2.4rem);font-weight:300;line-height:1.2;letter-spacing:-.02em;will-change:transform;direction:rtl;width:max-content}
+.kl-band__row i{width:7px;height:7px;border-radius:50%;background:var(--kl-wine);flex:none}
 
 /* ===== klila-categories ===== */
 main>.kl-cats{padding-top:clamp(2rem,5vw,4rem)}

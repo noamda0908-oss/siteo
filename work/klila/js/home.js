@@ -17,22 +17,21 @@
 
   /* ---------- פס מילים ענק ---------- */
   (function band() {
-    var words = [['מטפחות', 'ela'], ['טורבנים', 'ruth'], ['סרטים', 'michal'], ['בובו', 'shira'], ['כובעים', 'yael'], ['לונגים', 'tamar']];
-    var mk = function (list) { return list.map(function (w) { return '<span>' + w[0] + '</span><img src="img/' + w[1] + '-s.webp" alt="" loading="lazy">'; }).join(''); };
+    var words = ['מטפחות', 'טורבנים', 'סרטים', 'בובו ונפח', 'כובעים', 'לונגים', 'קשורים מראש'];
+    var one = words.map(function (w) { return '<span>' + w + '</span><i></i>'; }).join('');
     var rows = $$('.kl-band__row');
-    rows[0].innerHTML = mk(words) + mk(words) + mk(words);
-    rows[1].innerHTML = mk(words.slice().reverse()) + mk(words.slice().reverse()) + mk(words.slice().reverse());
+    rows[0].innerHTML = one + one + one + one + one + one;
     var sec = $('.kl-band'), t0 = 0;
     function place() {
       var r = sec.getBoundingClientRect(); if (r.bottom < -200 || r.top > innerHeight + 200) return;
-      var p = (innerHeight - r.top) * .3 + t0;
+      var p = (innerHeight - r.top) * .12 + t0;
       rows.forEach(function (row) {
         var third = row.scrollWidth / 3, s = +row.dataset.speed, x = p % third;
         row.style.transform = 'translate3d(' + (s < 0 ? -x : x - third) + 'px,0,0)';
       });
     }
     jobs.push(place); place();
-    if (!reduce) (function drift() { t0 += .4; place(); requestAnimationFrame(drift); })();
+    if (!reduce) (function drift() { t0 += .25; place(); requestAnimationFrame(drift); })();
   })();
 
   /* ---------- קטגוריות: פסים שנפתחים ---------- */

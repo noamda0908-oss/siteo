@@ -45,13 +45,7 @@ main>.kl-hero{position:relative;padding:0;height:calc(100svh - var(--kl-header-h
   .kl-hero__tag{top:auto;bottom:16%;left:34%}
 }
 
-/* ===== klila-marquee ===== */
-main>.kl-band{padding-block:1.4rem;overflow:hidden;direction:ltr;border-bottom:1px solid var(--kl-line)}
-.kl-band__row{display:flex;align-items:center;gap:1.6rem;white-space:nowrap;font-family:var(--kl-display);font-size:clamp(1.5rem,3.2vw,2.4rem);font-weight:300;line-height:1.2;letter-spacing:-.02em;will-change:transform;direction:rtl;width:max-content}
-.kl-band__row i{width:7px;height:7px;border-radius:50%;background:var(--kl-wine);flex:none}
-
 /* ===== klila-categories ===== */
-main>.kl-cats{padding-top:clamp(2rem,5vw,4rem)}
 .kl-cats__strip{display:flex;gap:.6rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-inline:1.25rem;scroll-padding-inline:1.25rem;scrollbar-width:none}
 .kl-cats__strip::-webkit-scrollbar{display:none}
 .kl-cat{position:relative;flex:0 0 72vw;height:62svh;min-height:420px;border-radius:8px;overflow:hidden;scroll-snap-align:start;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;isolation:isolate;background:var(--tint)}

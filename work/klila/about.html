@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הסיפור שלנו | כלילה</title>
+<meta name="description" content="מי אנחנו ואיך אנחנו בוחרות בדים.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7EEEA">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233A1D2B'/%3E%3Cpath d='M7 23C7 13 11 7 16 7s9 6 9 16M5 26h22' fill='none' stroke='%23E7B9C0' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/frank-ruhl-libre-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/assistant-hebrew-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/shop.css">
+</head>
+<body>
+
+<main class="kl-wrap">
+  <div class="kl-pagehead">
+    <nav class="kl-crumbs" aria-label="פירורי לחם"><a href="index.html">בית</a><span aria-hidden="true">/</span><span>הסיפור שלנו</span></nav>
+    <h1 class="kl-lines">כיסוי ראש|צריך להיות|כיף</h1>
+  </div>
+  <div class="kl-about">
+    <div class="kl-about__art kl-arch-in" id="aboutArt"></div>
+    <div class="kl-about__copy">
+      <p class="kl-reveal">כלילה התחילה מתסכול פשוט: מטפחות יפות שמחליקות אחורה עד הצהריים, ובדים שנראים מעולה בתמונה ומחממים מדי בקיץ.</p>
+      <p class="kl-reveal" style="--d:.08s">אז התחלנו לבחור אחרת. כל בד נחבש אצלנו יום שלם לפני שהוא נכנס לחנות. בודקות אם הוא נשאר במקום, אם נושמים בו, ואיך הוא נראה אחרי כביסה.</p>
+      <p class="kl-reveal" style="--d:.16s">חלק מהדגמים קשורים מראש, בשביל הבקרים שאין בהם דקה. חלק פתוחים לגמרי, בשביל מי שאוהבת לשחק עם קשירות. לכולם אותו כלל: נוח מהבוקר עד הערב.</p>
+      <p class="kl-placeholder kl-reveal">טקסט זמני. כאן ייכנס הסיפור האמיתי של בעלת העסק, עם תמונה שלה.</p>
+      <p class="kl-reveal"><a class="kl-btn" href="collection.html">לקולקציה</a></p>
+    </div>
+  </div>
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/art.js"></script>
+<script src="js/app.js"></script>
+<script>KL.$("#aboutArt").innerHTML=KL.art({style:"long",color:"#8E9C8A",skin:2,pattern:"floral"});KL.observe();</script>
+</body>
+</html>

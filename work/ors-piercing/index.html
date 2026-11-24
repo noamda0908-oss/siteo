@@ -142,6 +142,22 @@ input:focus{border-color:var(--wine);box-shadow:0 0 0 4px var(--rose-wash);outli
 .qr p{font-size:14px;color:var(--wine-soft)}
 .qr b{color:var(--wine);display:block;font-size:15px}
 
+.who span[dir=ltr]{white-space:nowrap;display:inline-block}
+.acts{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.tm{display:block;font-weight:700;color:var(--gold)}
+.tm.late{color:#A3231F}
+.called .tm{color:#F3D9A4;margin-top:10px;font-size:17px}
+.note.warn{background:#FBEBD0;color:#7A5210;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+.pill.warn{background:#FBEBD0;color:#7A5210;margin-inline-start:6px}
+.care{background:var(--rose-wash);border-radius:var(--r);padding:14px 16px;font-size:14.5px;animation:rise .7s .3s both}
+.care b{display:block;margin-bottom:4px}
+.care ul{padding-inline-start:18px;margin:0}
+.care small{color:var(--wine-soft)}
+.auto{border-top:1px dashed var(--line);padding-top:16px}
+.auto ol{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px;margin:0}
+.auto li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-size:14px}
+.auto li i{width:9px;height:9px;border-radius:50%;background:#25A55A;box-shadow:0 0 0 4px var(--ok-wash)}
+.auto li span{color:var(--wine-soft)}
 /* overlay + toast */
 .overlay{position:fixed;inset:0;background:rgba(51,12,15,.45);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center;z-index:20;padding:16px}
 .overlay.open{display:flex}
@@ -215,16 +231,33 @@ const S = {
 };
 const $ = s=>document.querySelector(s);
 const esc = t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const WINDOW = 300; // שניות להגיע אחרי קריאה
 const waiting = ()=>S.queue.filter(q=>q.status==='waiting');
 const called = ()=>S.queue.filter(q=>q.status==='called');
 const done = ()=>S.queue.filter(q=>q.status==='done');
 const me = ()=>S.queue.find(q=>q.id===S.me);
 const aheadOf = q=>waiting().findIndex(x=>x.id===q.id);
+waiting().forEach(q=>q.warned=true);
+called().forEach(q=>q.calledAt=Date.now()-70000);
+function checkWarn(){
+  waiting().forEach((q,i)=>{ if(i<=2&&!q.warned){ q.warned=true; if(q.id===S.me)S.cdot=true;
+    if(i>0) toast('וואטסאפ נשלח אל '+q.name, (i===1?'עוד אחת לפנייך':'עוד '+i+' לפנייך')+' בתור ב‑Or\'s Piercing. כדאי להתקרב לדוכן.'); } });
+}
+function tick(){
+  const now=Date.now();
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const left=Math.ceil(WINDOW-(now-+el.dataset.t)/1000), mine=el.dataset.mine;
+    const mm=Math.floor(Math.max(0,left)/60)+':'+String(Math.max(0,left)%60).padStart(2,'0');
+    el.textContent = left>0 ? (mine?'התור נשמר לך עוד ':'מחכים לה עוד ')+mm : (mine?'הזמן עבר, גשי לדוכן עכשיו':'עבר הזמן, אפשר לדלג');
+    el.classList.toggle('late',left<=0);
+  });
+}
+setInterval(tick,1000);
 
 function toast(title,text){
   const d=document.createElement('div');d.className='toast';
   d.innerHTML='<b>'+esc(title)+'</b>'+esc(text);
-  $('#toasts').appendChild(d);setTimeout(()=>d.remove(),4700);
+  const T=$('#toasts');while(T.children.length>=2)T.firstChild.remove();T.appendChild(d);setTimeout(()=>d.remove(),4700);
 }
 
 /* ---------- customer ---------- */
@@ -249,20 +282,23 @@ function renderPhone(){
     <div class="ring-wrap"><svg viewBox="0 0 200 200"><circle class="ring-bg" cx="100" cy="100" r="92"/><circle class="ring-fg" cx="100" cy="100" r="92" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-Math.max(.06,prog))}"/></svg>
       <span class="bead"></span><div class="ring-in"><small>לפנייך בתור</small><b class="num">${a}</b><small>${a===0?'את הבאה':'כ‑'+(a*MIN_PER+4)+' דקות'}</small></div></div>
     <div class="ticket-meta"><span>מספר תור <b class="num">#${m.num}</b></span><span>${esc(m.type)}</span></div>
-    <div class="note">אפשר להסתובב בינתיים. נשלח לך וואטסאפ כשיגיע התור</div>
+    ${m.missed?'<div class="note warn">פספסת את התור הקודם. החזרנו אותך לתור</div>':''}
+    ${a<=2?'<div class="note warn">עוד מעט תורך. כדאי להתקרב לדוכן</div>':'<div class="note">אפשר להסתובב בינתיים. נשלח לך וואטסאפ כשיישארו 2 לפנייך, ושוב כשיגיע התור</div>'}
     <button class="btn ghost" id="leave">יציאה מהתור</button>
     <div class="hint">בדמו: עברו למסך הניהול ולחצו "קראי לבאה בתור" כדי לקדם את התור</div>`;
   } else if(m.status==='called'){
-    h+=`<div class="called"><p>תור <span class="num">#${m.num}</span></p><h2>הגיע התור שלך</h2><p>אור מחכה לך בדוכן</p></div>
+    h+=`<div class="called"><p>תור <span class="num">#${m.num}</span></p><h2>הגיע התור שלך</h2><p>אור מחכה לך בדוכן</p><span class="tm num" data-t="${m.calledAt}" data-mine="1"></span></div>
     <div class="ticket-meta"><span>${esc(m.type)}</span><span>מחיר: <b class="num">₪${TYPES[m.type]}</b></span></div>
     <div class="note">התשלום בדוכן בסיום: אשראי, ביט, פייבוקס או מזומן</div>
-    <div class="hint">בדמו: במסך הניהול לחצו "לתשלום" ליד השם שלך</div>`;
+    <div class="hint">בדמו: במסך הניהול לחצו "לתשלום" או "לא הגיעה" ליד השם שלך</div>`;
   } else {
     h+=`<h2 class="hello">תודה ${esc(m.name.split(' ')[0])}, שיהיה במזל</h2><p class="sub">הקבלה נשלחה אלייך בוואטסאפ</p>
     <div class="receipt"><div class="row"><b>קבלה</b><span class="num">#${1000+m.num}</span></div>
       <div class="row"><span>פירסינג ${esc(m.type)}</span><span class="num">₪${m.paid.amount}</span></div>
       <div class="row"><span>אמצעי תשלום</span><span>${m.paid.method}</span></div>
       <div class="row tot"><span>סה"כ שולם</span><span class="num">₪${m.paid.amount}</span></div></div>
+    <div class="care"><b>הוראות טיפול (נשלחו גם בוואטסאפ)</b><ul><li>לנקות פעמיים ביום בתמיסת מי מלח</li><li>לא לגעת בידיים לא נקיות</li><li>לא להחליף תכשיט עד להחלמה מלאה</li></ul><small>טקסט לדוגמה. אור תכתוב את ההוראות שלה</small></div>
+    <div class="care" style="animation-delay:.5s"><b>מחר תקבלי הודעה</b>"איך מרגישה עם הפירסינג החדש? נשמח לביקורת ולעוקב באינסטגרם"</div>
     <button class="btn ghost" id="again">התחלה מחדש</button>`;
   }
   el.innerHTML=h;
@@ -270,7 +306,7 @@ function renderPhone(){
 $('#phone').addEventListener('click',e=>{
   const c=e.target.closest('.chip');
   if(c){S.form.name=$('#fname').value;S.form.phone=$('#fphone').value;const ag=$('#fage').checked;S.form.type=c.dataset.type;renderPhone();$('#fage').checked=ag;return}
-  if(e.target.id==='leave'){S.queue=S.queue.filter(q=>q.id!==S.me);S.me=null;render()}
+  if(e.target.id==='leave'){S.queue=S.queue.filter(q=>q.id!==S.me);S.me=null;checkWarn();render()}
   if(e.target.id==='again'){S.me=null;S.form={type:'תנוך'};render()}
 });
 $('#phone').addEventListener('submit',e=>{
@@ -279,7 +315,7 @@ $('#phone').addEventListener('submit',e=>{
   if(name.length<2){err.textContent='חסר שם. כתבי שם מלא כדי שנדע למי לקרוא';return}
   if(phone.replace(/\D/g,'').length<9){err.textContent='מספר הטלפון קצר מדי. צריך מספר מלא כדי לשלוח הודעה';return}
   if(!$('#fage').checked){err.textContent='צריך לסמן את אישור הגיל כדי להיכנס לתור';return}
-  const q=mk(name,phone,S.form.type,'waiting');S.queue.push(q);S.me=q.id;S.startAhead=aheadOf(q);
+  const q=mk(name,phone,S.form.type,'waiting');S.queue.push(q);S.me=q.id;S.startAhead=aheadOf(q);q.warned=S.startAhead<=2;
   render();toast('וואטסאפ נשלח אל '+name,'נכנסת לתור ב‑Or\'s Piercing. מספר '+q.num+', נעדכן כשיגיע התור.');
 });
 
@@ -288,9 +324,9 @@ function rowHTML(q,kind){
   const isNew=!S.seen.has(q.id+kind);S.seen.add(q.id+kind);
   const cls=['row-c',kind==='called'?'now':'',q.id===S.me?'me':'',isNew?'new':''].join(' ');
   const act = kind==='waiting' ? `<button class="btn sm ghost" data-call="${q.id}">קראי</button>`
-    : kind==='called' ? `<button class="btn sm" data-pay="${q.id}">לתשלום</button>`
+    : kind==='called' ? `<div class="acts"><button class="btn sm" data-pay="${q.id}">לתשלום</button><button class="btn sm ghost" data-miss="${q.id}">לא הגיעה</button></div>`
     : `<span class="pill ok num">₪${q.paid.amount} · ${q.paid.method}</span>`;
-  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}${q.id===S.me?' (את, מהדמו)':''}</b><span>${esc(q.type)} · <span dir="ltr">${esc(q.phone)}</span></span></div>${act}</div>`;
+  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}${q.id===S.me?' (את, מהדמו)':''}</b><span>${esc(q.type)} · <span dir="ltr">${esc(q.phone)}</span>${kind==='waiting'&&q.warned?'<span class="pill warn">קיבלה התראה</span>':''}</span>${kind==='called'?`<span class="tm num" data-t="${q.calledAt}"></span>`:''}</div>${act}</div>`;
 }
 function renderBoard(){
   const w=waiting(), c=called(), d=done(), rev=d.reduce((s,q)=>s+q.paid.amount,0);
@@ -302,19 +338,27 @@ function renderBoard(){
   <button class="btn" id="callNext" ${w.length?'':'disabled style="opacity:.45"'}>קראי לבאה בתור ושלחי לה וואטסאפ</button>
   <div><div class="sec-title">ממתינות <span>לפי סדר הגעה</span></div><div class="rows">${w.length?w.map(q=>rowHTML(q,'waiting')).join(''):'<div class="empty">התור ריק</div>'}</div></div>
   <div><div class="sec-title">שולמו היום <span>קבלה נשלחה אוטומטית</span></div><div class="rows">${d.slice().reverse().map(q=>rowHTML(q,'done')).join('')}</div></div>
+  <div class="auto"><div class="sec-title">הודעות וואטסאפ אוטומטיות <span>בלי לגעת בטלפון</span></div><ol>
+    <li><i></i><div><b>נכנסת לתור</b> <span>מספר התור וזמן המתנה משוער</span></div></li>
+    <li><i></i><div><b>עוד 2 לפנייך</b> <span>כדי שתספיק לחזור לדוכן</span></div></li>
+    <li><i></i><div><b>הגיע התור שלך</b> <span>התור נשמר 5 דקות</span></div></li>
+    <li><i></i><div><b>פספסת את התור</b> <span>כשמדלגים על מי שלא הגיעה</span></div></li>
+    <li><i></i><div><b>קבלה והוראות טיפול</b> <span>מיד אחרי התשלום</span></div></li>
+    <li><i></i><div><b>למחרת: בקשת ביקורת</b> <span>ועוקב באינסטגרם</span></div></li></ol></div>
   <div class="qr"><canvas id="qrc" width="230" height="230" aria-label="QR לדוגמה"></canvas><p><b>ה‑QR של הדוכן</b>מדפיסים ותולים. כל סריקה פותחת את דף ההרשמה לתור. (בדמו זה QR לדוגמה)</p></div>`;
   drawQR();
 }
 function callQ(id){
-  const q=S.queue.find(x=>x.id===id);if(!q)return;q.status='called';
+  const q=S.queue.find(x=>x.id===id);if(!q)return;q.status='called';q.calledAt=Date.now();
   if(id===S.me){S.cdot=true}
-  render();toast('וואטסאפ נשלח אל '+q.name,'הגיע התור שלך ב‑Or\'s Piercing. מחכים לך בדוכן.');
+  render();toast('וואטסאפ נשלח אל '+q.name,'הגיע התור שלך ב‑Or\'s Piercing. התור נשמר לך 5 דקות.');checkWarn();render();
 }
 $('#board').addEventListener('click',e=>{
   const t=e.target.closest('button');if(!t)return;
   if(t.id==='callNext'){const n=waiting()[0];if(n)callQ(n.id)}
   else if(t.dataset.call)callQ(+t.dataset.call);
   else if(t.dataset.pay)openPay(+t.dataset.pay);
+  else if(t.dataset.miss)openMiss(+t.dataset.miss);
   else if(t.id==='addWalk')openAdd();
 });
 
@@ -327,6 +371,12 @@ function openPay(id){
   <div class="chips" id="pm">${METHODS.map(m=>`<button type="button" class="chip" data-m="${m}" aria-pressed="${m===pay.method}">${m}</button>`).join('')}</div>
   <div class="err" id="perr" role="alert"></div>
   <button class="btn" id="pok">סימון כשולם ושליחת קבלה</button><button class="btn ghost" id="pcancel">ביטול</button>`;
+  $('#overlay').classList.add('open');
+}
+function openMiss(id){
+  const q=S.queue.find(x=>x.id===id);pay={id};
+  $('#sheet').innerHTML=`<h3>${esc(q.name)} לא הגיעה?</h3><p style="color:var(--wine-soft)">תור <span class="num">#${q.num}</span>. היא תקבל הודעה בוואטסאפ על מה שבחרת.</p>
+  <button class="btn" id="mback">החזרה לתור, 2 מקומות אחורה</button><button class="btn ghost" id="mout">הוצאה מהתור</button><button class="btn ghost" id="pcancel">ביטול</button>`;
   $('#overlay').classList.add('open');
 }
 function openAdd(){
@@ -349,12 +399,25 @@ $('#overlay').addEventListener('click',e=>{
     if(!(amt>0)){$('#perr').textContent='הסכום חייב להיות גדול מאפס';return}
     const q=S.queue.find(x=>x.id===pay.id);q.status='done';q.paid={amount:amt,method:pay.method};
     if(q.id===S.me)S.cdot=true;
-    closeSheet();render();toast('קבלה נשלחה אל '+q.name,'קבלה #'+(1000+q.num)+' על ₪'+amt+' ('+pay.method+'). תודה שבחרת ב‑Or\'s Piercing.');
+    closeSheet();render();toast('קבלה והוראות טיפול נשלחו אל '+q.name,'קבלה #'+(1000+q.num)+' על ₪'+amt+' ('+pay.method+'). מצורפות הוראות טיפול בפירסינג.');
+  }
+  if(e.target.id==='mback'||e.target.id==='mout'){
+    const q=S.queue.find(x=>x.id===pay.id);S.queue=S.queue.filter(x=>x!==q);
+    if(e.target.id==='mback'){
+      q.status='waiting';q.missed=true;q.warned=true;const w=waiting();
+      if(w.length>=2)S.queue.splice(S.queue.indexOf(w[1])+1,0,q);else S.queue.push(q);
+      if(q.id===S.me){S.cdot=true;S.startAhead=aheadOf(q)}
+      toast('וואטסאפ נשלח אל '+q.name,'פספסת את התור ב‑Or\'s Piercing. החזרנו אותך לתור, נעדכן שוב כשיגיע.');
+    } else {
+      if(q.id===S.me){S.me=null;S.cdot=true}
+      toast('וואטסאפ נשלח אל '+q.name,'התור שלך ב‑Or\'s Piercing בוטל כי לא הגעת. אפשר להירשם שוב ב‑QR.');
+    }
+    closeSheet();render();
   }
   if(e.target.id==='aok'){
     const name=$('#aname').value.trim();
     if(name.length<2){$('#perr').textContent='חסר שם ללקוחה';return}
-    S.queue.push(mk(name,$('#aphone').value.trim()||'ללא טלפון',pay.type,'waiting'));closeSheet();render();
+    const nq=mk(name,$('#aphone').value.trim()||'ללא טלפון',pay.type,'waiting');S.queue.push(nq);nq.warned=aheadOf(nq)<=2;closeSheet();render();
   }
 });
 
@@ -375,7 +438,7 @@ function setView(v){
 }
 $('#switch').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setView(b.dataset.view)});
 function render(){
-  renderPhone();renderBoard();
+  renderPhone();renderBoard();tick();
   $('#cdot').innerHTML=(S.cdot&&$('#switch').dataset.view==='admin')?'<span class="dot"></span>':'';
 }
 render();

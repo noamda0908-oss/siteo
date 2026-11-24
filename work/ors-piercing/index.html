@@ -62,19 +62,52 @@ button{cursor:pointer;border:0;background:none}
 .pane-label{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--wine-soft);margin-bottom:8px}
 
 /* customer phone */
-.phone{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:22px 20px 24px;box-shadow:0 24px 50px -30px rgba(51,12,15,.45);max-width:420px;margin:0 auto;min-height:540px;display:flex;flex-direction:column;gap:18px}
-.phone .logo{width:170px;margin:4px auto 0;display:block}
+.phone{background:var(--paper);border:1px solid var(--line);border-radius:32px;box-shadow:0 30px 60px -34px rgba(51,12,15,.55);max-width:420px;margin:0 auto;overflow:hidden;display:flex;flex-direction:column;min-height:580px}
 h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.15;text-wrap:balance}
-.hello{text-align:center;font-size:27px}
-.sub{text-align:center;color:var(--wine-soft)}
-.wait-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.wait-strip div{background:var(--rose-wash);border-radius:var(--r);padding:12px;text-align:center}
-.wait-strip b{font-family:var(--display);font-size:30px;display:block;line-height:1.1}
-.wait-strip span{font-size:13px;color:var(--wine-soft)}
+.p-head{position:relative;background:radial-gradient(120% 90% at 85% 0%,#5E1C24 0%,var(--wine) 62%);color:var(--blush);padding:24px 22px 52px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.p-head>*{position:relative}
+.p-head .hoop{position:absolute;width:190px;height:190px;border-radius:50%;border:1.5px solid rgba(228,169,180,.4);left:-64px;top:-56px;animation:spin 26s linear infinite}
+.p-head .hoop::after{content:"";position:absolute;top:-6px;left:50%;width:11px;height:11px;margin-left:-5px;border-radius:50%;background:#E7C27A;box-shadow:0 0 14px #E7C27A}
+.p-head .hoop.b{width:112px;height:112px;left:auto;right:-34px;top:auto;bottom:-10px;border-color:rgba(231,194,122,.45);animation-duration:18s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.logo-m{width:124px;aspect-ratio:560/255;background:var(--blush);-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat;margin-bottom:6px}
+.p-head h1,.p-head h2{font-size:32px}
+.p-head p{opacity:.82;font-size:16px}
+.live{align-self:flex-start;display:inline-flex;gap:9px;align-items:center;background:rgba(255,243,245,.12);border:1px solid rgba(255,243,245,.24);border-radius:99px;padding:7px 15px;font-size:14.5px;margin-top:4px}
+.live i{width:9px;height:9px;border-radius:50%;background:#5BE08F;animation:pulse 1.4s infinite;flex:none}
+.p-head.mid{align-items:center;text-align:center;padding-bottom:62px}
+.p-head.mid .logo-m{width:104px}
+.p-head.mid h2{font-size:38px}
+.p-head .tm{color:#F3D9A4;font-size:18px;margin-top:2px}
+.radar{position:absolute!important;inset:0;display:grid;place-items:center;pointer-events:none}
+.radar i{position:absolute;width:120px;height:120px;border-radius:50%;border:1.5px solid rgba(243,217,164,.55);animation:radar 2.7s ease-out infinite}
+.radar i:nth-child(2){animation-delay:.9s}.radar i:nth-child(3){animation-delay:1.8s}
+@keyframes radar{from{transform:scale(.4);opacity:.9}to{transform:scale(3.6);opacity:0}}
+.fall{position:absolute!important;inset:0;pointer-events:none}
+.fall i{position:absolute;top:-18px;width:12px;height:12px;border-radius:50%;border:2px solid #E7C27A;animation:fall 3.4s linear infinite}
+.fall i:nth-child(odd){border-color:var(--rose);width:8px;height:8px}
+@keyframes fall{to{transform:translateY(280px) rotate(220deg);opacity:0}}
+.p-body{position:relative;background:var(--paper);border-radius:28px 28px 0 0;margin-top:-28px;padding:24px 20px;display:flex;flex-direction:column;gap:16px;flex:1}
+.fresh .stag>*{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.fresh .stag>*:nth-child(2){animation-delay:.07s}.fresh .stag>*:nth-child(3){animation-delay:.14s}.fresh .stag>*:nth-child(4){animation-delay:.21s}.fresh .stag>*:nth-child(5){animation-delay:.28s}.fresh .stag>*:nth-child(n+6){animation-delay:.35s}
 form{display:flex;flex-direction:column;gap:14px}
 label.f{display:flex;flex-direction:column;gap:5px;font-weight:600;font-size:14px}
-input[type=text],input[type=tel],input[type=number]{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;font-size:17px;width:100%;transition:border-color .2s,box-shadow .2s}
+input[type=text],input[type=tel],input[type=number]{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:13px 16px;font-size:17px;width:100%;transition:border-color .2s,box-shadow .2s}
 input:focus{border-color:var(--wine);box-shadow:0 0 0 4px var(--rose-wash);outline:0}
+.fl{position:relative}
+.fl input{height:60px;padding:24px 16px 8px}
+.fl label{position:absolute;right:17px;top:19px;color:var(--wine-soft);pointer-events:none;transition:all .2s;font-size:16px}
+.fl input:focus+label,.fl input:not(:placeholder-shown)+label{top:8px;font-size:12px;font-weight:700;color:var(--gold)}
+.pick-t{font-weight:700;font-size:15px;display:block;margin-bottom:8px}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tcard{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:13px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:all .28s cubic-bezier(.2,.9,.3,1.4);min-width:0}
+.tcard .ic{width:22px;height:22px;border-radius:50%;border:2px solid var(--rose);position:relative;margin-bottom:3px;transition:border-color .2s}
+.tcard .ic::after{content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:var(--gold)}
+.tcard b{font-size:15px}
+.tcard small{font-size:12.5px;color:var(--wine-soft)}
+.tcard[aria-pressed="true"]{background:var(--wine);color:var(--blush);border-color:var(--wine);transform:translateY(-3px);box-shadow:0 14px 22px -14px var(--wine)}
+.tcard[aria-pressed="true"] small{color:var(--rose)}
+.tcard[aria-pressed="true"] .ic{border-color:#E7C27A}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:8px 15px;font-weight:600;transition:all .2s}
 .chip[aria-pressed="true"]{background:var(--wine);color:var(--blush);border-color:var(--wine);transform:scale(1.04)}
@@ -88,25 +121,37 @@ input:focus{border-color:var(--wine);box-shadow:0 0 0 4px var(--rose-wash);outli
 .btn.ghost{background:transparent;color:var(--wine);border:1.5px solid var(--wine);box-shadow:none}
 .btn.ghost::after{display:none}
 .btn.sm{padding:9px 16px;font-size:15px;width:auto}
-.err{color:#A3231F;font-size:14px;font-weight:600;min-height:1.2em}
-
-.ring-wrap{position:relative;width:210px;height:210px;margin:0 auto}
+.err{color:#A3231F;font-size:14px;font-weight:600}
+.err:empty{display:none}
+.trust{text-align:center;font-size:13px;color:var(--wine-soft)}
+.ticket{background:#fff;border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden;box-shadow:0 20px 32px -26px rgba(51,12,15,.55)}
+.t-top{padding:20px 16px 16px}
+.perf{position:relative;border-top:2px dashed var(--line);margin:0 18px}
+.perf::before,.perf::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--paper);border:1px solid var(--line)}
+.perf::before{right:-30px}.perf::after{left:-30px}
+.t-meta{display:grid;grid-template-columns:repeat(3,1fr);padding:14px 8px 16px;text-align:center;gap:4px}
+.t-meta.two{grid-template-columns:1fr 1fr}
+.t-meta small{display:block;font-size:12px;color:var(--wine-soft)}
+.t-meta b{font-family:var(--display);font-size:20px}
+.ring-wrap{position:relative;width:186px;height:186px;margin:0 auto}
 .ring-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
 .ring-bg{fill:none;stroke:var(--rose-wash);stroke-width:9}
 .ring-fg{fill:none;stroke:var(--wine);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset 1s cubic-bezier(.3,.8,.2,1)}
 .ring-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .ring-in small{font-size:13px;color:var(--wine-soft)}
-.ring-in b{font-family:var(--display);font-size:64px;line-height:1}
-.ring-wrap .bead{position:absolute;top:-4px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(169,120,43,.2);animation:pulse 2s infinite}
-.ticket-meta{display:flex;justify-content:space-between;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:12px 2px;font-size:15px}
-.ticket-meta b{font-weight:700}
+.ring-in b{font-family:var(--display);font-size:60px;line-height:1}
+.ring-wrap .bead{position:absolute;top:-3px;left:50%;width:15px;height:15px;margin-left:-7.5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(169,120,43,.2);animation:pulse 2s infinite}
+.line{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
+.line span{font-size:12.5px;color:var(--wine-soft)}
+.line i{width:11px;height:11px;border-radius:50%;background:var(--rose)}
+.line i:first-of-type{animation:pulse 1.6s infinite}
+.line em{font-style:normal;background:var(--gold);color:#fff;font-size:12.5px;font-weight:700;border-radius:99px;padding:2px 11px}
 .note{background:var(--ok-wash);color:var(--ok);border-radius:14px;padding:11px 14px;font-size:14px;font-weight:600;text-align:center}
-.called{background:var(--wine);color:var(--blush);border-radius:22px;padding:28px 18px;text-align:center;animation:pop .6s cubic-bezier(.2,1.4,.4,1)}
-.called h2{font-size:34px;margin-bottom:6px}
-.called p{opacity:.85}
-@keyframes pop{from{transform:scale(.8);opacity:.2}}
-.receipt{background:#fff;border:1px solid var(--line);border-radius:6px 6px 16px 16px;padding:18px;font-size:15px;display:flex;flex-direction:column;gap:8px;animation:print .9s cubic-bezier(.2,.8,.2,1);transform-origin:top}
-@keyframes print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
+.linkbtn{color:var(--wine-soft);text-decoration:underline;font-size:14px;align-self:center;padding:6px}
+.receipt{background:#fff;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;padding:18px 18px 14px;font-size:15px;display:flex;flex-direction:column;gap:8px;position:relative;margin-bottom:8px}
+.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:linear-gradient(135deg,#fff 50%,transparent 50%) 0 0/12px 8px,linear-gradient(225deg,#fff 50%,transparent 50%) 0 0/12px 8px}
+.fresh .receipt{animation:print .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes print{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 -10px 0)}}
 .receipt .row{display:flex;justify-content:space-between}
 .receipt .tot{border-top:1px dashed var(--line);padding-top:8px;font-weight:700;font-size:18px}
 .hint{font-size:13px;color:var(--wine-soft);border:1px dashed var(--line);border-radius:12px;padding:9px 12px;text-align:center;margin-top:auto}
@@ -146,10 +191,9 @@ input:focus{border-color:var(--wine);box-shadow:0 0 0 4px var(--rose-wash);outli
 .acts{display:flex;flex-direction:column;gap:6px;align-items:stretch}
 .tm{display:block;font-weight:700;color:var(--gold)}
 .tm.late{color:#A3231F}
-.called .tm{color:#F3D9A4;margin-top:10px;font-size:17px}
 .note.warn{background:#FBEBD0;color:#7A5210;animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
 .pill.warn{background:#FBEBD0;color:#7A5210;margin-inline-start:6px}
-.care{background:var(--rose-wash);border-radius:var(--r);padding:14px 16px;font-size:14.5px;animation:rise .7s .3s both}
+.care{background:var(--rose-wash);border-radius:var(--r);padding:14px 16px;font-size:14.5px}
 .care b{display:block;margin-bottom:4px}
 .care ul{padding-inline-start:18px;margin:0}
 .care small{color:var(--wine-soft)}
@@ -261,51 +305,62 @@ function toast(title,text){
 }
 
 /* ---------- customer ---------- */
+document.documentElement.style.setProperty('--logo','url('+LOGO+')');
+const first = n=>esc(n.split(' ')[0]);
+const head = (inner,cls='')=>`<div class="p-head ${cls}"><span class="hoop" aria-hidden="true"></span><span class="hoop b" aria-hidden="true"></span><div class="logo-m" role="img" aria-label="Or's Piercing"></div>${inner}</div>`;
 function renderPhone(){
-  const m=me(), el=$('#phone'); let h='<img class="logo" src="'+LOGO+'" alt="">';
+  const m=me(), el=$('#phone'), st=m?m.status:'none';
+  const old=$('#fname'); if(old){S.form.name=old.value;S.form.phone=$('#fphone').value;S.form.age=$('#fage').checked}
+  el.classList.toggle('fresh',el.dataset.state!==st); el.dataset.state=st;
+  let h='';
   if(!m){
     const w=waiting().length;
-    h+=`<h1 class="hello">ברוכה הבאה, נכנסים לתור?</h1>
-    <div class="wait-strip"><div><b class="num">${w}</b><span>ממתינות עכשיו</span></div><div><b class="num">~${w*MIN_PER}</b><span>דקות המתנה משוערות</span></div></div>
-    <form id="join" novalidate>
-      <label class="f" for="fname">שם מלא<input id="fname" type="text" autocomplete="name" placeholder="איך קוראים לך?" value="${esc(S.form.name||'')}"></label>
-      <label class="f" for="fphone">טלפון לעדכון בוואטסאפ<input id="fphone" type="tel" dir="ltr" inputmode="tel" placeholder="050-0000000" value="${esc(S.form.phone||'')}"></label>
-      <div class="f" style="display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px">איזה פירסינג?
-        <div class="chips">${Object.keys(TYPES).map(t=>`<button type="button" class="chip" data-type="${t}" aria-pressed="${S.form.type===t}">${t}</button>`).join('')}</div></div>
-      <label class="check" for="fage"><input id="fage" type="checkbox">אני מעל גיל 16, או שהגעתי עם הורה שיחתום על אישור</label>
+    h=head(`<h1>נכנסים לתור,<br>ממשיכים להסתובב</h1><p>נשלח לך וואטסאפ כשהתור שלך מתקרב</p>
+      <div class="live"><i></i><span><b class="num">${w}</b> ממתינות עכשיו · כ‑<b class="num">${w*MIN_PER}</b> דקות</span></div>`)+
+    `<div class="p-body"><form id="join" class="stag" novalidate>
+      <div class="fl"><input id="fname" type="text" autocomplete="name" placeholder=" " value="${esc(S.form.name||'')}"><label for="fname">שם מלא</label></div>
+      <div class="fl"><input id="fphone" type="tel" dir="ltr" inputmode="tel" placeholder=" " value="${esc(S.form.phone||'')}"><label for="fphone">טלפון לעדכון בוואטסאפ</label></div>
+      <div><span class="pick-t">איזה פירסינג?</span><div class="tgrid">${Object.keys(TYPES).map(t=>`<button type="button" class="tcard" data-type="${t}" aria-pressed="${S.form.type===t}"><span class="ic"></span><b>${t}</b><small class="num">₪${TYPES[t]}</small></button>`).join('')}</div></div>
+      <label class="check" for="fage"><input id="fage" type="checkbox" ${S.form.age?'checked':''}>אני מעל גיל 16, או שהגעתי עם הורה שיחתום על אישור</label>
       <div class="err" id="ferr" role="alert"></div>
       <button class="btn" type="submit">כניסה לתור</button>
-    </form>`;
+      <p class="trust">בלי אפליקציה · בלי סיסמה · 20 שניות</p>
+    </form></div>`;
   } else if(m.status==='waiting'){
     const a=aheadOf(m), prog=S.startAhead?1-a/(S.startAhead+1):1, C=2*Math.PI*92;
-    h+=`<h2 class="hello">${esc(m.name.split(' ')[0])}, את בתור</h2>
-    <div class="ring-wrap"><svg viewBox="0 0 200 200"><circle class="ring-bg" cx="100" cy="100" r="92"/><circle class="ring-fg" cx="100" cy="100" r="92" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-Math.max(.06,prog))}"/></svg>
-      <span class="bead"></span><div class="ring-in"><small>לפנייך בתור</small><b class="num">${a}</b><small>${a===0?'את הבאה':'כ‑'+(a*MIN_PER+4)+' דקות'}</small></div></div>
-    <div class="ticket-meta"><span>מספר תור <b class="num">#${m.num}</b></span><span>${esc(m.type)}</span></div>
+    h=head(`<p>מספר תור <b class="num">#${m.num}</b></p><h2>${first(m.name)}, את בתור</h2>`)+
+    `<div class="p-body stag">
+    <div class="ticket"><div class="t-top"><div class="ring-wrap"><svg viewBox="0 0 200 200"><circle class="ring-bg" cx="100" cy="100" r="92"/><circle class="ring-fg" cx="100" cy="100" r="92" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-Math.max(.06,prog))}"/></svg>
+      <span class="bead"></span><div class="ring-in"><small>לפנייך בתור</small><b class="num">${a}</b><small>${a===0?'את הבאה':'כ‑'+(a*MIN_PER+4)+' דקות'}</small></div></div></div>
+      <div class="perf"></div>
+      <div class="t-meta"><div><small>מספר תור</small><b class="num">#${m.num}</b></div><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>מחיר</small><b class="num">₪${TYPES[m.type]}</b></div></div></div>
+    <div class="line"><span>הדוכן</span>${'<i></i>'.repeat(Math.min(a,8))}<em>את</em></div>
     ${m.missed?'<div class="note warn">פספסת את התור הקודם. החזרנו אותך לתור</div>':''}
     ${a<=2?'<div class="note warn">עוד מעט תורך. כדאי להתקרב לדוכן</div>':'<div class="note">אפשר להסתובב בינתיים. נשלח לך וואטסאפ כשיישארו 2 לפנייך, ושוב כשיגיע התור</div>'}
-    <button class="btn ghost" id="leave">יציאה מהתור</button>
-    <div class="hint">בדמו: עברו למסך הניהול ולחצו "קראי לבאה בתור" כדי לקדם את התור</div>`;
+    <button class="linkbtn" id="leave">יציאה מהתור</button>
+    <div class="hint">בדמו: עברו למסך הניהול ולחצו "קראי לבאה בתור" כדי לקדם את התור</div></div>`;
   } else if(m.status==='called'){
-    h+=`<div class="called"><p>תור <span class="num">#${m.num}</span></p><h2>הגיע התור שלך</h2><p>אור מחכה לך בדוכן</p><span class="tm num" data-t="${m.calledAt}" data-mine="1"></span></div>
-    <div class="ticket-meta"><span>${esc(m.type)}</span><span>מחיר: <b class="num">₪${TYPES[m.type]}</b></span></div>
-    <div class="note">התשלום בדוכן בסיום: אשראי, ביט, פייבוקס או מזומן</div>
-    <div class="hint">בדמו: במסך הניהול לחצו "לתשלום" או "לא הגיעה" ליד השם שלך</div>`;
+    h=head(`<div class="radar" aria-hidden="true"><i></i><i></i><i></i></div><p>תור <b class="num">#${m.num}</b></p><h2>הגיע התור שלך</h2><p>אור מחכה לך בדוכן</p><span class="tm num" data-t="${m.calledAt}" data-mine="1"></span>`,'mid')+
+    `<div class="p-body stag">
+    <div class="ticket"><div class="t-meta two"><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>לתשלום בסיום</small><b class="num">₪${TYPES[m.type]}</b></div></div></div>
+    <div class="note">משלמים בדוכן: אשראי, ביט, פייבוקס או מזומן</div>
+    <div class="hint">בדמו: במסך הניהול לחצו "לתשלום" או "לא הגיעה" ליד השם שלך</div></div>`;
   } else {
-    h+=`<h2 class="hello">תודה ${esc(m.name.split(' ')[0])}, שיהיה במזל</h2><p class="sub">הקבלה נשלחה אלייך בוואטסאפ</p>
+    h=head(`<div class="fall" aria-hidden="true">${[8,22,37,51,66,80,92].map((x,i)=>`<i style="left:${x}%;animation-delay:${(i*.47).toFixed(2)}s"></i>`).join('')}</div><h2>תודה ${first(m.name)},<br>שיהיה במזל</h2><p>הקבלה נשלחה אלייך בוואטסאפ</p>`,'mid')+
+    `<div class="p-body stag">
     <div class="receipt"><div class="row"><b>קבלה</b><span class="num">#${1000+m.num}</span></div>
       <div class="row"><span>פירסינג ${esc(m.type)}</span><span class="num">₪${m.paid.amount}</span></div>
       <div class="row"><span>אמצעי תשלום</span><span>${m.paid.method}</span></div>
       <div class="row tot"><span>סה"כ שולם</span><span class="num">₪${m.paid.amount}</span></div></div>
     <div class="care"><b>הוראות טיפול (נשלחו גם בוואטסאפ)</b><ul><li>לנקות פעמיים ביום בתמיסת מי מלח</li><li>לא לגעת בידיים לא נקיות</li><li>לא להחליף תכשיט עד להחלמה מלאה</li></ul><small>טקסט לדוגמה. אור תכתוב את ההוראות שלה</small></div>
-    <div class="care" style="animation-delay:.5s"><b>מחר תקבלי הודעה</b>"איך מרגישה עם הפירסינג החדש? נשמח לביקורת ולעוקב באינסטגרם"</div>
-    <button class="btn ghost" id="again">התחלה מחדש</button>`;
+    <div class="care"><b>מחר תקבלי הודעה</b>"איך מרגישה עם הפירסינג החדש? נשמח לביקורת ולעוקב באינסטגרם"</div>
+    <button class="btn ghost" id="again">התחלה מחדש</button></div>`;
   }
   el.innerHTML=h;
 }
 $('#phone').addEventListener('click',e=>{
-  const c=e.target.closest('.chip');
-  if(c){S.form.name=$('#fname').value;S.form.phone=$('#fphone').value;const ag=$('#fage').checked;S.form.type=c.dataset.type;renderPhone();$('#fage').checked=ag;return}
+  const c=e.target.closest('.tcard');
+  if(c){S.form.type=c.dataset.type;document.querySelectorAll('.tcard').forEach(x=>x.setAttribute('aria-pressed',x===c));return}
   if(e.target.id==='leave'){S.queue=S.queue.filter(q=>q.id!==S.me);S.me=null;checkWarn();render()}
   if(e.target.id==='again'){S.me=null;S.form={type:'תנוך'};render()}
 });

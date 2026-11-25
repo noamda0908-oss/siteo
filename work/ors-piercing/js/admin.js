@@ -179,7 +179,7 @@ function openAdd() {
   <div class="err" id="perr" role="alert"></div>
   <button class="btn" id="aok">הוספה לתור</button><button class="btn ghost" id="pcancel">ביטול</button>`);
 }
-const typeRow = t => `<div class="trow"><input type="text" class="tn" maxlength="20" placeholder="שם הסוג" value="${esc(t.name)}"><input type="number" class="tp num" inputmode="numeric" min="0" placeholder="₪" value="${esc(t.price)}"><button type="button" class="xbtn" data-trm="1" aria-label="מחיקת הסוג">×</button></div>`;
+const typeRow = (t, i, l, ph) => `<div class="trow"><input type="text" class="tn" maxlength="20" placeholder="${typeof ph === 'string' ? ph : 'שם הסוג'}" value="${esc(t.name)}"><input type="number" class="tp num" inputmode="numeric" min="0" placeholder="₪" value="${esc(t.price)}"><button type="button" class="xbtn" data-trm="1" aria-label="מחיקת הסוג">×</button></div>`;
 function openSettings() {
   pay = { open: A.data.open };
   openSheet(`<h3>הגדרות</h3>
@@ -189,7 +189,7 @@ function openSettings() {
   <div id="trows" style="display:flex;flex-direction:column;gap:8px">${A.data.types.map(typeRow).join('')}</div>
   <button type="button" class="btn sm ghost" id="tadd" style="align-self:flex-start">הוספת סוג</button>
   <div class="sub">תוספות בהרשמה</div><p class="muted small">למשל שדרוג לתכשיט טיטניום. הלקוחה בוחרת בעצמה והמחיר מתווסף.</p>
-  <div id="xrows" style="display:flex;flex-direction:column;gap:8px">${(A.data.extras || []).map(typeRow).join('')}</div>
+  <div id="xrows" style="display:flex;flex-direction:column;gap:8px">${(A.data.extras || []).map(t => typeRow(t, 0, 0, 'שם התוספת')).join('')}</div>
   <button type="button" class="btn sm ghost" id="xadd" style="align-self:flex-start">הוספת תוספת</button>
   <div class="sub">קישורים</div>
   <label class="f" for="lpay">קישור תשלום (פייבוקס, ביט או דף תשלום)<input id="lpay" type="text" dir="ltr" inputmode="url" placeholder="https://" value="${esc((A.data.links || {}).pay || '')}"></label>
@@ -209,7 +209,7 @@ $('#overlay').addEventListener('click', async e => {
   const c = e.target.closest('.chip:not([data-hd])');
   if (c) { [...c.parentNode.children].forEach(x => x.setAttribute('aria-pressed', x === c)); if (c.dataset.m) pay.method = c.dataset.m; if (c.dataset.t) pay.type = c.dataset.t; if (c.dataset.open) pay.open = c.dataset.open === '1'; return; }
   if (e.target.dataset.trm) { e.target.closest('.trow').remove(); return; }
-  if (id === 'tadd' || id === 'xadd') { $(id === 'tadd' ? '#trows' : '#xrows').insertAdjacentHTML('beforeend', typeRow({ name: '', price: '' })); return; }
+  if (id === 'tadd' || id === 'xadd') { $(id === 'tadd' ? '#trows' : '#xrows').insertAdjacentHTML('beforeend', typeRow({ name: '', price: '' }, 0, 0, id === 'tadd' ? 'שם הסוג' : 'שם התוספת')); const nr = $(id === 'tadd' ? '#trows' : '#xrows').lastElementChild; nr.querySelector('.tn').focus(); return; }
   const hc = e.target.closest('[data-hd]'); if (hc) return openHistory(+hc.dataset.hd);
   const ar = e.target.closest('[data-ar]'); if (ar) return openDecl(ar.dataset.ar, true);
   if (id === 'backArch') return openArchive();

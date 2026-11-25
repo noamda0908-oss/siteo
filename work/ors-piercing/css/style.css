@@ -385,3 +385,8 @@ h1,h2,h3{font-weight:900;letter-spacing:-.025em;line-height:1.08}
 .dsp-now b{font-weight:900}
 .p-head h1,.p-head h2{font-size:clamp(30px,8.6vw,38px)}
 .p-head.mid h2{font-size:clamp(34px,9.6vw,44px)}
+
+/* v8: sheet children must keep their height when the sheet scrolls (buttons were squashed on iPhone) */
+.sheet>*{flex-shrink:0}
+.sheet .btn.sm{padding:11px 18px;min-height:44px}
+.sheet{-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:max(22px,env(safe-area-inset-bottom))}

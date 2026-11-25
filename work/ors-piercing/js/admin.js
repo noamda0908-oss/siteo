@@ -25,12 +25,12 @@ async function act(fn, args, okTitle, okText) {
 
 /* ---------- login ---------- */
 function renderLogin(msg) {
-  $('#statusPill').innerHTML = '';
-  $('#board').innerHTML = `<form class="login stag" id="login" style="display:flex;flex-direction:column;gap:14px">
-    <div><h2 style="font-size:28px">ניהול התור</h2><p class="muted">הכניסה לאור בלבד</p></div>
+  $('#statusPill').innerHTML = ''; document.body.classList.add('gate'); $('#board').className = 'phone gatecard fresh';
+  $('#board').innerHTML = `<div class="p-head mid"><span class="hoop" aria-hidden="true"></span><span class="hoop b" aria-hidden="true"></span><div class="logo-m" role="img" aria-label="Or's Piercing"></div><h1>הדוכן שלך</h1><p>התור, התשלומים וההצהרות במסך אחד</p></div>
+    <div class="p-body"><form class="stag" id="login">
     <div class="fl"><input id="lpass" type="password" autocomplete="current-password" placeholder=" "><label for="lpass">סיסמה</label></div>
     <div class="err" id="lerr" role="alert">${esc(msg || '')}</div>
-    <button class="btn" type="submit" id="lgo">כניסה</button></form>`;
+    <button class="btn" type="submit" id="lgo">כניסה</button></form></div>`;
 }
 document.addEventListener('submit', async e => {
   if (e.target.id !== 'login') return; e.preventDefault();
@@ -38,11 +38,12 @@ document.addEventListener('submit', async e => {
   try {
     const t = await rpc('ors_admin_login', { p_pass: $('#lpass').value });
     if (!t) { b.disabled = false; $('#lerr').textContent = 'הסיסמה לא נכונה'; return; }
-    A.k = t; store.set('ors_admin', t); A.last = ''; A.first = true; $('#board').innerHTML = '<div class="skeleton"><i></i></div>'; refresh(true);
+    A.k = t; store.set('ors_admin', t); A.last = ''; A.first = true; showBoardShell(); refresh(true);
   } catch (er) { b.disabled = false; $('#lerr').textContent = errMsg(er); }
 });
 
 /* ---------- board ---------- */
+function showBoardShell() { document.body.classList.remove('gate'); $('#board').className = 'board'; $('#board').innerHTML = '<div class="skeleton"><i></i></div>'; }
 function rowHTML(q, kind) {
   const isNew = !A.first && !A.seen.has(q.id + kind); A.seen.add(q.id + kind);
   const cls = ['row-c', kind === 'called' ? 'now' : '', isNew ? 'new' : ''].join(' ');
@@ -50,7 +51,11 @@ function rowHTML(q, kind) {
   const act = kind === 'waiting' ? `<div class="acts rowy"><button class="btn sm ghost" data-call="${q.id}">קראי</button><button class="xbtn" data-rm="${q.id}" aria-label="הסרה מהתור">×</button></div>`
     : kind === 'called' ? `<div class="acts"><button class="btn sm" data-pay="${q.id}">לתשלום</button><button class="btn sm ghost" data-miss="${q.id}">לא הגיעה</button></div>`
     : `<span class="pill ok num">₪${q.paid_amount} · ${esc(q.paid_method)}</span>`;
-  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${esc(q.type)} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}${kind !== 'done' ? waLink(q, waText) : ''}</div>${act}</div>`;
+  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${esc(q.type)} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}<div class="tags">${declPill(q)}${kind !== 'done' ? waLink(q, waText) : ''}</div></div>${act}</div>`;
+}
+function declPill(q) {
+  if (!q.declared) return '<span class="pill mute" style="margin-inline-start:0">ללא הצהרת בריאות</span>';
+  return `<button class="pill ${q.flags ? 'warn' : 'ok'}" data-decl="${q.id}" style="margin-inline-start:0">${q.flags ? 'הצהרה: לבדוק לפני שמתחילים' : 'הצהרת בריאות תקינה'}${q.minor ? ' · קטינה' : ''}</button> `;
 }
 function qrSvg() { const q = qrcode(0, 'M'); q.addData(CUSTOMER_URL); q.make(); return q.createSvgTag({ cellSize: 8, margin: 2, scalable: true }); }
 function renderBoard() {
@@ -59,19 +64,22 @@ function renderBoard() {
   $('#statusPill').innerHTML = `<span class="status ${A.data.open ? '' : 'off'}"><i></i>${A.data.open ? 'התור פתוח להרשמה' : 'התור סגור להרשמה'}</span>`;
   const svg = qrSvg();
   $('#board').innerHTML = `
-  <div class="board-head"><div><h2>התור של היום</h2><p>${day}</p></div><div class="head-acts"><button class="btn sm ghost" id="addWalk">הוספה ידנית</button><button class="btn sm ghost" id="openSet">הגדרות</button></div></div>
-  <div class="stats"><div class="stat"><b class="num">${w.length}</b><span>ממתינות</span></div><div class="stat"><b class="num">${d.length}</b><span>טופלו היום</span></div><div class="stat"><b class="num">₪${rev.toLocaleString()}</b><span>הכנסות היום</span></div></div>
+  <div class="hero"><span class="hoop" aria-hidden="true"></span>
+    <div class="hero-top"><div><p>${day}</p><h2>התור של היום</h2></div><div class="head-acts"><button class="btn sm light" id="addWalk">הוספה ידנית</button><button class="btn sm light" id="openSet">הגדרות</button></div></div>
+    <div class="stats">${[[w.length, 'ממתינות'], [d.length, 'טופלו היום'], ['₪' + rev.toLocaleString(), 'הכנסות היום']].map(([v, l], i) => `<div class="stat ${A.stats && A.stats[i] !== String(v) ? 'pop' : ''}"><b class="num">${v}</b><span>${l}</span></div>`).join('')}</div></div>
   <div><div class="sec-title">בטיפול עכשיו</div><div class="rows">${c.length ? c.map(q => rowHTML(q, 'called')).join('') : '<div class="empty">אין אף אחת בטיפול. קראי לבאה בתור</div>'}</div></div>
   <button class="btn" id="callNext" ${w.length ? '' : 'disabled'}>קראי לבאה בתור</button>
   <div><div class="sec-title">ממתינות <span>לפי סדר הגעה</span></div><div class="rows">${w.length ? w.map(q => rowHTML(q, 'waiting')).join('') : '<div class="empty">התור ריק</div>'}</div></div>
   <div><div class="sec-title">שולמו היום <span>${d.length ? d.length + ' לקוחות' : ''}</span></div><div class="rows">${d.length ? d.slice().sort((a, b) => b.done_at - a.done_at).map(q => rowHTML(q, 'done')).join('') : '<div class="empty">עוד אין תשלומים היום</div>'}</div></div>
   <div class="qr"><div class="qrbox">${svg}</div><p><b>ה‑QR של הדוכן</b>מדפיסים ותולים. כל סריקה פותחת את דף ההרשמה לתור.<br><a href="${esc(CUSTOMER_URL)}" target="_blank" rel="noopener" dir="ltr">${esc(CUSTOMER_URL.replace(/^https?:\/\//, ''))}</a><br><button class="btn sm ghost" id="printQr" style="margin-top:8px">הדפסת שלט QR</button></p></div>`;
   $('#posterQr').innerHTML = svg; $('#posterUrl').textContent = CUSTOMER_URL.replace(/^https?:\/\//, '');
+  A.stats = [String(w.length), String(d.length), '₪' + rev.toLocaleString()];
   A.first = false; tick();
 }
 let loading = false;
 async function refresh(force) {
-  if (!A.k) return renderLogin();
+  if (!A.k) { if (!$('#login')) renderLogin(); return; }
+  if (document.body.classList.contains('gate')) showBoardShell();
   if (loading && !force) return; loading = true;
   try {
     const d = await call('ors_admin_board'); A.data = d;
@@ -87,6 +95,7 @@ $('#board').addEventListener('click', e => {
   else if (t.dataset.pay) openPay(t.dataset.pay);
   else if (t.dataset.miss) openMiss(t.dataset.miss);
   else if (t.dataset.rm) openRemove(t.dataset.rm);
+  else if (t.dataset.decl) openDecl(t.dataset.decl);
   else if (t.id === 'addWalk') openAdd();
   else if (t.id === 'openSet') openSettings();
   else if (t.id === 'printQr') window.print();
@@ -112,6 +121,18 @@ function openRemove(id) {
   const q = find(id); if (!q) return; pay = { id };
   openSheet(`<h3>להסיר את ${esc(q.name)} מהתור?</h3><p class="muted">תור <span class="num">#${q.num}</span>. אי אפשר לבטל את הפעולה, היא תצטרך להירשם מחדש.</p>
   <button class="btn" id="mout">הסרה מהתור</button><button class="btn ghost" id="pcancel">ביטול</button>`);
+}
+async function openDecl(id) {
+  let d; try { d = await call('ors_admin_declaration', { p_id: id }); } catch (e) { return toast('לא הצלחנו', errMsg(e), true); }
+  if (!d || !d.health) return;
+  const H = d.health, when = new Date(d.declared_at).toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+  const rows = HEALTH_Q.slice().sort((a, b) => (H[b[0]] === true) - (H[a[0]] === true)).map(([k, t]) => `<div class="${H[k] ? 'yes' : ''}"><span>${t}</span><b>${H[k] ? 'כן' : 'לא'}</b></div>`).join('');
+  openSheet(`<h3>הצהרת בריאות</h3><p class="muted">${esc(d.name)} · תור <span class="num">#${d.num}</span> · נחתמה ב‑${when}</p>
+  ${H.minor ? `<div class="note warn">מתחת לגיל 16. הורה מלווה: ${esc(H.parent)}</div>` : ''}
+  ${H.note ? `<div class="care"><b>מה שהיא כתבה</b>${esc(H.note)}</div>` : ''}
+  <div class="decl">${rows}</div>
+  <div><div class="sub" style="margin-bottom:6px">${H.minor ? 'חתימת ההורה' : 'חתימה'}</div><img class="sigimg" alt="חתימה" src="${esc(d.signature)}"></div>
+  <button class="btn ghost" id="pcancel">סגירה</button>`);
 }
 function openAdd() {
   pay = { type: A.data.types[0].name };

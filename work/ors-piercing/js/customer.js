@@ -1,19 +1,17 @@
 /* Or's Piercing: customer screen (opened from the stand's QR) */
 const S = { state: null, ticket: null, token: store.get('ors_token'), form: { type: null }, step: 'form', health: {}, signed: false, start: +(store.get('ors_start') || 0), last: '', busy: false, ac: null };
+function freshForm() { let me = null; try { me = JSON.parse(store.get('ors_me') || 'null'); } catch (_) {} return { type: null, extras: [], name: me ? me.name : '', phone: me ? me.phone : '' }; }
+S.form = freshForm();
 const first = n => esc(String(n).trim().split(' ')[0]);
 const head = (inner, cls = '') => `<div class="p-head ${cls}"><span class="hoop" aria-hidden="true"></span><span class="hoop b" aria-hidden="true"></span><div class="logo-m" role="img" aria-label="Or's Piercing"></div>${inner}</div>`;
+const xline = m => (m.extras || []).length ? `<div class="xline">כולל ${m.extras.map(x => esc(x.name)).join(', ')}</div>` : '';
 const priceOf = t => { const x = (S.state.types || []).find(y => y.name === t); return x ? x.price : 0; };
 
 function forget() { S.token = null; S.ticket = null; S.start = 0; store.del('ors_token'); store.del('ors_start'); }
 
 function alertCalled() {
   try { navigator.vibrate && navigator.vibrate([300, 150, 300, 150, 500]); } catch (_) {}
-  try {
-    if (!S.ac) return; const t0 = S.ac.currentTime;
-    [660, 880, 1100].forEach((f, i) => { const o = S.ac.createOscillator(), g = S.ac.createGain(); o.frequency.value = f; o.connect(g); g.connect(S.ac.destination);
-      g.gain.setValueAtTime(.0001, t0 + i * .22); g.gain.exponentialRampToValueAtTime(.25, t0 + i * .22 + .03); g.gain.exponentialRampToValueAtTime(.0001, t0 + i * .22 + .2);
-      o.start(t0 + i * .22); o.stop(t0 + i * .22 + .22); });
-  } catch (_) {}
+  chime([660, 880, 1100]);
 }
 
 function render() {
@@ -35,6 +33,7 @@ function render() {
       <div class="fl"><input id="fname" type="text" autocomplete="name" maxlength="40" placeholder=" " value="${esc(S.form.name || '')}"><label for="fname">שם מלא</label></div>
       <div class="fl"><input id="fphone" type="tel" dir="ltr" inputmode="tel" autocomplete="tel" maxlength="16" placeholder=" " value="${esc(S.form.phone || '')}"><label for="fphone">טלפון</label></div>
       <div><span class="pick-t">איזה פירסינג?</span><div class="tgrid">${types.map(t => `<button type="button" class="tcard" data-type="${esc(t.name)}" aria-pressed="${S.form.type === t.name}"><span class="ic"></span><b>${esc(t.name)}</b><small class="num">₪${t.price}</small></button>`).join('')}</div></div>
+      ${(S.state.extras || []).length ? `<div><span class="pick-t">רוצה להוסיף?</span><div class="chips" id="fx">${S.state.extras.map(x => `<button type="button" class="chip" data-x="${esc(x.name)}" aria-pressed="${(S.form.extras || []).includes(x.name)}">${esc(x.name)} <span class="num">+₪${x.price}</span></button>`).join('')}</div></div>` : ''}
       <div class="err" id="ferr" role="alert"></div>
       <button class="btn" type="submit" id="fgo">המשך להצהרת בריאות</button>
       <p class="trust">בלי אפליקציה ובלי סיסמה. לוקח בערך דקה</p>
@@ -62,7 +61,7 @@ function render() {
     <div class="ticket"><div class="t-top"><div class="ring-wrap"><svg viewBox="0 0 200 200"><circle class="ring-bg" cx="100" cy="100" r="92"/><circle class="ring-fg" cx="100" cy="100" r="92" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - Math.max(.06, prog))}"/></svg>
       <span class="bead"></span><div class="ring-in"><small>לפנייך בתור</small><b class="num">${a}</b><small>${a === 0 ? 'את הבאה' : 'כ‑' + (a * S.state.min_per + 4) + ' דקות'}</small></div></div></div>
       <div class="perf"></div>
-      <div class="t-meta"><div><small>מספר תור</small><b class="num">#${m.num}</b></div><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>מחיר</small><b class="num">₪${m.price}</b></div></div></div>
+      <div class="t-meta"><div><small>מספר תור</small><b class="num">#${m.num}</b></div><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>מחיר</small><b class="num">₪${m.price}</b></div></div>${xline(m)}</div>
     <div class="line"><span>הדוכן</span>${'<i></i>'.repeat(Math.min(a, 8))}<em>את</em></div>
     ${m.missed ? '<div class="note warn">פספסת את התור הקודם. החזרנו אותך לתור</div>' : ''}
     ${a <= 2 ? '<div class="note warn">עוד מעט תורך. כדאי להתקרב לדוכן</div>' : '<div class="note">אפשר להסתובב בינתיים. הדף מתעדכן לבד, כדאי להשאיר אותו פתוח</div>'}
@@ -70,7 +69,7 @@ function render() {
   } else if (st === 'called') {
     h = head(`<div class="radar" aria-hidden="true"><i></i><i></i><i></i></div><p>תור <b class="num">#${m.num}</b></p><h2>הגיע התור שלך</h2><p>אור מחכה לך בדוכן</p><span class="tm num" data-t="${m.called_at}" data-mine="1"></span>`, 'mid') +
     `<div class="p-body stag">
-    <div class="ticket"><div class="t-meta two"><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>לתשלום בסיום</small><b class="num">₪${m.price}</b></div></div></div>
+    <div class="ticket"><div class="t-meta two"><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>לתשלום בסיום</small><b class="num">₪${m.price}</b></div></div>${xline(m)}</div>
     <div class="note">משלמים בדוכן: אשראי, ביט, פייבוקס או מזומן</div></div>`;
   } else if (st === 'done') {
     h = head(`<div class="fall" aria-hidden="true">${[8, 22, 37, 51, 66, 80, 92].map((x, i) => `<i style="left:${x}%;animation-delay:${(i * .47).toFixed(2)}s"></i>`).join('')}</div><h2>תודה ${first(m.name)},<br>שיהיה במזל</h2><p>היה כיף לארח אותך</p>`, 'mid') +
@@ -80,7 +79,9 @@ function render() {
       <div class="row"><span>אמצעי תשלום</span><span>${esc(m.paid_method)}</span></div>
       <div class="row tot"><span>סה"כ שולם</span><span class="num">₪${m.paid_amount}</span></div></div>
     <div class="care"><b>הוראות טיפול</b><ul><li>לנקות פעמיים ביום בתמיסת מי מלח</li><li>לא לגעת בידיים לא נקיות</li><li>לא להחליף תכשיט עד להחלמה מלאה</li></ul></div>
-    <button class="btn ghost" id="again">סיום</button></div>`;
+    ${S.state.links && S.state.links.review ? `<a class="btn" target="_blank" rel="noopener" href="${esc(S.state.links.review)}">נהנית? כתבי ביקורת בגוגל</a>` : ''}
+    ${S.state.links && S.state.links.instagram ? `<a class="btn ghost" target="_blank" rel="noopener" href="${esc(S.state.links.instagram)}">לעקוב באינסטגרם</a>` : ''}
+    <button class="linkbtn" id="again">סיום</button></div>`;
   } else { // removed
     h = head(`<h2>התור שלך בוטל</h2><p>לא הגעת בזמן, אז התור עבר הלאה. אפשר להירשם שוב</p>`, 'mid') +
     `<div class="p-body stag"><button class="btn" id="again">כניסה מחדש לתור</button></div>`;
@@ -109,7 +110,7 @@ async function refresh() {
     S.state = state; S.ticket = ticket;
     if (S.token && (!ticket || ticket.status === 'left')) forget();
     if (S.ticket && S.ticket.status === 'called' && prev === 'waiting') alertCalled();
-    const key = JSON.stringify([S.ticket, S.ticket ? S.state.min_per : S.state.open + JSON.stringify(S.state.types)]);
+    const key = JSON.stringify([S.ticket, S.ticket ? S.state.min_per : S.state.open + JSON.stringify([S.state.types, S.state.extras]), JSON.stringify(S.state.links)]);
     if (!S.ticket && S.step === 'health' && S.state.open && S.last) { S.last = key; return; }
     if (key !== S.last) { S.last = key; render(); }
     else if (!S.ticket && $('#livec')) $('#livec').innerHTML = `<b class="num">${state.waiting}</b> ממתינות עכשיו · כ‑<b class="num">${state.waiting * state.min_per}</b> דקות`;
@@ -122,6 +123,8 @@ $('#phone').addEventListener('click', async e => {
   const c = e.target.closest('.tcard');
   if (c) { S.form.type = c.dataset.type; document.querySelectorAll('.tcard').forEach(x => x.setAttribute('aria-pressed', x === c)); return; }
   if (e.target.id === 'reload') return refresh();
+  const fx = e.target.closest('#fx .chip');
+  if (fx) { const on = fx.getAttribute('aria-pressed') !== 'true'; fx.setAttribute('aria-pressed', on); S.form.extras = (S.form.extras || []).filter(x => x !== fx.dataset.x); if (on) S.form.extras.push(fx.dataset.x); return; }
   const yn = e.target.closest('.yn button');
   if (yn) { const w = yn.parentNode; S.health[w.dataset.k] = yn.dataset.v === '1'; [...w.children].forEach(b => b.setAttribute('aria-pressed', b === yn)); w.closest('.q').classList.remove('miss'); return; }
   if (e.target.id === 'allno') { HEALTH_Q.forEach(([k]) => { S.health[k] = false; }); document.querySelectorAll('.yn').forEach(w => { [...w.children].forEach(b => b.setAttribute('aria-pressed', b.dataset.v === '0')); w.closest('.q').classList.remove('miss'); }); return; }
@@ -134,7 +137,7 @@ $('#phone').addEventListener('click', async e => {
     try { await rpc('ors_leave', { p_token: S.token }); } catch (er) { return toast('לא הצלחנו', errMsg(er), true); }
     forget(); S.last = ''; refresh();
   }
-  if (e.target.id === 'again') { forget(); S.form = { type: null }; S.health = {}; S.step = 'form'; S.last = ''; refresh(); }
+  if (e.target.id === 'again') { forget(); S.form = freshForm(); S.health = {}; S.step = 'form'; S.last = ''; refresh(); }
 });
 $('#phone').addEventListener('submit', async e => {
   e.preventDefault();
@@ -154,13 +157,13 @@ $('#phone').addEventListener('submit', async e => {
   if (typeof H.minor !== 'boolean') { err.textContent = 'צריך לבחור גיל'; return; }
   if (H.minor && (H.parent || '').trim().length < 2) { err.textContent = 'חסר שם ההורה המלווה'; return; }
   if (!S.signed) { err.textContent = H.minor ? 'חסרה חתימת ההורה. חותמים עם האצבע בתוך המסגרת' : 'חסרה חתימה. חותמים עם האצבע בתוך המסגרת'; return; }
-  try { S.ac = S.ac || new (window.AudioContext || window.webkitAudioContext)(); S.ac.resume(); } catch (_) {}
   S.busy = true; btn.disabled = true; btn.textContent = 'רושמות אותך...';
   try {
     const health = { minor: H.minor, parent: H.minor ? H.parent.trim() : '', note: (H.note || '').trim() }; HEALTH_Q.forEach(([k]) => { health[k] = H[k]; });
-    const r = await rpc('ors_join', { p_name: S.form.name.trim(), p_phone: S.form.phone.trim(), p_type: S.form.type, p_health: health, p_sig: $('#sig').toDataURL('image/png') });
+    const r = await rpc('ors_join', { p_name: S.form.name.trim(), p_phone: S.form.phone.trim(), p_type: S.form.type, p_health: health, p_sig: $('#sig').toDataURL('image/png'), p_extras: S.form.extras || [] });
+    store.set('ors_me', JSON.stringify({ name: S.form.name.trim(), phone: S.form.phone.trim() }));
     S.token = r.token; S.ticket = r.ticket; S.start = r.ticket.ahead; store.set('ors_token', r.token); store.set('ors_start', String(S.start));
-    S.form = { type: null }; S.health = {}; S.step = 'form'; S.last = ''; S.busy = false; await refresh();
+    S.form = freshForm(); S.health = {}; S.step = 'form'; S.last = ''; S.busy = false; await refresh();
   } catch (er) {
     S.busy = false; btn.disabled = false; btn.textContent = 'חתימה וכניסה לתור'; err.textContent = errMsg(er);
     if (['ORS_NAME', 'ORS_PHONE', 'ORS_DUP', 'ORS_TYPE'].includes(errCode(er))) { const m = errMsg(er); S.step = 'form'; S.last = ''; await refresh(); render(); const fe = $('#ferr'); if (fe) fe.textContent = m; }

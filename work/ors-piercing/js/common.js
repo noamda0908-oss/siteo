@@ -31,6 +31,7 @@ const ERR = {
   ORS_HEALTH: 'צריך לענות על כל השאלות בהצהרה',
   ORS_PARENT: 'חסר שם ההורה המלווה',
   ORS_SIG: 'חסרה חתימה',
+  ORS_LINK: 'קישור לא תקין. צריך להתחיל ב-https://',
   ORS_PASS: 'הסיסמה צריכה לפחות 8 תווים'
 };
 const HEALTH_Q = [
@@ -75,3 +76,15 @@ function tick() {
   });
 }
 setInterval(tick, 1000);
+
+/* short chime; the audio context is unlocked by the first tap on the page */
+let AC = null;
+addEventListener('pointerdown', () => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); AC.resume(); } catch (_) {} }, { passive: true });
+function chime(notes) {
+  try {
+    if (!AC) return; const t0 = AC.currentTime;
+    (notes || [660, 880]).forEach((f, i) => { const o = AC.createOscillator(), g = AC.createGain(); o.type = 'sine'; o.frequency.value = f; o.connect(g); g.connect(AC.destination);
+      g.gain.setValueAtTime(.0001, t0 + i * .2); g.gain.exponentialRampToValueAtTime(.3, t0 + i * .2 + .03); g.gain.exponentialRampToValueAtTime(.0001, t0 + i * .2 + .32);
+      o.start(t0 + i * .2); o.stop(t0 + i * .2 + .34); });
+  } catch (_) {}
+}

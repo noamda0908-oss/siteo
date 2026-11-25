@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#330C0F">
+<title>Or's Piercing · מי בתור</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=5">
+</head>
+<body class="display">
+<div class="hoops" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="dsp">
+  <div class="dsp-top"><img src="logo.png" alt="Or's Piercing"><span class="status" id="dstatus"></span></div>
+  <div class="dsp-main">
+    <div><h2>עכשיו בדוכן</h2><div class="dsp-now" id="dnow"></div></div>
+    <div><h2>הבאות בתור</h2><div class="dsp-next" id="dnext"></div></div>
+  </div>
+  <div class="dsp-foot"><p id="dwait"></p><div class="dsp-qr"><p>סורקים, נכנסים לתור וממשיכים להסתובב</p><div id="dqr"></div></div></div>
+</div>
+<div class="toasts" id="toasts"></div>
+<script src="vendor/supabase.js"></script>
+<script src="vendor/qrcode.js"></script>
+<script src="js/common.js?v=5"></script>
+<script>
+let last = '';
+(function () { const q = qrcode(0, 'M'); q.addData(new URL('./', location.href).href); q.make(); $('#dqr').innerHTML = q.createSvgTag({ cellSize: 8, margin: 1, scalable: true }); })();
+async function draw() {
+  let d; try { d = await rpc('ors_display'); } catch (_) { return; }
+  const key = JSON.stringify(d); if (key === last) return;
+  const prev = last ? JSON.parse(last).called : null; last = key;
+  $('#dstatus').className = 'status' + (d.open ? '' : ' off'); $('#dstatus').innerHTML = '<i></i>' + (d.open ? 'התור פתוח' : 'התור סגור כרגע');
+  $('#dnow').className = 'dsp-now' + (d.called.length > 1 ? ' multi' : '');
+  $('#dnow').innerHTML = d.called.length ? d.called.slice(0, 3).map(n => `<b class="num">${n}</b>`).join('') : '<span>מיד מתחילים</span>';
+  $('#dnext').innerHTML = d.next.length ? d.next.map(n => `<b class="num">${n}</b>`).join('') : '<span style="font-size:clamp(20px,2.6vw,40px);opacity:.7">אין ממתינות. אפשר להיכנס עכשיו</span>';
+  $('#dwait').textContent = d.waiting ? d.waiting + ' ממתינות בתור' : '';
+  if (prev && d.called.some(n => !prev.includes(n))) chime([660, 880, 1100]);
+}
+draw(); live(draw);
+</script>
+</body>
+</html>

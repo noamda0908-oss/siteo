@@ -51,7 +51,7 @@ function rowHTML(q, kind) {
   const act = kind === 'waiting' ? `<div class="acts rowy"><button class="btn sm ghost" data-call="${q.id}">קראי</button><button class="xbtn" data-rm="${q.id}" aria-label="הסרה מהתור">×</button></div>`
     : kind === 'called' ? `<div class="acts"><button class="btn sm" data-pay="${q.id}">לתשלום</button><button class="btn sm ghost" data-miss="${q.id}">לא הגיעה</button></div>`
     : `<span class="pill ok num">₪${q.paid_amount} · ${esc(q.paid_method)}</span>`;
-  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${esc(q.type)} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}<div class="tags">${declPill(q)}${kind !== 'done' ? waLink(q, waText) : ''}</div></div>${act}</div>`;
+  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${esc(q.type)}${(q.extras || []).length ? ' + ' + q.extras.map(x => esc(x.name)).join(', ') : ''} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}<div class="tags">${declPill(q)}${kind !== 'done' ? waLink(q, waText) : ''}</div></div>${act}</div>`;
 }
 function declPill(q) {
   if (!q.declared) return '<span class="pill mute" style="margin-inline-start:0">ללא הצהרת בריאות</span>';
@@ -65,13 +65,13 @@ function renderBoard() {
   const svg = qrSvg();
   $('#board').innerHTML = `
   <div class="hero"><span class="hoop" aria-hidden="true"></span>
-    <div class="hero-top"><div><p>${day}</p><h2>התור של היום</h2></div><div class="head-acts"><button class="btn sm light" id="addWalk">הוספה ידנית</button><button class="btn sm light" id="openSet">הגדרות</button></div></div>
+    <div class="hero-top"><div><p>${day}</p><h2>התור של היום</h2></div><div class="head-acts"><button class="btn sm light" id="addWalk">הוספה ידנית</button><button class="btn sm light" id="openHist">סיכומים</button><button class="btn sm light" id="openArch">הצהרות</button><button class="btn sm light" id="openSet">הגדרות</button></div></div>
     <div class="stats">${[[w.length, 'ממתינות'], [d.length, 'טופלו היום'], ['₪' + rev.toLocaleString(), 'הכנסות היום']].map(([v, l], i) => `<div class="stat ${A.stats && A.stats[i] !== String(v) ? 'pop' : ''}"><b class="num">${v}</b><span>${l}</span></div>`).join('')}</div></div>
   <div><div class="sec-title">בטיפול עכשיו</div><div class="rows">${c.length ? c.map(q => rowHTML(q, 'called')).join('') : '<div class="empty">אין אף אחת בטיפול. קראי לבאה בתור</div>'}</div></div>
   <button class="btn" id="callNext" ${w.length ? '' : 'disabled'}>קראי לבאה בתור</button>
   <div><div class="sec-title">ממתינות <span>לפי סדר הגעה</span></div><div class="rows">${w.length ? w.map(q => rowHTML(q, 'waiting')).join('') : '<div class="empty">התור ריק</div>'}</div></div>
   <div><div class="sec-title">שולמו היום <span>${d.length ? d.length + ' לקוחות' : ''}</span></div><div class="rows">${d.length ? d.slice().sort((a, b) => b.done_at - a.done_at).map(q => rowHTML(q, 'done')).join('') : '<div class="empty">עוד אין תשלומים היום</div>'}</div></div>
-  <div class="qr"><div class="qrbox">${svg}</div><p><b>ה‑QR של הדוכן</b>מדפיסים ותולים. כל סריקה פותחת את דף ההרשמה לתור.<br><a href="${esc(CUSTOMER_URL)}" target="_blank" rel="noopener" dir="ltr">${esc(CUSTOMER_URL.replace(/^https?:\/\//, ''))}</a><br><button class="btn sm ghost" id="printQr" style="margin-top:8px">הדפסת שלט QR</button></p></div>`;
+  <div class="qr"><div class="qrbox">${svg}</div><p><b>ה‑QR של הדוכן</b>מדפיסים ותולים. כל סריקה פותחת את דף ההרשמה לתור.<br><a href="${esc(CUSTOMER_URL)}" target="_blank" rel="noopener" dir="ltr">${esc(CUSTOMER_URL.replace(/^https?:\/\//, ''))}</a><br><span class="head-acts" style="margin-top:8px"><button class="btn sm ghost" id="printQr">הדפסת שלט QR</button><a class="btn sm ghost" href="display.html" target="_blank" rel="noopener">מסך תצוגה לקהל</a></span></p></div>`;
   $('#posterQr').innerHTML = svg; $('#posterUrl').textContent = CUSTOMER_URL.replace(/^https?:\/\//, '');
   A.stats = [String(w.length), String(d.length), '₪' + rev.toLocaleString()];
   A.first = false; tick();
@@ -82,7 +82,10 @@ async function refresh(force) {
   if (document.body.classList.contains('gate')) showBoardShell();
   if (loading && !force) return; loading = true;
   try {
-    const d = await call('ors_admin_board'); A.data = d;
+    const d = await call('ors_admin_board');
+    const ids = d.queue.filter(q => q.status === 'waiting').map(q => q.id);
+    if (A.known && ids.some(i => !A.known.has(i))) chime([784, 1047]);
+    A.known = new Set([...(A.known || []), ...ids]); A.data = d;
     const key = JSON.stringify(d); if (key !== A.last) { A.last = key; renderBoard(); }
   } catch (e) { if (A.k && !A.data) $('#board').innerHTML = '<div class="empty">אין חיבור כרגע. המסך ינסה שוב לבד</div>'; }
   loading = false;
@@ -98,6 +101,8 @@ $('#board').addEventListener('click', e => {
   else if (t.dataset.decl) openDecl(t.dataset.decl);
   else if (t.id === 'addWalk') openAdd();
   else if (t.id === 'openSet') openSettings();
+  else if (t.id === 'openHist') openHistory(1);
+  else if (t.id === 'openArch') openArchive();
   else if (t.id === 'printQr') window.print();
 });
 
@@ -122,17 +127,44 @@ function openRemove(id) {
   openSheet(`<h3>להסיר את ${esc(q.name)} מהתור?</h3><p class="muted">תור <span class="num">#${q.num}</span>. אי אפשר לבטל את הפעולה, היא תצטרך להירשם מחדש.</p>
   <button class="btn" id="mout">הסרה מהתור</button><button class="btn ghost" id="pcancel">ביטול</button>`);
 }
-async function openDecl(id) {
+async function openDecl(id, fromArch) {
   let d; try { d = await call('ors_admin_declaration', { p_id: id }); } catch (e) { return toast('לא הצלחנו', errMsg(e), true); }
   if (!d || !d.health) return;
-  const H = d.health, when = new Date(d.declared_at).toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+  const H = d.health, when = new Date(d.declared_at).toLocaleString('he-IL', { day: 'numeric', month: 'numeric', year: '2-digit', hour: '2-digit', minute: '2-digit' });
   const rows = HEALTH_Q.slice().sort((a, b) => (H[b[0]] === true) - (H[a[0]] === true)).map(([k, t]) => `<div class="${H[k] ? 'yes' : ''}"><span>${t}</span><b>${H[k] ? 'כן' : 'לא'}</b></div>`).join('');
   openSheet(`<h3>הצהרת בריאות</h3><p class="muted">${esc(d.name)} · תור <span class="num">#${d.num}</span> · נחתמה ב‑${when}</p>
   ${H.minor ? `<div class="note warn">מתחת לגיל 16. הורה מלווה: ${esc(H.parent)}</div>` : ''}
   ${H.note ? `<div class="care"><b>מה שהיא כתבה</b>${esc(H.note)}</div>` : ''}
   <div class="decl">${rows}</div>
   <div><div class="sub" style="margin-bottom:6px">${H.minor ? 'חתימת ההורה' : 'חתימה'}</div><img class="sigimg" alt="חתימה" src="${esc(d.signature)}"></div>
+  ${fromArch ? '<button class="btn ghost" id="backArch">חזרה לחיפוש</button>' : ''}<button class="btn ghost" id="pcancel">סגירה</button>`);
+}
+const nis = n => '₪' + Number(n || 0).toLocaleString();
+async function openHistory(days) {
+  const chips = [[1, 'היום'], [7, '7 ימים'], [30, '30 ימים'], [365, 'שנה']].map(([d, l]) => `<button type="button" class="chip" data-hd="${d}" aria-pressed="${d === days}">${l}</button>`).join('');
+  openSheet(`<h3>סיכומים</h3><div class="chips">${chips}</div><div class="skeleton" style="padding:30px 0"><i></i></div>`);
+  let h; try { h = await call('ors_admin_history', { p_days: days }); } catch (e) { return toast('לא הצלחנו', errMsg(e), true); }
+  const bars = (list, total) => list.length ? `<div class="bars">${list.map(x => `<div class="bar"><div class="bar-t"><span>${esc(x.name)}</span><b class="num">${x.count} · ${nis(x.sum)}</b></div><i style="--w:${total ? Math.max(4, Math.round(x.sum / total * 100)) : 0}%"></i></div>`).join('')}</div>` : '<div class="empty">עוד אין נתונים לתקופה הזאת</div>';
+  const dayRow = x => `<div><span>${new Date(x.day + 'T12:00:00').toLocaleDateString('he-IL', { weekday: 'short', day: 'numeric', month: 'numeric' })}</span><b class="num">${x.count} לקוחות · ${nis(x.sum)}</b></div>`;
+  openSheet(`<h3>סיכומים</h3><div class="chips">${chips}</div>
+  <div class="stats"><div class="stat"><b class="num">${nis(h.revenue)}</b><span>הכנסות</span></div><div class="stat"><b class="num">${h.count}</b><span>לקוחות</span></div><div class="stat"><b class="num">${h.count ? nis(Math.round(h.revenue / h.count)) : '₪0'}</b><span>ממוצע ללקוחה</span></div></div>
+  <div class="sub">לפי סוג פירסינג</div>${bars(h.types, h.revenue)}
+  <div class="sub">לפי אמצעי תשלום</div>${bars(h.methods, h.revenue)}
+  ${days > 1 && h.days.length ? `<div class="sub">לפי יום</div><div class="decl">${h.days.map(dayRow).join('')}</div>` : ''}
+  <p class="muted small">${h.no_show} לקוחות הוצאו מהתור בלי טיפול בתקופה הזאת.</p>
   <button class="btn ghost" id="pcancel">סגירה</button>`);
+}
+let archT = 0;
+function openArchive() {
+  openSheet(`<h3>הצהרות בריאות</h3><p class="muted">כל ההצהרות שנחתמו נשמרות כאן. חיפוש לפי שם או טלפון.</p>
+  <input id="arq" type="text" placeholder="שם או טלפון" autocomplete="off"><div id="arres" class="rows"></div>
+  <button class="btn ghost" id="pcancel">סגירה</button>`);
+  const go = async () => {
+    let r; try { r = await call('ors_admin_search', { p_q: $('#arq').value }); } catch (e) { return; }
+    if (!$('#arres')) return;
+    $('#arres').innerHTML = r.length ? r.map(x => `<button type="button" class="row-c arow" data-ar="${x.id}"><div class="badge num">${x.num}</div><div class="who"><b>${esc(x.name)}</b><span>${new Date(x.day + 'T12:00:00').toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric', year: '2-digit' })} · ${esc(x.type)} · <span dir="ltr">${esc(fmtPhone(x.phone))}</span></span></div><span class="pill ${x.flags ? 'warn' : 'ok'}">${x.flags ? 'יש הערות' : 'תקינה'}</span></button>`).join('') : '<div class="empty">לא נמצאו הצהרות</div>';
+  };
+  $('#arq').addEventListener('input', () => { clearTimeout(archT); archT = setTimeout(go, 250); }); go();
 }
 function openAdd() {
   pay = { type: A.data.types[0].name };
@@ -152,6 +184,12 @@ function openSettings() {
   <div class="sub">סוגי פירסינג ומחירים</div>
   <div id="trows" style="display:flex;flex-direction:column;gap:8px">${A.data.types.map(typeRow).join('')}</div>
   <button type="button" class="btn sm ghost" id="tadd" style="align-self:flex-start">הוספת סוג</button>
+  <div class="sub">תוספות בהרשמה</div><p class="muted small">למשל שדרוג לתכשיט טיטניום. הלקוחה בוחרת בעצמה והמחיר מתווסף.</p>
+  <div id="xrows" style="display:flex;flex-direction:column;gap:8px">${(A.data.extras || []).map(typeRow).join('')}</div>
+  <button type="button" class="btn sm ghost" id="xadd" style="align-self:flex-start">הוספת תוספת</button>
+  <div class="sub">קישורים אחרי התשלום</div>
+  <label class="f" for="lrv">קישור לביקורת בגוגל<input id="lrv" type="text" dir="ltr" inputmode="url" placeholder="https://" value="${esc((A.data.links || {}).review || '')}"></label>
+  <label class="f" for="lig">קישור לאינסטגרם<input id="lig" type="text" dir="ltr" inputmode="url" placeholder="https://instagram.com/" value="${esc((A.data.links || {}).instagram || '')}"></label>
   <label class="f" for="smin">זמן ממוצע ללקוחה (בדקות)<input id="smin" type="number" inputmode="numeric" min="1" max="120" value="${A.data.min_per}"></label>
   <div class="err" id="perr" role="alert"></div>
   <button class="btn" id="sok">שמירה</button>
@@ -163,10 +201,13 @@ function openSettings() {
 $('#overlay').addEventListener('click', async e => {
   const id = e.target.id;
   if (id === 'overlay' || id === 'pcancel') return closeSheet();
-  const c = e.target.closest('.chip');
+  const c = e.target.closest('.chip:not([data-hd])');
   if (c) { [...c.parentNode.children].forEach(x => x.setAttribute('aria-pressed', x === c)); if (c.dataset.m) pay.method = c.dataset.m; if (c.dataset.t) pay.type = c.dataset.t; if (c.dataset.open) pay.open = c.dataset.open === '1'; return; }
   if (e.target.dataset.trm) { e.target.closest('.trow').remove(); return; }
-  if (id === 'tadd') { $('#trows').insertAdjacentHTML('beforeend', typeRow({ name: '', price: '' })); return; }
+  if (id === 'tadd' || id === 'xadd') { $(id === 'tadd' ? '#trows' : '#xrows').insertAdjacentHTML('beforeend', typeRow({ name: '', price: '' })); return; }
+  const hc = e.target.closest('[data-hd]'); if (hc) return openHistory(+hc.dataset.hd);
+  const ar = e.target.closest('[data-ar]'); if (ar) return openDecl(ar.dataset.ar, true);
+  if (id === 'backArch') return openArchive();
   const btn = e.target.closest('button'); if (!btn) return;
   const run = async p => { btn.disabled = true; const ok = await p; btn.disabled = false; if (ok) closeSheet(); };
   if (id === 'pok') {
@@ -183,9 +224,13 @@ $('#overlay').addEventListener('click', async e => {
     run(act('ors_admin_add', { p_name: name, p_phone: $('#aphone').value, p_type: pay.type }, 'נוספה לתור', name));
   }
   if (id === 'sok') {
-    const types = [...document.querySelectorAll('#trows .trow')].map(r => ({ name: r.querySelector('.tn').value.trim(), price: r.querySelector('.tp').value.trim() }));
-    if (!types.length || types.some(t => !t.name || !/^\d{1,5}$/.test(t.price)) || new Set(types.map(t => t.name)).size !== types.length) { $('#perr').textContent = ERR.ORS_TYPES; return; }
-    run(act('ors_admin_settings', { p_open: pay.open, p_types: types.map(t => ({ name: t.name, price: +t.price })), p_min_per: Math.round(+$('#smin').value) || 8 }, 'ההגדרות נשמרו', ''));
+    const grab = sel => [...document.querySelectorAll(sel + ' .trow')].map(r => ({ name: r.querySelector('.tn').value.trim(), price: r.querySelector('.tp').value.trim() }));
+    const bad = l => l.some(t => !t.name || !/^\d{1,5}$/.test(t.price)) || new Set(l.map(t => t.name)).size !== l.length;
+    const types = grab('#trows'), extras = grab('#xrows'), num = l => l.map(t => ({ name: t.name, price: +t.price }));
+    if (!types.length || bad(types) || bad(extras)) { $('#perr').textContent = ERR.ORS_TYPES; return; }
+    const links = { review: $('#lrv').value.trim(), instagram: $('#lig').value.trim() };
+    if ([links.review, links.instagram].some(u => u && !/^https:\/\//.test(u))) { $('#perr').textContent = ERR.ORS_LINK; return; }
+    run(act('ors_admin_settings', { p_open: pay.open, p_types: num(types), p_min_per: Math.round(+$('#smin').value) || 8, p_extras: num(extras), p_links: links }, 'ההגדרות נשמרו', ''));
   }
   if (id === 'pwok') {
     const np = $('#npass').value;

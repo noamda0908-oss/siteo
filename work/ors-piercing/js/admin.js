@@ -1,0 +1,177 @@
+/* Or's Piercing: counter screen (iPad). Password login, then the live board. */
+const METHODS = ['אשראי', 'ביט', 'פייבוקס', 'מזומן'];
+const A = { k: store.get('ors_admin'), data: null, last: '', seen: new Set(), first: true };
+const CUSTOMER_URL = new URL('./', location.href).href;
+let pay = {};
+
+const by = st => A.data.queue.filter(q => q.status === st);
+const find = id => A.data.queue.find(q => q.id === id);
+const priceOf = t => { const x = A.data.types.find(y => y.name === t); return x ? x.price : 0; };
+function waLink(q, text) {
+  let d = String(q.phone || '').replace(/\D/g, ''); if (d.length < 9) return '';
+  if (d.startsWith('0')) d = '972' + d.slice(1);
+  return `<a class="wa" target="_blank" rel="noopener" href="https://wa.me/${d}?text=${encodeURIComponent(text)}">וואטסאפ</a>`;
+}
+const fmtPhone = p => { const d = String(p || ''); return d.length === 10 ? d.slice(0, 3) + '-' + d.slice(3) : d; };
+
+async function call(fn, args) {
+  try { return await rpc(fn, Object.assign({ k: A.k }, args || {})); }
+  catch (e) { if (errCode(e) === 'ORS_AUTH') { A.k = null; A.data = null; store.del('ors_admin'); renderLogin(); } throw e; }
+}
+async function act(fn, args, okTitle, okText) {
+  try { await call(fn, args); if (okTitle) toast(okTitle, okText); await refresh(true); return true; }
+  catch (e) { toast('לא הצלחנו', errMsg(e), true); return false; }
+}
+
+/* ---------- login ---------- */
+function renderLogin(msg) {
+  $('#statusPill').innerHTML = '';
+  $('#board').innerHTML = `<form class="login stag" id="login" style="display:flex;flex-direction:column;gap:14px">
+    <div><h2 style="font-size:28px">ניהול התור</h2><p class="muted">הכניסה לאור בלבד</p></div>
+    <div class="fl"><input id="lpass" type="password" autocomplete="current-password" placeholder=" "><label for="lpass">סיסמה</label></div>
+    <div class="err" id="lerr" role="alert">${esc(msg || '')}</div>
+    <button class="btn" type="submit" id="lgo">כניסה</button></form>`;
+}
+document.addEventListener('submit', async e => {
+  if (e.target.id !== 'login') return; e.preventDefault();
+  const b = $('#lgo'); b.disabled = true;
+  try {
+    const t = await rpc('ors_admin_login', { p_pass: $('#lpass').value });
+    if (!t) { b.disabled = false; $('#lerr').textContent = 'הסיסמה לא נכונה'; return; }
+    A.k = t; store.set('ors_admin', t); A.last = ''; A.first = true; $('#board').innerHTML = '<div class="skeleton"><i></i></div>'; refresh(true);
+  } catch (er) { b.disabled = false; $('#lerr').textContent = errMsg(er); }
+});
+
+/* ---------- board ---------- */
+function rowHTML(q, kind) {
+  const isNew = !A.first && !A.seen.has(q.id + kind); A.seen.add(q.id + kind);
+  const cls = ['row-c', kind === 'called' ? 'now' : '', isNew ? 'new' : ''].join(' ');
+  const waText = kind === 'called' ? `היי ${q.name}, הגיע התור שלך ב-Or's Piercing. מחכה לך בדוכן` : `היי ${q.name}, עוד מעט מגיע התור שלך ב-Or's Piercing. כדאי להתקרב לדוכן`;
+  const act = kind === 'waiting' ? `<div class="acts rowy"><button class="btn sm ghost" data-call="${q.id}">קראי</button><button class="xbtn" data-rm="${q.id}" aria-label="הסרה מהתור">×</button></div>`
+    : kind === 'called' ? `<div class="acts"><button class="btn sm" data-pay="${q.id}">לתשלום</button><button class="btn sm ghost" data-miss="${q.id}">לא הגיעה</button></div>`
+    : `<span class="pill ok num">₪${q.paid_amount} · ${esc(q.paid_method)}</span>`;
+  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${esc(q.type)} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}${kind !== 'done' ? waLink(q, waText) : ''}</div>${act}</div>`;
+}
+function qrSvg() { const q = qrcode(0, 'M'); q.addData(CUSTOMER_URL); q.make(); return q.createSvgTag({ cellSize: 8, margin: 2, scalable: true }); }
+function renderBoard() {
+  const w = by('waiting'), c = by('called'), d = by('done'), rev = d.reduce((s, q) => s + (q.paid_amount || 0), 0);
+  const day = new Date().toLocaleDateString('he-IL', { weekday: 'long', day: 'numeric', month: 'numeric' });
+  $('#statusPill').innerHTML = `<span class="status ${A.data.open ? '' : 'off'}"><i></i>${A.data.open ? 'התור פתוח להרשמה' : 'התור סגור להרשמה'}</span>`;
+  const svg = qrSvg();
+  $('#board').innerHTML = `
+  <div class="board-head"><div><h2>התור של היום</h2><p>${day}</p></div><div class="head-acts"><button class="btn sm ghost" id="addWalk">הוספה ידנית</button><button class="btn sm ghost" id="openSet">הגדרות</button></div></div>
+  <div class="stats"><div class="stat"><b class="num">${w.length}</b><span>ממתינות</span></div><div class="stat"><b class="num">${d.length}</b><span>טופלו היום</span></div><div class="stat"><b class="num">₪${rev.toLocaleString()}</b><span>הכנסות היום</span></div></div>
+  <div><div class="sec-title">בטיפול עכשיו</div><div class="rows">${c.length ? c.map(q => rowHTML(q, 'called')).join('') : '<div class="empty">אין אף אחת בטיפול. קראי לבאה בתור</div>'}</div></div>
+  <button class="btn" id="callNext" ${w.length ? '' : 'disabled'}>קראי לבאה בתור</button>
+  <div><div class="sec-title">ממתינות <span>לפי סדר הגעה</span></div><div class="rows">${w.length ? w.map(q => rowHTML(q, 'waiting')).join('') : '<div class="empty">התור ריק</div>'}</div></div>
+  <div><div class="sec-title">שולמו היום <span>${d.length ? d.length + ' לקוחות' : ''}</span></div><div class="rows">${d.length ? d.slice().sort((a, b) => b.done_at - a.done_at).map(q => rowHTML(q, 'done')).join('') : '<div class="empty">עוד אין תשלומים היום</div>'}</div></div>
+  <div class="qr"><div class="qrbox">${svg}</div><p><b>ה‑QR של הדוכן</b>מדפיסים ותולים. כל סריקה פותחת את דף ההרשמה לתור.<br><a href="${esc(CUSTOMER_URL)}" target="_blank" rel="noopener" dir="ltr">${esc(CUSTOMER_URL.replace(/^https?:\/\//, ''))}</a><br><button class="btn sm ghost" id="printQr" style="margin-top:8px">הדפסת שלט QR</button></p></div>`;
+  $('#posterQr').innerHTML = svg; $('#posterUrl').textContent = CUSTOMER_URL.replace(/^https?:\/\//, '');
+  A.first = false; tick();
+}
+let loading = false;
+async function refresh(force) {
+  if (!A.k) return renderLogin();
+  if (loading && !force) return; loading = true;
+  try {
+    const d = await call('ors_admin_board'); A.data = d;
+    const key = JSON.stringify(d); if (key !== A.last) { A.last = key; renderBoard(); }
+  } catch (e) { if (A.k && !A.data) $('#board').innerHTML = '<div class="empty">אין חיבור כרגע. המסך ינסה שוב לבד</div>'; }
+  loading = false;
+}
+
+$('#board').addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t || !A.data) return;
+  if (t.id === 'callNext') act('ors_admin_call', { p_id: null });
+  else if (t.dataset.call) act('ors_admin_call', { p_id: t.dataset.call });
+  else if (t.dataset.pay) openPay(t.dataset.pay);
+  else if (t.dataset.miss) openMiss(t.dataset.miss);
+  else if (t.dataset.rm) openRemove(t.dataset.rm);
+  else if (t.id === 'addWalk') openAdd();
+  else if (t.id === 'openSet') openSettings();
+  else if (t.id === 'printQr') window.print();
+});
+
+/* ---------- sheets ---------- */
+const openSheet = html => { $('#sheet').innerHTML = html; $('#sheet').scrollTop = 0; $('#overlay').classList.add('open'); };
+const closeSheet = () => $('#overlay').classList.remove('open');
+function openPay(id) {
+  const q = find(id); if (!q) return; pay = { id, method: 'אשראי' };
+  openSheet(`<h3>תשלום · ${esc(q.name)}</h3><p class="muted">פירסינג ${esc(q.type)} · תור <span class="num">#${q.num}</span></p>
+  <label class="f" for="pamt">סכום<div class="amount"><input id="pamt" type="number" inputmode="numeric" min="0" value="${q.price}"><span>₪</span></div></label>
+  <div class="chips" id="pm">${METHODS.map(m => `<button type="button" class="chip" data-m="${m}" aria-pressed="${m === pay.method}">${m}</button>`).join('')}</div>
+  <div class="err" id="perr" role="alert"></div>
+  <button class="btn" id="pok">סימון כשולם</button><button class="btn ghost" id="pcancel">ביטול</button>`);
+}
+function openMiss(id) {
+  const q = find(id); if (!q) return; pay = { id };
+  openSheet(`<h3>${esc(q.name)} לא הגיעה?</h3><p class="muted">תור <span class="num">#${q.num}</span>. הדף בטלפון שלה יתעדכן לפי מה שתבחרי.</p>
+  <button class="btn" id="mback">החזרה לתור, 2 מקומות אחורה</button><button class="btn ghost" id="mout">הוצאה מהתור</button><button class="btn ghost" id="pcancel">ביטול</button>`);
+}
+function openRemove(id) {
+  const q = find(id); if (!q) return; pay = { id };
+  openSheet(`<h3>להסיר את ${esc(q.name)} מהתור?</h3><p class="muted">תור <span class="num">#${q.num}</span>. אי אפשר לבטל את הפעולה, היא תצטרך להירשם מחדש.</p>
+  <button class="btn" id="mout">הסרה מהתור</button><button class="btn ghost" id="pcancel">ביטול</button>`);
+}
+function openAdd() {
+  pay = { type: A.data.types[0].name };
+  openSheet(`<h3>הוספה ידנית לתור</h3>
+  <label class="f" for="aname">שם<input id="aname" type="text" maxlength="40" placeholder="שם הלקוחה"></label>
+  <label class="f" for="aphone">טלפון (לא חובה)<input id="aphone" type="tel" dir="ltr" inputmode="tel" placeholder="050-0000000"></label>
+  <div class="chips" id="at">${A.data.types.map(t => `<button type="button" class="chip" data-t="${esc(t.name)}" aria-pressed="${t.name === pay.type}">${esc(t.name)}</button>`).join('')}</div>
+  <div class="err" id="perr" role="alert"></div>
+  <button class="btn" id="aok">הוספה לתור</button><button class="btn ghost" id="pcancel">ביטול</button>`);
+}
+const typeRow = t => `<div class="trow"><input type="text" class="tn" maxlength="20" placeholder="שם הסוג" value="${esc(t.name)}"><input type="number" class="tp num" inputmode="numeric" min="0" placeholder="₪" value="${esc(t.price)}"><button type="button" class="xbtn" data-trm="1" aria-label="מחיקת הסוג">×</button></div>`;
+function openSettings() {
+  pay = { open: A.data.open };
+  openSheet(`<h3>הגדרות</h3>
+  <div class="sub">הרשמה לתור</div>
+  <div class="seg" id="oseg"><button type="button" class="chip" data-open="1" aria-pressed="${A.data.open}">פתוח</button><button type="button" class="chip" data-open="0" aria-pressed="${!A.data.open}">סגור</button></div>
+  <div class="sub">סוגי פירסינג ומחירים</div>
+  <div id="trows" style="display:flex;flex-direction:column;gap:8px">${A.data.types.map(typeRow).join('')}</div>
+  <button type="button" class="btn sm ghost" id="tadd" style="align-self:flex-start">הוספת סוג</button>
+  <label class="f" for="smin">זמן ממוצע ללקוחה (בדקות)<input id="smin" type="number" inputmode="numeric" min="1" max="120" value="${A.data.min_per}"></label>
+  <div class="err" id="perr" role="alert"></div>
+  <button class="btn" id="sok">שמירה</button>
+  <div class="sub" style="border-top:1px dashed var(--line);padding-top:14px">החלפת סיסמה</div>
+  <label class="f" for="npass">סיסמה חדשה (לפחות 8 תווים)<input id="npass" type="text" autocomplete="off" dir="ltr"></label>
+  <button class="btn ghost" id="pwok">החלפת סיסמה</button>
+  <button class="btn ghost" id="logout">יציאה מהמערכת</button><button class="btn ghost" id="pcancel">סגירה</button>`);
+}
+$('#overlay').addEventListener('click', async e => {
+  const id = e.target.id;
+  if (id === 'overlay' || id === 'pcancel') return closeSheet();
+  const c = e.target.closest('.chip');
+  if (c) { [...c.parentNode.children].forEach(x => x.setAttribute('aria-pressed', x === c)); if (c.dataset.m) pay.method = c.dataset.m; if (c.dataset.t) pay.type = c.dataset.t; if (c.dataset.open) pay.open = c.dataset.open === '1'; return; }
+  if (e.target.dataset.trm) { e.target.closest('.trow').remove(); return; }
+  if (id === 'tadd') { $('#trows').insertAdjacentHTML('beforeend', typeRow({ name: '', price: '' })); return; }
+  const btn = e.target.closest('button'); if (!btn) return;
+  const run = async p => { btn.disabled = true; const ok = await p; btn.disabled = false; if (ok) closeSheet(); };
+  if (id === 'pok') {
+    const amt = Math.round(+$('#pamt').value);
+    if (!(amt >= 0) || $('#pamt').value === '') { $('#perr').textContent = 'צריך להזין סכום'; return; }
+    const q = find(pay.id);
+    run(act('ors_admin_pay', { p_id: pay.id, p_amount: amt, p_method: pay.method }, 'נרשם תשלום', (q ? q.name + ' · ' : '') + '₪' + amt + ' ב' + pay.method));
+  }
+  if (id === 'mback') run(act('ors_admin_miss', { p_id: pay.id, p_back: true }, 'הוחזרה לתור', '2 מקומות אחורה'));
+  if (id === 'mout') run(act('ors_admin_miss', { p_id: pay.id, p_back: false }, 'הוסרה מהתור', ''));
+  if (id === 'aok') {
+    const name = $('#aname').value.trim();
+    if (name.length < 2) { $('#perr').textContent = 'חסר שם ללקוחה'; return; }
+    run(act('ors_admin_add', { p_name: name, p_phone: $('#aphone').value, p_type: pay.type }, 'נוספה לתור', name));
+  }
+  if (id === 'sok') {
+    const types = [...document.querySelectorAll('#trows .trow')].map(r => ({ name: r.querySelector('.tn').value.trim(), price: r.querySelector('.tp').value.trim() }));
+    if (!types.length || types.some(t => !t.name || !/^\d{1,5}$/.test(t.price)) || new Set(types.map(t => t.name)).size !== types.length) { $('#perr').textContent = ERR.ORS_TYPES; return; }
+    run(act('ors_admin_settings', { p_open: pay.open, p_types: types.map(t => ({ name: t.name, price: +t.price })), p_min_per: Math.round(+$('#smin').value) || 8 }, 'ההגדרות נשמרו', ''));
+  }
+  if (id === 'pwok') {
+    const np = $('#npass').value;
+    if (np.length < 8) { $('#perr').textContent = ERR.ORS_PASS; return; }
+    run(act('ors_admin_password', { p_new: np }, 'הסיסמה הוחלפה', 'מכשירים אחרים נותקו'));
+  }
+  if (id === 'logout') { try { await rpc('ors_admin_logout', { k: A.k }); } catch (_) {} A.k = null; A.data = null; store.del('ors_admin'); closeSheet(); renderLogin(); }
+});
+
+refresh(true); live(() => refresh());

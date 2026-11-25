@@ -377,3 +377,11 @@ body.display{background:radial-gradient(120% 100% at 85% 0%,#5E1C24 0%,var(--win
 .dsp-foot>p{font-size:clamp(16px,1.9vw,30px);color:var(--rose)}
 body.display .hoops i{border-color:rgba(228,169,180,.3)}
 @media (max-width:700px){.dsp-main{grid-template-columns:1fr}.dsp-foot{flex-direction:column;align-items:flex-start}}
+
+/* ---------- v6: one clean Hebrew sans for everything ---------- */
+:root{--display:"Heebo","Arial Hebrew",Arial,sans-serif}
+h1,h2,h3{font-weight:900;letter-spacing:-.025em;line-height:1.08}
+.ring-in b,.stat b,.badge,.t-meta b,.dsp-now b,.dsp-next b,.amount input{font-weight:800;letter-spacing:-.03em}
+.dsp-now b{font-weight:900}
+.p-head h1,.p-head h2{font-size:clamp(30px,8.6vw,38px)}
+.p-head.mid h2{font-size:clamp(34px,9.6vw,44px)}

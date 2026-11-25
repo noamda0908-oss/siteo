@@ -70,7 +70,7 @@ function render() {
     h = head(`<div class="radar" aria-hidden="true"><i></i><i></i><i></i></div><p>תור <b class="num">#${m.num}</b></p><h2>הגיע התור שלך</h2><p>אור מחכה לך בדוכן</p><span class="tm num" data-t="${m.called_at}" data-mine="1"></span>`, 'mid') +
     `<div class="p-body stag">
     <div class="ticket"><div class="t-meta two"><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>לתשלום בסיום</small><b class="num">₪${m.price}</b></div></div>${xline(m)}</div>
-    <div class="note">משלמים בדוכן: אשראי, ביט, פייבוקס או מזומן</div></div>`;
+    ${S.state.links && S.state.links.pay ? `<a class="btn" target="_blank" rel="noopener" href="${esc(S.state.links.pay)}">לתשלום אונליין · ₪${m.price}</a><div class="note">אפשר גם לשלם בדוכן, במזומן או באשראי</div>` : '<div class="note">משלמים בדוכן: אשראי, ביט, פייבוקס או מזומן</div>'}</div>`;
   } else if (st === 'done') {
     h = head(`<div class="fall" aria-hidden="true">${[8, 22, 37, 51, 66, 80, 92].map((x, i) => `<i style="left:${x}%;animation-delay:${(i * .47).toFixed(2)}s"></i>`).join('')}</div><h2>תודה ${first(m.name)},<br>שיהיה במזל</h2><p>היה כיף לארח אותך</p>`, 'mid') +
     `<div class="p-body stag">

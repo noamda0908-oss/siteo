@@ -7,11 +7,13 @@ let pay = {};
 const by = st => A.data.queue.filter(q => q.status === st);
 const find = id => A.data.queue.find(q => q.id === id);
 const priceOf = t => { const x = A.data.types.find(y => y.name === t); return x ? x.price : 0; };
-function waLink(q, text) {
+function waLink(q, text, label) {
   let d = String(q.phone || '').replace(/\D/g, ''); if (d.length < 9) return '';
   if (d.startsWith('0')) d = '972' + d.slice(1);
-  return `<a class="wa" target="_blank" rel="noopener" href="https://wa.me/${d}?text=${encodeURIComponent(text)}">וואטסאפ</a>`;
+  return `<a class="wa" target="_blank" rel="noopener" href="https://wa.me/${d}?text=${encodeURIComponent(text)}">${label || 'וואטסאפ'}</a>`;
 }
+const payLink = () => (A.data.links || {}).pay || '';
+const payText = (q, amt) => `היי ${q.name}, לתשלום ${amt} ₪ על הפירסינג ב-Or's Piercing: ${payLink()}`;
 const fmtPhone = p => { const d = String(p || ''); return d.length === 10 ? d.slice(0, 3) + '-' + d.slice(3) : d; };
 
 async function call(fn, args) {
@@ -51,7 +53,7 @@ function rowHTML(q, kind) {
   const act = kind === 'waiting' ? `<div class="acts rowy"><button class="btn sm ghost" data-call="${q.id}">קראי</button><button class="xbtn" data-rm="${q.id}" aria-label="הסרה מהתור">×</button></div>`
     : kind === 'called' ? `<div class="acts"><button class="btn sm" data-pay="${q.id}">לתשלום</button><button class="btn sm ghost" data-miss="${q.id}">לא הגיעה</button></div>`
     : `<span class="pill ok num">₪${q.paid_amount} · ${esc(q.paid_method)}</span>`;
-  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${esc(q.type)}${(q.extras || []).length ? ' + ' + q.extras.map(x => esc(x.name)).join(', ') : ''} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}<div class="tags">${declPill(q)}${kind !== 'done' ? waLink(q, waText) : ''}</div></div>${act}</div>`;
+  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${esc(q.type)}${(q.extras || []).length ? ' + ' + q.extras.map(x => esc(x.name)).join(', ') : ''} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}<div class="tags">${declPill(q)}${kind !== 'done' ? waLink(q, waText) : ''}${kind === 'called' && payLink() ? waLink(q, payText(q, q.price), 'שליחת קישור תשלום') : ''}</div></div>${act}</div>`;
 }
 function declPill(q) {
   if (!q.declared) return '<span class="pill mute" style="margin-inline-start:0">ללא הצהרת בריאות</span>';
@@ -115,7 +117,9 @@ function openPay(id) {
   <label class="f" for="pamt">סכום<div class="amount"><input id="pamt" type="number" inputmode="numeric" min="0" value="${q.price}"><span>₪</span></div></label>
   <div class="chips" id="pm">${METHODS.map(m => `<button type="button" class="chip" data-m="${m}" aria-pressed="${m === pay.method}">${m}</button>`).join('')}</div>
   <div class="err" id="perr" role="alert"></div>
-  <button class="btn" id="pok">סימון כשולם</button><button class="btn ghost" id="pcancel">ביטול</button>`);
+  ${payLink() && String(q.phone || '').length >= 9 ? '<button class="btn ghost" id="pwa">שליחת קישור תשלום בוואטסאפ</button>' : ''}
+  <p class="muted small">${payLink() ? 'הכפתור למטה רק רושם שהכסף התקבל. סמני אחרי שראית שהתשלום נכנס.' : 'הכפתור רק רושם שהכסף התקבל בדוכן. כדי לשלוח ללקוחה קישור תשלום, הוסיפי אותו בהגדרות.'}</p>
+  <button class="btn" id="pok">רישום תשלום שהתקבל</button><button class="btn ghost" id="pcancel">ביטול</button>`);
 }
 function openMiss(id) {
   const q = find(id); if (!q) return; pay = { id };
@@ -187,7 +191,8 @@ function openSettings() {
   <div class="sub">תוספות בהרשמה</div><p class="muted small">למשל שדרוג לתכשיט טיטניום. הלקוחה בוחרת בעצמה והמחיר מתווסף.</p>
   <div id="xrows" style="display:flex;flex-direction:column;gap:8px">${(A.data.extras || []).map(typeRow).join('')}</div>
   <button type="button" class="btn sm ghost" id="xadd" style="align-self:flex-start">הוספת תוספת</button>
-  <div class="sub">קישורים אחרי התשלום</div>
+  <div class="sub">קישורים</div>
+  <label class="f" for="lpay">קישור תשלום (פייבוקס, ביט או דף תשלום)<input id="lpay" type="text" dir="ltr" inputmode="url" placeholder="https://" value="${esc((A.data.links || {}).pay || '')}"></label>
   <label class="f" for="lrv">קישור לביקורת בגוגל<input id="lrv" type="text" dir="ltr" inputmode="url" placeholder="https://" value="${esc((A.data.links || {}).review || '')}"></label>
   <label class="f" for="lig">קישור לאינסטגרם<input id="lig" type="text" dir="ltr" inputmode="url" placeholder="https://instagram.com/" value="${esc((A.data.links || {}).instagram || '')}"></label>
   <label class="f" for="smin">זמן ממוצע ללקוחה (בדקות)<input id="smin" type="number" inputmode="numeric" min="1" max="120" value="${A.data.min_per}"></label>
@@ -210,6 +215,10 @@ $('#overlay').addEventListener('click', async e => {
   if (id === 'backArch') return openArchive();
   const btn = e.target.closest('button'); if (!btn) return;
   const run = async p => { btn.disabled = true; const ok = await p; btn.disabled = false; if (ok) closeSheet(); };
+  if (id === 'pwa') {
+    const q = find(pay.id), amt = Math.round(+$('#pamt').value) || q.price; let d = String(q.phone).replace(/\D/g, ''); if (d.startsWith('0')) d = '972' + d.slice(1);
+    window.open('https://wa.me/' + d + '?text=' + encodeURIComponent(payText(q, amt)), '_blank', 'noopener'); return;
+  }
   if (id === 'pok') {
     const amt = Math.round(+$('#pamt').value);
     if (!(amt >= 0) || $('#pamt').value === '') { $('#perr').textContent = 'צריך להזין סכום'; return; }
@@ -228,8 +237,8 @@ $('#overlay').addEventListener('click', async e => {
     const bad = l => l.some(t => !t.name || !/^\d{1,5}$/.test(t.price)) || new Set(l.map(t => t.name)).size !== l.length;
     const types = grab('#trows'), extras = grab('#xrows'), num = l => l.map(t => ({ name: t.name, price: +t.price }));
     if (!types.length || bad(types) || bad(extras)) { $('#perr').textContent = ERR.ORS_TYPES; return; }
-    const links = { review: $('#lrv').value.trim(), instagram: $('#lig').value.trim() };
-    if ([links.review, links.instagram].some(u => u && !/^https:\/\//.test(u))) { $('#perr').textContent = ERR.ORS_LINK; return; }
+    const links = { review: $('#lrv').value.trim(), instagram: $('#lig').value.trim(), pay: $('#lpay').value.trim() };
+    if ([links.review, links.instagram, links.pay].some(u => u && !/^https:\/\//.test(u))) { $('#perr').textContent = ERR.ORS_LINK; return; }
     run(act('ors_admin_settings', { p_open: pay.open, p_types: num(types), p_min_per: Math.round(+$('#smin').value) || 8, p_extras: num(extras), p_links: links }, 'ההגדרות נשמרו', ''));
   }
   if (id === 'pwok') {

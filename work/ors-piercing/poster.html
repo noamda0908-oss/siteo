@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Or's Piercing · שלט QR לדוכן</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--blush:#FFF3F5;--wine:#330C0F;--wine-soft:#7A4B50;--rose:#E4A9B4;--gold:#C39A4B;--gold-hi:#E7C27A}
+*{box-sizing:border-box;margin:0}
+body{background:#E9DCDE;font-family:"Heebo","Arial Hebrew",Arial,sans-serif;color:var(--wine);padding:18px 12px 40px;display:flex;flex-direction:column;align-items:center;gap:16px}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+.bar button,.bar a{font:inherit;font-weight:800;font-size:16px;border-radius:99px;padding:12px 24px;cursor:pointer;text-decoration:none}
+.bar button{background:var(--wine);color:var(--blush);border:0}
+.bar a{color:var(--wine);border:1.5px solid var(--wine)}
+.bar p{flex-basis:100%;text-align:center;font-size:14px;color:var(--wine-soft)}
+.page{width:min(210mm,100%);aspect-ratio:210/297;background:var(--blush);container-type:inline-size;position:relative;overflow:hidden;box-shadow:0 30px 60px -30px rgba(51,12,15,.6);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hero{position:absolute;inset:0 0 auto 0;height:44%;background:radial-gradient(130% 110% at 88% 0%,#6A222B 0%,var(--wine) 62%);color:var(--blush);padding:7cqw 8cqw 0;overflow:hidden}
+.hero img{width:25cqw;display:block;filter:brightness(0) invert(1)}
+.hero h1{font-weight:900;font-size:10cqw;line-height:.98;letter-spacing:-.03em;margin-top:4cqw}
+.hero p{font-size:3.3cqw;line-height:1.3;margin-top:2.2cqw;color:#F6DDE1;white-space:nowrap}
+.ring{position:absolute;border-radius:50%;border:.28cqw solid rgba(228,169,180,.38)}
+.ring::after{content:"";position:absolute;top:-1cqw;left:50%;width:1.9cqw;height:1.9cqw;margin-left:-.95cqw;border-radius:50%;background:var(--gold-hi)}
+.ring.a{width:48cqw;height:48cqw;left:-17cqw;top:-20cqw}
+.ring.b{width:22cqw;height:22cqw;left:6cqw;top:30cqw;border-color:rgba(231,194,122,.4);transform:rotate(140deg)}
+/* the QR sits inside a gold hoop, like the jewellery she sells */
+.hoop{position:absolute;left:50%;top:58.5%;width:52cqw;height:52cqw;transform:translate(-50%,-50%);border-radius:50%;background:var(--blush);border:.9cqw solid var(--gold);box-shadow:0 0 0 1.5cqw var(--blush),0 3cqw 6cqw -3cqw rgba(51,12,15,.45);display:grid;place-items:center}
+.hoop::before{content:"";position:absolute;top:-3cqw;left:50%;width:5cqw;height:5cqw;margin-left:-2.5cqw;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F6E2B0,var(--gold) 70%);box-shadow:0 0 0 .8cqw var(--blush)}
+.hoop .qr{width:33cqw;height:33cqw}
+.hoop svg{width:100%;height:100%;display:block}
+.steps{position:absolute;inset:auto 7cqw 11.5cqw 7cqw;display:grid;grid-template-columns:repeat(3,1fr);gap:3cqw}
+.step{text-align:center;padding:0 1cqw}
+.step b{display:grid;place-items:center;width:7.4cqw;height:7.4cqw;border-radius:50%;background:var(--wine);color:var(--blush);font-weight:900;font-size:3.9cqw;margin:0 auto 1.8cqw}
+.step strong{display:block;font-weight:800;font-size:3.5cqw;line-height:1.15}
+.step span{display:block;font-size:2.65cqw;color:var(--wine-soft);margin-top:.8cqw;line-height:1.3}
+.foot{position:absolute;inset:auto 7cqw 4.4cqw 7cqw;display:flex;justify-content:space-between;align-items:center;border-top:.2cqw solid rgba(51,12,15,.18);padding-top:2.4cqw;font-size:2.5cqw;color:var(--wine-soft)}
+.foot b{color:var(--wine);font-weight:700;direction:ltr}
+@page{size:A4;margin:0}
+@media print{body{background:#fff;padding:0;display:block}.bar{display:none}.page{width:210mm;height:297mm;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="bar"><button onclick="print()">הדפסה</button><a href="admin.html">חזרה לניהול</a><p>בחלון ההדפסה: גודל A4, בלי שוליים, ולסמן "גרפיקת רקע" כדי שהצבעים יודפסו.</p></div>
+<div class="page">
+  <div class="hero"><span class="ring a"></span><span class="ring b"></span>
+    <img src="logo.png" alt="Or's Piercing">
+    <h1>התור שלך<br>בטלפון</h1>
+    <p>נרשמים בדקה וממשיכים להסתובב עד שמגיע התור.</p>
+  </div>
+  <div class="hoop"><div class="qr" id="qr"></div></div>
+  <div class="steps">
+    <div class="step"><b>1</b><strong>סורקים</strong><span>פותחים מצלמה ומכוונים לקוד</span></div>
+    <div class="step"><b>2</b><strong>נרשמים</strong><span>שם, טלפון והצהרת בריאות קצרה</span></div>
+    <div class="step"><b>3</b><strong>מסתובבים</strong><span>הטלפון מראה מתי מגיע התור</span></div>
+  </div>
+  <div class="foot"><span>בלי אפליקציה ובלי הרשמה לאתר</span><b id="url"></b></div>
+</div>
+<script src="vendor/qrcode.js"></script>
+<script>
+const u = new URL('./', location.href).href, q = qrcode(0, 'H'); q.addData(u); q.make();
+document.getElementById('qr').innerHTML = q.createSvgTag({ cellSize: 8, margin: 0, scalable: true }).replace(/fill="black"/g, 'fill="#330C0F"').replace(/<rect[^>]*fill="white"[^>]*\/>/, '');
+document.getElementById('url').textContent = u.replace(/^https?:\/\//, '').replace(/\/$/, '');
+</script>
+</body>
+</html>

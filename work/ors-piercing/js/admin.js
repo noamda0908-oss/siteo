@@ -118,7 +118,8 @@ function openPay(id) {
   <div class="chips" id="pm">${METHODS.map(m => `<button type="button" class="chip" data-m="${m}" aria-pressed="${m === pay.method}">${m}</button>`).join('')}</div>
   <div class="err" id="perr" role="alert"></div>
   ${payLink() && String(q.phone || '').length >= 9 ? '<button class="btn ghost" id="pwa">שליחת קישור תשלום בוואטסאפ</button>' : ''}
-  <p class="muted small">${payLink() ? 'הכפתור למטה רק רושם שהכסף התקבל. סמני אחרי שראית שהתשלום נכנס.' : 'הכפתור רק רושם שהכסף התקבל בדוכן. כדי לשלוח ללקוחה קישור תשלום, הוסיפי אותו בהגדרות.'}</p>
+  <div class="seg"><button type="button" class="btn sm ghost" id="cpAmt" style="width:100%">העתקת סכום</button>${String(q.phone || '').length >= 9 ? '<button type="button" class="btn sm ghost" id="cpPh" style="width:100%">העתקת טלפון</button>' : ''}</div>
+  <p class="muted small">יוצרים את בקשת התשלום במערכת הסליקה על הסכום הזה. אחרי שהתשלום עבר, לוחצים כאן כדי לרשום אותו.</p>
   <button class="btn" id="pok">רישום תשלום שהתקבל</button><button class="btn ghost" id="pcancel">ביטול</button>`);
 }
 function openMiss(id) {
@@ -219,6 +220,13 @@ $('#overlay').addEventListener('click', async e => {
   if (id === 'backArch') return openArchive();
   const btn = e.target.closest('button'); if (!btn) return;
   const run = async p => { btn.disabled = true; const ok = await p; btn.disabled = false; if (ok) closeSheet(); };
+  if (id === 'cpAmt' || id === 'cpPh') {
+    const q = find(pay.id), txt = id === 'cpAmt' ? String(Math.round(+$('#pamt').value) || q.price) : String(q.phone);
+    const done = () => toast('הועתק', id === 'cpAmt' ? txt + ' ₪' : fmtPhone(txt));
+    const old = () => { const t = document.createElement('textarea'); t.value = txt; t.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (_) { toast('לא הצלחנו להעתיק', txt, true); } t.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, old); else old();
+    return;
+  }
   if (id === 'pwa') {
     const q = find(pay.id), amt = Math.round(+$('#pamt').value) || q.price; let d = String(q.phone).replace(/\D/g, ''); if (d.startsWith('0')) d = '972' + d.slice(1);
     window.open('https://wa.me/' + d + '?text=' + encodeURIComponent(payText(q, amt)), '_blank', 'noopener'); return;

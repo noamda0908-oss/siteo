@@ -53,7 +53,7 @@ function rowHTML(q, kind) {
   const act = kind === 'waiting' ? `<div class="acts rowy"><button class="btn sm ghost" data-call="${q.id}">קראי</button><button class="xbtn" data-rm="${q.id}" aria-label="הסרה מהתור">×</button></div>`
     : kind === 'called' ? `<div class="acts"><button class="btn sm" data-pay="${q.id}">לתשלום</button><button class="btn sm ghost" data-miss="${q.id}">לא הגיעה</button></div>`
     : `<span class="pill ok num">₪${q.paid_amount} · ${esc(q.paid_method)}</span>`;
-  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${esc(q.type)}${(q.extras || []).length ? ' + ' + q.extras.map(x => esc(x.name)).join(', ') : ''} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}<div class="tags">${declPill(q)}${kind !== 'done' ? waLink(q, waText) : ''}${kind === 'called' && payLink() ? waLink(q, payText(q, q.price), 'שליחת קישור תשלום') : ''}</div></div>${act}</div>`;
+  return `<div class="${cls}"><div class="badge num">${q.num}</div><div class="who"><b>${esc(q.name)}</b><span>${q.spot ? esc(q.spot) + ', ' : ''}${esc(q.type)}${(q.extras || []).length ? ' + ' + q.extras.map(x => esc(x.name)).join(', ') : ''} · ${q.phone ? `<span dir="ltr">${esc(fmtPhone(q.phone))}</span>` : 'ללא טלפון'}${q.missed && kind === 'waiting' ? '<span class="pill warn">פספסה תור</span>' : ''}</span>${kind === 'called' ? `<span class="tm num" data-t="${q.called_at}"></span>` : ''}<div class="tags">${declPill(q)}${kind !== 'done' ? waLink(q, waText) : ''}${kind === 'called' && payLink() ? waLink(q, payText(q, q.price), 'שליחת קישור תשלום') : ''}</div></div>${act}</div>`;
 }
 function declPill(q) {
   if (!q.declared) return '<span class="pill mute" style="margin-inline-start:0">ללא הצהרת בריאות</span>';
@@ -113,7 +113,7 @@ const openSheet = html => { $('#sheet').innerHTML = html; $('#sheet').scrollTop 
 const closeSheet = () => $('#overlay').classList.remove('open');
 function openPay(id) {
   const q = find(id); if (!q) return; pay = { id, method: 'אשראי' };
-  openSheet(`<h3>תשלום · ${esc(q.name)}</h3><p class="muted">פירסינג ${esc(q.type)} · תור <span class="num">#${q.num}</span></p>
+  openSheet(`<h3>תשלום · ${esc(q.name)}</h3><p class="muted">${esc(q.type)}${q.spot ? ', ' + esc(q.spot) : ''} · תור <span class="num">#${q.num}</span></p>
   <label class="f" for="pamt">סכום<div class="amount"><input id="pamt" type="number" inputmode="numeric" min="0" value="${q.price}"><span>₪</span></div></label>
   <div class="chips" id="pm">${METHODS.map(m => `<button type="button" class="chip" data-m="${m}" aria-pressed="${m === pay.method}">${m}</button>`).join('')}</div>
   <div class="err" id="perr" role="alert"></div>
@@ -136,10 +136,11 @@ async function openDecl(id, fromArch) {
   if (!d || !d.health) return;
   const H = d.health, when = new Date(d.declared_at).toLocaleString('he-IL', { day: 'numeric', month: 'numeric', year: '2-digit', hour: '2-digit', minute: '2-digit' });
   const rows = HEALTH_Q.slice().sort((a, b) => (H[b[0]] === true) - (H[a[0]] === true)).map(([k, t]) => `<div class="${H[k] ? 'yes' : ''}"><span>${t}</span><b>${H[k] ? 'כן' : 'לא'}</b></div>`).join('');
-  openSheet(`<h3>הצהרת בריאות</h3><p class="muted">${esc(d.name)} · תור <span class="num">#${d.num}</span> · נחתמה ב‑${when}</p>
+  openSheet(`<h3>הצהרת בריאות</h3><p class="muted">${esc(d.name)} · ${esc(d.type)}${d.spot ? ', ' + esc(d.spot) : ''} · תור <span class="num">#${d.num}</span> · נחתמה ב‑${when}</p>
   ${H.minor ? `<div class="note warn">מתחת לגיל 16. הורה מלווה: ${esc(H.parent)}</div>` : ''}
   ${H.note ? `<div class="care"><b>מה שהיא כתבה</b>${esc(H.note)}</div>` : ''}
   <div class="decl">${rows}</div>
+  ${(H.terms || '').trim() ? `<div class="care"><b>תנאים שאישרה בחתימה</b><ul>${H.terms.split('\n').map(l => l.trim()).filter(Boolean).map(l => `<li>${esc(l)}</li>`).join('')}</ul></div>` : ''}
   <div><div class="sub" style="margin-bottom:6px">${H.minor ? 'חתימת ההורה' : 'חתימה'}</div><img class="sigimg" alt="חתימה" src="${esc(d.signature)}"></div>
   ${fromArch ? '<button class="btn ghost" id="backArch">חזרה לחיפוש</button>' : ''}<button class="btn ghost" id="pcancel">סגירה</button>`);
 }
@@ -166,16 +167,17 @@ function openArchive() {
   const go = async () => {
     let r; try { r = await call('ors_admin_search', { p_q: $('#arq').value }); } catch (e) { return; }
     if (!$('#arres')) return;
-    $('#arres').innerHTML = r.length ? r.map(x => `<button type="button" class="row-c arow" data-ar="${x.id}"><div class="badge num">${x.num}</div><div class="who"><b>${esc(x.name)}</b><span>${new Date(x.day + 'T12:00:00').toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric', year: '2-digit' })} · ${esc(x.type)} · <span dir="ltr">${esc(fmtPhone(x.phone))}</span></span></div><span class="pill ${x.flags ? 'warn' : 'ok'}">${x.flags ? 'יש הערות' : 'תקינה'}</span></button>`).join('') : '<div class="empty">לא נמצאו הצהרות</div>';
+    $('#arres').innerHTML = r.length ? r.map(x => `<button type="button" class="row-c arow" data-ar="${x.id}"><div class="badge num">${x.num}</div><div class="who"><b>${esc(x.name)}</b><span>${new Date(x.day + 'T12:00:00').toLocaleDateString('he-IL', { day: 'numeric', month: 'numeric', year: '2-digit' })} · ${esc(x.spot || x.type)} · <span dir="ltr">${esc(fmtPhone(x.phone))}</span></span></div><span class="pill ${x.flags ? 'warn' : 'ok'}">${x.flags ? 'יש הערות' : 'תקינה'}</span></button>`).join('') : '<div class="empty">לא נמצאו הצהרות</div>';
   };
   $('#arq').addEventListener('input', () => { clearTimeout(archT); archT = setTimeout(go, 250); }); go();
 }
 function openAdd() {
-  pay = { type: A.data.types[0].name };
+  pay = { type: A.data.types[0].name, spot: '' };
   openSheet(`<h3>הוספה ידנית לתור</h3>
   <label class="f" for="aname">שם<input id="aname" type="text" maxlength="40" placeholder="שם הלקוחה"></label>
   <label class="f" for="aphone">טלפון (לא חובה)<input id="aphone" type="tel" dir="ltr" inputmode="tel" placeholder="050-0000000"></label>
   <div class="chips" id="at">${A.data.types.map(t => `<button type="button" class="chip" data-t="${esc(t.name)}" aria-pressed="${t.name === pay.type}">${esc(t.name)}</button>`).join('')}</div>
+  <div class="sub">איפה הפירסינג?</div><div class="chips" id="asp">${(A.data.spots || []).map(x => `<button type="button" class="chip" data-sp="${esc(x)}" aria-pressed="false">${esc(x)}</button>`).join('')}</div>
   <div class="err" id="perr" role="alert"></div>
   <button class="btn" id="aok">הוספה לתור</button><button class="btn ghost" id="pcancel">ביטול</button>`);
 }
@@ -185,9 +187,10 @@ function openSettings() {
   openSheet(`<h3>הגדרות</h3>
   <div class="sub">הרשמה לתור</div>
   <div class="seg" id="oseg"><button type="button" class="chip" data-open="1" aria-pressed="${A.data.open}">פתוח</button><button type="button" class="chip" data-open="0" aria-pressed="${!A.data.open}">סגור</button></div>
-  <div class="sub">סוגי פירסינג ומחירים</div>
+  <div class="sub">סוגי עגילים ומחירים</div>
   <div id="trows" style="display:flex;flex-direction:column;gap:8px">${A.data.types.map(typeRow).join('')}</div>
   <button type="button" class="btn sm ghost" id="tadd" style="align-self:flex-start">הוספת סוג</button>
+  <label class="f" for="sspots">מיקומי פירסינג שהלקוחה בוחרת מהם (מופרדים בפסיק)<input id="sspots" type="text" value="${esc((A.data.spots || []).join(', '))}"></label>
   <div class="sub">תוספות בהרשמה</div><p class="muted small">למשל שדרוג לתכשיט טיטניום. הלקוחה בוחרת בעצמה והמחיר מתווסף.</p>
   <div id="xrows" style="display:flex;flex-direction:column;gap:8px">${(A.data.extras || []).map(t => typeRow(t, 0, 0, 'שם התוספת')).join('')}</div>
   <button type="button" class="btn sm ghost" id="xadd" style="align-self:flex-start">הוספת תוספת</button>
@@ -195,6 +198,7 @@ function openSettings() {
   <label class="f" for="lpay">קישור תשלום (פייבוקס, ביט או דף תשלום)<input id="lpay" type="text" dir="ltr" inputmode="url" placeholder="https://" value="${esc((A.data.links || {}).pay || '')}"></label>
   <label class="f" for="lrv">קישור לביקורת בגוגל<input id="lrv" type="text" dir="ltr" inputmode="url" placeholder="https://" value="${esc((A.data.links || {}).review || '')}"></label>
   <label class="f" for="lig">קישור לאינסטגרם<input id="lig" type="text" dir="ltr" inputmode="url" placeholder="https://instagram.com/" value="${esc((A.data.links || {}).instagram || '')}"></label>
+  <label class="f" for="sterms">תנאים שהלקוחה מאשרת בחתימה (כל תנאי בשורה נפרדת)<textarea id="sterms" rows="5" maxlength="3000" placeholder="למשל: אין החזר כספי אחרי החירור">${esc(A.data.terms || '')}</textarea></label>
   <label class="f" for="smin">זמן ממוצע ללקוחה (בדקות)<input id="smin" type="number" inputmode="numeric" min="1" max="120" value="${A.data.min_per}"></label>
   <div class="err" id="perr" role="alert"></div>
   <button class="btn" id="sok">שמירה</button>
@@ -207,7 +211,7 @@ $('#overlay').addEventListener('click', async e => {
   const id = e.target.id;
   if (id === 'overlay' || id === 'pcancel') return closeSheet();
   const c = e.target.closest('.chip:not([data-hd])');
-  if (c) { [...c.parentNode.children].forEach(x => x.setAttribute('aria-pressed', x === c)); if (c.dataset.m) pay.method = c.dataset.m; if (c.dataset.t) pay.type = c.dataset.t; if (c.dataset.open) pay.open = c.dataset.open === '1'; return; }
+  if (c) { [...c.parentNode.children].forEach(x => x.setAttribute('aria-pressed', x === c)); if (c.dataset.m) pay.method = c.dataset.m; if (c.dataset.t) pay.type = c.dataset.t; if (c.dataset.sp) pay.spot = c.dataset.sp; if (c.dataset.open) pay.open = c.dataset.open === '1'; return; }
   if (e.target.dataset.trm) { e.target.closest('.trow').remove(); return; }
   if (id === 'tadd' || id === 'xadd') { $(id === 'tadd' ? '#trows' : '#xrows').insertAdjacentHTML('beforeend', typeRow({ name: '', price: '' }, 0, 0, id === 'tadd' ? 'שם הסוג' : 'שם התוספת')); const nr = $(id === 'tadd' ? '#trows' : '#xrows').lastElementChild; nr.querySelector('.tn').focus(); return; }
   const hc = e.target.closest('[data-hd]'); if (hc) return openHistory(+hc.dataset.hd);
@@ -230,7 +234,7 @@ $('#overlay').addEventListener('click', async e => {
   if (id === 'aok') {
     const name = $('#aname').value.trim();
     if (name.length < 2) { $('#perr').textContent = 'חסר שם ללקוחה'; return; }
-    run(act('ors_admin_add', { p_name: name, p_phone: $('#aphone').value, p_type: pay.type }, 'נוספה לתור', name));
+    run(act('ors_admin_add', { p_name: name, p_phone: $('#aphone').value, p_type: pay.type, p_spot: pay.spot || '' }, 'נוספה לתור', name));
   }
   if (id === 'sok') {
     const grab = sel => [...document.querySelectorAll(sel + ' .trow')].map(r => ({ name: r.querySelector('.tn').value.trim(), price: r.querySelector('.tp').value.trim() }));
@@ -239,7 +243,7 @@ $('#overlay').addEventListener('click', async e => {
     if (!types.length || bad(types) || bad(extras)) { $('#perr').textContent = ERR.ORS_TYPES; return; }
     const links = { review: $('#lrv').value.trim(), instagram: $('#lig').value.trim(), pay: $('#lpay').value.trim() };
     if ([links.review, links.instagram, links.pay].some(u => u && !/^https:\/\//.test(u))) { $('#perr').textContent = ERR.ORS_LINK; return; }
-    run(act('ors_admin_settings', { p_open: pay.open, p_types: num(types), p_min_per: Math.round(+$('#smin').value) || 8, p_extras: num(extras), p_links: links }, 'ההגדרות נשמרו', ''));
+    run(act('ors_admin_settings', { p_open: pay.open, p_types: num(types), p_min_per: Math.round(+$('#smin').value) || 8, p_extras: num(extras), p_links: links, p_spots: $('#sspots').value.split(',').map(x => x.trim()).filter(Boolean), p_terms: $('#sterms').value }, 'ההגדרות נשמרו', ''));
   }
   if (id === 'pwok') {
     const np = $('#npass').value;

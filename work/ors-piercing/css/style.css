@@ -390,3 +390,9 @@ h1,h2,h3{font-weight:900;letter-spacing:-.025em;line-height:1.08}
 .sheet>*{flex-shrink:0}
 .sheet .btn.sm{padding:11px 18px;min-height:44px}
 .sheet{-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:max(22px,env(safe-area-inset-bottom))}
+
+/* v10: earring types have long names; piercing spot; extra signed terms */
+.tcard b{font-size:14.5px;line-height:1.2;text-align:center;padding:0 2px}
+.t-meta b{font-size:20px;overflow-wrap:anywhere;line-height:1.15}
+.care.terms{background:#fff;border:1.5px solid var(--line)}
+.care ul{display:flex;flex-direction:column;gap:4px}

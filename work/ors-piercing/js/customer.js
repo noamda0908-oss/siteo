@@ -1,10 +1,10 @@
 /* Or's Piercing: customer screen (opened from the stand's QR) */
 const S = { state: null, ticket: null, token: store.get('ors_token'), form: { type: null }, step: 'form', health: {}, signed: false, start: +(store.get('ors_start') || 0), last: '', busy: false, ac: null };
-function freshForm() { let me = null; try { me = JSON.parse(store.get('ors_me') || 'null'); } catch (_) {} return { type: null, extras: [], name: me ? me.name : '', phone: me ? me.phone : '' }; }
+function freshForm() { let me = null; try { me = JSON.parse(store.get('ors_me') || 'null'); } catch (_) {} return { type: null, spot: '', spotOther: '', extras: [], name: me ? me.name : '', phone: me ? me.phone : '' }; }
 S.form = freshForm();
 const first = n => esc(String(n).trim().split(' ')[0]);
 const head = (inner, cls = '') => `<div class="p-head ${cls}"><span class="hoop" aria-hidden="true"></span><span class="hoop b" aria-hidden="true"></span><div class="logo-m" role="img" aria-label="Or's Piercing"></div>${inner}</div>`;
-const xline = m => (m.extras || []).length ? `<div class="xline">כולל ${m.extras.map(x => esc(x.name)).join(', ')}</div>` : '';
+const xline = m => `<div class="xline">${esc(m.type)}${(m.extras || []).length ? ', כולל ' + m.extras.map(x => esc(x.name)).join(', ') : ''}</div>`;
 const priceOf = t => { const x = (S.state.types || []).find(y => y.name === t); return x ? x.price : 0; };
 
 function forget() { S.token = null; S.ticket = null; S.start = 0; store.del('ors_token'); store.del('ors_start'); }
@@ -32,7 +32,9 @@ function render() {
     `<div class="p-body"><form id="join" class="stag" novalidate>
       <div class="fl"><input id="fname" type="text" autocomplete="name" maxlength="40" placeholder=" " value="${esc(S.form.name || '')}"><label for="fname">שם מלא</label></div>
       <div class="fl"><input id="fphone" type="tel" dir="ltr" inputmode="tel" autocomplete="tel" maxlength="16" placeholder=" " value="${esc(S.form.phone || '')}"><label for="fphone">טלפון</label></div>
-      <div><span class="pick-t">איזה פירסינג?</span><div class="tgrid">${types.map(t => `<button type="button" class="tcard" data-type="${esc(t.name)}" aria-pressed="${S.form.type === t.name}"><span class="ic"></span><b>${esc(t.name)}</b><small class="num">₪${t.price}</small></button>`).join('')}</div></div>
+      <div><span class="pick-t">איזה עגיל?</span><div class="tgrid">${types.map(t => `<button type="button" class="tcard" data-type="${esc(t.name)}" aria-pressed="${S.form.type === t.name}"><span class="ic"></span><b>${esc(t.name)}</b><small class="num">₪${t.price}</small></button>`).join('')}</div></div>
+      <div><span class="pick-t">איפה עושים את הפירסינג?</span><div class="chips" id="fs">${(S.state.spots || []).concat(['אחר']).map(x => `<button type="button" class="chip" data-s="${esc(x)}" aria-pressed="${S.form.spot === x}">${esc(x)}</button>`).join('')}</div>
+      <div class="fl" id="spotWrap" style="margin-top:10px" ${S.form.spot === 'אחר' ? '' : 'hidden'}><input id="fspot" type="text" maxlength="40" placeholder=" " value="${esc(S.form.spotOther || '')}"><label for="fspot">איפה בדיוק?</label></div></div>
       ${(S.state.extras || []).length ? `<div><span class="pick-t">רוצה להוסיף?</span><div class="chips" id="fx">${S.state.extras.map(x => `<button type="button" class="chip" data-x="${esc(x.name)}" aria-pressed="${(S.form.extras || []).includes(x.name)}">${esc(x.name)} <span class="num">+₪${x.price}</span></button>`).join('')}</div></div>` : ''}
       <div class="err" id="ferr" role="alert"></div>
       <button class="btn" type="submit" id="fgo">המשך להצהרת בריאות</button>
@@ -47,6 +49,7 @@ function render() {
       <label class="f" for="hnote">תרופות קבועות, או משהו שחשוב שאור תדע (לא חובה)<textarea id="hnote" maxlength="300" rows="2">${esc(H.note || '')}</textarea></label>
       <div><span class="pick-t">גיל</span><div class="seg" id="hage"><button type="button" class="chip" data-minor="0" aria-pressed="${H.minor === false}">16 ומעלה</button><button type="button" class="chip" data-minor="1" aria-pressed="${H.minor === true}">מתחת ל‑16, הורה איתי</button></div></div>
       <div class="fl" id="parentWrap" ${H.minor ? '' : 'hidden'}><input id="hparent" type="text" maxlength="40" placeholder=" " value="${esc(H.parent || '')}"><label for="hparent">שם ההורה המלווה</label></div>
+      ${(S.state.terms || '').trim() ? `<div class="care terms"><b>בחתימה אני מאשרת גם</b><ul>${S.state.terms.split('\n').map(l => l.trim()).filter(Boolean).map(l => `<li>${esc(l)}</li>`).join('')}</ul></div>` : ''}
       <div><div class="q-top"><span class="pick-t" id="sigT">${H.minor ? 'חתימת ההורה' : 'חתימה'}</span><button type="button" class="linkbtn" id="sigclr">ניקוי</button></div>
       <canvas id="sig" class="sig" width="640" height="240" aria-label="אזור חתימה. חותמים עם האצבע"></canvas></div>
       <p class="muted small">בחתימה אני מאשרת שהפרטים נכונים, שקיבלתי הסבר על הפירסינג ועל הטיפול אחריו, ושאני עושה אותו מרצוני. הפרטים נשמרים אצל Or's Piercing בלבד.</p>
@@ -61,7 +64,7 @@ function render() {
     <div class="ticket"><div class="t-top"><div class="ring-wrap"><svg viewBox="0 0 200 200"><circle class="ring-bg" cx="100" cy="100" r="92"/><circle class="ring-fg" cx="100" cy="100" r="92" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - Math.max(.06, prog))}"/></svg>
       <span class="bead"></span><div class="ring-in"><small>לפנייך בתור</small><b class="num">${a}</b><small>${a === 0 ? 'את הבאה' : 'כ‑' + (a * S.state.min_per + 4) + ' דקות'}</small></div></div></div>
       <div class="perf"></div>
-      <div class="t-meta"><div><small>מספר תור</small><b class="num">#${m.num}</b></div><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>מחיר</small><b class="num">₪${m.price}</b></div></div>${xline(m)}</div>
+      <div class="t-meta"><div><small>מספר תור</small><b class="num">#${m.num}</b></div><div><small>פירסינג</small><b>${esc(m.spot || 'עגיל')}</b></div><div><small>מחיר</small><b class="num">₪${m.price}</b></div></div>${xline(m)}</div>
     <div class="line"><span>הדוכן</span>${'<i></i>'.repeat(Math.min(a, 8))}<em>את</em></div>
     ${m.missed ? '<div class="note warn">פספסת את התור הקודם. החזרנו אותך לתור</div>' : ''}
     ${a <= 2 ? '<div class="note warn">עוד מעט תורך. כדאי להתקרב לדוכן</div>' : '<div class="note">אפשר להסתובב בינתיים. הדף מתעדכן לבד, כדאי להשאיר אותו פתוח</div>'}
@@ -69,13 +72,13 @@ function render() {
   } else if (st === 'called') {
     h = head(`<div class="radar" aria-hidden="true"><i></i><i></i><i></i></div><p>תור <b class="num">#${m.num}</b></p><h2>הגיע התור שלך</h2><p>אור מחכה לך בדוכן</p><span class="tm num" data-t="${m.called_at}" data-mine="1"></span>`, 'mid') +
     `<div class="p-body stag">
-    <div class="ticket"><div class="t-meta two"><div><small>פירסינג</small><b>${esc(m.type)}</b></div><div><small>לתשלום בסיום</small><b class="num">₪${m.price}</b></div></div>${xline(m)}</div>
+    <div class="ticket"><div class="t-meta two"><div><small>פירסינג</small><b>${esc(m.spot || 'עגיל')}</b></div><div><small>לתשלום בסיום</small><b class="num">₪${m.price}</b></div></div>${xline(m)}</div>
     ${S.state.links && S.state.links.pay ? `<a class="btn" target="_blank" rel="noopener" href="${esc(S.state.links.pay)}">לתשלום אונליין · ₪${m.price}</a><div class="note">אפשר גם לשלם בדוכן, במזומן או באשראי</div>` : '<div class="note">משלמים בדוכן: אשראי, ביט, פייבוקס או מזומן</div>'}</div>`;
   } else if (st === 'done') {
     h = head(`<div class="fall" aria-hidden="true">${[8, 22, 37, 51, 66, 80, 92].map((x, i) => `<i style="left:${x}%;animation-delay:${(i * .47).toFixed(2)}s"></i>`).join('')}</div><h2>תודה ${first(m.name)},<br>שיהיה במזל</h2><p>היה כיף לארח אותך</p>`, 'mid') +
     `<div class="p-body stag">
     <div class="receipt"><div class="row"><b>סיכום</b><span class="num">תור #${m.num}</span></div>
-      <div class="row"><span>פירסינג ${esc(m.type)}</span><span class="num">₪${m.paid_amount}</span></div>
+      <div class="row"><span>${esc(m.type)}${m.spot ? ', ' + esc(m.spot) : ''}</span><span class="num">₪${m.paid_amount}</span></div>
       <div class="row"><span>אמצעי תשלום</span><span>${esc(m.paid_method)}</span></div>
       <div class="row tot"><span>סה"כ שולם</span><span class="num">₪${m.paid_amount}</span></div></div>
     <div class="care"><b>הוראות טיפול</b><ul><li>לנקות פעמיים ביום בתמיסת מי מלח</li><li>לא לגעת בידיים לא נקיות</li><li>לא להחליף תכשיט עד להחלמה מלאה</li></ul></div>
@@ -90,7 +93,7 @@ function render() {
   if (st === 'health') { S.signed = false; initSig(); el.scrollIntoView({ block: 'start' }); }
 }
 function keep() {
-  const n = $('#fname'); if (n) { S.form.name = n.value; S.form.phone = $('#fphone').value; }
+  const n = $('#fname'); if (n) { S.form.name = n.value; S.form.phone = $('#fphone').value; if ($('#fspot')) S.form.spotOther = $('#fspot').value; }
   const hn = $('#hnote'); if (hn) { S.health.note = hn.value; S.health.parent = $('#hparent').value; }
 }
 function initSig() {
@@ -110,7 +113,7 @@ async function refresh() {
     S.state = state; S.ticket = ticket;
     if (S.token && (!ticket || ticket.status === 'left')) forget();
     if (S.ticket && S.ticket.status === 'called' && prev === 'waiting') alertCalled();
-    const key = JSON.stringify([S.ticket, S.ticket ? S.state.min_per : S.state.open + JSON.stringify([S.state.types, S.state.extras]), JSON.stringify(S.state.links)]);
+    const key = JSON.stringify([S.ticket, S.ticket ? S.state.min_per : S.state.open + JSON.stringify([S.state.types, S.state.extras, S.state.spots, S.state.terms]), JSON.stringify(S.state.links)]);
     if (!S.ticket && S.step === 'health' && S.state.open && S.last) { S.last = key; return; }
     if (key !== S.last) { S.last = key; render(); }
     else if (!S.ticket && $('#livec')) $('#livec').innerHTML = `<b class="num">${state.waiting}</b> ממתינות עכשיו · כ‑<b class="num">${state.waiting * state.min_per}</b> דקות`;
@@ -123,6 +126,8 @@ $('#phone').addEventListener('click', async e => {
   const c = e.target.closest('.tcard');
   if (c) { S.form.type = c.dataset.type; document.querySelectorAll('.tcard').forEach(x => x.setAttribute('aria-pressed', x === c)); return; }
   if (e.target.id === 'reload') return refresh();
+  const fs = e.target.closest('#fs .chip');
+  if (fs) { $('#ferr').textContent = ''; S.form.spot = fs.dataset.s; [...fs.parentNode.children].forEach(b => b.setAttribute('aria-pressed', b === fs)); $('#spotWrap').hidden = S.form.spot !== 'אחר'; if (S.form.spot === 'אחר') $('#fspot').focus(); return; }
   const fx = e.target.closest('#fx .chip');
   if (fx) { const on = fx.getAttribute('aria-pressed') !== 'true'; fx.setAttribute('aria-pressed', on); S.form.extras = (S.form.extras || []).filter(x => x !== fx.dataset.x); if (on) S.form.extras.push(fx.dataset.x); return; }
   const yn = e.target.closest('.yn button');
@@ -146,7 +151,9 @@ $('#phone').addEventListener('submit', async e => {
     err.textContent = '';
     if (name.length < 2) { err.textContent = 'חסר שם. כתבי שם מלא כדי שנדע למי לקרוא'; return; }
     if (phone.replace(/\D/g, '').length < 9) { err.textContent = 'מספר הטלפון קצר מדי. צריך מספר מלא'; return; }
-    keep(); S.step = 'health'; render(); return;
+    keep();
+    if (!S.form.spot || (S.form.spot === 'אחר' && (S.form.spotOther || '').trim().length < 2)) { err.textContent = 'צריך לבחור איפה עושים את הפירסינג'; return; }
+    S.step = 'health'; render(); return;
   }
   if (e.target.id !== 'hform') return;
   keep();
@@ -160,7 +167,7 @@ $('#phone').addEventListener('submit', async e => {
   S.busy = true; btn.disabled = true; btn.textContent = 'רושמות אותך...';
   try {
     const health = { minor: H.minor, parent: H.minor ? H.parent.trim() : '', note: (H.note || '').trim() }; HEALTH_Q.forEach(([k]) => { health[k] = H[k]; });
-    const r = await rpc('ors_join', { p_name: S.form.name.trim(), p_phone: S.form.phone.trim(), p_type: S.form.type, p_health: health, p_sig: $('#sig').toDataURL('image/png'), p_extras: S.form.extras || [] });
+    const r = await rpc('ors_join', { p_name: S.form.name.trim(), p_phone: S.form.phone.trim(), p_type: S.form.type, p_health: health, p_sig: $('#sig').toDataURL('image/png'), p_extras: S.form.extras || [], p_spot: S.form.spot === 'אחר' ? S.form.spotOther.trim() : S.form.spot });
     store.set('ors_me', JSON.stringify({ name: S.form.name.trim(), phone: S.form.phone.trim() }));
     S.token = r.token; S.ticket = r.ticket; S.start = r.ticket.ahead; store.set('ors_token', r.token); store.set('ors_start', String(S.start));
     S.form = freshForm(); S.health = {}; S.step = 'form'; S.last = ''; S.busy = false; await refresh();

@@ -474,25 +474,47 @@ function veil() {
   });
 }
 
-/* ================= 8. marquees ================= */
+/* ================= 8. marquees (auto-scroll + drag) ================= */
 function marquee() {
-  if (reduce) return;
   let v = 0;
   if (lenis) lenis.on('scroll', (e) => { v = e.velocity; });
   $$('.marquee__track').forEach((track) => {
-    Array.from(track.children).forEach((p) => { const c = p.cloneNode(true); c.setAttribute('aria-hidden', 'true'); if (c.tabIndex !== undefined) c.tabIndex = -1; track.appendChild(c); });
-    const base = parseFloat(track.dataset.speed || '0.045');
-    let x = 0, hold = false, half = 1;
+    const box = track.parentElement;
+    Array.from(track.children).forEach((p) => { const c = p.cloneNode(true); c.setAttribute('aria-hidden', 'true'); if (c.tagName === 'A') c.tabIndex = -1; track.appendChild(c); });
+    const base = reduce ? 0 : parseFloat(track.dataset.speed || '0.045');
+    let x = 0, half = 1, hover = false, drag = false, moved = 0, lastX = 0, lastT = 0, fling = 0, idle = 0;
     const measure = () => { const g = parseFloat(getComputedStyle(track).columnGap) || 0; half = (track.scrollWidth + g) / 2; };
+    const wrap = () => { if (half > 1) { while (-x >= half) x += half; while (x > 0) x -= half; } };
     measure(); addEventListener('resize', measure); addEventListener('load', measure);
-    if (track.querySelector('a')) {
-      track.addEventListener('pointerenter', () => { if (fine) hold = true; });
-      track.addEventListener('pointerleave', () => { hold = false; });
-    }
+    box.addEventListener('pointerenter', () => { if (fine) hover = true; });
+    box.addEventListener('pointerleave', () => { hover = false; });
+    box.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      drag = true; moved = 0; fling = 0; lastX = e.clientX; lastT = performance.now();
+      box.classList.add('is-drag');
+    });
+    addEventListener('pointermove', (e) => {
+      if (!drag) return;
+      const dx = e.clientX - lastX, now = performance.now();
+      moved += Math.abs(dx); x += dx; wrap();
+      fling = dx / Math.max(1, now - lastT); lastX = e.clientX; lastT = now;
+      if (moved > 6 && box.setPointerCapture && !box.hasPointerCapture(e.pointerId)) { try { box.setPointerCapture(e.pointerId); } catch (err) {} }
+    }, { passive: true });
+    const end = () => { if (!drag) return; drag = false; idle = 1800; box.classList.remove('is-drag'); };
+    addEventListener('pointerup', end); addEventListener('pointercancel', end);
+    box.addEventListener('click', (e) => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+    box.addEventListener('dragstart', (e) => e.preventDefault());
+    box.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      x += e.key === 'ArrowLeft' ? -160 : 160; wrap(); idle = 2500;
+    });
     gsap.ticker.add((_, dt) => {
-      const speed = hold ? 0 : base + Math.min(Math.abs(v) * 0.02, 0.5);
-      x -= speed * dt;
-      if (-x >= half) x += half;
+      if (!drag) {
+        if (Math.abs(fling) > 0.01) { x += fling * dt; fling *= Math.pow(0.94, dt / 16.7); }
+        else if (idle > 0) idle -= dt;
+        else if (!hover) x -= (base + Math.min(Math.abs(v) * 0.02, 0.5)) * dt;
+      }
+      wrap();
       track.style.transform = `translate3d(${x}px,0,0)`;
     });
   });

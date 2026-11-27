@@ -242,6 +242,8 @@ html:not(.js) .loader{display:none}
 .chips label:active span{transform:scale(.95)}
 .form__err{color:#a1201a;font-weight:700;background:#fff3f1;padding:12px 14px;scroll-margin-top:calc(var(--nav-h) + 90px)}
 .form__send{width:100%;margin-top:6px}
+.form__send[disabled]{opacity:.6;cursor:default}
+.hp{position:absolute;inset-inline-start:-9999px;width:1px;height:1px;opacity:0}
 .form__legal{margin-top:16px;font-size:.85rem;color:var(--smoke-2);text-align:center}
 .form__done{text-align:center;padding:36px 8px;display:grid;gap:12px;justify-items:center}
 .form__done:focus{outline:none}

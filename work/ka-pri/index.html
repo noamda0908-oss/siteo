@@ -15,7 +15,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230f0f10'/%3E%3Cpath d='M11 10h18v20H11' fill='none' stroke='%23efece6' stroke-width='4.5'/%3E%3Crect x='7' y='26' width='8' height='8' fill='%23ff5b2e'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/noto-sans-hebrew-hebrew-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="img/hero.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="css/style.css?v=11271430">
+<link rel="stylesheet" href="css/style.css?v=11271445">
 <script>(function(d){d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.remove('is-reduced')})(document.documentElement);setTimeout(function(){document.body&&document.body.classList.remove('is-loading')},7000)</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"EmploymentAgency","name":"כ.א פרי","areaServed":["תל אביב-יפו","רמת גן","פתח תקווה","הרצליה","רעננה","כפר סבא","נתניה","חולון","בת ים","ראשון לציון","רחובות"],"address":{"@type":"PostalAddress","addressCountry":"IL"},"description":"כוח אדם במרכז: עובדי ניקיון, עובדי מטבח ועוזרות בית לעסקים ולבתים פרטיים."}
@@ -212,7 +212,7 @@
   <div class="wrap contact__grid">
     <div class="contact__intro">
       <h2 class="h2" id="contact-title">ספרו לנו מה אתם צריכים</h2>
-      <p>ממלאים את הטופס, והפרטים נשלחים אלינו ישר לוואטסאפ. חוזרים אליכם משם.</p>
+      <p>ממלאים את הטופס, והפרטים מגיעים ישר אלינו. חוזרים אליכם בטלפון או בוואטסאפ.</p>
       <a class="contact__wa" href="#" data-wa>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.700 13.600L3 21l4.600-1.200A9 9 0 1 0 12 3z"/><path d="M9 8.600c-.5 3 3.300 6.800 6.400 6.400"/></svg>
         <span>לכתוב לנו ישר בוואטסאפ</span>
@@ -250,7 +250,8 @@
           </div>
           <label class="fld"><span>באיזו עיר אתם?</span><input name="area" type="text" placeholder="עיר, שכונה או רחוב"></label>
           <label class="fld"><span>משהו שחשוב שנדע <em>(לא חובה)</em></span><textarea name="note" rows="2" placeholder="ימים, שעות, כמה עובדים"></textarea></label>
-          <button class="btn btn--flame btn--lg form__send" type="submit">שליחת הפרטים בוואטסאפ</button>
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn--flame btn--lg form__send" type="submit">שליחת הפרטים</button>
         </form>
       </div>
 
@@ -277,17 +278,18 @@
             </label>
             <label class="fld"><span>איפה אתם גרים?</span><input name="area" type="text" placeholder="עיר או שכונה"></label>
           </div>
-          <button class="btn btn--flame btn--lg form__send" type="submit">שליחת הפרטים בוואטסאפ</button>
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn--flame btn--lg form__send" type="submit">שליחת הפרטים</button>
         </form>
       </div>
 
       <div class="form__done" hidden tabindex="-1">
         <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><path d="m20 33 8 8 16-18"/></svg>
-        <h3>הוואטסאפ נפתח עם הפרטים שלכם</h3>
-        <p>לחצו שם על שליחה, ונחזור אליכם. הוואטסאפ לא נפתח? <a href="#" data-wa-last>לחצו כאן</a>.</p>
+        <h3 class="form__done-title">הפרטים התקבלו</h3>
+        <p><span class="form__done-text">נחזור אליכם בטלפון או בוואטסאפ.</span> רוצים לזרז? <a href="#" data-wa-last>שלחו לנו את הפרטים גם בוואטסאפ</a>.</p>
         <button type="button" class="btn btn--line form__again">מילוי טופס נוסף</button>
       </div>
-      <p class="form__legal">הפרטים נשלחים אלינו בוואטסאפ ומשמשים רק כדי לחזור אליכם.</p>
+      <p class="form__legal">הפרטים נשמרים אצלנו ומשמשים רק כדי לחזור אליכם.</p>
     </div>
   </div>
 </section>
@@ -336,6 +338,7 @@
       <a href="#contact" data-tab="biz">צריכים עובדים</a>
       <a href="#contact" data-tab="job">מחפשים עבודה</a>
       <button type="button" data-open="a11y">הצהרת נגישות</button>
+      <a href="admin.html">ניהול</a>
     </nav>
     <p class="foot__copy">© <span data-year>2026</span> כ.א פרי. האתר נבנה על ידי <a href="https://siteo.co.il/">Siteo</a>.</p>
   </div>
@@ -354,6 +357,6 @@
   <form method="dialog"><button class="btn btn--ink">סגירה</button></form>
 </dialog>
 
-<script src="js/app.js?v=11271430" defer></script>
+<script src="js/app.js?v=11271445" defer></script>
 </body>
 </html>

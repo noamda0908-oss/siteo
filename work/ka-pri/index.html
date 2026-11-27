@@ -15,7 +15,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230f0f10'/%3E%3Cpath d='M11 10h18v20H11' fill='none' stroke='%23efece6' stroke-width='4.5'/%3E%3Crect x='7' y='26' width='8' height='8' fill='%23ff5b2e'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/noto-sans-hebrew-hebrew-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="img/hero.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="css/style.css?v=11271445">
+<link rel="stylesheet" href="css/style.css?v=11271500">
 <script>(function(d){d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.remove('is-reduced')})(document.documentElement);setTimeout(function(){document.body&&document.body.classList.remove('is-loading')},7000)</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"EmploymentAgency","name":"כ.א פרי","areaServed":["תל אביב-יפו","רמת גן","פתח תקווה","הרצליה","רעננה","כפר סבא","נתניה","חולון","בת ים","ראשון לציון","רחובות"],"address":{"@type":"PostalAddress","addressCountry":"IL"},"description":"כוח אדם במרכז: עובדי ניקיון, עובדי מטבח ועוזרות בית לעסקים ולבתים פרטיים."}
@@ -147,6 +147,15 @@
   </div>
 </section>
 
+<!-- 5. PROOF: numbers and testimonials, filled from the admin panel; hidden while empty -->
+<section class="proof" id="proof" data-theme="light" aria-labelledby="proof-title" hidden>
+  <div class="wrap">
+    <h2 class="h2" id="proof-title">מה אומרים עלינו</h2>
+    <ul class="proof__stats" hidden></ul>
+    <ul class="proof__list" hidden></ul>
+  </div>
+</section>
+
 <!-- 6. PROCESS -->
 <section class="process" id="process" data-theme="light" aria-labelledby="process-title">
   <div class="wrap">
@@ -204,6 +213,10 @@
       <li><strong>בוקר, ערב או סופ״ש</strong><span>סמנו את השעות שמתאימות לכם.</span></li>
     </ul>
     <a class="btn btn--ink btn--lg jobs__cta" href="#contact" data-tab="job">להשאיר פרטים לעבודה</a>
+    <div class="board" hidden>
+      <h3 class="board__title">משרות פתוחות עכשיו</h3>
+      <ul class="board__list"></ul>
+    </div>
   </div>
 </section>
 
@@ -256,30 +269,38 @@
       </div>
 
       <div class="form__pane" id="panel-job" role="tabpanel" aria-labelledby="tab-job" hidden>
+        <div class="lang" role="group" aria-label="שפה / Language">
+          <button type="button" data-lang="he" aria-pressed="true" lang="he">עברית</button>
+          <button type="button" data-lang="ar" aria-pressed="false" lang="ar">العربية</button>
+          <button type="button" data-lang="ru" aria-pressed="false" lang="ru">Русский</button>
+          <button type="button" data-lang="en" aria-pressed="false" lang="en">English</button>
+        </div>
         <form class="form__panel" novalidate data-kind="job">
           <p class="form__err" role="alert" hidden></p>
-          <fieldset class="chips"><legend>באיזו עבודה אתם מעוניינים?</legend>
-            <label><input type="checkbox" name="need" value="ניקיון"><span>ניקיון</span></label>
-            <label><input type="checkbox" name="need" value="מטבח"><span>מטבח</span></label>
-            <label><input type="checkbox" name="need" value="משק בית"><span>משק בית</span></label>
+          <p class="form__job" hidden></p>
+          <fieldset class="chips"><legend data-t="q_need">באיזו עבודה אתם מעוניינים?</legend>
+            <label><input type="checkbox" name="need" value="ניקיון"><span data-t="clean">ניקיון</span></label>
+            <label><input type="checkbox" name="need" value="מטבח"><span data-t="kitchen">מטבח</span></label>
+            <label><input type="checkbox" name="need" value="משק בית"><span data-t="house">משק בית</span></label>
           </fieldset>
           <div class="f2">
-            <label class="fld"><span>שם מלא</span><input name="name" type="text" autocomplete="name" required></label>
-            <label class="fld"><span>טלפון</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="050-0000000" required></label>
+            <label class="fld"><span data-t="name">שם מלא</span><input name="name" type="text" autocomplete="name" required></label>
+            <label class="fld"><span data-t="phone">טלפון</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="050-0000000" required></label>
           </div>
-          <fieldset class="chips"><legend>מתי אתם יכולים לעבוד?</legend>
-            <label><input type="checkbox" name="when" value="בוקר"><span>בוקר</span></label>
-            <label><input type="checkbox" name="when" value="ערב"><span>ערב</span></label>
-            <label><input type="checkbox" name="when" value="סופ״ש"><span>סופ״ש</span></label>
+          <fieldset class="chips"><legend data-t="q_when">מתי אתם יכולים לעבוד?</legend>
+            <label><input type="checkbox" name="when" value="בוקר"><span data-t="morning">בוקר</span></label>
+            <label><input type="checkbox" name="when" value="ערב"><span data-t="evening">ערב</span></label>
+            <label><input type="checkbox" name="when" value="סופ״ש"><span data-t="weekend">סופ״ש</span></label>
           </fieldset>
           <div class="f2">
-            <label class="fld"><span>ניסיון</span>
-              <select name="exp"><option>אין ניסיון</option><option>עד שנה</option><option>שנה עד שלוש</option><option>יותר משלוש שנים</option></select>
+            <label class="fld"><span data-t="exp">ניסיון</span>
+              <select name="exp"><option value="אין ניסיון" data-t="exp0">אין ניסיון</option><option value="עד שנה" data-t="exp1">עד שנה</option><option value="שנה עד שלוש" data-t="exp2">שנה עד שלוש</option><option value="יותר משלוש שנים" data-t="exp3">יותר משלוש שנים</option></select>
             </label>
-            <label class="fld"><span>איפה אתם גרים?</span><input name="area" type="text" placeholder="עיר או שכונה"></label>
+            <label class="fld"><span data-t="live">איפה אתם גרים?</span><input name="area" type="text" placeholder="עיר או שכונה" data-tp="live_ph"></label>
           </div>
+          <input type="hidden" name="note">
           <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button class="btn btn--flame btn--lg form__send" type="submit">שליחת הפרטים</button>
+          <button class="btn btn--flame btn--lg form__send" type="submit" data-t="send">שליחת הפרטים</button>
         </form>
       </div>
 
@@ -357,6 +378,6 @@
   <form method="dialog"><button class="btn btn--ink">סגירה</button></form>
 </dialog>
 
-<script src="js/app.js?v=11271445" defer></script>
+<script src="js/app.js?v=11271500" defer></script>
 </body>
 </html>

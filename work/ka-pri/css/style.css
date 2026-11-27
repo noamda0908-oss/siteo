@@ -156,6 +156,19 @@ html:not(.js) .loader{display:none}
 .tile__cap strong{font-stretch:68%;font-weight:900;font-size:clamp(1.5rem,3.2vw,3rem);line-height:1}
 .tile__cap span{font-size:clamp(.82rem,1.1vw,1rem);color:rgba(239,236,230,.86);line-height:1.35}
 
+/* ========== 5. PROOF ========== */
+.proof{background:var(--bone);color:var(--ink);padding-block:clamp(50px,7vw,100px) 0}
+.proof__stats{display:flex;flex-wrap:wrap;gap:clamp(20px,5vw,80px);margin-top:clamp(28px,4vw,56px);border-top:2px solid var(--ink);padding-top:clamp(18px,2.4vw,32px)}
+.proof__stats li{display:grid;gap:2px}
+.proof__stats b{font-stretch:66%;font-weight:900;font-size:clamp(3.4rem,8vw,7.5rem);line-height:.9;color:var(--ink)}
+.proof__stats span{color:var(--smoke-2);font-size:1.05rem}
+.proof__list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(14px,2vw,28px);margin-top:clamp(28px,4vw,56px)}
+.proof__list li{background:var(--paper);border-radius:18px;padding:clamp(20px,2.6vw,36px);display:grid;gap:18px;align-content:space-between}
+.proof__list blockquote{margin:0;font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.45}
+.proof__list blockquote::before{content:"״";display:block;font-stretch:66%;font-weight:900;font-size:4rem;line-height:.6;color:var(--flame);margin-bottom:6px}
+.proof__list cite{font-style:normal;font-weight:700}
+.proof__list cite span{display:block;font-weight:400;color:var(--smoke-2);font-size:.95rem}
+
 /* ========== 6. PROCESS ========== */
 .process{background:var(--bone);color:var(--ink);padding-block:clamp(80px,11vw,160px)}
 .process__title{margin-bottom:clamp(36px,6vw,80px);max-width:12ch}
@@ -203,6 +216,22 @@ html:not(.js) .loader{display:none}
 .jobs__facts strong{font-stretch:70%;font-weight:800;font-size:1.6rem;line-height:1.1}
 .jobs__facts span{color:#4d4a44}
 .jobs__cta{justify-self:start}
+
+.board{grid-column:1/-1;margin-top:clamp(20px,3vw,48px);border-top:2px solid var(--ink);padding-top:clamp(18px,2.4vw,32px)}
+.board__title{font-stretch:70%;font-weight:900;font-size:clamp(2rem,4vw,3.4rem);line-height:1;margin-bottom:clamp(14px,2vw,24px)}
+.board__list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.board__list li{background:var(--paper);border-radius:16px;padding:20px;display:grid;gap:10px;align-content:space-between;justify-items:start}
+.board__list strong{font-stretch:72%;font-weight:800;font-size:1.6rem;line-height:1.1}
+.board__meta{display:flex;flex-wrap:wrap;gap:6px}
+.board__meta span{font-size:.85rem;font-weight:600;padding:4px 12px;border-radius:999px;background:var(--bone)}
+.board__list p{color:#4d4a44;font-size:.98rem}
+.lang{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.lang button{min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid #77736b;background:none;font-weight:600;font-size:.92rem;cursor:pointer;color:var(--ink)}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.form__job{background:var(--bone);padding:10px 14px;border-radius:10px;font-weight:600}
+.form__pane[dir=ltr] .fld select{background-position:right 4px center}
+.form__pane[dir=ltr] .fld input[dir=ltr]{text-align:left}
+.form__pane[dir=ltr] .chips legend{float:left}
 
 /* ========== 9. CONTACT ========== */
 .contact{background:var(--paper);color:var(--ink);padding-block:clamp(80px,11vw,160px)}

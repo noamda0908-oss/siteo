@@ -71,25 +71,26 @@
   </div>
 </section>
 
-<!-- 2. OPEN: the city inside the letters -->
-<section class="open" data-theme="light" aria-label="כ.א פרי">
-  <div class="open__stage">
-    <div class="open__photo"><img src="img/city.webp" alt="קו החוף של תל אביב, מבט מיפו צפונה" decoding="async"></div>
-    <svg class="open__mask" aria-hidden="true">
-      <defs>
-        <mask id="openMask" maskUnits="userSpaceOnUse">
-          <rect class="open__maskbg" x="0" y="0" width="100%" height="100%" fill="#fff"/>
-          <text class="open__word" fill="#000" text-anchor="middle" direction="rtl" xml:lang="he">כ.א פרי</text>
-        </mask>
-      </defs>
-      <rect class="open__fill" x="0" y="0" width="100%" height="100%" mask="url(#openMask)"/>
-    </svg>
-    <p class="open__sub">כוח אדם לניקיון ולמטבח. תל אביב, גוש דן, השרון והשפלה.</p>
-    <div class="open__statement">
-      <p class="open__big">עובדי ניקיון ומטבח, לכל עסק ולכל בית במרכז.</p>
-      <p class="open__small">אתם אומרים לנו מה צריך. אנחנו מביאים את העובדים.</p>
-    </div>
-  </div>
+<!-- 2. DOORS: two audiences, two entrances -->
+<section class="doors" data-theme="dark" aria-label="למי האתר מיועד">
+  <a class="door" href="#contact" data-tab="biz">
+    <img class="door__img" src="img/g-rest2.webp" alt="" loading="lazy" decoding="async">
+    <span class="door__body">
+      <span class="door__for">לעסקים ולבתים</span>
+      <strong class="door__title">צריכים עובדים</strong>
+      <span class="door__list"><span>עובדי ניקיון, מטבח ומשק בית</span><span>קבועים, זמניים או להחלפה</span><span>בכל המרכז</span></span>
+      <span class="door__go"><span>להשאיר פרטים</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
+    </span>
+  </a>
+  <a class="door" href="#contact" data-tab="job">
+    <img class="door__img" src="img/j-chef.webp" alt="" loading="lazy" decoding="async">
+    <span class="door__body">
+      <span class="door__for">לעובדים</span>
+      <strong class="door__title">מחפשים עבודה</strong>
+      <span class="door__list"><span>עבודה בניקיון, במטבח ובמשק בית</span><span>קרוב לבית, בשעות שמתאימות לכם</span><span>גם בלי ניסיון</span></span>
+      <span class="door__go"><span>להשאיר פרטים</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
+    </span>
+  </a>
 </section>
 
 <!-- 3. SERVICES: stacked cards -->

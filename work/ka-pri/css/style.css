@@ -107,19 +107,22 @@ html:not(.js) .loader{display:none}
 .hero__hint i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--flame);animation:hint 1.8s var(--ease) infinite}
 @keyframes hint{to{top:110%}}
 
-/* ========== 2. OPEN ========== */
-.open{position:relative;z-index:2;background:var(--bone)}
-.open__stage{position:relative;height:100svh;overflow:hidden;background:var(--bone)}
-.open__photo{position:absolute;inset:0;overflow:hidden}
-.open__photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);transform-origin:50% 60%}
-.open__mask{position:absolute;inset:0;width:100%;height:100%;transform-origin:0 0}
-.open__fill{fill:var(--bone)}
-.open__word{font-family:var(--f);font-stretch:62.5%;font-weight:900}
-.open__sub{position:absolute;inset-inline:var(--gutter);bottom:clamp(36px,8vh,84px);color:var(--ink);font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:500;max-width:36ch}
-.open__statement{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--gutter) clamp(48px,10vh,110px);color:var(--bone);opacity:0;pointer-events:none}
-.open__statement::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,15,16,.96) 0%,rgba(15,15,16,.8) 42%,rgba(15,15,16,.35) 75%,rgba(15,15,16,.2) 100%);z-index:-1}
-.open__big{font-stretch:70%;font-weight:800;font-size:clamp(2.1rem,5vw,4.9rem);line-height:1;max-width:22ch;text-wrap:balance}
-.open__small{margin-top:20px;max-width:44ch;color:rgba(239,236,230,.84);font-size:clamp(1rem,1.3vw,1.2rem)}
+/* ========== 2. DOORS ========== */
+.doors{position:relative;z-index:2;display:flex;gap:clamp(8px,1vw,16px);padding:clamp(8px,1vw,16px);background:var(--coal);height:min(88svh,820px)}
+.door{position:relative;flex:1 1 0;min-width:0;overflow:hidden;border-radius:22px;text-decoration:none;color:var(--bone);background:var(--coal-3);transition:flex-grow .9s var(--ease)}
+.door__img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover}
+.door::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,15,16,.94) 0%,rgba(15,15,16,.6) 42%,rgba(15,15,16,.15) 78%);transition:opacity .6s}
+.door__body{position:absolute;z-index:1;inset-inline:clamp(20px,3.4vw,52px);bottom:clamp(22px,3.4vw,52px);display:grid;justify-items:start;gap:14px}
+.door__for{font-weight:700;font-size:1.02rem;color:var(--flame-hot)}
+.door__title{font-stretch:66%;font-weight:900;font-size:clamp(3rem,7.4vw,7.4rem);line-height:.9;white-space:nowrap}
+.door__list{display:grid;gap:2px;font-size:clamp(1rem,1.25vw,1.2rem);color:rgba(239,236,230,.9)}
+.door__go{display:inline-flex;align-items:center;gap:12px;margin-top:8px;min-height:52px;padding:0 1.5em;border-radius:999px;background:var(--flame);color:var(--ink);font-weight:700;transition:background-color .3s,gap .5s var(--ease)}
+.door__go svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(hover:hover){
+  .door:hover{flex-grow:1.55}
+  .door:hover .door__go{background:var(--flame-hot);gap:20px}
+  .doors:hover .door:not(:hover)::after{opacity:1;background:rgba(15,15,16,.72)}
+}
 
 /* ========== 3. SERVICES (stacked cards) ========== */
 .services{background:var(--coal-2);padding-block:clamp(80px,12vw,170px) clamp(60px,9vw,130px)}
@@ -317,6 +320,8 @@ html:not(.js) .loader{display:none}
   .hero__actions .btn{flex:1 1 auto;min-height:54px;padding:0 1.1em}
   .hero__hint{display:none}
   .hero__shade{background:linear-gradient(0deg,rgba(15,15,16,.94) 0%,rgba(15,15,16,.66) 46%,rgba(15,15,16,.12) 76%),linear-gradient(180deg,rgba(15,15,16,.55) 0%,rgba(15,15,16,0) 24%)}
+  .doors{flex-direction:column;height:auto}
+  .door{flex:none;height:62svh;min-height:420px;border-radius:16px}
   .tiles{grid-template-columns:1fr 1fr}
   .tile{aspect-ratio:3/4;border-radius:12px}
   .card__inner{height:68svh;border-radius:16px}
@@ -333,9 +338,6 @@ html:not(.js) .loader{display:none}
 }
 
 /* reduced motion / no-js: everything static and visible */
-.is-reduced .open__statement{position:relative;opacity:1;padding-block:64px}
-.is-reduced .open__stage{height:auto;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end}
-.is-reduced .open__mask,.is-reduced .open__sub{display:none}
 .is-reduced .card{position:relative;top:auto}
 .is-reduced .close__track{animation:none}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}

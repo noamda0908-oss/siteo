@@ -60,7 +60,7 @@ function mock(m, text) {
 function card(p) {
   return `<a class="pcard reveal" href="product.html?id=${p.id}">
     <div class="ph"><img src="img/${p.id}.webp" alt="${esc(p.name)}" loading="lazy" width="900" height="900">
-      ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}<span class="quick"><span>${p.photo ? 'עצבו עם התמונה שלכם' : 'להתאמה אישית'}</span></span></div>
+      ${p.tag === 'חדש' ? '<span class="tag">חדש</span>' : ''}<span class="quick"><span>${p.photo ? 'בחירת תמונה' : 'כתיבת שם'}</span></span></div>
     <div class="for">${p.c.slice(0, 3).map((x) => LBL[x]).join(' · ')}</div>
     <div class="nm">${esc(p.name)}</div>
     <div class="pr"><b>₪${p.price}</b><span class="was">₪${p.was}</span></div></a>`;
@@ -69,15 +69,15 @@ function card(p) {
 /* ---------- chrome ---------- */
 function chrome() {
   document.body.insertAdjacentHTML('afterbegin', `
-  <div class="announce" aria-live="polite"><span class="on">משלוח חינם בהזמנה מעל ₪199</span><span>רואים את המתנה עם התמונה שלכם לפני שמזמינים</span><span>כל מתנה מגיעה באריזת מתנה, מוכנה לנתינה</span></div>
+  <div class="announce" aria-live="polite"><span class="on">משלוח חינם בהזמנה מעל ₪199</span><span>כל מתנה מגיעה ארוזה, מוכנה לנתינה</span></div>
   <header class="hdr"><div class="wrap hdr-in">
     <a href="./" class="logo" aria-label="יקירי, לדף הבית">יקירי<i>.</i></a>
-    <nav class="nav" aria-label="ניווט ראשי"><a href="./#shop">כל המתנות</a><a href="./#cats">לפי מי שמקבל</a><a href="./#how">איך זה עובד</a><a href="./#about">עלינו</a></nav>
+    <nav class="nav" aria-label="ניווט ראשי"><a href="./?c=mom#shop">לאמא</a><a href="./?c=dad#shop">לאבא</a><a href="./?c=gf#shop">לבת הזוג</a><a href="./?c=bf#shop">לבן הזוג</a><a href="./?c=grandma#shop">לסבא ולסבתא</a><a href="./#shop">כל המתנות</a></nav>
     <button class="cartbtn" id="cartbtn" aria-label="סל קניות"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" id="count"></span></button>
   </div></header>`);
   document.body.insertAdjacentHTML('beforeend', `
   <footer class="ftr"><div class="wrap ftr-in">
-    <div><div class="logo" style="margin-bottom:12px">יקירי<i>.</i></div><p style="color:#C9BDB2;line-height:1.7;max-width:320px;margin:0">מתנות בהתאמה אישית שמזכירות לאנשים שאתם אוהבים כמה הם יקרים לכם.</p></div>
+    <div><div class="logo" style="margin-bottom:12px">יקירי<i>.</i></div><p style="color:var(--soft);line-height:1.7;max-width:320px;margin:0">מתנות בהתאמה אישית שמזכירות לאנשים שאתם אוהבים כמה הם יקרים לכם.</p></div>
     <div><h4>מתנות</h4><a href="./?c=mom#shop">לאמא</a><a href="./?c=dad#shop">לאבא</a><a href="./?c=gf#shop">לבת הזוג</a><a href="./?c=grandma#shop">לסבא ולסבתא</a></div>
     <div><h4>מידע</h4><a href="./#how">איך זה עובד</a><a href="#">משלוחים</a><a href="#">החזרות והחלפות</a><a href="#">שאלות נפוצות</a></div>
     <div><h4>שירות</h4><a href="#">צור קשר</a><a href="#">תקנון</a><a href="#">מדיניות פרטיות</a><a href="#">הצהרת נגישות</a></div>

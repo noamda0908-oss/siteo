@@ -4,150 +4,128 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>יקירי – מתנות מרגשות בהתאמה אישית</title>
-<meta name="description" content="מתנות בהתאמה אישית עם התמונה שלכם: לאמא, לאבא, לבת הזוג, לבן הזוג, לסבא ולסבתא.">
+<title>יקירי – מתנות עם התמונה שלכם</title>
+<meta name="description" content="שרשראות, קריסטלים, ספלים וארנקים עם התמונה שלכם. לאמא, לאבא, לבן ולבת הזוג, לסבא ולסבתא.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/app.css">
 <style>
-.hero{position:relative;padding:56px 0 80px;overflow:hidden}
-.hero:before{content:"";position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,var(--blush),transparent 70%);top:-220px;left:-160px;z-index:-1}
-.hero-in{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .lead{max-width:520px;margin:22px 0 32px}
-.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
-.hero-note{display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;color:var(--soft);font-size:14px}
-.hero-note span{display:flex;align-items:center;gap:8px}
-.hero-note svg{color:var(--accent)}
-.collage{position:relative;height:560px}
-.collage .main{position:absolute;inset:0 0 0 70px;border-radius:200px 200px 28px 28px;overflow:hidden;box-shadow:var(--shadow)}
-.collage .main img{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
-.collage .float{position:absolute;background:#fff;border-radius:20px;box-shadow:var(--shadow);animation:floaty 6s ease-in-out infinite}
-.f1{left:0;bottom:70px;width:190px;padding:10px}
-.f1 img{border-radius:14px;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
-.f1 b{display:block;font-size:14px;margin:8px 4px 2px}.f1 small{color:var(--soft);margin:0 4px}
-.f2{right:-14px;top:60px;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;animation-delay:-3s}
-.f2 i{width:34px;height:34px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;font-style:normal;color:var(--accent)}
-.sec{padding-top:80px;padding-bottom:80px}
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
-.circles{display:flex;gap:22px;overflow-x:auto;padding:6px 2px 10px;scrollbar-width:none;justify-content:space-between}
-.circ{flex:none;display:flex;flex-direction:column;align-items:center;gap:12px;font-weight:600;cursor:pointer;background:none;border:0;font:inherit;color:var(--ink);font-size:15px}
-.circ span{width:128px;height:128px;border-radius:50%;background-size:cover;background-position:center;border:4px solid #fff;box-shadow:0 10px 30px -14px rgba(80,45,25,.4);transition:transform .4s}
-.circ:hover span{transform:scale(1.06)}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:10px 18px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;min-height:44px;transition:.25s}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:min(82vh,720px);background:var(--sand)}
+.hero-txt{display:flex;flex-direction:column;justify-content:center;padding:60px clamp(24px,6vw,96px)}
+.hero-txt p{font-size:18px;line-height:1.8;color:var(--soft);font-weight:300;max-width:460px;margin:22px 0 34px}
+.hero-img{position:relative;overflow:hidden}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;animation:settle 2.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes settle{from{transform:scale(1.08)}to{transform:none}}
+.hero-txt>*{animation:up 1s cubic-bezier(.2,.7,.2,1) both}
+.hero-txt>*:nth-child(2){animation-delay:.1s}.hero-txt>*:nth-child(3){animation-delay:.2s}
+.sec{padding-top:96px}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:32px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.who{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.who a{display:block}
+.who .im{aspect-ratio:3/4;overflow:hidden;background:var(--sand);margin-bottom:12px}
+.who img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.who a:hover img{transform:scale(1.03)}
+.who b{font-weight:500;font-size:17px;display:block}
+.who span{color:var(--soft);font-size:14px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 16px;font:inherit;font-size:14px;cursor:pointer;min-height:44px;border-radius:2px}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.how{background:var(--sand);border-radius:36px;padding:70px 56px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:40px}
-.step .n{width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:var(--accent);margin-bottom:18px;box-shadow:0 8px 20px -10px rgba(80,45,25,.3)}
-.step h3{font-size:20px;margin-bottom:8px}.step p{color:var(--soft);line-height:1.7;margin:0}
+.split{display:grid;grid-template-columns:1.2fr 1fr;background:var(--sand);margin-top:110px}
+.split .im{min-height:520px;background:url(img/life_opening.webp) center 35%/cover}
+.split .tx{padding:70px clamp(24px,5vw,80px);display:flex;flex-direction:column;justify-content:center}
+.steps{list-style:none;padding:0;margin:30px 0 0;counter-reset:s}
+.steps li{counter-increment:s;padding:18px 0;border-top:1px solid #DCD5CC;display:grid;grid-template-columns:44px 1fr;gap:6px}
+.steps li:before{content:counter(s,decimal-leading-zero);color:var(--soft);font-size:14px;padding-top:3px}
+.steps b{font-weight:500;display:block;margin-bottom:4px}
+.steps span{color:var(--soft);font-size:15px;line-height:1.6;grid-column:2}
 .try{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.try-stage{aspect-ratio:1/1;border-radius:32px;overflow:hidden;box-shadow:var(--shadow)}
-.drop{display:flex;align-items:center;gap:16px;border:2px dashed #D8C7B7;border-radius:20px;padding:18px 20px;cursor:pointer;background:#fff;margin-top:26px;transition:.3s;max-width:480px}
-.drop:hover,.drop.on{border-color:var(--accent);background:#FFF8F4}
-.drop .th{width:60px;height:60px;border-radius:14px;background:var(--photo) center/cover;flex:none}
-.try-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
-.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.about-img{aspect-ratio:4/5;border-radius:28px;background:url(img/moon.webp) center/cover;box-shadow:var(--shadow)}
-.cta{background:var(--ink);color:#fff;border-radius:36px;padding:70px 40px;text-align:center;position:relative;overflow:hidden}
-.cta:before{content:"";position:absolute;inset:0;background:url(img/cube.webp) center/cover;opacity:.18}
-.cta>*{position:relative}
-.cta .lead{color:#E9DED3;margin:14px auto 28px;max-width:520px}
-@media (max-width:900px){.hero-in,.try,.about{grid-template-columns:1fr}.collage{height:440px}.steps{grid-template-columns:1fr}.how{padding:50px 26px}.hero{padding-top:30px}}
-@media (max-width:640px){.circles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px 6px;overflow:visible}.circ{font-size:13px;gap:8px;text-align:center}.circ span{width:74px!important;height:74px!important}.collage{height:380px}.collage .main{inset:0 0 0 30px}.f1{width:140px;bottom:30px}.circ span{width:96px;height:96px}.circles{justify-content:flex-start}}
+.try-stage{aspect-ratio:1/1;overflow:hidden;background:var(--sand)}
+.drop{display:flex;align-items:center;gap:14px;border:1px dashed #BDB4A9;padding:16px 18px;cursor:pointer;margin-top:24px;max-width:460px;transition:.25s}
+.drop:hover,.drop.on{border-color:var(--ink);background:var(--sand)}
+.drop .th{width:52px;height:52px;background:var(--photo) center/cover;flex:none}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.note{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.note .im{aspect-ratio:4/3;background:url(img/life_grandma.webp) center/cover}
+.note blockquote{margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.5;font-weight:300}
+.note cite{display:block;margin-top:18px;color:var(--soft);font-style:normal;font-size:15px}
+@media (max-width:900px){.hero,.split,.try,.note{grid-template-columns:1fr}.hero-img{min-height:420px;order:-1}.who{grid-template-columns:1fr 1fr}.split .im{min-height:340px}.hero-txt{padding:40px 22px}.sec{padding-top:70px}}
 </style>
 </head>
 <body>
 <main>
 <section class="hero">
-<div class="wrap hero-in">
-<div style="animation:up .9s both">
-<div class="eyebrow">מתנות בהתאמה אישית</div>
-<h1>המתנה שתגרום להם<br><em>להתרגש באמת</em></h1>
-<p class="lead">מעלים תמונה אהובה, רואים בדיוק איך המתנה תיראה, ואנחנו מייצרים אותה במיוחד בשבילכם. לאמא, לאבא, לבן או לבת הזוג, ולסבא ולסבתא.</p>
-<div class="hero-ctas"><a href="#shop" class="btn btn-primary">למצוא מתנה</a><a href="#try" class="btn btn-ghost">לנסות עם תמונה שלי</a></div>
-<div class="hero-note">
-<span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>תצוגה לפני ייצור</span>
-<span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>אריזת מתנה בכל הזמנה</span>
-<span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>משלוח חינם מעל ₪199</span>
+<div class="hero-txt">
+<h1>מתנה עם התמונה<br>שהכי שווה לכם</h1>
+<p>שרשרת עם תמונה בפנים, קריסטל עם הנכדים, כרטיס לארנק של אבא. בוחרים תמונה, רואים איך זה ייראה, ואנחנו מכינים ושולחים עד הבית.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><a href="#shop" class="btn btn-primary">לכל המתנות</a><a href="#try" class="btn btn-ghost">לנסות עם תמונה</a></div>
 </div>
-</div>
-<div class="collage" style="animation:up .9s .15s both">
-<div class="main"><img src="img/hero.webp" alt="פתיחת קופסת מתנה עם שרשרת לב" width="1536" height="1024"></div>
-<a class="float f1" href="product.html?id=cube"><img src="img/cube.webp" alt="" width="900" height="900"><b>קריסטל עם תמונה</b><small>הלהיט לסבא וסבתא</small></a>
-<div class="float f2"><i>♥</i>עם התמונה שלכם</div>
-</div>
+<div class="hero-img"><img src="img/life_hero_r.webp" alt="אישה מתרגשת מקבלת מתנה" width="1400" height="2100"></div>
+</section>
+
+<section class="wrap sec" id="cats">
+<div class="head reveal"><h2>למי זה?</h2></div>
+<div class="who">
+<a class="reveal" href="./?c=mom#shop"><div class="im"><img src="img/proj.webp" alt="" loading="lazy"></div><b>לאמא</b><span>שרשראות, מנורות, ספלים</span></a>
+<a class="reveal" href="./?c=dad#shop"><div class="im"><img src="img/life_dadson.webp" alt="" loading="lazy" style="object-position:30% center"></div><b>לאבא</b><span>ארנקים, כרטיסי מתכת, ספלים</span></a>
+<a class="reveal" href="./?c=grandma#shop"><div class="im"><img src="img/life_grandma.webp" alt="" loading="lazy" style="object-position:70% center"></div><b>לסבא ולסבתא</b><span>קריסטלים, שמיכות, פאזלים</span></a>
+<a class="reveal" href="./?c=gf#shop"><div class="im"><img src="img/heart.webp" alt="" loading="lazy"></div><b>לבן או לבת הזוג</b><span>שרשראות, לוח השיר שלכם</span></a>
 </div>
 </section>
 
-<section id="cats" class="wrap sec" style="padding-top:20px">
-<div class="sec-head reveal"><div><div class="eyebrow">למי המתנה?</div><h2>בוחרים לפי מי שמקבל</h2></div></div>
-<div class="circles reveal" id="circles"></div>
-</section>
-
-<section id="shop" class="wrap sec" style="padding-top:20px">
-<div class="sec-head reveal"><div><div class="eyebrow">הקולקציה</div><h2>מתנות שמספרות סיפור</h2></div><div class="chips" id="chips" role="tablist" aria-label="סינון לפי מי שמקבל"></div></div>
+<section class="wrap sec" id="shop">
+<div class="head reveal"><h2>המתנות</h2><div class="chips" id="chips" role="tablist" aria-label="סינון"></div></div>
 <div class="grid" id="grid"></div>
 </section>
 
-<section id="try" class="wrap sec">
+<section class="split" id="how">
+<div class="im reveal" role="img" aria-label="מסירת מתנה"></div>
+<div class="tx reveal">
+<h2>איך זה עובד</h2>
+<ol class="steps">
+<li><b>בוחרים מתנה</b><span>לפי מי שמקבל, או לפי מה שאתם יודעים שהוא אוהב.</span></li>
+<li><b>מעלים תמונה</b><span>רואים איך היא נראית על המוצר, ומוסיפים שם או הקדשה אם רוצים.</span></li>
+<li><b>מקבלים עד הבית</b><span>כל מתנה מיוצרת בנפרד ומגיעה ארוזה. בדרך כלל לוקח 10 עד 18 ימי עסקים.</span></li>
+</ol>
+</div>
+</section>
+
+<section class="wrap sec" id="try">
 <div class="try">
 <div class="reveal">
-<div class="eyebrow">נסו עכשיו, זה לוקח 5 שניות</div>
-<h2>רואים את המתנה לפני שמזמינים</h2>
-<p class="lead" style="margin-top:16px">העלו תמונה אהובה ותראו אותה מיד על השרשרת, על הקריסטל או על הספל. התמונה נשארת אצלכם בדפדפן.</p>
-<label class="drop" id="drop" for="file"><span class="th" aria-hidden="true"></span><span><b style="display:block;font-size:17px">בחירת תמונה</b><span style="color:var(--soft);font-size:14px">או גררו לכאן</span></span></label>
+<h2>רוצים לראות לפני?</h2>
+<p class="lead" style="margin-top:14px;max-width:440px">העלו תמונה ותראו אותה על כמה מהמוצרים. התמונה לא נשלחת לשום מקום עד שמזמינים.</p>
+<label class="drop" id="drop" for="file"><span class="th" aria-hidden="true"></span><span><span style="display:block;font-weight:500">בחירת תמונה</span><span style="color:var(--soft);font-size:14px">מהטלפון או מהמחשב</span></span></label>
 <input type="file" id="file" accept="image/*" hidden>
-<div class="try-tabs" id="tabs"></div>
+<div class="tabs" id="tabs"></div>
 </div>
 <div class="try-stage reveal" id="stage"></div>
 </div>
 </section>
 
-<section id="how" class="wrap sec">
-<div class="how reveal">
-<div class="eyebrow">איך זה עובד</div><h2>שלושה צעדים למתנה מושלמת</h2>
-<div class="steps">
-<div class="step"><div class="n">1</div><h3>בוחרים מתנה</h3><p>שרשרת, קריסטל, ארנק או ספל, לפי מי שמקבל והאירוע.</p></div>
-<div class="step"><div class="n">2</div><h3>מעלים תמונה ומוסיפים הקדשה</h3><p>רואים תצוגה חיה של המתנה עם התמונה שלכם, ומאשרים.</p></div>
-<div class="step"><div class="n">3</div><h3>מקבלים עד הבית</h3><p>המתנה מיוצרת במיוחד בשבילכם ומגיעה באריזת מתנה, מוכנה לנתינה.</p></div>
-</div>
-</div>
-</section>
-
-<section id="about" class="wrap sec">
-<div class="about">
-<div class="about-img reveal" role="img" aria-label="מנורת ירח עם תמונה זוגית"></div>
+<section class="wrap sec">
+<div class="note">
+<div class="im reveal" role="img" aria-label="סבתא ונכדה"></div>
 <div class="reveal">
-<div class="eyebrow">עלינו</div>
-<h2>כי יש אנשים שפשוט יקרים לנו</h2>
-<p class="lead" style="margin-top:16px">יקירי נולדה מרגע אחד: מתנה קטנה עם תמונה שגרמה לאמא לבכות מהתרגשות. הבנו שהמתנות הכי חזקות הן לא היקרות, אלא האישיות.</p>
-<p class="lead">כל מוצר אצלנו נבחר לפי שאלה אחת: האם הוא יעשה למישהו את היום? כל מתנה מיוצרת לפי התמונה וההקדשה שלכם, ונבדקת לפני שהיא יוצאת.</p>
-<a href="#shop" class="btn btn-primary" style="margin-top:10px">למתנות שלנו</a>
+<h2 style="margin-bottom:16px">מתנות שלא נשארות במגירה</h2>
+<p class="lead" style="max-width:460px">אנחנו בוחרים רק דברים שמשתמשים בהם או רואים אותם כל יום: תכשיט שעונדים, ספל לקפה של הבוקר, מנורה ליד המיטה. ככה התמונה שבחרתם נשארת חלק מהיום שלהם.</p>
+<a href="#shop" class="btn btn-ghost" style="margin-top:12px;align-self:flex-start">לכל המתנות</a>
 </div>
 </div>
-</section>
-
-<section class="wrap">
-<div class="cta reveal"><h2>יש מישהו שמגיע לו לחייך היום</h2><p class="lead">בחרו מתנה, העלו תמונה, ותנו לנו לעשות את השאר.</p><a href="#shop" class="btn btn-primary">בואו נתחיל</a></div>
 </section>
 </main>
 
 <script src="assets/app.js"></script>
 <script>
-const CATS=[['all','הכל'],['mom','לאמא'],['dad','לאבא'],['gf','לבת הזוג'],['bf','לבן הזוג'],['grandma','לסבתא'],['grandpa','לסבא'],['couple','לזוג ולבית']];
-const CIMG={mom:'proj',dad:'card',gf:'heart',bf:'hoodie',grandma:'blanket',grandpa:'cube',couple:'plaque'};
+const CATS=[['all','הכל'],['mom','לאמא'],['dad','לאבא'],['gf','לבת הזוג'],['bf','לבן הזוג'],['grandma','לסבתא'],['grandpa','לסבא']];
 let cat=new URLSearchParams(location.search).get('c')||'all';
-$('#circles').innerHTML=CATS.slice(1).map(([id,l])=>`<button class="circ" data-c="${id}"><span style="background-image:url(img/${CIMG[id]}.webp)"></span>${l}</button>`).join('');
 function renderChips(){$('#chips').innerHTML=CATS.map(([id,l])=>`<button class="chip${cat===id?' on':''}" role="tab" aria-selected="${cat===id}" data-c="${id}">${l}</button>`).join('');}
 function renderGrid(){$('#grid').innerHTML=P.filter(p=>cat==='all'||p.c.includes(cat)).map(card).join('');observe();}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(!b)return;cat=b.dataset.c;renderChips();renderGrid();if(b.classList.contains('circ'))$('#shop').scrollIntoView({behavior:'smooth'});});
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(!b)return;cat=b.dataset.c;renderChips();renderGrid();});
 renderChips();renderGrid();
-// try-it
 const TRY=[['heart','שרשרת'],['cube','קריסטל'],['card','כרטיס לארנק'],['mug','ספל'],['blanket','שמיכה']];let tm='heart';
 function renderTry(){$('#tabs').innerHTML=TRY.map(([m,l])=>`<button class="chip${tm===m?' on':''}" data-t="${m}">${l}</button>`).join('');$('#stage').innerHTML=mock(tm);}
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){tm=b.dataset.t;renderTry();}});
-$('#file').addEventListener('change',e=>setPhoto(e.target.files[0],()=>{$('#drop').classList.add('on');toast('✓ נראה מדהים! עכשיו בחרו מתנה');}));
+$('#file').addEventListener('change',e=>setPhoto(e.target.files[0],()=>{$('#drop').classList.add('on');}));
 const drop=$('#drop');['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('on')}));
 drop.addEventListener('drop',e=>{e.preventDefault();setPhoto(e.dataTransfer.files[0])});
 renderTry();observe();

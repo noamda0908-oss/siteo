@@ -84,13 +84,13 @@ void main(){
   vec3 L=normalize(vec3(.25,.35,1.));
   float d=max(dot(n,L),0.);
   float rim=pow(1.-abs(n.z),1.5);
-  vec3 base=vec3(.50,.045,.19);
-  vec3 c=base*(.14+1.05*d*d)+vec3(1.,.28,.5)*rim*.2;
+  vec3 base=vec3(.30,.03,.085);
+  vec3 c=base*(.14+1.05*d*d)+vec3(.95,.6,.45)*rim*.12;
   float spill=uOpen*exp(-abs(vX)/(uHalf*.5));
-  c+=vec3(1.,.6,.34)*spill*.5*d;
+  c+=vec3(1.,.72,.45)*spill*.42*d;
   c*=mix(1.1,.42,vUv.y);
   float trim=smoothstep(.062,.056,vUv.y)*smoothstep(.02,.026,vUv.y);
-  c=mix(c,vec3(.96,.72,.38)*(.35+.9*d),trim);
+  c=mix(c,vec3(.78,.66,.49)*(.3+.8*d),trim);
   gl_FragColor=vec4(c,1.);
 }`;
 const WALL_V = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}';
@@ -102,8 +102,8 @@ void main(){
   vec2 p=vUv-.5;p.x*=uAsp;
   float d=length(p*vec2(1.,1.5));
   float g=exp(-d*3.);
-  vec3 c=mix(vec3(.05,.015,.04),vec3(.5,.06,.22),g);
-  c+=vec3(1.,.55,.32)*g*g*.6;
+  vec3 c=mix(vec3(.03,.022,.022),vec3(.30,.11,.08),g);
+  c+=vec3(1.,.74,.48)*g*g*.5;
   float fl=.9+.1*sin(uTime*1.7);
   c+=vec3(1.,.72,.55)*(beam(p,vec2(-.8,.62),vec2(.06,-.25),.2)+beam(p,vec2(.8,.62),vec2(-.06,-.25),.2))*.2*fl;
   c*=mix(.35,1.,uGlow);
@@ -116,8 +116,8 @@ void main(){
   vec2 q=vec2((vUv.x-.5)*3.2,(1.-vUv.y)*2.2);
   float g=exp(-length(q)*1.5);
   float streak=exp(-abs(vUv.x-.5)*9.)*vUv.y;
-  vec3 c=vec3(.06,.018,.045)+vec3(1.,.3,.5)*g*.55*uGlow+vec3(1.,.5,.6)*streak*.22*uGlow;
-  c+=vec3(.05,.012,.03)*(1.-vUv.y);
+  vec3 c=vec3(.035,.025,.025)+vec3(1.,.7,.45)*g*.4*uGlow+vec3(1.,.8,.6)*streak*.2*uGlow;
+  c+=vec3(.03,.02,.02)*(1.-vUv.y);
   gl_FragColor=vec4(c,1.);
 }`;
 
@@ -165,7 +165,7 @@ function hero() {
 
 function buildScene(canvas, stage) {
   const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
-  renderer.setClearColor(0x160a13, 1);
+  renderer.setClearColor(0x0c0a0b, 1);
   const scene = new Scene();
   const FOV = 42, Z0 = 7.2, Z1 = 3.5, ZB = -3.2;
   const cam = new PerspectiveCamera(FOV, 1, 0.1, 60);
@@ -189,11 +189,11 @@ function buildScene(canvas, stage) {
   // neon sign
   const sc = document.createElement('canvas'); sc.width = 1600; sc.height = 800;
   const g = sc.getContext('2d');
-  g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.font = '900 300px Heebo, Arial, sans-serif';
-  const drawWords = () => { g.fillText('Opulent', 800, 350); g.fillText('Charm', 800, 640); };
-  g.shadowColor = '#ff2f78'; g.shadowBlur = 90; g.fillStyle = '#ff4f87'; drawWords(); drawWords();
+  g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.font = '300 210px Heebo, Arial, sans-serif'; try { g.letterSpacing = '34px'; } catch (e) {}
+  const drawWords = () => { g.fillText('OPULENT', 817, 350); g.fillText('CHARM', 817, 610); };
+  g.shadowColor = '#ffb463'; g.shadowBlur = 70; g.fillStyle = '#e9c48f'; drawWords();
   g.shadowBlur = 30; drawWords();
-  g.shadowBlur = 8; g.shadowColor = '#fff'; g.fillStyle = '#ffe9f0'; drawWords();
+  g.shadowBlur = 6; g.shadowColor = '#fff'; g.fillStyle = '#fff6e6'; drawWords();
   const tex = new CanvasTexture(sc); tex.colorSpace = SRGBColorSpace;
   const signMat = new MeshBasicMaterial({ map: tex, transparent: true, blending: AdditiveBlending, depthWrite: false });
   const sign = new Mesh(new PlaneGeometry(2, 1), signMat);
@@ -266,9 +266,9 @@ vec2 q=vec2(fbm(p*1.4+vec2(0.,tt)),fbm(p*1.4+vec2(5.2,-tt*1.2)));
 vec2 w=vec2(fbm(p*1.2+3.4*q+vec2(1.7,9.2)+tt),fbm(p*1.2+3.4*q+vec2(8.3,2.8)-tt));
 float f=fbm(p+3.8*w);
 float fold=pow(abs(sin((f*7.+w.x*3.)*3.14159)),2.5);
-vec3 c=mix(vec3(.16,.03,.09),vec3(.56,.07,.25),smoothstep(.15,.7,f));
-c=mix(c,vec3(1.,.31,.53),smoothstep(.35,.9,f*w.y*2.1)*.9);
-c+=vec3(1.,.82,.7)*fold*.22*smoothstep(.25,.85,f);
+vec3 c=mix(vec3(.045,.03,.03),vec3(.30,.05,.10),smoothstep(.15,.7,f));
+c=mix(c,vec3(.52,.12,.17),smoothstep(.35,.9,f*w.y*2.1)*.85);
+c+=vec3(.9,.76,.56)*fold*.26*smoothstep(.25,.85,f);
 gl_FragColor=vec4(c,1.);}`;
 function silk(canvas) {
   if (!canvas || reduce) return null;
@@ -366,20 +366,20 @@ function day() {
     const dayness = Math.cos(((hr - 13) / 24) * Math.PI * 2) * 0.5 + 0.5;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     const bg = ctx.createLinearGradient(0, 0, 0, H);
-    bg.addColorStop(0, `rgb(${Math.round(lerp(22, 122, dayness))},${Math.round(lerp(10, 16, dayness))},${Math.round(lerp(19, 52, dayness))})`);
-    bg.addColorStop(1, '#160a13');
+    bg.addColorStop(0, `rgb(${Math.round(lerp(12, 74, dayness))},${Math.round(lerp(10, 18, dayness))},${Math.round(lerp(11, 28, dayness))})`);
+    bg.addColorStop(1, '#0c0a0b');
     ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
     // stars at night
     const na = 1 - dayness;
     if (na > 0.02) {
-      ctx.fillStyle = '#ffe9f0';
+      ctx.fillStyle = '#f3ead9';
       stars.forEach((s) => { ctx.globalAlpha = na * (0.35 + 0.65 * Math.abs(Math.sin(now / 900 + s[3]))); ctx.beginPath(); ctx.arc(s[0] * W, s[1] * H, s[2], 0, 6.283); ctx.fill(); });
       ctx.globalAlpha = 1;
     }
     const a0 = (6 / 24) * Math.PI * 2 - Math.PI / 2, a = a0 + prog * Math.PI * 2;
     // halo
     const halo = ctx.createRadialGradient(cx, cy, R * 0.2, cx, cy, R * 1.5);
-    halo.addColorStop(0, `rgba(255,79,135,${0.1 + 0.14 * dayness})`); halo.addColorStop(1, 'rgba(255,79,135,0)');
+    halo.addColorStop(0, `rgba(200,169,126,${0.06 + 0.1 * dayness})`); halo.addColorStop(1, 'rgba(200,169,126,0)');
     ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(cx, cy, R * 1.5, 0, 6.283); ctx.fill();
     // ticks
     for (let i = 0; i < 96; i++) {
@@ -388,22 +388,22 @@ function day() {
       let rel = (ang - a0) % (Math.PI * 2); if (rel < 0) rel += Math.PI * 2;
       const passed = rel <= prog * Math.PI * 2 + 1e-4;
       const r1 = R, r2 = R - (big ? R * 0.14 : hourTick ? R * 0.08 : R * 0.04);
-      ctx.strokeStyle = passed ? 'rgba(255,79,135,.95)' : 'rgba(238,231,226,.22)';
+      ctx.strokeStyle = passed ? 'rgba(200,169,126,.95)' : 'rgba(236,231,223,.2)';
       ctx.lineWidth = big ? 2.5 : hourTick ? 1.6 : 1;
       ctx.beginPath(); ctx.moveTo(cx + Math.cos(ang) * r1, cy + Math.sin(ang) * r1); ctx.lineTo(cx + Math.cos(ang) * r2, cy + Math.sin(ang) * r2); ctx.stroke();
     }
     // outer ring + progress
     ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(238,231,226,.16)'; ctx.beginPath(); ctx.arc(cx, cy, R * 1.12, 0, 6.283); ctx.stroke();
-    ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.strokeStyle = '#ff4f87'; ctx.beginPath(); ctx.arc(cx, cy, R * 1.12, a0, a); ctx.stroke();
+    ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.strokeStyle = '#c8a97e'; ctx.beginPath(); ctx.arc(cx, cy, R * 1.12, a0, a); ctx.stroke();
     // marker: sun by day, moon by night
     const mxp = cx + Math.cos(a) * R * 1.12, myp = cy + Math.sin(a) * R * 1.12;
-    const col = dayness > 0.5 ? '243,183,100' : '255,143,179';
+    const col = dayness > 0.5 ? '243,196,128' : '226,214,200';
     const gl = ctx.createRadialGradient(mxp, myp, 0, mxp, myp, R * 0.5);
     gl.addColorStop(0, `rgba(${col},.75)`); gl.addColorStop(0.25, `rgba(${col},.22)`); gl.addColorStop(1, `rgba(${col},0)`);
     ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(mxp, myp, R * 0.5, 0, 6.283); ctx.fill();
     ctx.fillStyle = '#fff3e6'; ctx.beginPath(); ctx.arc(mxp, myp, Math.max(6, R * 0.045), 0, 6.283); ctx.fill();
     // hour labels
-    ctx.fillStyle = 'rgba(238,231,226,.5)'; ctx.font = `600 ${Math.max(11, R * 0.075)}px Heebo, Arial`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(238,231,226,.5)'; ctx.font = `400 ${Math.max(11, R * 0.075)}px Heebo, Arial`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     [['00', -Math.PI / 2], ['06', 0], ['12', Math.PI / 2], ['18', Math.PI]].forEach(([l, ang]) => ctx.fillText(l, cx + Math.cos(ang) * R * 0.76, cy + Math.sin(ang) * R * 0.76));
   }
   function set(p) {

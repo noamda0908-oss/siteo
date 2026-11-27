@@ -15,7 +15,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%230f0f10'/%3E%3Cpath d='M11 10h18v20H11' fill='none' stroke='%23efece6' stroke-width='4.5'/%3E%3Crect x='7' y='26' width='8' height='8' fill='%23ff5b2e'/%3E%3C/svg%3E">
 <link rel="preload" href="fonts/noto-sans-hebrew-hebrew-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="img/hero.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="css/style.css?v=11271413">
+<link rel="stylesheet" href="css/style.css?v=11271430">
 <script>(function(d){d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.remove('is-reduced')})(document.documentElement);setTimeout(function(){document.body&&document.body.classList.remove('is-loading')},7000)</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"EmploymentAgency","name":"כ.א פרי","areaServed":["תל אביב-יפו","רמת גן","פתח תקווה","הרצליה","רעננה","כפר סבא","נתניה","חולון","בת ים","ראשון לציון","רחובות"],"address":{"@type":"PostalAddress","addressCountry":"IL"},"description":"כוח אדם במרכז: עובדי ניקיון, עובדי מטבח ועוזרות בית לעסקים ולבתים פרטיים."}
@@ -93,55 +93,39 @@
   </a>
 </section>
 
-<!-- 3. SERVICES: stacked cards -->
+<!-- 3. SERVICES: rows (the stacked-cards version lives in git commit 6931833) -->
 <section class="services" id="services" data-theme="dark" aria-labelledby="services-title">
   <div class="wrap">
     <header class="services__head">
       <h2 class="h2" id="services-title">העובדים שלנו</h2>
       <p class="services__intro">עובדים לניקיון, למטבח ולמשק בית. קבועים, זמניים או להחלפה.</p>
     </header>
-    <div class="stack">
-      <article class="card">
-        <div class="card__inner">
-          <img class="card__img" src="img/s-office.webp" alt="" loading="lazy" decoding="async">
-          <div class="card__body">
-            <h3 class="card__title">ניקיון</h3>
-            <p>מנקים למשרדים, לעסקים ולמוסדות, בימים ובשעות שנוחים לכם.</p>
-            <a class="btn btn--flame" href="#contact" data-tab="biz" data-need="ניקיון">צריכים מנקים</a>
-          </div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__inner">
-          <img class="card__img" src="img/s-kitchen.webp" alt="" loading="lazy" decoding="async">
-          <div class="card__body">
-            <h3 class="card__title">מטבח</h3>
-            <p>שוטפי כלים, עוזרי מטבח ועובדי הכנות למסעדות, לבתי קפה ולאולמות.</p>
-            <a class="btn btn--flame" href="#contact" data-tab="biz" data-need="מטבח">צריכים עובדי מטבח</a>
-          </div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__inner">
-          <img class="card__img" src="img/s-home.webp" alt="" loading="lazy" decoding="async">
-          <div class="card__body">
-            <h3 class="card__title">עוזרות בית</h3>
-            <p>ניקיון קבוע וסדר בבית, לבתים פרטיים ולדירות.</p>
-            <a class="btn btn--flame" href="#contact" data-tab="biz" data-need="עוזרת בית">צריכים עוזרת בית</a>
-          </div>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card__inner">
-          <img class="card__img" src="img/s-close.webp" alt="" loading="lazy" decoding="async">
-          <div class="card__body">
-            <h3 class="card__title">ניקיון סגירה</h3>
-            <p>סוגרים את המסעדה או את הבר, ומשאירים מקום מוכן לפתיחה.</p>
-            <a class="btn btn--flame" href="#contact" data-tab="biz" data-need="ניקיון">צריכים ניקיון סגירה</a>
-          </div>
-        </div>
-      </article>
-    </div>
+    <ul class="rows">
+      <li><a class="row" href="#contact" data-tab="biz" data-need="ניקיון">
+        <span class="row__thumb"><img src="img/s-office.webp" alt="" loading="lazy" decoding="async"></span>
+        <strong class="row__title">ניקיון</strong>
+        <span class="row__desc">מנקים למשרדים, לעסקים ולמוסדות, בימים ובשעות שנוחים לכם.</span>
+        <span class="row__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
+      </a></li>
+      <li><a class="row" href="#contact" data-tab="biz" data-need="מטבח">
+        <span class="row__thumb"><img src="img/s-kitchen.webp" alt="" loading="lazy" decoding="async"></span>
+        <strong class="row__title">מטבח</strong>
+        <span class="row__desc">שוטפי כלים, עוזרי מטבח ועובדי הכנות למסעדות, לבתי קפה ולאולמות.</span>
+        <span class="row__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
+      </a></li>
+      <li><a class="row" href="#contact" data-tab="biz" data-need="עוזרת בית">
+        <span class="row__thumb"><img src="img/s-home.webp" alt="" loading="lazy" decoding="async"></span>
+        <strong class="row__title">עוזרות בית</strong>
+        <span class="row__desc">ניקיון קבוע וסדר בבית, לבתים פרטיים ולדירות.</span>
+        <span class="row__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
+      </a></li>
+      <li><a class="row" href="#contact" data-tab="biz" data-need="ניקיון">
+        <span class="row__thumb"><img src="img/s-close.webp" alt="" loading="lazy" decoding="async"></span>
+        <strong class="row__title">ניקיון סגירה</strong>
+        <span class="row__desc">סוגרים את המסעדה או את הבר, ומשאירים מקום מוכן לפתיחה.</span>
+        <span class="row__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
+      </a></li>
+    </ul>
   </div>
 </section>
 
@@ -370,6 +354,6 @@
   <form method="dialog"><button class="btn btn--ink">סגירה</button></form>
 </dialog>
 
-<script src="js/app.js?v=11271413" defer></script>
+<script src="js/app.js?v=11271430" defer></script>
 </body>
 </html>

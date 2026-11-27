@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOMENTO · ניהול הזמנות</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0F1016;color:#F4EEE3;font-family:'Rubik',sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:24px}
+h1{font-size:26px;margin:0}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+button,select,input{font:inherit}
+.btn{min-height:44px;padding:10px 18px;border-radius:12px;border:1px solid #3A3B47;background:#1A1B26;color:#F4EEE3;cursor:pointer}
+.btn:hover{border-color:#E2BE7E}
+.btn.on,.btn.gold{background:#E2BE7E;color:#17130C;border-color:#E2BE7E;font-weight:600}
+.btn.sm{min-height:38px;padding:6px 12px;font-size:14px}
+.card{background:#15161F;border:1px solid #262733;border-radius:18px;padding:18px;margin-bottom:14px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:600}
+.s-paid,.s-sent_to_supplier,.s-sent{background:#17351F;color:#7EE2A0}
+.s-shipped{background:#14304A;color:#8CC8FF}
+.s-needs_attention,.s-failed{background:#3A1A16;color:#FF9B8A}
+.s-needs_setup,.s-partially_sent,.s-pending_payment,.s-waiting{background:#3A2E12;color:#F2CF7A}
+.s-cancelled{background:#2A2A2A;color:#AAA}
+.mute{color:#9A958C;font-size:14px}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:12px}
+.it{display:flex;gap:10px;background:#1A1B26;border-radius:14px;padding:10px}
+.it img{width:64px;height:64px;object-fit:cover;border-radius:10px;flex:none;background:#2A2B36}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:18px}
+.stat b{display:block;font-size:28px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:10px 8px;border-bottom:1px solid #262733;text-align:right;vertical-align:middle}
+.tbl{overflow-x:auto}
+input[type=text],input[type=password],input[type=number],select{min-height:40px;padding:6px 10px;border-radius:10px;border:1px solid #3A3B47;background:#0F1016;color:#F4EEE3}
+.login{max-width:380px;margin:12vh auto;text-align:center}
+.login input{width:100%;margin:16px 0}
+.ok{color:#7EE2A0}.bad{color:#FF9B8A}
+.log{font-size:13px;color:#9A958C;margin-top:10px;white-space:pre-line;display:none}
+details[open] .log{display:block}
+:focus-visible{outline:2px solid #E2BE7E;outline-offset:2px}
+</style>
+</head>
+<body>
+<div id="loginView" class="wrap login">
+<h1>MOMENTO · ניהול</h1>
+<form id="lf"><label for="pw" class="mute">סיסמת ניהול</label><input type="password" id="pw" autocomplete="current-password"><button class="btn gold" style="width:100%">כניסה</button></form>
+<p id="lerr" class="bad" role="alert"></p>
+</div>
+
+<div id="app" class="wrap" hidden>
+<div class="top"><h1>MOMENTO · ניהול הזמנות</h1>
+<div class="tabs"><button class="btn on" data-tab="orders">הזמנות</button><button class="btn" data-tab="products">מוצרים וספקים</button><button class="btn" data-tab="settings">הגדרות</button><button class="btn" id="refresh">רענון</button></div></div>
+<div id="orders"></div>
+<div id="products" hidden></div>
+<div id="settings" hidden></div>
+</div>
+
+<script>
+const ADM='https://dndqljbibficfscylteq.supabase.co/functions/v1/momento-admin';
+const ST={pending_payment:'ממתין לתשלום',paid:'שולם',sent_to_supplier:'נשלח לספק',partially_sent:'נשלח חלקית',needs_attention:'דורש טיפול',shipped:'נשלח ללקוח',cancelled:'בוטל',waiting:'ממתין',sent:'נשלח',failed:'נכשל',needs_setup:'לא נשלח'};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let KEY='';try{KEY=sessionStorage.getItem('mk')||''}catch(e){}
+let D=null;
+const $=s=>document.querySelector(s);
+async function call(action,extra={}){
+ const r=await fetch(ADM,{method:'POST',headers:{'content-type':'application/json','x-admin-key':KEY},body:JSON.stringify({action,...extra})});
+ const j=await r.json();if(r.status===401){logout();throw new Error(j.error)}if(!r.ok)throw new Error(j.error||'error');return j;
+}
+function logout(){KEY='';try{sessionStorage.removeItem('mk')}catch(e){};$('#app').hidden=true;$('#loginView').hidden=false;}
+$('#lf').addEventListener('submit',async e=>{e.preventDefault();KEY=$('#pw').value.trim();$('#lerr').textContent='';
+ try{await call('login');try{sessionStorage.setItem('mk',KEY)}catch(e){};start();}catch(err){$('#lerr').textContent=err.message;}});
+async function start(){$('#loginView').hidden=true;$('#app').hidden=false;await load();}
+async function load(){D=await call('list');renderOrders();renderProducts();renderSettings();}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('on',x===b));['orders','products','settings'].forEach(t=>$('#'+t).hidden=t!==b.dataset.tab);}));
+$('#refresh').addEventListener('click',load);
+function renderOrders(){
+ const o=D.orders,paid=o.filter(x=>!['pending_payment','cancelled'].includes(x.status));
+ const rev=paid.reduce((a,b)=>a+Number(b.total_ils),0),att=o.filter(x=>['needs_attention','partially_sent'].includes(x.status)).length;
+ let h=`<div class="stats"><div class="card stat"><span class="mute">הזמנות ששולמו</span><b>${paid.length}</b></div><div class="card stat"><span class="mute">הכנסות</span><b>₪${rev.toLocaleString('he-IL')}</b></div><div class="card stat"><span class="mute">דורשות טיפול</span><b class="${att?'bad':''}">${att}</b></div><div class="card stat"><span class="mute">מצב</span><b style="font-size:18px">${D.settings.payment_mode==='test'?'🧪 בדיקה':'💳 סליקה אמיתית'} · ${D.settings.suppliers_live?'ספקים פעילים':'ספקים כבויים'}</b></div></div>`;
+ if(!o.length)h+='<div class="card mute">עוד אין הזמנות.</div>';
+ for(const x of o){
+  h+=`<div class="card"><div class="row"><div><b style="font-size:18px">#${1000+x.order_no}</b> <span class="pill s-${x.status}">${ST[x.status]||x.status}</span> <span class="mute">${new Date(x.created_at).toLocaleString('he-IL')}</span></div><b style="font-size:20px">₪${esc(x.total_ils)}</b></div>
+  <div class="mute" style="margin-top:6px">${esc(x.customer_name)} · <a href="tel:${esc(x.phone)}" style="color:#E2BE7E">${esc(x.phone)}</a> · ${esc(x.email)}<br>${esc(x.address)}, ${esc(x.city)} ${esc(x.zip||'')}</div>
+  <div class="items">${x.items.map(i=>`<div class="it">${i.photo_url?`<a href="${esc(i.photo_url)}" target="_blank" rel="noopener"><img src="${esc(i.photo_url)}" alt="תמונת הלקוח"></a>`:'<img alt="">'}<div><div style="font-weight:600">${esc(i.product?.name||i.product_id)} ×${i.qty}</div>${i.personalization?`<div class="mute">״${esc(i.personalization)}״</div>`:''}<div style="margin-top:4px"><span class="pill s-${i.supplier_status}">${ST[i.supplier_status]} · ${esc(i.supplier.toUpperCase())}</span></div>${i.supplier_order_id?`<div class="mute">ספק: ${esc(i.supplier_order_id)}</div>`:''}${i.supplier_error?`<div class="bad" style="font-size:13px">${esc(i.supplier_error)}</div>`:''}</div></div>`).join('')}</div>
+  <div class="row" style="margin-top:12px;justify-content:flex-start">
+   ${['paid','partially_sent','needs_attention'].includes(x.status)?`<button class="btn sm gold" data-f="${x.id}">שליחה לספק עכשיו</button>`:''}
+   ${x.status!=='shipped'&&x.status!=='cancelled'&&x.status!=='pending_payment'?`<button class="btn sm" data-s="${x.id}" data-v="shipped">סמן כנשלח ללקוח</button>`:''}
+   ${x.status!=='cancelled'?`<button class="btn sm" data-s="${x.id}" data-v="cancelled">ביטול</button>`:''}
+  </div>
+  <details><summary class="mute" style="cursor:pointer;margin-top:10px">יומן</summary><div class="log">${(x.log||[]).map(l=>esc(new Date(l.at).toLocaleString('he-IL')+' · '+l.msg)).join('\n')}</div></details></div>`;
+ }
+ $('#orders').innerHTML=h;
+}
+$('#orders').addEventListener('click',async e=>{
+ const f=e.target.closest('[data-f]'),s=e.target.closest('[data-s]');
+ try{
+  if(f){f.disabled=true;f.textContent='שולח…';await call('fulfill',{id:f.dataset.f});await load();}
+  if(s){if(s.dataset.v==='cancelled'&&!confirm('לבטל את ההזמנה? (החזר כספי עושים בחברת הסליקה)'))return;await call('set_status',{id:s.dataset.s,status:s.dataset.v});await load();}
+ }catch(err){alert(err.message)}
+});
+function renderProducts(){
+ let h=`<div class="card"><p class="mute" style="margin-top:0">לכל מוצר מגדירים מאיזה ספק הוא מגיע ואת המזהה שלו אצל הספק.<br>CJ: <code>{"vid":"מזהה הווריאנט"}</code> · Printify: <code>{"blueprint_id":0,"print_provider_id":0,"variant_id":0,"position":"front"}</code></p><div class="tbl"><table><thead><tr><th>מוצר</th><th>מחיר ₪</th><th>ספק</th><th>מזהה אצל הספק</th><th>פעיל</th><th></th></tr></thead><tbody>`;
+ for(const p of D.products){
+  const mapped=Object.keys(p.supplier_ref||{}).length>0;
+  h+=`<tr data-p="${esc(p.id)}"><td><b>${esc(p.name)}</b><div class="mute">${esc(p.id)} ${mapped?'<span class="ok">● ממופה</span>':'<span class="bad">● חסר מיפוי</span>'}</div></td>
+  <td><input type="number" class="pr" value="${esc(p.price_ils)}" style="width:90px" aria-label="מחיר"></td>
+  <td><select class="sp" aria-label="ספק">${['cj','printify','manual'].map(v=>`<option value="${v}" ${p.supplier===v?'selected':''}>${v==='manual'?'ידני':v.toUpperCase()}</option>`).join('')}</select></td>
+  <td><input type="text" class="rf" value="${esc(JSON.stringify(p.supplier_ref||{}))}" style="width:100%;min-width:220px;direction:ltr" aria-label="מזהה ספק"></td>
+  <td><input type="checkbox" class="ac" ${p.active?'checked':''} aria-label="פעיל"></td>
+  <td><button class="btn sm gold sv">שמירה</button></td></tr>`;
+ }
+ $('#products').innerHTML=h+'</tbody></table></div></div>';
+}
+$('#products').addEventListener('click',async e=>{
+ const b=e.target.closest('.sv');if(!b)return;const tr=b.closest('tr');let ref;
+ try{ref=JSON.parse(tr.querySelector('.rf').value||'{}')}catch(err){alert('המזהה צריך להיות JSON תקין');return;}
+ try{b.textContent='…';await call('product',{id:tr.dataset.p,price_ils:+tr.querySelector('.pr').value,supplier:tr.querySelector('.sp').value,supplier_ref:ref,active:tr.querySelector('.ac').checked});await load();}catch(err){alert(err.message)}
+});
+function renderSettings(){
+ const s=D.settings,e=D.env,yes=v=>v?'<span class="ok">● מחובר</span>':'<span class="bad">● לא מחובר</span>';
+ $('#settings').innerHTML=`<div class="card"><h3 style="margin-top:0">חיבורים</h3>
+ <p>CJ Dropshipping: ${yes(e.cj)}<br>Printify: ${yes(e.printify)}<br>PayPlus (סליקה): ${yes(e.payplus)}</p>
+ <p class="mute">המפתחות נשמרים בצורה מאובטחת ב־Supabase (Edge Function Secrets) ולא באתר.</p></div>
+ <div class="card"><h3 style="margin-top:0">מצב תשלום</h3><p class="mute">במצב בדיקה, הזמנות מסומנות כשולמו בלי חיוב. לפני שמפרסמים את החנות חייבים לעבור לסליקה אמיתית.</p>
+ <div class="row" style="justify-content:flex-start"><button class="btn ${s.payment_mode==='test'?'on':''}" data-pm="test">🧪 בדיקה</button><button class="btn ${s.payment_mode==='payplus'?'on':''}" data-pm="payplus" ${e.payplus?'':'disabled title="קודם צריך לחבר את PayPlus"'}>💳 PayPlus</button></div></div>
+ <div class="card"><h3 style="margin-top:0">שליחה אוטומטית לספקים</h3><p class="mute">כשזה כבוי, הזמנות לא נשלחות לספקים (מתאים לבדיקות). כשזה דולק, כל הזמנה ששולמה נשלחת מיד לספק, והוא מחייב אותך.</p>
+ <div class="row" style="justify-content:flex-start"><button class="btn ${!s.suppliers_live?'on':''}" data-sl="0">כבוי</button><button class="btn ${s.suppliers_live?'on':''}" data-sl="1">דולק</button></div></div>`;
+}
+$('#settings').addEventListener('click',async e=>{
+ const pm=e.target.closest('[data-pm]'),sl=e.target.closest('[data-sl]');
+ try{
+  if(pm)await call('settings',{payment_mode:pm.dataset.pm});
+  if(sl){if(sl.dataset.sl==='1'&&!confirm('להפעיל שליחה אמיתית לספקים? כל הזמנה ששולמה תחויב אצל הספק.'))return;await call('settings',{suppliers_live:sl.dataset.sl==='1'});}
+  if(pm||sl)await load();
+ }catch(err){alert(err.message)}
+});
+if(KEY)start().catch(logout);
+</script>
+</body>
+</html>

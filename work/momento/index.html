@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOMENTO – מתנות בהתאמה אישית</title>
+<meta name="description" content="מתנות בהתאמה אישית: מנורת ירח עם תמונה, שרשרת שם, שרשרת הקרנה, מפת כוכבים ועוד. מעוצבות במיוחד בשבילכם.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0F1016;color:#F4EEE3;font-family:'Heebo',sans-serif;overflow-x:hidden}
+a{color:#E2BE7E;text-decoration:none}a:hover{color:#F3D9A6}
+.serif{font-family:'Frank Ruhl Libre',serif}.script{font-family:'Great Vibes',cursive;direction:ltr}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes tw{0%,100%{opacity:.15}50%{opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 60px 10px rgba(242,214,160,.25)}50%{box-shadow:0 0 110px 30px rgba(242,214,160,.45)}}
+@keyframes swing{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(50%)}}
+.up{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border-radius:999px;font:inherit;cursor:pointer;transition:transform .25s,background .25s,color .25s}
+.btn:hover{transform:translateY(-2px)}
+.gold{background:#E2BE7E;color:#17130C;border:0;font-weight:700}
+.ghost{background:transparent;border:1px solid #E2BE7E;color:#E2BE7E}
+.bar{background:#E2BE7E;color:#17130C;font-size:14px;font-weight:500;padding:10px 0;overflow:hidden;white-space:nowrap}
+.bar div{display:inline-flex;gap:64px;animation:slide 30s linear infinite;padding-inline-start:100%}
+nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px}
+.logo{font-size:30px;font-weight:900;letter-spacing:6px;direction:ltr}
+.links{display:flex;flex-wrap:wrap;gap:28px}.links a{color:#F4EEE3}
+.cartbtn{background:transparent;color:#F4EEE3;border:1px solid #3A3B47;padding:10px 18px}
+.count{background:#E2BE7E;color:#17130C;border-radius:999px;min-width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transition:transform .3s}
+.count.pop{transform:scale(1.4)}
+.hero{display:flex;flex-wrap:wrap;align-items:center;gap:56px;padding-top:40px;padding-bottom:90px}
+.hero>div{flex:1 1 420px;min-width:0}
+.eyebrow{color:#E2BE7E;font-size:15px;letter-spacing:3px;margin-bottom:14px}
+h1{font-size:clamp(44px,6vw,84px);line-height:1.02;margin:0 0 24px;font-weight:900}
+.lead{font-size:20px;line-height:1.7;color:#B9B3A8;margin:0 0 36px;max-width:520px}
+.stats{display:flex;flex-wrap:wrap;gap:32px;margin-top:48px;color:#B9B3A8;font-size:15px}.stats b{display:block;font-size:30px;color:#F4EEE3;font-weight:500}
+.sky{position:relative;height:520px;border-radius:32px;background:#15161F;border:1px solid #262733;overflow:hidden}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#F4EEE3;animation:tw 3s ease-in-out infinite}
+.moonbox{position:absolute;top:60px;left:50%;margin-left:-150px;width:300px;animation:float 6s ease-in-out infinite}
+.moon{width:300px;height:300px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#FFF6E0,#F2D6A0 55%,#C9A46A);animation:glow 4s ease-in-out infinite;position:relative;overflow:hidden}
+.crater{position:absolute;border-radius:50%;background:rgba(150,110,60,.17)}
+.moon .script{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:46px;color:rgba(110,75,35,.55)}
+.base{width:120px;height:26px;margin:18px auto 0;background:#5B3E24;border-radius:6px 6px 14px 14px}
+.tagcard{position:absolute;bottom:28px;right:28px;left:28px;background:rgba(15,16,22,.85);backdrop-filter:blur(8px);border:1px solid #2E2F3B;border-radius:18px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h2{font-size:clamp(36px,4.5vw,52px);margin:0;line-height:1.08}
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px;margin-bottom:36px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:10px 20px;font-size:15px;border:1px solid #3A3B47;background:transparent;color:#F4EEE3}
+.chip.on{background:#E2BE7E;color:#17130C;border-color:#E2BE7E}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px}
+.card{background:#15161F;border:1px solid #262733;border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.2,.7,.2,1),border-color .3s,opacity .4s}
+.card:hover{transform:translateY(-8px);border-color:#E2BE7E}
+.vis{height:240px;position:relative;display:flex;align-items:center;justify-content:center}
+.badge{position:absolute;top:16px;right:16px;background:#E2BE7E;color:#17130C;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px}
+.mini-moon{width:130px;height:130px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#FFF6E0,#F2D6A0 55%,#C9A46A);box-shadow:0 0 60px 12px rgba(242,214,160,.3);animation:float 5s ease-in-out infinite}
+.pend{display:flex;flex-direction:column;align-items:center;animation:swing 4s ease-in-out infinite;transform-origin:top center}
+.pend i{width:2px;height:70px;background:#E2BE7E}
+.pend span{padding:10px 18px;border:2px solid #E2BE7E;font-size:30px;color:#E2BE7E}
+.frame{width:130px;height:165px;background:#F4EEE3;padding:10px;box-shadow:0 18px 40px rgba(0,0,0,.45);animation:float 6s ease-in-out infinite}
+.frame div{width:100%;height:100%;background:#1B1D2A;display:flex;align-items:center;justify-content:center;color:#E2BE7E;font-size:13px;text-align:center}
+.obj{width:120px;height:120px;border-radius:28px;border:2px solid #E2BE7E;display:flex;align-items:center;justify-content:center;font-size:22px;color:#E2BE7E;animation:float 5s ease-in-out infinite}
+.body{padding:22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cat{color:#E2BE7E;font-size:13px;letter-spacing:1px}.pname{font-size:19px;font-weight:700}.desc{color:#B9B3A8;font-size:15px;line-height:1.6;flex:1}
+.row{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.price{font-size:26px}.was{color:#6F6A62;text-decoration:line-through;font-size:15px}
+.make{background:#E9DFCF;color:#17130C}
+.make .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:56px;padding-top:90px;padding-bottom:90px}
+.make .wrap>div{flex:1 1 380px;min-width:0}
+.make input{width:100%;max-width:420px;min-height:56px;padding:14px 20px;border-radius:16px;border:1px solid #B9A889;background:#F7F1E6;font:inherit;font-size:20px;direction:ltr}
+input:focus,button:focus-visible{outline:2px solid #E2BE7E;outline-offset:2px}
+.metal{padding:8px 16px;border:2px solid transparent;background:#F7F1E6;color:#17130C}.metal.on{border-color:#17130C}
+.dot{width:18px;height:18px;border-radius:50%}
+.stage{height:380px;border-radius:32px;background:#17130C;display:flex;justify-content:center;overflow:hidden}
+.stage .pend i{height:150px;transition:background .4s}
+.stage .script{font-size:72px;line-height:1;text-shadow:0 6px 24px rgba(0,0,0,.6);transition:color .4s}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.step{border:1px solid #262733;border-radius:24px;padding:32px}.step b{font-size:48px;color:#E2BE7E;font-weight:500}.step h3{font-size:21px;margin:8px 0}.step p{color:#B9B3A8;line-height:1.7;margin:0}
+footer{border-top:1px solid #262733;padding:40px 24px;text-align:center;color:#6F6A62;font-size:14px}
+.toast{position:fixed;bottom:28px;left:28px;background:#E2BE7E;color:#17130C;padding:14px 22px;border-radius:14px;font-weight:700;transform:translateY(120px);opacity:0;transition:.4s cubic-bezier(.2,.7,.2,1);z-index:10}
+.toast.show{transform:none;opacity:1}
+@media (max-width:600px){.sky{height:440px}.moonbox{transform:scale(.8);top:20px}.links{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="bar"><div><span>✦ משלוח חינם בהזמנה מעל ₪199</span><span>✦ כל מתנה מיוצרת במיוחד בשבילכם</span><span>✦ תצוגה מקדימה לפני שמתחילים לייצר</span><span>✦ אריזת מתנה מהודרת בכל הזמנה</span></div></div>
+
+<nav class="wrap">
+<div class="logo serif">MOMENT<span style="color:#E2BE7E">O</span></div>
+<div class="links"><a href="#shop">כל המתנות</a><a href="#make">עצבו בעצמכם</a><a href="#how">איך זה עובד</a></div>
+<button class="btn cartbtn" aria-label="סל קניות"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>סל <span class="count" id="count">0</span></button>
+</nav>
+
+<section class="wrap hero">
+<div class="up">
+<div class="eyebrow">מתנות בהתאמה אישית · מעוצבות בשבילכם</div>
+<h1 class="serif">מתנה שאי אפשר<br>לקנות <span style="color:#E2BE7E;font-style:italic">בשום מקום אחר</span></h1>
+<p class="lead">תמונה, שם או תאריך. אתם בוחרים, אנחנו מייצרים לכם מזכרת אחת ויחידה שתשאירו לתמיד.</p>
+<div style="display:flex;flex-wrap:wrap;gap:14px">
+<a href="#shop" class="btn gold" style="padding:18px 34px;font-size:17px">למתנות שלנו</a>
+<a href="#make" class="btn ghost" style="padding:18px 34px;font-size:17px">עצבו שרשרת עם שם</a>
+</div>
+<div class="stats">
+<div><b class="serif">7–12</b>ימי עסקים עד אליכם</div>
+<div><b class="serif">100%</b>תצוגה לפני ייצור</div>
+<div><b class="serif">₪199+</b>משלוח חינם</div>
+</div>
+</div>
+<div class="up" style="animation-delay:.2s">
+<div class="sky" id="sky">
+<div class="moonbox"><div class="moon"><div class="crater" style="width:60px;height:60px;top:60px;right:70px"></div><div class="crater" style="width:34px;height:34px;top:170px;right:180px"></div><div class="script js-name">Noa</div></div><div class="base"></div></div>
+<div class="tagcard"><div><div style="font-weight:700">מנורת ירח עם תמונה ושם</div><div style="color:#B9B3A8;font-size:14px">כתבו שם למטה וראו אותו על הירח</div></div><div class="serif" style="font-size:26px;color:#E2BE7E">₪189</div></div>
+</div>
+</div>
+</section>
+
+<section id="shop" class="wrap" style="padding-top:40px;padding-bottom:80px">
+<div class="head reveal">
+<div><div class="eyebrow">הקולקציה</div><h2 class="serif">מתנות שמספרות סיפור</h2></div>
+<div class="chips" id="chips"></div>
+</div>
+<div class="grid" id="grid"></div>
+</section>
+
+<section id="make" class="make">
+<div class="wrap">
+<div class="reveal">
+<div class="eyebrow" style="color:#8A6A35">נסו עכשיו</div>
+<h2 class="serif" style="margin-bottom:18px">כתבו שם, ראו את השרשרת</h2>
+<p style="font-size:18px;line-height:1.7;color:#4A4238;margin:0 0 28px">עצבו את המתנה בעצמכם וראו בדיוק איך היא תיראה לפני שאתם מזמינים.</p>
+<label for="nm" style="display:block;font-weight:700;margin-bottom:8px">השם על התליון (באנגלית)</label>
+<input id="nm" value="Noa" maxlength="12" autocomplete="off">
+<div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap" id="metals"></div>
+</div>
+<div class="stage reveal"><div class="pend"><i id="chain"></i><div class="script js-name" id="pname">Noa</div></div></div>
+</div>
+</section>
+
+<section id="how" class="wrap" style="padding-top:90px;padding-bottom:90px">
+<h2 class="serif reveal" style="text-align:center;margin-bottom:44px">שלושה צעדים למתנה מושלמת</h2>
+<div class="steps">
+<div class="step reveal"><b class="serif">01</b><h3>בוחרים מתנה</h3><p>שרשרת, מנורה, פוסטר או ספל, לפי האירוע ומי שמקבל.</p></div>
+<div class="step reveal"><b class="serif">02</b><h3>מעלים תמונה או כותבים שם</h3><p>רואים תצוגה חיה ומאשרים לפני שמתחילים לייצר.</p></div>
+<div class="step reveal"><b class="serif">03</b><h3>מקבלים עד הבית</h3><p>באריזת מתנה, מוכן לנתינה, תוך 7–12 ימי עסקים.</p></div>
+</div>
+</section>
+
+<footer>
+<div class="serif" style="font-size:24px;letter-spacing:6px;color:#F4EEE3;direction:ltr;margin-bottom:10px">MOMENT<span style="color:#E2BE7E">O</span></div>
+מתנות בהתאמה אישית · תקנון · מדיניות החזרות · הצהרת נגישות
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const P=[
+{c:'couple',cat:'לבן/בת הזוג',name:'מנורת ירח עם תמונה',desc:'ירח מודפס בתלת־ממד עם התמונה שלכם בפנים. 16 צבעי תאורה ושלט.',price:189,was:249,tag:'רב מכר',v:'moon'},
+{c:'couple',cat:'לבן/בת הזוג',name:'שרשרת הקרנה עם תמונה',desc:'מאירים בפנס על התליון והתמונה שלכם מופיעה. "אני אוהב/ת אותך" ב־100 שפות.',price:149,was:199,tag:'חדש',v:'pendant',mark:'♥',shape:'50% 50% 50% 50% / 60% 60% 40% 40%',bg:'#201A1E'},
+{c:'mom',cat:'לאמא',name:'שרשרת שם בכתב יד',desc:'כל שם עד 10 אותיות, נירוסטה בציפוי זהב 18K או כסף.',price:139,was:179,v:'pendant',mark:'Mom',shape:'14px',bg:'#1E1B16'},
+{c:'couple',cat:'לבן/בת הזוג',name:'מפת כוכבים של הרגע שלכם',desc:'איך נראו השמיים בתאריך ובמקום שבו נפגשתם. פוסטר ממוסגר.',price:159,was:210,v:'frame',mark:'✦ 14.02 ✦',bg:'#161A26'},
+{c:'home',cat:'לבית',name:'מנורת אקריליק עם תמונה',desc:'התמונה חרוטה בלוח אקריליק על בסיס עץ עם תאורת LED חמה.',price:169,was:219,v:'frame',mark:'הרגע שלנו',bg:'#1A1712'},
+{c:'mom',cat:'לאמא',name:'פאזל משפחתי עם תמונה',desc:'500 חלקים מהתמונה המשפחתית שלכם, בקופסת מתנה עם השם.',price:119,was:149,v:'obj',mark:'פאזל'},
+{c:'home',cat:'לבית',name:'ספל עם תמונה ושם',desc:'ספל קרמי, הדפסה שלא דוהה במדיח. מתנה קטנה שנשארת על השולחן.',price:79,was:99,v:'obj',mark:'ספל',bg:'#18161D'},
+{c:'pets',cat:'לבעלי חיות',name:'תג שם חרוט לכלב',desc:'שם וטלפון בחריטת לייזר. נירוסטה עמידה למים ולשריטות.',price:69,was:89,v:'obj',mark:'REX',bg:'#16191A'}
+];
+const CATS=[['all','הכל'],['couple','לבן/בת הזוג'],['mom','לאמא'],['home','לבית'],['pets','לבעלי חיות']];
+const M={gold:['#E2BE7E','זהב'],silver:['#D9DCE1','כסף'],rose:['#E8A99A','רוז גולד']};
+let cat='all',cart=0,tt;
+const $=s=>document.querySelector(s);
+function vis(p){
+ if(p.v==='moon')return '<div class="mini-moon"></div>';
+ if(p.v==='pendant')return `<div class="pend"><i></i><span class="script" style="border-radius:${p.shape}">${p.mark}</span></div>`;
+ if(p.v==='frame')return `<div class="frame"><div class="serif">${p.mark}</div></div>`;
+ return `<div class="obj serif">${p.mark}</div>`;
+}
+function renderChips(){
+ $('#chips').innerHTML=CATS.map(([id,l])=>`<button class="btn chip${cat===id?' on':''}" data-c="${id}">${l}</button>`).join('');
+}
+function renderGrid(){
+ const g=$('#grid');
+ g.innerHTML=P.map((p,i)=>(cat==='all'||p.c===cat)?`<div class="card reveal" style="transition-delay:${(i%4)*.08}s">
+ <div class="vis" style="background:${p.bg||'#1B1D2A'}">${p.tag?`<span class="badge">${p.tag}</span>`:''}${vis(p)}</div>
+ <div class="body"><div class="cat">${p.cat}</div><div class="pname">${p.name}</div><div class="desc">${p.desc}</div>
+ <div class="row"><div><span class="price serif">₪${p.price}</span> <span class="was">₪${p.was}</span></div>
+ <button class="btn gold add" data-i="${i}" style="padding:10px 18px">הוספה לסל</button></div></div></div>`:'').join('');
+ observe();
+}
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(!b)return;cat=b.dataset.c;renderChips();renderGrid();});
+$('#grid').addEventListener('click',e=>{const b=e.target.closest('.add');if(!b)return;cart++;const c=$('#count');c.textContent=cart;c.classList.add('pop');setTimeout(()=>c.classList.remove('pop'),300);
+ const t=$('#toast');t.textContent='✓ '+P[b.dataset.i].name+' נוסף לסל';t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200);});
+function renderMetals(sel){
+ $('#metals').innerHTML=Object.entries(M).map(([id,[c,l]])=>`<button class="btn metal${sel===id?' on':''}" data-m="${id}"><span class="dot" style="background:${c}"></span>${l}</button>`).join('');
+ $('#chain').style.background=M[sel][0];$('#pname').style.color=M[sel][0];
+}
+$('#metals').addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(b)renderMetals(b.dataset.m);});
+$('#nm').addEventListener('input',e=>{const v=e.target.value.replace(/[^A-Za-z ]/g,'').slice(0,12);e.target.value=v;document.querySelectorAll('.js-name').forEach(n=>n.textContent=v||'Noa');});
+const sky=$('#sky');for(let i=0;i<22;i++){const s=document.createElement('div');s.className='star';s.style.top=((i*37)%95)+'%';s.style.left=((i*53)%95)+'%';s.style.animationDuration=(2+i%4)+'s';s.style.animationDelay=(i%5)*.6+'s';sky.prepend(s);}
+let io;function observe(){io=io||new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.12});document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));}
+renderChips();renderGrid();renderMetals('gold');observe();
+</script>
+</body>
+</html>

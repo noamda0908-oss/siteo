@@ -1,6 +1,18 @@
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TFHVHDFG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // מעקב פניות: לחיצה על וואטסאפ
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href*="wa.me"]');
+    if(a){gtag('event','whatsapp_click',{link_url:a.href.split('?')[0]});dataLayer.push({event:'whatsapp_click'});}
+  },true);
+</script>
 <meta charset="utf-8">
 <meta name="google-site-verification" content="1lRdIUZhxIMOYCOF7rSKYilcupVKEm_yl3YyhIYCDSA" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1755,6 +1767,7 @@ html.m-on .mag{translate:var(--mx,0px) var(--my,0px)}
     if(!ok){(n?document.getElementById('fPhone'):document.getElementById('fName')).focus();return;}
     var text='היי, השארתי פרטים באתר של Siteo ואשמח לדמו חינם:\nשם: '+n+'\nטלפון: '+p+'\nסוג פרויקט: '+k+(m?'\nפרטים: '+m:'');
     document.getElementById('sendWa').href='https://wa.me/'+WA+'?text='+encodeURIComponent(text);
+    if(window.gtag){gtag('event','generate_lead',{form_name:'demo_request'});dataLayer.push({event:'generate_lead'});}
     form.hidden=true;sent.hidden=false;document.getElementById('sentTitle').focus();
   });
   document.getElementById('again').addEventListener('click',function(){sent.hidden=true;form.hidden=false;document.getElementById('fName').focus();});

@@ -39,7 +39,7 @@
   </a>
   <nav class="nav__links" aria-label="ראשי">
     <a href="#services">העובדים</a>
-    <a href="#places">איפה עובדים</a>
+    <a href="#places">עם מי עובדים</a>
     <a href="#areas">אזורי שירות</a>
     <a href="#jobs">מחפשים עבודה</a>
   </nav>
@@ -79,140 +79,86 @@
       <defs>
         <mask id="openMask" maskUnits="userSpaceOnUse">
           <rect class="open__maskbg" x="0" y="0" width="100%" height="100%" fill="#fff"/>
-          <text class="open__word" fill="#000" text-anchor="middle" direction="rtl"><tspan class="open__l1">כ.א</tspan><tspan class="open__l2">פרי</tspan></text>
+          <text class="open__word" fill="#000" text-anchor="middle" direction="rtl" xml:lang="he">כ.א פרי</text>
         </mask>
       </defs>
       <rect class="open__fill" x="0" y="0" width="100%" height="100%" mask="url(#openMask)"/>
     </svg>
     <p class="open__sub">כוח אדם לניקיון ולמטבח. תל אביב, גוש דן, השרון והשפלה.</p>
     <div class="open__statement">
-      <p class="open__big">מסעדה לא נפתחת בלי שוטף כלים. משרד לא מתחיל את היום בלי מי שניקה אותו בלילה.</p>
-      <p class="open__small">את האנשים האלה אנחנו מביאים. לכם נשאר לנהל את העסק.</p>
+      <p class="open__big">עובדי ניקיון ומטבח, לכל עסק ולכל בית במרכז.</p>
+      <p class="open__small">אתם אומרים לנו מה צריך. אנחנו מביאים את העובדים.</p>
     </div>
   </div>
 </section>
 
-<!-- 3. SHIFT: one day, four shifts -->
-<section class="shift" data-theme="dark" aria-labelledby="shift-title">
-  <div class="shift__stage">
-    <canvas class="shift__canvas" aria-hidden="true"></canvas>
-    <div class="shift__fallback" aria-hidden="true">
-      <img src="img/s-office.webp" alt="" loading="lazy"><img src="img/s-kitchen.webp" alt="" loading="lazy"><img src="img/s-home.webp" alt="" loading="lazy"><img src="img/s-close.webp" alt="" loading="lazy">
-    </div>
-    <div class="shift__shade" aria-hidden="true"></div>
-    <div class="shift__meter" aria-hidden="true">
-      <span class="shift__clock">06:00</span>
-      <div class="shift__bar"><i></i></div>
-    </div>
-    <div class="shift__copy">
-      <h2 class="visually-hidden" id="shift-title">יום עבודה אחד, ארבע משמרות</h2>
-      <div class="shift__step is-on">
-        <p class="shift__kicker">לפני שכולם מגיעים</p>
-        <p class="shift__line">המשרד נקי, הפחים ריקים והמטבחון מסודר, עוד לפני שהראשון מדליק את האור.</p>
-      </div>
-      <div class="shift__step">
-        <p class="shift__kicker">באמצע הסרוויס</p>
-        <p class="shift__line">שוטפי כלים, עוזרי מטבח ועובדי הכנות שמחזיקים את הקצב גם כשהמסעדה מלאה.</p>
-      </div>
-      <div class="shift__step">
-        <p class="shift__kicker">בבית</p>
-        <p class="shift__line">עוזרת בית שמגיעה בימים קבועים, ואתם חוזרים לבית נקי ומסודר.</p>
-      </div>
-      <div class="shift__step">
-        <p class="shift__kicker">אחרי הסגירה</p>
-        <p class="shift__line">הכיסאות מורמים, הרצפה שטופה, המטבח מבריק. מחר פותחים מקום נקי.</p>
-        <a class="btn btn--flame" href="#contact" data-tab="biz">צריכים עובדים למשמרת</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. SERVICES -->
+<!-- 3. SERVICES: stacked cards -->
 <section class="services" id="services" data-theme="dark" aria-labelledby="services-title">
   <div class="wrap">
     <header class="services__head">
-      <h2 class="h2" id="services-title">את מי אנחנו מביאים</h2>
+      <h2 class="h2" id="services-title">העובדים שלנו</h2>
       <p class="services__intro">עובדים לניקיון, למטבח ולמשק בית. קבועים, זמניים או להחלפה.</p>
     </header>
+    <div class="stack">
+      <article class="card">
+        <div class="card__inner">
+          <img class="card__img" src="img/s-office.webp" alt="" loading="lazy" decoding="async">
+          <div class="card__body">
+            <h3 class="card__title">ניקיון</h3>
+            <p>מנקים למשרדים, לעסקים ולמוסדות, בימים ובשעות שנוחים לכם.</p>
+            <a class="btn btn--flame" href="#contact" data-tab="biz" data-need="ניקיון">צריכים מנקים</a>
+          </div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__inner">
+          <img class="card__img" src="img/s-kitchen.webp" alt="" loading="lazy" decoding="async">
+          <div class="card__body">
+            <h3 class="card__title">מטבח</h3>
+            <p>שוטפי כלים, עוזרי מטבח ועובדי הכנות למסעדות, לבתי קפה ולאולמות.</p>
+            <a class="btn btn--flame" href="#contact" data-tab="biz" data-need="מטבח">צריכים עובדי מטבח</a>
+          </div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__inner">
+          <img class="card__img" src="img/s-home.webp" alt="" loading="lazy" decoding="async">
+          <div class="card__body">
+            <h3 class="card__title">עוזרות בית</h3>
+            <p>ניקיון קבוע וסדר בבית, לבתים פרטיים ולדירות.</p>
+            <a class="btn btn--flame" href="#contact" data-tab="biz" data-need="עוזרת בית">צריכים עוזרת בית</a>
+          </div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__inner">
+          <img class="card__img" src="img/s-close.webp" alt="" loading="lazy" decoding="async">
+          <div class="card__body">
+            <h3 class="card__title">ניקיון סגירה</h3>
+            <p>סוגרים את המסעדה או את הבר, ומשאירים מקום מוכן לפתיחה.</p>
+            <a class="btn btn--flame" href="#contact" data-tab="biz" data-need="ניקיון">צריכים ניקיון סגירה</a>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
-  <ul class="svc">
-    <li class="svc__row">
-      <a class="svc__link" href="#contact" data-tab="biz" data-need="ניקיון">
-        <span class="svc__media"><img src="img/r-clean.webp" alt="" loading="lazy" decoding="async"></span>
-        <span class="svc__word">מנקים</span>
-        <span class="svc__desc">ניקיון שוטף למשרדים, לעסקים ולמוסדות, בימים ובשעות שנוחים לכם.</span>
-        <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
-      </a>
-    </li>
-    <li class="svc__row">
-      <a class="svc__link" href="#contact" data-tab="biz" data-need="מטבח">
-        <span class="svc__media"><img src="img/r-dish.webp" alt="" loading="lazy" decoding="async"></span>
-        <span class="svc__word">שוטפי כלים</span>
-        <span class="svc__desc">למשמרות בוקר וערב במסעדות, בבתי קפה ובאולמות.</span>
-        <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
-      </a>
-    </li>
-    <li class="svc__row">
-      <a class="svc__link" href="#contact" data-tab="biz" data-need="מטבח">
-        <span class="svc__media"><img src="img/r-kitchen.webp" alt="" loading="lazy" decoding="async"></span>
-        <span class="svc__word">עוזרי מטבח</span>
-        <span class="svc__desc">הכנות, סידור וניקיון תוך כדי עבודה, לצד הטבחים שלכם.</span>
-        <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
-      </a>
-    </li>
-    <li class="svc__row">
-      <a class="svc__link" href="#contact" data-tab="biz" data-need="עוזרת בית">
-        <span class="svc__media"><img src="img/r-house.webp" alt="" loading="lazy" decoding="async"></span>
-        <span class="svc__word">עוזרות בית</span>
-        <span class="svc__desc">ניקיון קבוע וסדר בבית, לבתים פרטיים ולדירות.</span>
-        <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
-      </a>
-    </li>
-    <li class="svc__row">
-      <a class="svc__link" href="#contact" data-tab="biz" data-need="ניקיון">
-        <span class="svc__media"><img src="img/r-wipe.webp" alt="" loading="lazy" decoding="async"></span>
-        <span class="svc__word">ניקיון סגירה</span>
-        <span class="svc__desc">סוגרים את המסעדה או את הבר, ומשאירים מקום מוכן לפתיחה.</span>
-        <span class="svc__go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></span>
-      </a>
-    </li>
-  </ul>
 </section>
 
-<!-- 5. PLACES: horizontal gallery -->
+<!-- 4. PLACES: photo tiles -->
 <section class="places" id="places" data-theme="light" aria-labelledby="places-title">
-  <div class="places__stage">
-    <div class="places__head wrap">
-      <h2 class="h2" id="places-title">לאילו מקומות אנחנו מביאים עובדים</h2>
-      <p>כל מקום צריך משהו אחר. אנחנו מתאימים את העובד למקום, לא להפך.</p>
+  <div class="wrap">
+    <div class="places__head">
+      <h2 class="h2" id="places-title">עם מי אנחנו עובדים</h2>
+      <p>כל מקום צריך משהו אחר. אנחנו מתאימים את העובד למקום.</p>
     </div>
-    <div class="places__track">
-      <figure class="place">
-        <div class="place__img"><img src="img/g-rest.webp" alt="חלל מסעדה עם שולחנות ערוכים" loading="lazy" decoding="async"></div>
-        <figcaption><strong>מסעדות</strong><span>שוטפי כלים, עוזרי מטבח, עובדי הכנות וניקיון סגירה.</span></figcaption>
-      </figure>
-      <figure class="place">
-        <div class="place__img"><img src="img/g-cafe.webp" alt="בית קפה מואר עם שולחנות עץ" loading="lazy" decoding="async"></div>
-        <figcaption><strong>בתי קפה</strong><span>עובד מטבח או מנקה, גם למשמרות קצרות.</span></figcaption>
-      </figure>
-      <figure class="place">
-        <div class="place__img"><img src="img/g-bar.webp" alt="בר עם תאורה חמה ומדפי בקבוקים" loading="lazy" decoding="async"></div>
-        <figcaption><strong>ברים ואולמות</strong><span>ניקיון אחרי אירוע או אחרי לילה ארוך.</span></figcaption>
-      </figure>
-      <figure class="place">
-        <div class="place__img"><img src="img/g-office.webp" alt="מסדרון משרדים נקי ומואר" loading="lazy" decoding="async"></div>
-        <figcaption><strong>משרדים</strong><span>ניקיון שוטף לפני או אחרי שעות העבודה.</span></figcaption>
-      </figure>
-      <figure class="place">
-        <div class="place__img"><img src="img/g-hall.webp" alt="חלל ציבורי רחב עם חלונות גדולים" loading="lazy" decoding="async"></div>
-        <figcaption><strong>בתי כנסת ומוסדות</strong><span>ניקיון קבוע, וניקיון לפני אירועים ואחריהם.</span></figcaption>
-      </figure>
-      <figure class="place">
-        <div class="place__img"><img src="img/g-home.webp" alt="סלון ביתי מסודר עם צמחים" loading="lazy" decoding="async"></div>
-        <figcaption><strong>בתים פרטיים</strong><span>עוזרות בית לניקיון קבוע ולסדר בבית.</span></figcaption>
-      </figure>
-    </div>
-    <div class="places__progress" aria-hidden="true"><i></i></div>
+    <ul class="tiles">
+      <li class="tile"><img src="img/g-rest.webp" alt="" loading="lazy" decoding="async"><div class="tile__cap"><strong>מסעדות</strong><span>שוטפי כלים, עוזרי מטבח וניקיון סגירה</span></div></li>
+      <li class="tile"><img src="img/g-cafe.webp" alt="" loading="lazy" decoding="async"><div class="tile__cap"><strong>בתי קפה</strong><span>עובד מטבח או מנקה, גם למשמרות קצרות</span></div></li>
+      <li class="tile"><img src="img/g-office.webp" alt="" loading="lazy" decoding="async"><div class="tile__cap"><strong>משרדים</strong><span>ניקיון שוטף לפני או אחרי שעות העבודה</span></div></li>
+      <li class="tile"><img src="img/g-bar.webp" alt="" loading="lazy" decoding="async"><div class="tile__cap"><strong>ברים ואולמות</strong><span>ניקיון אחרי אירוע או אחרי לילה ארוך</span></div></li>
+      <li class="tile"><img src="img/g-hall.webp" alt="" loading="lazy" decoding="async"><div class="tile__cap"><strong>בתי כנסת ומוסדות</strong><span>ניקיון קבוע, ולפני אירועים ואחריהם</span></div></li>
+      <li class="tile"><img src="img/g-home.webp" alt="" loading="lazy" decoding="async"><div class="tile__cap"><strong>בתים פרטיים</strong><span>עוזרות בית לניקיון קבוע ולסדר</span></div></li>
+    </ul>
   </div>
 </section>
 
@@ -400,7 +346,7 @@
     </div>
     <nav class="foot__links" aria-label="תחתון">
       <a href="#services">העובדים</a>
-      <a href="#places">איפה עובדים</a>
+      <a href="#places">עם מי עובדים</a>
       <a href="#areas">אזורי שירות</a>
       <a href="#contact" data-tab="biz">צריכים עובדים</a>
       <a href="#contact" data-tab="job">מחפשים עבודה</a>

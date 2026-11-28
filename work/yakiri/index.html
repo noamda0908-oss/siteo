@@ -126,15 +126,39 @@
 .occ-nav button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--gold2);font-size:20px;cursor:pointer;transition:.3s}
 .occ-nav button:hover{background:var(--gold);color:#1A1208}
 
-/* how */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative}
-.steps:before{content:"";position:absolute;top:56px;right:8%;left:8%;height:1px;background:var(--line)}
-.steps .bar{position:absolute;top:56px;right:8%;height:1px;width:0;background:var(--goldg);transition:width 2.2s var(--ease);box-shadow:0 0 12px var(--gold)}
-.steps.in .bar{width:84%}
-.st{position:relative;text-align:center;padding:0 10px}
-.st .num{width:112px;height:112px;margin:0 auto 26px;border-radius:50%;border:1px solid var(--line);background:#0D0A07;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:52px;position:relative;z-index:1}
-.st h3{margin-bottom:10px}
-.st p{color:var(--soft);line-height:1.75;margin:0 auto;max-width:300px}
+/* how: sticky story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+.story-media{position:sticky;top:120px;height:min(620px,72vh);border-radius:28px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 30%,#241A10,#0B0907 75%)}
+.sm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(1.04);transition:opacity .8s var(--ease),transform 1.2s var(--ease)}
+.sm.on{opacity:1;transform:none}
+.fan{position:relative;width:62%;aspect-ratio:1}
+.fan img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:18px;border:1px solid rgba(244,224,168,.3);box-shadow:0 30px 60px -20px rgba(0,0,0,.9);transition:transform 1.2s var(--ease)}
+.fan img:nth-child(1){transform:rotate(-12deg) translate(30%,6%) scale(.86)}
+.fan img:nth-child(3){transform:rotate(12deg) translate(-30%,6%) scale(.86)}
+.sm:not(.on) .fan img{transform:none}
+.phone{width:min(270px,58%);aspect-ratio:9/18.5;border-radius:38px;background:#050403;border:1px solid rgba(244,224,168,.35);padding:10px;box-shadow:0 40px 80px -20px rgba(0,0,0,.9),0 0 60px -20px rgba(214,178,110,.4);position:relative}
+.notch{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:70px;height:20px;border-radius:20px;background:#000;z-index:2}
+.scr{height:100%;border-radius:30px;background:#0E0B08;overflow:hidden;display:flex;flex-direction:column;gap:9px;padding:42px 12px 14px;font-size:11px}
+.ph-top{font-family:var(--serif);color:var(--gold);text-align:center;font-size:17px;margin-top:-6px}
+.ph-img2{border-radius:14px;overflow:hidden;aspect-ratio:1}.ph-img2 img{width:100%;height:100%;object-fit:cover}
+.ph-name{font-family:var(--serif);font-size:15px;color:var(--text)}
+.ph-up{display:flex;align-items:center;gap:8px;border:1px dashed rgba(214,178,110,.5);border-radius:12px;padding:8px}
+.ph-th{width:30px;height:30px;border-radius:7px;background:url(img/life_dadson.webp) center/cover;flex:none}
+.ph-up>span:nth-child(2){flex:1;display:flex;flex-direction:column;gap:5px}.ph-up b{font-weight:500;color:var(--gold2)}
+.ph-bar{display:block;height:3px;border-radius:3px;background:rgba(214,178,110,.2);overflow:hidden}.ph-bar i{display:block;height:100%;width:0;background:var(--goldg)}
+.sm.on .ph-bar i{animation:load 2.2s .3s var(--ease) forwards}@keyframes load{to{width:100%}}
+.ph-ok{width:20px;height:20px;border-radius:50%;background:#1FAF55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;transform:scale(0)}
+.sm.on .ph-ok{animation:popin .5s 2.4s var(--ease) forwards}@keyframes popin{to{transform:scale(1)}}
+.ph-btn{margin-top:auto;background:var(--goldg);color:#1A1208;border-radius:999px;text-align:center;padding:10px;font-weight:500}
+.vframe{position:absolute;inset:0;overflow:hidden}.vframe img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 6s ease-out}.sm.on .vframe img{transform:scale(1)}
+.vframe:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(10,8,6,.85))}
+.tcard{position:absolute;bottom:26px;right:26px;left:26px;z-index:1;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:rgba(16,12,8,.72);backdrop-filter:blur(10px);border:1px solid var(--line);transform:translateY(30px);opacity:0;transition:.8s .4s var(--ease)}.sm.on .tcard{transform:none;opacity:1}.tcard b{display:block;font-weight:500;color:var(--gold2)}.tcard small{color:var(--soft);font-size:13px}.tdot{width:10px;height:10px;border-radius:50%;background:#1FAF55;flex:none;box-shadow:0 0 0 4px rgba(31,175,85,.25);animation:blink 1.6s infinite}
+.ss{min-height:62vh;display:flex;flex-direction:column;justify-content:center;padding:20px 0;opacity:.28;transition:opacity .6s}
+.ss.on{opacity:1}
+.ss .big{font-family:var(--serif);font-size:clamp(90px,10vw,150px);line-height:.9;color:transparent;-webkit-text-stroke:1px rgba(214,178,110,.7);margin-bottom:18px}
+.ss.on .big{background:var(--goldg);-webkit-background-clip:text;background-clip:text;-webkit-text-stroke:0}
+.ss h3{font-size:clamp(30px,3vw,42px);margin-bottom:14px}
+.ss p{color:var(--soft);line-height:1.85;font-size:17px;max-width:440px;margin:0}
 
 /* promises (light) */
 .prom{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #D9CDB8;border-bottom:1px solid #D9CDB8}
@@ -165,7 +189,7 @@
   .intro{padding-top:130px}
   .gb{bottom:18vh}
   .rec{grid-template-columns:1fr 1fr;gap:12px}.rc{border-radius:16px}.rc .t{padding:16px}.rc h3{font-size:28px;margin-bottom:4px}.rc p{font-size:13px;line-height:1.45}.rc .go{width:36px;height:36px;top:12px;left:12px}
-  .steps{grid-template-columns:1fr;gap:44px}.steps:before,.steps .bar{display:none}
+  .story{grid-template-columns:1fr;gap:0}.story-media{display:none}.ss{min-height:0;opacity:1;padding:0 0 56px}.ss-media{position:relative;height:auto;aspect-ratio:1;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 30%,#241A10,#0B0907 75%);margin-bottom:22px}.ss-media .sm{position:absolute}.ss .big{font-size:80px}.tcard{bottom:14px;right:14px;left:14px}
   .moments{gap:12px}.mo{border-radius:18px}.mo:nth-child(even){transform:translateY(30px)}.mo p{font-size:17px;padding:14px}
   .occ{padding:4px 18px 20px;margin:0 -18px}.occ-nav{display:none}
   .prom{grid-template-columns:1fr}.pm{border-left:0;border-bottom:1px solid #D9CDB8;padding:28px 6px}.pm:last-child{border-bottom:0}
@@ -299,12 +323,21 @@
 <!-- HOW -->
 <section class="sec" id="how" style="padding-top:20px">
   <div class="wrap">
-    <div style="text-align:center;margin-bottom:70px"><div class="eyebrow reveal">איך זה עובד</div><h2 class="reveal d1">שלושה צעדים <span class="gold">לדמעות של שמחה</span></h2></div>
-    <div class="steps" id="steps">
-      <div class="bar"></div>
-      <div class="st reveal"><div class="num"><span class="gold">1</span></div><h3>בוחרים למי</h3><p>אמא, אבא, האהבה שלכם. כל מתנה אצלנו נבחרה כי היא מרגשת באמת, לא כי היא זולה לייצור.</p></div>
-      <div class="st reveal d1"><div class="num"><span class="gold">2</span></div><h3>מעלים תמונה</h3><p>ישר מהטלפון, בשנייה. רואים מיד איך היא תיראה על המתנה, ומאשרים רק כשזה מושלם.</p></div>
-      <div class="st reveal d2"><div class="num"><span class="gold">3</span></div><h3>אנחנו יוצרים ואורזים</h3><p>המתנה מיוצרת במיוחד בשבילכם, נארזת בקופסת קטיפה, ומגיעה עד הדלת. מוכנה לנתינה.</p></div>
+    <div class="shead"><div class="reveal"><div class="eyebrow">איך זה עובד</div><h2>מתמונה בטלפון<br><span class="gold">לקופסת קטיפה.</span></h2></div><p class="lead reveal d1">שלוש דקות שלכם. כל השאר עלינו.</p></div>
+    <div class="story">
+      <div class="story-media" aria-hidden="true">
+        <div class="sm on" data-i="0"><div class="fan"><img src="img/cube.webp" alt=""><img src="img/heart.webp" alt=""><img src="img/wallet.webp" alt=""></div></div>
+        <div class="sm" data-i="1"><div class="phone"><div class="notch"></div><div class="scr">
+          <div class="ph-top">יקירי</div><div class="ph-img2"><img src="img/mug.webp" alt=""></div>
+          <div class="ph-name">ספל עם תמונה והקדשה</div><div class="ph-up"><span class="ph-th"></span><span><b>התמונה הועלתה</b><i class="ph-bar"><i></i></i></span><span class="ph-ok">✓</span></div>
+          <div class="ph-btn">הוספה לסל · ₪79</div></div></div></div>
+        <div class="sm" data-i="2"><div class="vframe"><img src="img/box.webp" alt="" loading="lazy"><div class="tcard"><span class="tdot"></span><span><b>החבילה שלך בדרך</b><small>נארזה בקטיפה · מספר מעקב נשלח למייל</small></span></div></div></div>
+      </div>
+      <div class="story-steps">
+        <div class="ss" data-i="0"><span class="big">01</span><h3>בוחרים למי</h3><p>אמא, אבא, האהבה שלכם, סבא וסבתא. כל מתנה אצלנו נבחרה כי היא מרגשת באמת. לא כי היא זולה לייצור.</p></div>
+        <div class="ss" data-i="1"><span class="big">02</span><h3>מעלים תמונה מהטלפון</h3><p>בוחרים תמונה מהגלריה, ורואים מיד איך היא יושבת על המתנה. אפשר להוסיף הקדשה, שם או תאריך.</p></div>
+        <div class="ss" data-i="2"><span class="big">03</span><h3>אנחנו מייצרים ושולחים</h3><p>המתנה נוצרת במיוחד בשבילכם, נארזת בקופסת קטיפה שחורה ומגיעה עד הבית עם מספר מעקב.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -376,8 +409,12 @@ renderShop();
  function upd(){const r=el.getBoundingClientRect(),vh=innerHeight;const p=Math.min(1,Math.max(0,(vh*.85-r.top)/(r.height+vh*.35)));const n=Math.round(p*ws.length);ws.forEach((w,i)=>w.classList.toggle('lit',i<n));}
  addEventListener('scroll',upd,{passive:true});upd();})();
 
-/* steps line */
-new IntersectionObserver((es,o)=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');o.disconnect();}}),{threshold:.4}).observe($('#steps'));
+/* how: sticky story */
+(()=>{const sms=[...document.querySelectorAll('.story-media .sm')],sss=[...document.querySelectorAll('.ss')];
+ if(matchMedia('(max-width:700px)').matches){sss.forEach((s,i)=>{s.classList.add('on');const w=document.createElement('div');w.className='ss-media';const c=sms[i].cloneNode(true);c.classList.remove('on');w.appendChild(c);s.prepend(w);});
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.querySelector('.sm').classList.add('on');io.unobserve(x.target);}}),{threshold:.5});document.querySelectorAll('.ss-media').forEach(m=>io.observe(m));return;}
+ const set=i=>{sms.forEach(m=>m.classList.toggle('on',m.dataset.i==i));sss.forEach(m=>m.classList.toggle('on',m.dataset.i==i));};
+ const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)set(x.target.dataset.i);}),{rootMargin:'-45% 0px -45% 0px'});sss.forEach(s=>io.observe(s));set(0);})();
 
 /* videos: play only when visible */
 const vio=new IntersectionObserver(es=>es.forEach(x=>{const v=x.target;if(x.isIntersecting){if(!v.src)v.src=v.dataset.src;v.play().catch(()=>{});}else v.pause();}),{threshold:.25});

@@ -8,6 +8,9 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  // Consent Mode: עוגיות מדידה ושיווק רק אחרי אישור בבאנר העוגיות
+  gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});
+  try{if(localStorage.getItem('siteo-consent')==='all')gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}catch(e){}
   gtag('js', new Date());
   gtag('config', 'AW-18599212902');
   // מעקב פניות: לחיצה על וואטסאפ
@@ -1230,7 +1233,7 @@ main > section{border-top:0!important}
 }
 
 /* second project: phone with real screenshot */
-.x-work-alt{margin-top:72px}
+.x-work-alt{margin-top:72px}.x-work-gap{margin-top:72px}
 @media (min-width:900px){.x-work-alt .x-work-visual{order:-1}}
 .br-visual::before{background:radial-gradient(closest-side,rgba(232,150,180,.35),transparent 70%)!important}
 .sg-visual::before{background:radial-gradient(closest-side,rgba(227,194,122,.30),transparent 70%)!important}
@@ -1238,7 +1241,7 @@ main > section{border-top:0!important}
 .br-phone{position:relative;z-index:1;display:block;width:min(300px,72vw);aspect-ratio:1/2;border-radius:42px;padding:10px;background:#0B1124;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 90px -30px rgba(232,150,180,.45),0 30px 60px -30px rgba(0,0,0,.8);transform:rotate(-3deg);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
 .br-visual:hover .br-phone{transform:rotate(0) translateY(-6px)}
 .br-phone img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:32px}
-@media (max-width:760px){.x-work-alt{margin-top:48px}.br-phone{width:min(260px,70vw)}}
+@media (max-width:760px){.x-work-alt{margin-top:48px}.x-work-gap{margin-top:48px}.br-phone{width:min(260px,70vw)}}
 
 /* ===== v7: motion layer (GSAP + Lenis, js/motion.js) ===== */
 html.lenis,html.lenis body{height:auto}
@@ -1510,6 +1513,18 @@ html.m-on .mag{translate:var(--mx,0px) var(--my,0px)}
     </div>
     <a class="x-work-visual br-visual sg-visual" href="https://sigsug-college.com" target="_blank" rel="noopener" aria-label="מכללת שגשוג – פתיחת האתר">
       <span class="br-phone"><img src="work-sigsug.webp?v=2" alt="דף הבית של אתר מכללת שגשוג בטלפון" width="390" height="780" loading="lazy" decoding="async"></span>
+    </a>
+  </div>
+  <div class="wrap x-work-grid x-work-gap">
+    <div class="x-work-text">
+      <h3 class="x-work-name">Or's Piercing</h3>
+      <p class="x-work-kind">תור דיגיטלי לדוכן פירסינג</p>
+      <p>במקום לעמוד בתור, הלקוחות סורקים QR בדוכן ונכנסים לתור מהטלפון: בוחרים איזה עגיל רוצים, ממלאים הצהרת בריאות וחותמים עליה, ורואים בזמן אמת מתי מגיע תורם. לאור יש פאנל ניהול לקריאת הלקוח הבא ולמעקב תשלומים, ומסך תצוגה לדוכן.</p>
+      <p class="x-stack" aria-label="מה יש באתר"><span>תור בזמן אמת</span><span>הצהרת בריאות וחתימה</span><span>פאנל ניהול</span><span>QR לדוכן</span></p>
+      <a class="x-link" href="/work/ors-piercing/" target="_blank" rel="noopener">לתור של Or's Piercing</a>
+    </div>
+    <a class="x-work-visual br-visual" href="/work/ors-piercing/" target="_blank" rel="noopener" aria-label="Or's Piercing – פתיחת התור הדיגיטלי">
+      <span class="br-phone"><img src="work-ors.webp?v=1" alt="מסך הכניסה לתור הדיגיטלי של Or's Piercing בטלפון" width="390" height="780" loading="lazy" decoding="async"></span>
     </a>
   </div>
   <div class="wrap">
@@ -1845,7 +1860,7 @@ html.m-on .mag{translate:var(--mx,0px) var(--my,0px)}
     if(GA_ID){var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;document.head.appendChild(g);window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments);};window.gtag('js',new Date());window.gtag('config',GA_ID);}
     if(META_PIXEL_ID){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');window.fbq('init',META_PIXEL_ID);window.fbq('track','PageView');}
   }
-  function setC(v){consent=v;try{localStorage.setItem(CK,v);}catch(e){}bar.hidden=true;if(v==='all')loadTracking();}
+  function setC(v){consent=v;try{localStorage.setItem(CK,v);}catch(e){}bar.hidden=true;if(v==='all'){if(window.gtag)gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});loadTracking();}}
   document.getElementById('cookieAll').addEventListener('click',function(){setC('all');});
   document.getElementById('cookieNec').addEventListener('click',function(){setC('necessary');});
   [].forEach.call(document.querySelectorAll('[data-cookie-settings]'),function(b){b.addEventListener('click',function(){bar.hidden=false;document.getElementById('cookieAll').focus();});});

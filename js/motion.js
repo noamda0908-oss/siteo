@@ -212,7 +212,7 @@
 
       // 6) contact + FAQ
       gsap.from('.x-form', { y: 70, opacity: 0, duration: 1.15, ease: 'expo.out', scrollTrigger: { trigger: '.x-contact', start: 'top 72%', once: true } });
-      gsap.from('.x-contact-copy > :not(.x-big)', { y: 26, opacity: 0, duration: 0.95, ease: 'expo.out', stagger: 0.08, scrollTrigger: { trigger: '.x-contact', start: 'top 72%', once: true } });
+      gsap.from('.x-contact-copy > :not(.x-big)', { y: 26, opacity: 0, duration: 0.95, ease: 'expo.out', stagger: 0.08, clearProps: 'transform,opacity', scrollTrigger: { trigger: '.x-contact', start: 'top 72%', once: true } });
       const faq = $$('.x-faq details');
       if (faq.length) gsap.from(faq, { y: 24, opacity: 0, duration: 0.8, ease: 'expo.out', stagger: 0.06, scrollTrigger: { trigger: '.x-faq', start: 'top 84%', once: true } });
     });

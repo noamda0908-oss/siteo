@@ -6,58 +6,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>יקירי – מתנה בהתאמה אישית</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Noto+Serif+Hebrew:wght@400;500&family=Heebo:wght@300;400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/app.css">
 <style>
-.crumbs{font-size:14px;color:var(--soft);padding:22px 0}
-.crumbs a:hover{color:var(--accent)}
-.pd{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
-.gal{position:sticky;top:96px}
-.gal-main{aspect-ratio:4/5;overflow:hidden;background:var(--sand);position:relative}
-.gal-main>img,.gal-main>.mk{width:100%;height:100%;object-fit:cover;animation:up .5s both}
+.crumbs{font-size:14px;color:var(--soft);padding:28px 0}
+.crumbs a:hover{color:var(--gold)}
+.pd{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:start}
+.gal{position:sticky;top:100px}
+.gal-main{aspect-ratio:1;overflow:hidden;background:var(--bg3);position:relative;border-radius:24px;border:1px solid var(--line)}
+.gal-main>img,.gal-main>.mk{width:100%;height:100%;object-fit:cover;animation:zin .8s var(--ease) both}
+@keyframes zin{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:none}}
+.gal-main:after{content:"";position:absolute;inset:0;border-radius:24px;box-shadow:inset 0 0 80px rgba(0,0,0,.35);pointer-events:none}
 .thumbs{display:flex;gap:12px;margin-top:14px}
-.thumbs button{width:76px;height:95px;border-radius:0;overflow:hidden;border:2px solid transparent;padding:0;cursor:pointer;background:var(--sand)}
-.thumbs button.on{border-color:var(--ink)}
+.thumbs button{width:84px;height:84px;border-radius:14px;overflow:hidden;border:1px solid var(--line2);padding:0;cursor:pointer;background:var(--bg3);transition:.3s}
+.thumbs button.on{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
 .thumbs img{width:100%;height:100%;object-fit:cover}
-.thumbs .mini{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--ink);background:var(--sand);line-height:1.3;text-align:center;padding:6px}
-.info .for{color:var(--soft);font-size:14px;margin-bottom:10px}
-.info h1{font-size:clamp(28px,3.2vw,40px)}
-.price{display:flex;align-items:baseline;gap:12px;margin:16px 0 6px}
-.price b{font-size:26px;font-weight:500}
-.save{color:var(--accent);font-size:14px}
-.info .lead{margin:14px 0 24px}
-.box{border-top:1px solid var(--line);padding:22px 0 0;display:flex;flex-direction:column;gap:18px}
-.lab{font-weight:500;font-size:15px;margin-bottom:10px;display:block}
+.thumbs .mini{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gold2);line-height:1.3;text-align:center;padding:6px}
+.info .for{color:var(--gold);font-size:13px;letter-spacing:.1em;margin-bottom:14px}
+.info h1{font-size:clamp(36px,4vw,56px)}
+.price{display:flex;align-items:baseline;gap:12px;margin:18px 0 4px;flex-wrap:wrap}
+.price b{font-size:30px;font-weight:400;color:var(--gold2)}
+.pnote{display:inline-flex;align-items:center;gap:8px;margin-top:8px;background:rgba(214,178,110,.1);border:1px solid var(--line);color:var(--gold2);border-radius:999px;padding:6px 14px;font-size:13.5px}
+.info .lead{margin:18px 0 26px}
+.box{border-top:1px solid var(--line);padding:26px 0 0;display:flex;flex-direction:column;gap:22px}
+.lab{font-weight:400;font-size:15px;margin-bottom:12px;display:block;color:var(--text)}
+.lab em{font-style:normal;color:var(--gold);font-family:var(--serif);font-size:18px;margin-inline-end:6px}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
-.opt{min-height:44px;min-width:56px;padding:8px 16px;border-radius:2px;border:1px solid var(--line);background:#fff;font:inherit;font-weight:400;cursor:pointer;color:var(--ink)}
-.opt.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
-.up{display:flex;align-items:center;gap:14px;border:1px dashed #BDB4A9;border-radius:2px;padding:14px;cursor:pointer;transition:.25s}
-.up:hover,.up.on{border-color:var(--ink);background:var(--sand)}
-.up .th{width:52px;height:52px;background:var(--sand) center/cover;flex:none;display:flex;align-items:center;justify-content:center;color:var(--ink)}
-.box input[type=text]{width:100%;min-height:50px;padding:12px 16px;border-radius:2px;border:1px solid var(--line);background:#fff;font:inherit;font-size:16px;color:var(--ink)}
+.opt{min-height:46px;min-width:58px;padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;font:inherit;cursor:pointer;color:var(--text);transition:.3s}
+.opt:hover{border-color:var(--gold)}
+.opt.on{background:var(--goldg);color:#1A1208;border-color:transparent;font-weight:500}
+.up{display:flex;align-items:center;gap:16px;border:1px dashed rgba(214,178,110,.45);border-radius:18px;padding:16px;cursor:pointer;transition:.3s;background:rgba(214,178,110,.03)}
+.up:hover,.up.on{border-color:var(--gold);background:rgba(214,178,110,.08)}
+.up .th{width:58px;height:58px;border-radius:12px;background:#1E1712 center/cover;flex:none;display:flex;align-items:center;justify-content:center;color:var(--gold)}
+.up small{color:var(--soft)}
+.box input[type=text]{width:100%;min-height:52px;padding:12px 18px;border-radius:14px;border:1px solid var(--line2);background:#17120D;font:inherit;font-size:16px;color:var(--text);transition:border-color .3s}
+.box input[type=text]:focus{outline:0;border-color:var(--gold)}
+.box input::placeholder{color:var(--mute)}
 .buy{display:flex;gap:10px}
-.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:2px;background:#fff}
-.qty button{width:44px;height:48px;border:0;background:none;font-size:20px;cursor:pointer;color:var(--ink)}
-.qty span{min-width:24px;text-align:center;font-weight:600}
+.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px}
+.qty button{width:46px;height:52px;border:0;background:none;font-size:20px;cursor:pointer;color:var(--gold2)}
+.qty span{min-width:24px;text-align:center;font-weight:500}
 .buy .btn{flex:1}
-.perks{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-.perk{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--soft);line-height:1.5}
-.perk svg{flex:none;color:var(--ink);margin-top:2px}
-.perk b{color:var(--ink);display:block}
-details{border-bottom:1px solid var(--line);padding:18px 0}
-details summary{cursor:pointer;font-weight:500;font-size:17px;list-style:none;display:flex;justify-content:space-between}
-details summary:after{content:"+";font-size:22px;color:var(--ink);transition:.3s}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;padding:22px;border:1px solid var(--line2);border-radius:18px;background:#0E0B08}
+.perk{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--soft);line-height:1.55}
+.perk svg{flex:none;color:var(--gold);margin-top:2px}
+.perk b{color:var(--text);display:block;font-weight:500}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+details summary{cursor:pointer;font-family:var(--serif);font-size:22px;list-style:none;display:flex;justify-content:space-between}
+details summary::-webkit-details-marker{display:none}
+details summary:after{content:"+";font-size:26px;color:var(--gold);font-family:Heebo;font-weight:300;transition:.3s}
 details[open] summary:after{transform:rotate(45deg)}
-details ul,details p{color:var(--soft);line-height:1.8;margin:12px 0 0;padding-inline-start:18px}
-.notfound{text-align:center;padding:120px 20px}
-@media (max-width:900px){.pd{grid-template-columns:1fr;gap:28px}.gal{position:static}}
-@media (max-width:640px){.thumbs button{width:68px;height:68px}.perks{grid-template-columns:1fr}}
+details ul,details p{color:var(--soft);line-height:1.9;margin:12px 0 0;padding-inline-start:18px}
+.notfound{text-align:center;padding:140px 20px}
+.rel h2{margin-bottom:36px}
+@media (max-width:900px){.pd{grid-template-columns:1fr;gap:30px}.gal{position:static}}
+@media (max-width:640px){.thumbs button{width:70px;height:70px}.perks{grid-template-columns:1fr}.gal-main{border-radius:18px}}
 </style>
 </head>
 <body>
 <main class="wrap" id="app"></main>
-<section class="wrap" style="margin-top:90px">
-<h2 class="reveal" style="margin-bottom:28px">אולי יתאים לכם גם</h2>
+<section class="wrap rel" style="margin-top:110px;margin-bottom:120px">
+<div class="eyebrow reveal">עוד רעיונות</div><h2 class="reveal">אולי יתאים <span class="gold">גם</span></h2>
 <div class="grid" id="related"></div>
 </section>
 <script src="assets/app.js"></script>
@@ -79,11 +89,11 @@ ${p.photo||p.m==='name'?`<button data-v="mock" aria-label="תצוגה עם הת�
 <div class="info">
 <div class="for">${p.c.map(x=>LBL[x]).join(' · ')}</div>
 <h1>${esc(p.name)}</h1>
-<div class="price"><b>₪${p.price}</b><span class="was">₪${p.was}</span></div>
+<div class="price"><b>₪${p.price}</b><span class="was">₪${p.was}</span></div><div id="pnote"></div>
 <p class="lead">${esc(p.short)}</p>
 <div class="box">
-${p.photo?`<div><span class="lab">1. העלו תמונה</span><label class="up" id="up" for="pfile"><span class="th" id="upth"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></span><span><b id="uptxt" style="display:block">בחירת תמונה מהטלפון או מהמחשב</b><small style="color:var(--soft)">מומלץ: תמונה חדה, פנים ברורות</small></span></label><input type="file" id="pfile" accept="image/*" hidden></div>`:''}
-${p.opts.map((o,i)=>`<div><span class="lab">${p.photo?i+2+'. ':''}${o.name}</span><div class="opts" data-o="${esc(o.name)}">${o.values.map((v,j)=>`<button class="opt${j?'':' on'}" data-v="${esc(v)}">${esc(v)}</button>`).join('')}</div></div>`).join('')}
+${p.photo?`<div><span class="lab"><em>1</em>העלו תמונה</span><label class="up" id="up" for="pfile"><span class="th" id="upth"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></span><span><b id="uptxt" style="display:block">בחירת תמונה מהטלפון או מהמחשב</b><small style="color:var(--soft)">מומלץ: תמונה חדה, פנים ברורות</small></span></label><input type="file" id="pfile" accept="image/*" hidden></div>`:''}
+${p.opts.map((o,i)=>`<div><span class="lab">${p.photo?`<em>${i+2}</em>`:''}${o.name}</span><div class="opts" data-o="${esc(o.name)}">${o.values.map((v,j)=>`<button class="opt${j?'':' on'}" data-v="${esc(v)}">${esc(v)}</button>`).join('')}</div></div>`).join('')}
 ${p.text?`<div><label class="lab" for="ptext">${esc(p.text)}</label><input type="text" id="ptext" maxlength="${p.m==='name'?10:40}" placeholder="${p.m==='name'?'Noa':'לדוגמה: אוהבים אותך'}" ${p.m==='name'?'dir="ltr"':''}></div>`:''}
 <div class="buy"><div class="qty"><button id="qm" aria-label="הפחתה">−</button><span id="qn">1</span><button id="qp" aria-label="הוספה">+</button></div><button class="btn btn-primary" id="add">הוספה לסל · ₪${p.price}</button></div>
 </div>
@@ -123,6 +133,7 @@ $('#add').addEventListener('click',async()=>{
  b.disabled=false;upd();
 });
 show();
+onPromo(pr=>{$('#pnote').innerHTML=`<span class="pnote">✦ ${esc(pr.label||'מבצע')}: עוד ${pr.pct}% הנחה בסל · ${money(p.price*(100-pr.pct)/100)}</span>`;});
 $('#related').innerHTML=P.filter(x=>x.id!==p.id&&x.c.some(c=>p.c.includes(c))).slice(0,4).map(card).join('');
 }
 observe();

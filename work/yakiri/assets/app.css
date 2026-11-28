@@ -29,9 +29,7 @@ h3{font-size:clamp(22px,2vw,28px);line-height:1.2}
 .lead{font-size:clamp(16px,1.3vw,19px);line-height:1.85;color:var(--soft);font-weight:300}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .sec{padding-top:clamp(80px,11vw,150px);padding-bottom:clamp(80px,11vw,150px);position:relative}
-.light{background:var(--cream);color:var(--ink)}
-.light .lead{color:var(--inksoft)}
-.light .eyebrow{color:var(--gold3)}
+.light{background:linear-gradient(180deg,#0A0806,#15100B 30%,#15100B 70%,#0A0806);color:var(--text)}
 
 /* buttons */
 .btn{white-space:nowrap;position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:14px 34px;border-radius:999px;font:inherit;font-weight:500;font-size:16px;cursor:pointer;border:0;transition:transform .35s var(--ease),box-shadow .35s}
@@ -41,7 +39,6 @@ h3{font-size:clamp(22px,2vw,28px);line-height:1.2}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 50px -10px rgba(214,178,110,.75)}
 .btn-ghost{background:transparent;color:var(--gold2);border:1px solid rgba(214,178,110,.5)}
 .btn-ghost:hover{background:rgba(214,178,110,.08);border-color:var(--gold)}
-.light .btn-ghost{color:var(--ink);border-color:var(--ink)}
 .btn[disabled]{opacity:.6;pointer-events:none}
 .arrow{transition:transform .3s}
 .btn:hover .arrow{transform:translateX(-5px)}
@@ -97,7 +94,6 @@ h3{font-size:clamp(22px,2vw,28px);line-height:1.2}
 .pcard .pr{display:flex;align-items:baseline;gap:10px}
 .pcard .pr b{font-size:17px;font-weight:500;color:var(--gold2)}
 .was{color:var(--mute);text-decoration:line-through;font-size:14px}
-.light .pcard{color:var(--ink)}
 
 /* drawer + toast */
 .drawer{position:fixed;inset:0;z-index:70;display:none}

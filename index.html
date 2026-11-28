@@ -4,14 +4,16 @@
 <meta charset="utf-8">
 <!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TFHVHDFG"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18599212902"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  gtag('config', 'AW-18599212902');
   // מעקב פניות: לחיצה על וואטסאפ
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href*="wa.me"]');
-    if(a){gtag('event','whatsapp_click',{link_url:a.href.split('?')[0]});dataLayer.push({event:'whatsapp_click'});}
+    if(a){gtag('event','conversion',{send_to:'AW-18599212902/I9T3CPftnMEdEObu5aRF',value:1.0,currency:'ILS',transport_type:'beacon'});gtag('event','whatsapp_click',{link_url:a.href.split('?')[0]});dataLayer.push({event:'whatsapp_click'});}
   },true);
 </script>
 <meta name="google-site-verification" content="1lRdIUZhxIMOYCOF7rSKYilcupVKEm_yl3YyhIYCDSA" />
